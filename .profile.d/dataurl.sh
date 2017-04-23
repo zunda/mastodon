@@ -1,11 +1,13 @@
 # Obtain info from DATABASE_URL
-export DB_USER=`echo $DATABASE_URL | cut -d: -f2 | sed 's/\/\///'`
-export DB_PASS=`echo $DATABASE_URL | cut -d: -f3 | cut -d@ -f1`
-export DB_NAME=`echo $DATABASE_URL | cut -d/ -f4`
-export DB_HOST=`echo $DATABASE_URL | cut -d: -f3 | cut -d@ -f2`
-export DB_PORT=`echo $DATABASE_URL | cut -d: -f4 | cut -d/ -f1`
+set -- `echo $DATABASE_URL | sed 's/[:/@]/ /g'`
+export DB_USER=$2
+export DB_PASS=$3
+export DB_NAME=$6
+export DB_HOST=$4
+export DB_PORT=$5
 
 # Obtain info from REDIS_URL
-export REDIS_HOST=`echo $REDIS_URL | cut -d: -f3 | cut -d@ -f2`
-export REDIS_PORT=`echo $REDIS_URL | cut -d: -f4`
-export REDIS_PASSWORD=`echo $REDIS_URL | cut -d: -f3 | cut -d@ -f1`
+set -- `echo $REDIS_URL | sed 's/[:/@]/ /g'`
+export REDIS_HOST=$4
+export REDIS_PORT=$5
+export REDIS_PASSWORD=$3
