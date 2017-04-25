@@ -64,3 +64,10 @@ You can open issues for bugs you've found or features you think are missing. You
 - The error page image courtesy of [Dopatwo](https://www.youtube.com/user/dopatwo)
 
 ![Mastodon error image](https://mastodon.social/oops.png)
+
+## Modifications
+
+[This repository](https://github.com/zunda/mastodon/tree/zunda-ninja-on-heroku) contains modifications for smoother operation on Heroku by [zunda](https://github.com/zunda) to the [original version](https://github.com/tootsuite/mastodon). Namely:
+
+- Apr 2017: Modified [`Procfile`](./Procfile) so that the `web` dyno can run the main app (`puma`), worker (`sidekiq`), and/or streaming API (`npm`). Set config vars `RUN_WEB`, `RUN_WORKER`, and/or `RUN_STREAMING` to `true` to run corresponding service.
+- Apr 2017: Added [`.profile.d/mastodon-nodejs-dataurl.sh`](./.profile.d/mastodon-nodejs-dataurl.sh) to obtain connection information for streaming API when dyno is starting.
