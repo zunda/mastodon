@@ -71,3 +71,4 @@ You can open issues for bugs you've found or features you think are missing. You
 
 - Apr 2017: Modified [`Procfile`](./Procfile) so that the `web` dyno can run the main app (`puma`), worker (`sidekiq`), and/or streaming API (`npm`). Set config vars `RUN_WEB`, `RUN_WORKER`, and/or `RUN_STREAMING` to `true` to run corresponding service.
 - Apr 2017: Added [`.profile.d/mastodon-nodejs-dataurl.sh`](./.profile.d/mastodon-nodejs-dataurl.sh) to obtain connection information for streaming API when dyno is starting.
+- Apr 2017: Add `release` line to [`Procfile`](./Procfile) to migrate database [on each deploy](https://devcenter.heroku.com/articles/release-phase).
