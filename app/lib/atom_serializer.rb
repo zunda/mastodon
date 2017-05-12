@@ -86,6 +86,7 @@ class AtomSerializer
     append_element(entry, 'link', nil, rel: :alternate, type: 'text/html', href: account_stream_entry_url(stream_entry.account, stream_entry))
     append_element(entry, 'link', nil, rel: :self, type: 'application/atom+xml', href: account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom'))
     append_element(entry, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(stream_entry.thread), href: TagManager.instance.url_for(stream_entry.thread)) if stream_entry.threaded?
+    append_element(entry, 'ostatus:conversation', nil, ref: conversation_uri(stream_entry.status.conversation)) unless stream_entry&.status&.conversation_id.nil?
 
     entry
   end
@@ -107,6 +108,7 @@ class AtomSerializer
 
     append_element(object, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(status))
     append_element(object, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(status.thread), href: TagManager.instance.url_for(status.thread)) if status.reply? && !status.thread.nil?
+    append_element(object, 'ostatus:conversation', nil, ref: conversation_uri(status.conversation)) unless status.conversation_id.nil?
 
     object
   end
@@ -325,6 +327,11 @@ class AtomSerializer
     raw_str.to_s
   end
 
+  def conversation_uri(conversation)
+    return conversation.uri if conversation.uri.present?
+    TagManager.instance.unique_tag(conversation.created_at, conversation.id, 'Conversation')
+  end
+
   def add_namespaces(parent)
     parent['xmlns']          = TagManager::XMLNS
     parent['xmlns:thr']      = TagManager::THR_XMLNS
@@ -337,7 +344,7 @@ class AtomSerializer
 
   def serialize_status_attributes(entry, status)
     append_element(entry, 'summary', Formatter.instance.format(status.proper, :spoiler_text, false).to_str, 'xml:lang': status.language, type: 'html') if status.spoiler_text?
-    append_element(entry, 'content', Formatter.instance.format(status.proper).to_str, type: 'html', 'xml:lang': status.language)
+    append_element(entry, 'content', Formatter.instance.format(status).to_str, type: 'html', 'xml:lang': status.language)
 
     status.mentions.each do |mentioned|
       append_element(entry, 'link', nil, rel: :mentioned, 'ostatus:object-type': TagManager::TYPES[:person], href: TagManager.instance.uri_for(mentioned.account))
