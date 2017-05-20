@@ -30,7 +30,7 @@
 #  otp_required_for_login    :boolean
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
-#  allowed_languages         :string           default([]), not null, is an Array
+#  filtered_languages        :string           default([]), not null, is an Array
 #
 
 class User < ApplicationRecord
@@ -45,10 +45,10 @@ class User < ApplicationRecord
   belongs_to :account, inverse_of: :user, required: true
   accepts_nested_attributes_for :account
 
-  validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
+  validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates :email, email: true
 
-  scope :recent,    -> { order('id desc') }
+  scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
 
@@ -83,6 +83,6 @@ class User < ApplicationRecord
   private
 
   def sanitize_languages
-    allowed_languages.reject!(&:blank?)
+    filtered_languages.reject!(&:blank?)
   end
 end

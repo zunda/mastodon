@@ -12,13 +12,13 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
-  report: { id: 'status.report', defaultMessage: 'Report @{name}' }
+  report: { id: 'status.report', defaultMessage: 'Report @{name}' },
 });
 
 class ActionBar extends React.PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {
@@ -30,7 +30,7 @@ class ActionBar extends React.PureComponent {
     onMention: PropTypes.func.isRequired,
     onReport: PropTypes.func,
     me: PropTypes.number.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   handleReplyClick = () => {

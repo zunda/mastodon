@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 class Permalink extends React.PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {
     className: PropTypes.string,
     href: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
-    children: PropTypes.node
+    children: PropTypes.node,
   };
 
   handleClick = (e) => {
-    if (e.button === 0) {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.push(this.props.to);
     }
