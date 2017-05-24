@@ -554,12 +554,16 @@
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
 
+  @keyframes fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  opacity: 1;
+  animation: fade 0.3s linear;
+
   &.status-direct {
     background: lighten($ui-base-color, 8%);
-
-    .status__display-name strong {
-      color: $primary-text-color;
-    }
 
     .icon-button.disabled {
       color: lighten($ui-base-color, 16%);
@@ -600,6 +604,16 @@
           background: lighten($ui-primary-color, 8%);
         }
       }
+    }
+  }
+}
+
+.notification-favourite {
+  .status.status-direct {
+    background: transparent;
+
+    .icon-button.disabled {
+      color: lighten($ui-base-color, 13%);
     }
   }
 }
@@ -3145,6 +3159,7 @@ button.icon-button.active i.fa-retweet {
 .boost-modal__action-bar,
 .confirmation-modal__action-bar {
   display: flex;
+  justify-content: space-between;
   background: $ui-secondary-color;
   padding: 10px;
   line-height: 36px;
@@ -3179,14 +3194,9 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal__action-bar {
-  & > div {
-    text-align: left;
-    padding: 0 16px;
-  }
-
-  a {
+  .confirmation-modal__cancel-button {
+    background-color: transparent;
     color: darken($ui-secondary-color, 34%);
-    text-decoration: none;
     font-size: 14px;
     font-weight: 500;
 
