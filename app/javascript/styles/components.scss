@@ -60,6 +60,7 @@
 
 .column-collapsable {
   position: relative;
+  flex: 0 0 auto;
 
   .column-collapsable__content {
     overflow: auto;
@@ -676,7 +677,7 @@
   margin-top: 10px;
 }
 
-.status__action-bar-button-wrapper {
+.status__action-bar-button {
   float: left;
   margin-right: 18px;
 }
@@ -1792,6 +1793,7 @@
 
 .getting-started__wrapper {
   position: relative;
+  flex: 0 0 auto;
 }
 
 .getting-started__footer {
@@ -1962,6 +1964,7 @@ button.icon-button.active i.fa-retweet {
   text-align: center;
   padding: 15px;
   text-decoration: none;
+  clear: both;
 
   &:hover {
     background: lighten($ui-base-color, 2%);
