@@ -23,7 +23,7 @@ en:
     get_started: Get started
     links: Links
     other_instances: Other instances
-    source_code: Source code
+    source_code: Source code under AGPL
     status_count_after: statuses
     status_count_before: Who authored
     terms: Terms
@@ -250,7 +250,7 @@ en:
     unlocked_warning_title: Your account is not locked
   generic:
     changes_saved_msg: Changes successfully saved!
-    powered_by: powered by %{link}
+    powered_by: powered by %{link} under AGPL
     save_changes: Save changes
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
