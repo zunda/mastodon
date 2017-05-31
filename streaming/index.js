@@ -95,7 +95,6 @@ const startWorker = (workerId) => {
   const app    = express();
   const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)));
   const server = http.createServer(app);
-  const wss    = new WebSocket.Server({ server });
   const redisNamespace = process.env.REDIS_NAMESPACE || null;
 
   const redisParams = {
@@ -186,14 +185,10 @@ const startWorker = (workerId) => {
     });
   };
 
-  const authenticationMiddleware = (req, res, next) => {
-    if (req.method === 'OPTIONS') {
-      next();
-      return;
-    }
-
-    const authorization = req.get('Authorization');
-    const accessToken = req.query.access_token;
+  const accountFromRequest = (req, next) => {
+    const authorization = req.headers.authorization;
+    const location = url.parse(req.url, true);
+    const accessToken = location.query.access_token;
 
     if (!authorization && !accessToken) {
       const err = new Error('Missing access token');
@@ -206,6 +201,26 @@ const startWorker = (workerId) => {
     const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
 
     accountFromToken(token, req, next);
+  };
+
+  const wsVerifyClient = (info, cb) => {
+    accountFromRequest(info.req, err => {
+      if (!err) {
+        cb(true, undefined, undefined);
+      } else {
+        log.error(info.req.requestId, err.toString());
+        cb(false, 401, 'Unauthorized');
+      }
+    });
+  };
+
+  const authenticationMiddleware = (req, res, next) => {
+    if (req.method === 'OPTIONS') {
+      next();
+      return;
+    }
+
+    accountFromRequest(req, next);
   };
 
   const errorMiddleware = (err, req, res, next) => {
@@ -240,7 +255,7 @@ const startWorker = (workerId) => {
           }
 
           const unpackedPayload  = JSON.parse(payload);
-          const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id)).concat(unpackedPayload.reblog ? [unpackedPayload.reblog.account.id] : []);
+          const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
           const accountDomain    = unpackedPayload.account.acct.split('@')[1];
 
           if (Array.isArray(req.filteredLanguages) && req.filteredLanguages.includes(unpackedPayload.language)) {
@@ -250,7 +265,7 @@ const startWorker = (workerId) => {
           }
 
           const queries = [
-            client.query(`SELECT 1 FROM blocks WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 1)}) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 1)})`, [req.accountId].concat(targetAccountIds)),
+            client.query(`SELECT 1 FROM blocks WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})) OR (account_id = $2 AND target_account_id = $1) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
           ];
 
           if (accountDomain) {
@@ -352,10 +367,12 @@ const startWorker = (workerId) => {
     streamFrom(`timeline:hashtag:${req.query.tag}:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
 
+  const wss    = new WebSocket.Server({ server, verifyClient: wsVerifyClient });
+
   wss.on('connection', ws => {
-    const location = url.parse(ws.upgradeReq.url, true);
-    const token    = location.query.access_token;
-    const req      = { requestId: uuid.v4() };
+    const req      = ws.upgradeReq;
+    const location = url.parse(req.url, true);
+    req.requestId  = uuid.v4();
 
     ws.isAlive = true;
 
@@ -363,33 +380,25 @@ const startWorker = (workerId) => {
       ws.isAlive = true;
     });
 
-    accountFromToken(token, req, err => {
-      if (err) {
-        log.error(req.requestId, err);
-        ws.close();
-        return;
-      }
-
-      switch(location.query.stream) {
-      case 'user':
-        streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(req, ws));
-        break;
-      case 'public':
-        streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
-        break;
-      case 'public:local':
-        streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
-        break;
-      case 'hashtag':
-        streamFrom(`timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
-        break;
-      case 'hashtag:local':
-        streamFrom(`timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
-        break;
-      default:
-        ws.close();
-      }
-    });
+    switch(location.query.stream) {
+    case 'user':
+      streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(req, ws));
+      break;
+    case 'public':
+      streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      break;
+    case 'public:local':
+      streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      break;
+    case 'hashtag':
+      streamFrom(`timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      break;
+    case 'hashtag:local':
+      streamFrom(`timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      break;
+    default:
+      ws.close();
+    }
   });
 
   const wsInterval = setInterval(() => {
