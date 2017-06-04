@@ -1526,6 +1526,22 @@
   }
 }
 
+.column-header__back-button {
+  background: lighten($ui-base-color, 4%);
+  border: 0;
+  font-family: inherit;
+  color: $ui-highlight-color;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 16px;
+  padding: 0 15px;
+  z-index: 3;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .column-back-button__icon {
   display: inline-block;
   margin-right: 5px;
@@ -2013,7 +2029,7 @@ button.icon-button.active i.fa-retweet {
     box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
   }
 
-  &.active .fa {
+  &.active .column-header__icon {
     color: $ui-highlight-color;
     text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
   }
@@ -2028,6 +2044,90 @@ button.icon-button.active i.fa-retweet {
   &:active {
     outline: 0;
   }
+}
+
+.column-header__buttons {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+}
+
+.column-header__button {
+  background: lighten($ui-base-color, 4%);
+  border: 0;
+  color: $ui-primary-color;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 15px;
+
+  &:hover {
+    color: lighten($ui-primary-color, 7%);
+  }
+
+  &.active {
+    color: $primary-text-color;
+    background: lighten($ui-base-color, 8%);
+
+    &:hover {
+      color: $primary-text-color;
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+}
+
+.column-header__collapsible {
+  max-height: 70vh;
+  overflow: hidden;
+  overflow-y: auto;
+  color: $ui-primary-color;
+  transition: max-height 150ms ease-in-out, opacity 300ms linear;
+  opacity: 1;
+
+  & > div {
+    background: lighten($ui-base-color, 8%);
+    padding: 15px;
+  }
+
+  &.collapsed {
+    max-height: 0;
+    opacity: 0.5;
+  }
+
+  &.animating {
+    overflow-y: hidden;
+  }
+}
+
+.column-header__setting-btn {
+  &:hover {
+    color: lighten($ui-primary-color, 4%);
+    text-decoration: underline;
+  }
+}
+
+.column-header__setting-arrows {
+  float: right;
+
+  .column-header__setting-btn {
+    padding: 0 10px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+.text-btn {
+  display: inline-block;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .column-header__icon {
@@ -2172,13 +2272,12 @@ button.icon-button.active i.fa-retweet {
   left: 20px;
 }
 
-.setting-toggle__label {
+.setting-toggle {
   display: block;
   line-height: 24px;
-  vertical-align: middle;
 }
 
-.setting-toggle {
+.setting-toggle__label {
   color: $ui-primary-color;
   display: inline-block;
   margin-bottom: 14px;
