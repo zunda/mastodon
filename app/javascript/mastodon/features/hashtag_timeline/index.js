@@ -117,9 +117,11 @@ class HashtagTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
+          showBackButton={true}
         />
 
         <StatusListContainer
+          trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}
           type='tag'
           id={id}
