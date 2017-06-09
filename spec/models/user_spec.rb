@@ -34,6 +34,12 @@ RSpec.describe User, type: :model do
       expect(user).to model_have_error_on_field(:email)
     end
 
+    it 'is valid with an invalid e-mail that has already been saved' do
+      user = Fabricate.build(:user, email: 'invalid-email')
+      user.save(validate: false)
+      expect(user.valid?).to be true
+    end
+
     it 'cleans out empty string from languages' do
       user = Fabricate.build(:user, filtered_languages: [''])
       user.valid?
@@ -150,7 +156,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'saves cleared otp_backup_codes' do
-      user = Fabricate.build(:user, otp_backup_codes: %w[dummy dummy])
+      user = Fabricate.build(:user, otp_backup_codes: %w(dummy dummy))
       user.disable_two_factor!
       expect(user.reload.otp_backup_codes.empty?).to be true
     end
