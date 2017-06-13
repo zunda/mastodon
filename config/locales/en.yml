@@ -257,7 +257,7 @@ en:
     unlocked_warning_title: Your account is not locked
   generic:
     changes_saved_msg: Changes successfully saved!
-    powered_by: powered by %{link} under AGPL
+    powered_by: powered by %{link}
     save_changes: Save changes
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
