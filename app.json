@@ -37,7 +37,7 @@
     },
     "S3_ENABLED": {
       "description": "Should Mastodon use Amazon S3 for storage? This is highly recommended, as Heroku does not have persistent file storage (files will be lost).",
-      "value": "true",
+      "value": "false",
       "required": false
     },
     "S3_BUCKET": {
@@ -90,6 +90,16 @@
     },
     "SMTP_ENABLE_STARTTLS_AUTO": {
       "description": "Enable STARTTLS if SMTP server supports it? Default is true.",
+      "required": false
+    },
+    "RUN_WEB": {
+      "description": "Run Puma on web dyno",
+      "value": "true",
+      "required": false
+    },
+    "RUN_WORKER": {
+      "description": "Run Sidekiq on web dyno",
+      "value": "true",
       "required": false
     }
   },
