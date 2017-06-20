@@ -86,6 +86,8 @@ class Status extends ImmutablePureComponent {
       this.node,
       this.handleIntersection
     );
+
+    this.componentMounted = true;
   }
 
   componentWillUnmount () {
@@ -96,6 +98,8 @@ class Status extends ImmutablePureComponent {
     }
 
     this.props.intersectionObserverWrapper.unobserve(this.props.id, this.node);
+
+    this.componentMounted = false;
   }
 
   handleIntersection = (entry) => {
@@ -116,6 +120,10 @@ class Status extends ImmutablePureComponent {
   }
 
   hideIfNotIntersecting = () => {
+    if (!this.componentMounted) {
+      return;
+    }
+
     // When the browser gets a chance, test if we're still not intersecting,
     // and if so, set our isHidden to true to trigger an unrender. The point of
     // this is to save DOM nodes and avoid using up too much memory.
@@ -136,14 +144,14 @@ class Status extends ImmutablePureComponent {
 
   handleClick = () => {
     const { status } = this.props;
-    this.context.router.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+    this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
   }
 
   handleAccountClick = (e) => {
     if (e.button === 0) {
       const id = Number(e.currentTarget.getAttribute('data-id'));
       e.preventDefault();
-      this.context.router.push(`/accounts/${id}`);
+      this.context.router.history.push(`/accounts/${id}`);
     }
   }
 
@@ -154,7 +162,10 @@ class Status extends ImmutablePureComponent {
   render () {
     let media = null;
     let statusAvatar;
-    const { status, account, ...other } = this.props;
+
+    // Exclude intersectionObserverWrapper from `other` variable
+    // because intersection is managed in here.
+    const { status, account, intersectionObserverWrapper, ...other } = this.props;
     const { isExpanded, isIntersecting, isHidden } = this.state;
 
     if (status === null) {
