@@ -74,10 +74,8 @@ class WrappedRoute extends React.Component {
 
 }
 
-const noOp = () => false;
-
-
-class UI extends React.PureComponent {
+@connect()
+export default class UI extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -222,5 +220,3 @@ class UI extends React.PureComponent {
   }
 
 }
-
-export default connect()(UI);
