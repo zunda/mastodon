@@ -78,7 +78,11 @@ const startWorker = (workerId) => {
 
   const pgConfigs = {
     development: {
+      user:     process.env.DB_USER || pg.defaults.user,
+      password: process.env.DB_PASS || pg.defaults.password,
       database: 'mastodon_development',
+      host:     process.env.DB_HOST || pg.defaults.host,
+      port:     process.env.DB_PORT || pg.defaults.port,
       max:      10,
     },
 
@@ -242,7 +246,7 @@ const startWorker = (workerId) => {
     accountFromRequest(req, next);
   };
 
-  const errorMiddleware = (err, req, res, next) => {  // eslint-disable-line no-unused-vars
+  const errorMiddleware = (err, req, res, {}) => {
     log.error(req.requestId, err.toString());
     res.writeHead(err.statusCode || 500, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: err.statusCode ? err.toString() : 'An unexpected error occurred' }));
