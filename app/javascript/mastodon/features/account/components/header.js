@@ -17,7 +17,7 @@ const messages = defineMessages({
 });
 
 const makeMapStateToProps = () => {
-  const mapStateToProps = (state, props) => ({
+  const mapStateToProps = state => ({
     autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
   });
 
@@ -143,7 +143,7 @@ class Header extends ImmutablePureComponent {
   }
 
   renderQiitaUsername() {
-    const { account, me, intl } = this.props;
+    const { account } = this.props;
     if (!account.get('qiita_username')) {
       return null;
     }
