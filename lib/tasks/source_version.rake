@@ -18,16 +18,8 @@ namespace :source do
             module Version
               module_function
 
-              def commit_hash
-                '#{hash}'
-              end
-
-              def commit_hash_short
-                '#{hash_abb}'
-              end
-
               def to_s
-                "\#{to_a.join('.')} (#{hash_abb})"
+                "\#{to_a.join('.')} at #{hash_abb}"
               end
             end
           end
