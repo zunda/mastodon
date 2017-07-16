@@ -30,15 +30,6 @@ ja:
     remote_follow: リモートフォロー
     reserved_username: このユーザー名は予約されています。
     unfollow: フォロー解除
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} さんがアクティビティをシェアしました"
-      create:
-        name: "%{account_name} さんがノートを作成しました"
-    outbox:
-      name: "%{account_name} さんの送信トレイ"
-      summary: "%{account_name} さんからのアクティビティコレクション"
   admin:
     accounts:
       are_you_sure: 本当に実行しますか?
@@ -320,6 +311,21 @@ ja:
     next: 次
     prev: 前
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: あなたのトゥートが %{name} さんにお気に入り登録されました
+    follow:
+      title: '%{name} さんにフォローされました'
+    mention:
+      action_boost: ブースト
+      action_expand: もっと見る
+      action_favourite: お気に入り
+      title: '%{name} さんから返信がありました'
+    reblog:
+      title: あなたのトゥートが %{name} さんにブーストされました
+    subscribed:
+      body: あなたはプッシュ通知を受け取ることが出来ます
+      title: Subscription が登録されました
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした

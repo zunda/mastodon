@@ -1314,6 +1314,7 @@
 .react-swipeable-view-container > * {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
 }
 
@@ -2708,6 +2709,7 @@ button.icon-button.active i.fa-retweet {
   margin-left: 2px;
   width: 24px;
   outline: 0;
+  cursor: pointer;
 
   &:active,
   &:focus {

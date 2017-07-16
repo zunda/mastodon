@@ -9,7 +9,7 @@ import { links, getIndex, getLink } from './tabs_bar';
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import BundleColumnError from './bundle_column_error';
-import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline } from '../../ui/util/async-components';
+import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, FavouritedStatuses } from '../../ui/util/async-components';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -18,6 +18,7 @@ const componentMap = {
   'PUBLIC': PublicTimeline,
   'COMMUNITY': CommunityTimeline,
   'HASHTAG': HashtagTimeline,
+  'FAVOURITES': FavouritedStatuses,
 };
 
 export default class ColumnsArea extends ImmutablePureComponent {
@@ -32,8 +33,22 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
+  state = {
+    shouldAnimate: false,
+  }
+
+  componentWillReceiveProps() {
+    this.setState({ shouldAnimate: false });
+  }
+
+  componentDidMount() {
+    this.lastIndex = getIndex(this.context.router.history.location.pathname);
+    this.setState({ shouldAnimate: true });
+  }
+
   componentDidUpdate() {
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
+    this.setState({ shouldAnimate: true });
   }
 
   handleSwipe = (index) => {
@@ -73,9 +88,10 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   render () {
     const { columns, children, singleColumn } = this.props;
+    const { shouldAnimate } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
-    const shouldAnimate = Math.abs(this.lastIndex - columnIndex) === 1;
+    this.pendingIndex = null;
 
     if (singleColumn) {
       return columnIndex !== -1 ? (

@@ -44,15 +44,6 @@ pl:
     remote_follow: Zdalne śledzenie
     reserved_username: Ta nazwa użytkownika jest zarezerwowana.
     unfollow: Przestań śledzić
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} udostępnił(a) aktywność."
-      create:
-        name: "%{account_name} utworzył(a) wpis."
-    outbox:
-      name: Skrzynka %{account_name}
-      summary: Zbiór aktywności użytkownika %{account_name}.
   admin:
     accounts:
       are_you_sure: Jesteś tego pewien?
@@ -300,7 +291,7 @@ pl:
       following: Lista śledzonych
       muting: Lista wyciszonych
     upload: Załaduj
-  landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie."
+  landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   media_attachments:
     validations:
