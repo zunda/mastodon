@@ -12,6 +12,9 @@
 #  updated_at :datetime         not null
 #
 
+require 'webpush'
+require_relative '../../models/setting'
+
 class Web::PushSubscription < ApplicationRecord
   include RoutingHelper
   include StreamEntriesHelper
@@ -37,13 +40,12 @@ class Web::PushSubscription < ApplicationRecord
     nsfw = notification.target_status.nil? || notification.target_status.spoiler_text.empty? ? nil : notification.target_status.spoiler_text
 
     # TODO: Make sure that the payload does not exceed 4KB - Webpush::PayloadTooLarge
-    # TODO: Queue the requests - Webpush::TooManyRequests
     Webpush.payload_send(
       message: JSON.generate(
         title: title,
         dir: dir,
         image: image,
-        badge: full_asset_url('badge.png'),
+        badge: full_asset_url('badge.png', skip_pipeline: true),
         tag: notification.id,
         timestamp: notification.created_at,
         icon: notification.from_account.avatar_static_url,
@@ -59,7 +61,7 @@ class Web::PushSubscription < ApplicationRecord
       p256dh: key_p256dh,
       auth: key_auth,
       vapid: {
-        # subject: "mailto:#{Setting.site_contact_email}",
+        subject: "mailto:#{Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
       },
@@ -113,7 +115,7 @@ class Web::PushSubscription < ApplicationRecord
       when :mention then [
         {
           title: translate('push_notifications.mention.action_favourite'),
-          icon: full_asset_url('emoji/2764.png'),
+          icon: full_asset_url('emoji/2764.png', skip_pipeline: true),
           todo: 'request',
           method: 'POST',
           action: "/api/v1/statuses/#{notification.target_status.id}/favourite",
@@ -154,8 +156,8 @@ class Web::PushSubscription < ApplicationRecord
     Webpush.payload_send(
       message: JSON.generate(
         title: translate('push_notifications.subscribed.title'),
-        icon: full_asset_url('android-chrome-192x192.png'),
-        badge: full_asset_url('badge.png'),
+        icon: full_asset_url('android-chrome-192x192.png', skip_pipeline: true),
+        badge: full_asset_url('badge.png', skip_pipeline: true),
         data: {
           content: translate('push_notifications.subscribed.body'),
           actions: [],
@@ -166,7 +168,7 @@ class Web::PushSubscription < ApplicationRecord
       p256dh: key_p256dh,
       auth: key_auth,
       vapid: {
-        # subject: "mailto:#{Setting.site_contact_email}",
+        subject: "mailto:#{Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
       },
