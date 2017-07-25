@@ -8,7 +8,7 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
-class StatusContent extends React.PureComponent {
+export default class StatusContent extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -136,7 +136,7 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className='status__content status__content--with_action' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className='status__content status__content--with-action' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
@@ -172,5 +172,3 @@ class StatusContent extends React.PureComponent {
   }
 
 }
-
-export default StatusContent;
