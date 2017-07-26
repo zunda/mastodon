@@ -563,12 +563,6 @@ RSpec.describe Account, type: :model do
         account.valid?
         expect(account).to model_have_error_on_field(:note)
       end
-
-      it 'is invalid if the username is reserved' do
-        account = Fabricate.build(:account, username: 'qiitan')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
     end
 
     context 'when is remote' do
@@ -608,12 +602,6 @@ RSpec.describe Account, type: :model do
         account = Fabricate.build(:account, domain: 'domain', note: Faker::Lorem.characters(161))
         account.valid?
         expect(account).not_to model_have_error_on_field(:note)
-      end
-
-      it 'is valid although the username is reserved' do
-        account = Fabricate.build(:account, username: 'qiitan', domain: Faker::Internet.domain_name)
-        account.valid?
-        expect(account).not_to model_have_error_on_field(:username)
       end
     end
   end
