@@ -1,4 +1,5 @@
 class OauthRegistrationsController < DeviseController
+  include AfterSignInPathLeadable
   layout 'auth'
 
   before_action :check_enabled_registrations
@@ -17,7 +18,7 @@ class OauthRegistrationsController < DeviseController
 
     if @oauth_registration.save
       sign_in(@oauth_registration.user)
-      redirect_to web_path
+      redirect_to after_sign_in_path_for(@oauth_registration.user)
       flash[:notice] = I18n.t('oauth_registration.success')
     else
       render :new, status: :unprocessable_entity
@@ -36,5 +37,10 @@ class OauthRegistrationsController < DeviseController
 
   def require_omniauth_auth
     redirect_to root_path unless omniauth_auth
+  end
+
+  # @override
+  def location_after_sign_in
+    session[:devise_omniauth_origin].presence || stored_location_for(:user)
   end
 end
