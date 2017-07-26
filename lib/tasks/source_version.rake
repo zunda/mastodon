@@ -11,6 +11,7 @@ namespace :source do
     end
     unless hash.blank?
       hash_abb = hash[0..7]
+      mastodon_version_to_s = Mastodon::Version.to_s
       File.open('config/initializers/version.rb', 'w') do |f|
         f.write <<~_TEMPLATE
           # frozen_string_literal: true
@@ -19,7 +20,7 @@ namespace :source do
               module_function
 
               def to_s
-                "\#{to_a.join('.')} at #{hash_abb}"
+                "#{mastodon_version_to_s} at #{hash_abb}"
               end
             end
           end
