@@ -10,6 +10,8 @@ class Form::OauthRegistration
 
   class << self
     def from_omniauth_auth(auth)
+      auth = auth.deep_symbolize_keys
+      
       case auth[:provider]
       when 'qiita'
         new(
