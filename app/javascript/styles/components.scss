@@ -3430,6 +3430,15 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.actions-modal {
+  .status {
+    background: $white;
+    border-bottom-color: $ui-secondary-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
 .boost-modal__container {
   overflow-x: scroll;
   padding: 10px;
@@ -3508,6 +3517,10 @@ button.icon-button.active i.fa-retweet {
   ul {
     overflow-y: auto;
     flex-shrink: 0;
+
+    li:empty {
+      margin: 0;
+    }
 
     li:not(:empty) {
       a {
