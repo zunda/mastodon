@@ -7,7 +7,7 @@ class FollowService < BaseService
   # @param [Account] source_account From which to follow
   # @param [String] uri User URI to follow in the form of username@domain
   def call(source_account, uri)
-    target_account = FollowRemoteAccountService.new.call(uri)
+    target_account = ResolveRemoteAccountService.new.call(uri)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
     raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
@@ -57,10 +57,10 @@ class FollowService < BaseService
   end
 
   def build_follow_request_xml(follow_request)
-    AtomSerializer.render(AtomSerializer.new.follow_request_salmon(follow_request))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_request_salmon(follow_request))
   end
 
   def build_follow_xml(follow)
-    AtomSerializer.render(AtomSerializer.new.follow_salmon(follow))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_salmon(follow))
   end
 end
