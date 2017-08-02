@@ -22,6 +22,8 @@
   .fields-group
     = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
 
+  .fields-group
+    = f.input :prohibit_registrations_except_qiita_oauth, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.prohibit_registrations_except_qiita_oauth.title'), hint: t('admin.settings.registrations.prohibit_registrations_except_qiita_oauth.desc_html')
   %hr/
 
   .fields-group

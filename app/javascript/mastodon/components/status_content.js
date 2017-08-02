@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import escapeTextContentForBrowser from 'escape-html';
 import PropTypes from 'prop-types';
 import emojify from '../emoji';
+import highlightCode from '../highlight-code';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
@@ -119,8 +120,8 @@ export default class StatusContent extends React.PureComponent {
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
 
-    const content = { __html: emojify(status.get('content')) };
-    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
+    const content = { __html: emojify(highlightCode(status.get('content'))) };
+    const spoilerContent = { __html: emojify(highlightCode(escapeTextContentForBrowser(status.get('spoiler_text', '')))) };
     const directionStyle = { direction: 'ltr' };
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,

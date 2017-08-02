@@ -134,13 +134,32 @@ export default class Header extends ImmutablePureComponent {
           <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
           <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
-          <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
+          <span className='account__header__usernames'>
+            <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
+            { this.renderQiitaUsername() }
+          </span>
           <div className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}
           {actionBtn}
         </div>
       </div>
+    );
+  }
+
+  renderQiitaUsername() {
+    const { account } = this.props;
+    if (!account.get('qiita_username')) {
+      return null;
+    }
+    const qiita_link = `http://qiita.com/${account.get('qiita_username')}`;
+
+    return (
+      <span className='account__header__qiita--username' style={{ fontSize: '14px', fontWeight: '400' }}>
+        <a href={qiita_link} target='_blank'>
+          {account.get('qiita_username')}
+        </a>
+      </span>
     );
   }
 

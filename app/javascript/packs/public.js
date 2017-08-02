@@ -37,6 +37,10 @@ function main() {
       const datetime = new Date(content.getAttribute('datetime'));
       content.textContent = relativeFormat.format(datetime);
     });
+
+    [].forEach.call(document.getElementsByTagName('code'), (content) => {
+      content.outerHTML = highlightCode(content.outerHTML);
+    });
   });
 
   delegate(document, '.video-player video', 'click', ({ target }) => {

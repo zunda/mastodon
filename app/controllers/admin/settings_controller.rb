@@ -19,6 +19,7 @@ module Admin
       open_registrations
       open_deletion
       timeline_preview
+      prohibit_registrations_except_qiita_oauth
     ).freeze
 
     def edit

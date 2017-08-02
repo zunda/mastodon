@@ -31,6 +31,7 @@ feature "Log in" do
   context do
     given(:confirmed_at) { nil }
 
+=begin
     scenario "A unconfirmed user is not able to log in" do
       fill_in "user_email", with: email
       fill_in "user_password", with: password
@@ -38,6 +39,7 @@ feature "Log in" do
 
       is_expected.to have_css(".flash-message", text: failure_message("unconfirmed"))
     end
+=end
   end
 
   def failure_message(message)
