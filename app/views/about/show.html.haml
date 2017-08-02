@@ -58,18 +58,6 @@
                 = @instance_presenter.closed_registrations_message.html_safe
             = link_to t('about.find_another_instance'), 'https://joinmastodon.org/', class: 'button button-alternative button--block'
 
-  %h3= t('about.messages_headline')
-
-  %ul
-    %li
-      = t 'about.messages.code'
-    %li
-      = t 'about.messages.qiita'
-    %li
-      = t 'about.messages.trial'
-    %li
-      = t 'about.messages.delete'
-
   .learn-more-cta
     .container
       %h3= t('about.description_headline', domain: site_hostname)
@@ -93,4 +81,3 @@
   - unless @instance_presenter.site_description.blank?
     %h3= t('about.description_headline', domain: site_hostname)
     %p!= @instance_presenter.site_description
-
