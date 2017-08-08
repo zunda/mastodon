@@ -92,6 +92,12 @@ export function submitCompose() {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      if (getState().getIn(['meta', 'app_mode']) === 'intent') {
+        window.close();
+        setTimeout(() => (location.href = '/'), 200);
+        return;
+      }
+
       dispatch(submitComposeSuccess({ ...response.data }));
 
       // To make the app more responsive, immediately get the status into the columns

@@ -233,6 +233,7 @@ Rails.application.routes.draw do
   end
 
   get '/web/(*any)', to: 'home#index', as: :web
+  get '/intent/(*any)', to: 'intent#index', as: :intent
 
   get '/about',      to: 'about#show'
   get '/about/more', to: 'about#more'
