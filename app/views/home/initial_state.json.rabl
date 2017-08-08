@@ -12,6 +12,8 @@ node(:meta) do
     delete_modal: current_account.user.setting_delete_modal,
     auto_play_gif: current_account.user.setting_auto_play_gif,
     is_email_confirmed: current_user.confirmed?,
+    app_mode: @app_mode || 'main',
+    intent_status_initial_text: params[:text],
   }
 end
 

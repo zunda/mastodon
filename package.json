@@ -10,7 +10,7 @@
     "storybook": "cross-env NODE_ENV=test start-storybook -s ./public -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ storybook/ streaming/",
-    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.js",
+    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/**/*.test.js",
     "postinstall": "npm rebuild node-sass"
   },
   "repository": {
@@ -117,6 +117,7 @@
     "@storybook/addon-actions": "^3.1.6",
     "@storybook/react": "^3.1.6",
     "babel-eslint": "^7.2.3",
+    "babel-plugin-dynamic-import-node": "^1.0.2",
     "chai": "^4.0.1",
     "chai-enzyme": "^0.7.1",
     "enzyme": "^2.9.1",
