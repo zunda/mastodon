@@ -7,6 +7,7 @@ function main() {
   const emojify = require('../mastodon/emoji').default;
   const { getLocale } = require('../mastodon/locales');
   const ready = require('../mastodon/ready').default;
+  const highlightCode = require('../mastodon/highlight-code').default;
 
   const { localeData } = getLocale();
   localeData.forEach(IntlRelativeFormat.__addLocaleData);
