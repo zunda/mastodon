@@ -31,8 +31,4 @@ class InstancePresenter
   def version_number
     Mastodon::Version
   end
-
-  def source_url
-    'https://github.com/tootsuite/mastodon'
-  end
 end
