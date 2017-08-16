@@ -24,6 +24,12 @@ namespace :source do
               end
             end
           end
+
+          class InstancePresenter
+            def source_url
+              "https://github.com/zunda/mastodon/tree/#{hash}"
+            end
+          end
         _TEMPLATE
       end
     end
