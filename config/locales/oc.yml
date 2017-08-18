@@ -57,6 +57,7 @@ oc:
       feed_url: Flux URL
       followers: Seguidors
       follows: Abonaments
+      inbox_url: URL de recepcion
       ip: IP
       location:
         all: Tot
@@ -76,8 +77,10 @@ oc:
         alphabetic: Alfabetic
         most_recent: Mai recent
         title: Ordre
+      outbox_url: URL Outbox
       perform_full_suspension: Botar en tren la suspension complèta
       profile_url: URL del perfil
+      protocol: Protocòl
       public: Public
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar los avatars
@@ -135,7 +138,7 @@ oc:
       domain_name: Domeni
       title: Instàncias conegudas
     reports:
-      action_taken_by: Accion menada per
+      action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
       comment:
         label: Comentari
@@ -233,7 +236,7 @@ oc:
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     set_new_password: Picar un nòu senhal
-    invalid_reset_password_token: Ligam de reïnicializacion invalid o acabat. Tornatz ensajar se vos plai.
+    invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat. Tornatz demandar un geton se vos plai.
   authorize_follow:
     error: O planhèm, i a agut una error al moment de cercar lo compte
     follow: Sègre
@@ -258,11 +261,11 @@ oc:
     - gen
     - feb
     - mar
-    - mai
+    - abr
     - mai
     - jun
     - jul
-    - ag
+    - ago
     - set
     - oct
     - nov
@@ -299,24 +302,43 @@ oc:
     - :year
   datetime:
     distance_in_words:
-      about_x_hours: Fa %{count} oras
-      about_x_months: Fa %{count} meses
+      about_x_hours:
+        one: Fa una ora
+        other: Fa %{count} oras
+      about_x_months:
+        one: Fa un mes
+        other: Fa %{count} meses
       about_x_years:
         one: Fa un an
         other: Fa %{count} ans
       almost_x_years:
-        one: Fa un an
-        other: Fa %{count} ans
+        one: Fa quasi un an
+        other: Fa quasi %{count} ans
       half_a_minute: Ara
-      less_than_x_minutes: Fa %{count} minutas
-      less_than_x_seconds: Ara
+      less_than_x_minutes:
+        one: Fa mens d’una minuta
+        other: Fa mens de %{count} minutas
+      less_than_x_seconds:
+        one: Fa mens d’una segonda
+        other: Fa mens de %{count} segondas
       over_x_years:
+        one: Fa mai d’un an
+        other: Fa mai de %{count} ans
+      x_days:
+        one: Fa un jorn
+        other: Fa %{count} jorns
+      x_minutes:
+        one: Fa una minuta
+        other: Fa %{count} minutas
+      x_months:
+        one: Fa un mes
+        other: Fa %{count} meses
+      x_years:
         one: Fa un an
         other: Fa %{count} ans
-      x_days: Fa %{count} jorns
-      x_minutes: Fa %{count} minutas
-      x_months: Fa %{count} meses
-      x_seconds: Fa %{count} segondas
+      x_seconds:
+        one: Fa una segonda
+        other: Fa %{count} segondas
   deletes:
     bad_password_msg: Ben ensajat pirata ! Senhal incorrècte
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
@@ -333,7 +355,7 @@ oc:
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
       title: Verificacion de seguretat fracassada
     '429': Lo servidor mòla (subrecargada)
-    noscript: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar una aplicacion per vòstra plataforma coma alernativa.
+    noscript: Per utilizar l’aplicacion Mastodon, mercés d’activar JavaScript. Autrament podètz utilizar una aplicacion nativa Mastodon per vòstra plataforma.
   exports:
     blocks: Personas que blocatz
     csv: CSV
@@ -493,9 +515,9 @@ oc:
     body_html: |
       <h2>Politica de confidencialitat</h2>
 
-      <h3 id="collect">Quinas informacions collectem ?</h3>
+      <h3 id="collect">Quinas informacions reculhèm ?</h3>
 
-      <p>Collectem informacions sus vos quand vos marcatz sus nòstre site e juntem las donadas quand participatz a nòstre forum en legissent, escrivent e notant lo contengut partejat aquí.</p>
+      <p>Collectem informacions sus vos quand vos marcatz sus nòstre site e juntem las donadas quand participatz a nòstre forum en legir, escriure e notar lo contengut partejat aquí.</p>
 
       <p>Pendent l’inscripcion podèm vos demandar vòstre nom e adreça de corrièl. Podètz çaquelà visitar nòstre site sens vos marcar. Verificarem vòstra adreça amb un messatge donant un ligam unic. Se clicatz sul ligam sauprem qu’avètz lo contraròtle de l’adreça.</p>
 
@@ -527,9 +549,9 @@ oc:
 
       <h3 id="cookies">Empleguem de cookies ?</h3>
 
-      <p>Òc-ben. Los cookies son de pichons fichièrs qu’un site o sos forneires de servicis plaçan dins lo disc dur de vòstre ordenador via lo navigator Web (Se los acceptatz). Aqueles cookies permeton al site de reconéisser vòstre navigator e se tenètz un compte enregistrat de l’associar a vòstre compte.</p>
+      <p>Òc-ben. Los cookies son de pichons fichièrs qu’un site o sos provesidors de servicis plaçan dins lo disc dur de vòstre ordenador via lo navigator Web (Se los acceptatz). Aqueles cookies permeton al site de reconéisser vòstre navigator e se tenètz un compte enregistrat de l’associar a vòstre compte.</p>
 
-      <p>Empleguem de cookies per comprendre e enregistrar vòstras preferéncias per vòstras visitas venentas, per recampar de donadas sul trafic del site e las interaccions per dire que posquem ofrir una melhora experiéncia del site e de las aisinas pel futur. Pòt arribar que contractèssem amb de forneires de servicis tèrces per nos ajudar a comprendre melhor nòstres visitors.  Aqueles forneires an pas lo drech que d’utilizar las donadas collectadas per nos ajudar a menar e melhorar nòstre afar.</p>
+      <p>Empleguem de cookies per comprendre e enregistrar vòstras preferéncias per vòstras visitas venentas, per recampar de donadas sul trafic del site e las interaccions per dire que posquem ofrir una melhora experiéncia del site e de las aisinas pel futur. Pòt arribar que contractèssem amb de provesidors de servicis tèrces per nos ajudar a comprendre melhor nòstres visitors.  Aqueles provesidors an pas lo drech que d’utilizar las donadas collectadas per nos ajudar a menar e melhorar nòstre afar.</p>
 
       <h3 id="disclose">Divulguem d’informacions a de tèrces ?</h3>
 
@@ -580,4 +602,4 @@ oc:
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
-    signed_in_as: 'Session a'
+    signed_in_as: Session a

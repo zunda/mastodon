@@ -4,7 +4,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def perform
     return if delete_arrived_first?(object_uri) || unsupported_object_type?
 
-    status = Status.find_by(uri: object_uri)
+    status = find_existing_status
 
     return status unless status.nil?
 
@@ -23,10 +23,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   private
 
+  def find_existing_status
+    status   = Status.find_by(uri: object_uri)
+    status ||= Status.find_by(uri: @object['_:atomUri']) if @object['_:atomUri'].present?
+    status
+  end
+
   def status_params
     {
       uri: @object['id'],
-      url: @object['url'],
+      url: @object['url'] || @object['id'],
       account: @account,
       text: text_from_content || '',
       language: language_from_content,

@@ -40,7 +40,11 @@ en:
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
-    posts: Posts
+    posts: Toots
+    posts_with_replies: Toots with replies
+    media: Media
+    roles:
+      admin: Admin
     remote_follow: Remote follow
     reserved_username: The username is reserved
     unfollow: Unfollow
@@ -57,6 +61,7 @@ en:
       feed_url: Feed URL
       followers: Followers
       follows: Follows
+      inbox_url: Inbox URL
       ip: IP
       location:
         all: All
@@ -76,8 +81,10 @@ en:
         alphabetic: Alphabetic
         most_recent: Most recent
         title: Order
+      outbox_url: Outbox URL
       perform_full_suspension: Perform full suspension
       profile_url: Profile URL
+      protocol: Protocol
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh avatar

@@ -105,6 +105,7 @@ class Account < ApplicationRecord
            :current_sign_in_ip,
            :current_sign_in_at,
            :confirmed?,
+           :admin?,
            :locale,
            to: :user,
            prefix: true,
@@ -169,6 +170,10 @@ class Account < ApplicationRecord
   class << self
     def domains
       reorder(nil).pluck('distinct accounts.domain')
+    end
+
+    def inboxes
+      reorder(nil).where(protocol: :activitypub).pluck("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)")
     end
 
     def triadic_closures(account, limit: 5, offset: 0)
