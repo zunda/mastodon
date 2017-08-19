@@ -23,6 +23,17 @@ namespace :source do
                 "#{mastodon_version_to_s} at #{hash_abb}"
               end
             end
+
+            module Source
+              module_function
+
+              def base_url
+                'https://github.com/zunda/mastodon'
+              end
+              def tag
+                "#{hash}"
+              end
+            end
           end
         _TEMPLATE
       end
