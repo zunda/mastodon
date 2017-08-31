@@ -56,6 +56,8 @@ Rails.application.routes.draw do
     resource :inbox, only: [:create], module: :activitypub
   end
 
+  resource :inbox, only: [:create], module: :activitypub
+
   get '/@:username', to: 'accounts#show', as: :short_account
   get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
   get '/@:username/media', to: 'accounts#show', as: :short_account_media
@@ -235,6 +237,7 @@ Rails.application.routes.draw do
 
     namespace :web do
       resource :settings, only: [:update]
+      resource :embed, only: [:create]
       resources :push_subscriptions, only: [:create] do
         member do
           put :update
