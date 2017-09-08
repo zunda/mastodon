@@ -22,7 +22,7 @@
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
 #  conversation_id        :integer
-#  local                  :boolean          default(FALSE)
+#  local                  :boolean
 #
 
 class Status < ApplicationRecord
@@ -63,8 +63,8 @@ class Status < ApplicationRecord
   default_scope { recent }
 
   scope :recent, -> { reorder(id: :desc) }
-  scope :remote, -> { where.not(uri: nil) }
-  scope :local, -> { where(uri: nil) }
+  scope :remote, -> { where(local: false).or(where.not(uri: nil)) }
+  scope :local,  -> { where(local: true).or(where(uri: nil)) }
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
