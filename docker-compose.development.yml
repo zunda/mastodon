@@ -57,7 +57,7 @@ services:
     env_file: .env
     command: /mastodon/bin/webpack-dev-server --host 0.0.0.0
     ports:
-      - "8080:8080"
+      - "10080:10080"
     depends_on:
       - db
       - redis
