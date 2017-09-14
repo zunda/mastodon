@@ -33,6 +33,10 @@ class InstancePresenter
     Mastodon::Version
   end
 
+  def source_url
+    Mastodon::Version.source_url
+  end
+
   def open_password_registrations
     open_registrations && !prohibit_registrations_except_qiita_oauth
   end
