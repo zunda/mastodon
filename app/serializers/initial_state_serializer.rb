@@ -11,8 +11,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,
       admin: object.admin&.id,
-      app_mode: object.app_mode,
-      intent_status_initial_text: object.intent_status_initial_text,
     }
 
     if object.current_account

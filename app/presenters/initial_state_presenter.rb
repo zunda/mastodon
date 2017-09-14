@@ -2,6 +2,5 @@
 
 class InitialStatePresenter < ActiveModelSerializers::Model
   attributes :settings, :push_subscription, :token,
-             :current_account, :admin, :text,
-             :app_mode, :intent_status_initial_text
+             :current_account, :admin, :text
 end

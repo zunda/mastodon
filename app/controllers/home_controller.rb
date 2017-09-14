@@ -26,12 +26,6 @@ class HomeController < ApplicationController
       current_account: current_account,
       token: current_session.token,
       admin: Account.find_local(Setting.site_contact_username),
-      app_mode: app_mode,
-      intent_status_initial_text: params[:text],
     }
-  end
-
-  def app_mode
-    'main'
   end
 end

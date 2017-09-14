@@ -9,7 +9,7 @@
     "start": "node ./streaming/index.js",
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ streaming/",
-    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup-with-babel-register.js ./spec/javascript/components/**/*.test.js",
+    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/**/*.test.js",
     "postinstall": "npm rebuild node-sass"
   },
   "repository": {
@@ -121,7 +121,6 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "babel-plugin-dynamic-import-node": "^1.0.2",
     "chai": "^4.1.0",
     "chai-enzyme": "^0.8.0",
     "enzyme": "^2.9.1",

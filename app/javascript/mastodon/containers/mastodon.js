@@ -7,7 +7,6 @@ import BrowserRouter from 'react-router-dom/BrowserRouter';
 import Route from 'react-router-dom/Route';
 import ScrollContext from 'react-router-scroll/lib/ScrollBehaviorContext';
 import UI from '../features/ui';
-import IntentUI from '../features/intent_ui';
 import { hydrateStore } from '../actions/store';
 import { connectUserStream } from '../actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
@@ -25,15 +24,7 @@ export default class Mastodon extends React.PureComponent {
     locale: PropTypes.string.isRequired,
   };
 
-  getAppMode() {
-    return store.getState().getIn(['meta', 'app_mode']);
-  }
-
   componentDidMount() {
-    if (this.getAppMode() === 'intent') {
-      return;
-    }
-
     this.disconnect = store.dispatch(connectUserStream());
 
     // Desktop notifications
@@ -61,20 +52,6 @@ export default class Mastodon extends React.PureComponent {
 
   render () {
     const { locale } = this.props;
-
-    if (this.getAppMode() === 'intent') {
-      return (
-        <IntlProvider locale={locale} messages={messages}>
-          <Provider store={store}>
-            <BrowserRouter basename='/intent'>
-              <ScrollContext>
-                <Route path='/' component={IntentUI} />
-              </ScrollContext>
-            </BrowserRouter>
-          </Provider>
-        </IntlProvider>
-      );
-    }
 
     return (
       <IntlProvider locale={locale} messages={messages}>
