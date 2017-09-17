@@ -2,15 +2,15 @@
 
 class InstancePresenter
   def user_count
-    Rails.cache.fetch('user_count', expires_in: 37.hours) { User.confirmed.count }
+    @user_count ||= Rails.cache.fetch('user_count', expires_in: 37.hours) { User.confirmed.count }
   end
 
   def status_count
-    Rails.cache.fetch('local_status_count', expires_in: 11.hours) { Status.local.count }
+    @status_count ||= Rails.cache.fetch('local_status_count', expires_in: 11.hours) { Status.local.count }
   end
 
   def domain_count
-    Rails.cache.fetch('distinct_domain_count', expires_in: 17.hours) { Account.distinct.count(:domain) }
+    @domain_count ||= Rails.cache.fetch('distinct_domain_count', expires_in: 17.hours) { Account.distinct.count(:domain) }
   end
 
   def thumbnail
