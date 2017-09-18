@@ -21,7 +21,7 @@ class InstancePresenter
   end
 
   def status_count
-    @status_count ||= Rails.cache.fetch('local_status_count', expires_in: 11.hours) { Status.local.count }
+    @status_count ||= Rails.cache.fetch('local_status_count', expires_in: 11.hours) { Account.local.sum(:statuses_count) }
   end
 
   def domain_count
