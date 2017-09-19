@@ -61,6 +61,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_hashtag tag, status
       when 'Mention'
         process_mention tag, status
+      when 'Emoji'
+        process_emoji tag, status
       end
     end
   end
@@ -77,6 +79,17 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     account = FetchRemoteAccountService.new.call(tag['href']) if account.nil?
     return if account.nil?
     account.mentions.create(status: status)
+  end
+
+  def process_emoji(tag, _status)
+    shortcode = tag['name'].delete(':')
+    emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
+
+    return if !emoji.nil? || skip_download?
+
+    emoji = CustomEmoji.new(domain: @account.domain, shortcode: shortcode)
+    emoji.image_remote_url = tag['href']
+    emoji.save
   end
 
   def process_attachments(status)
@@ -102,7 +115,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def conversation_from_uri(uri)
     return nil if uri.nil?
-    return Conversation.find_by(id: TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if TagManager.instance.local_id?(uri)
+    return Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if OStatus::TagManager.instance.local_id?(uri)
     Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
   end
 

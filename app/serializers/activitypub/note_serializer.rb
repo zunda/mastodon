@@ -57,19 +57,19 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def virtual_tags
-    object.mentions + object.tags
+    object.mentions + object.tags + object.emojis
   end
 
   def atom_uri
     return unless object.local?
 
-    ::TagManager.instance.uri_for(object)
+    OStatus::TagManager.instance.uri_for(object)
   end
 
   def in_reply_to_atom_uri
     return unless object.reply? && !object.thread.nil?
 
-    ::TagManager.instance.uri_for(object.thread)
+    OStatus::TagManager.instance.uri_for(object.thread)
   end
 
   def conversation
@@ -78,7 +78,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     if object.conversation.uri?
       object.conversation.uri
     else
-      TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
+      OStatus::TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
     end
   end
 
@@ -135,6 +135,24 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
     def name
       "##{object.name}"
+    end
+  end
+
+  class CustomEmojiSerializer < ActiveModel::Serializer
+    include RoutingHelper
+
+    attributes :type, :href, :name
+
+    def type
+      'Emoji'
+    end
+
+    def href
+      full_asset_url(object.image.url)
+    end
+
+    def name
+      ":#{object.shortcode}:"
     end
   end
 end
