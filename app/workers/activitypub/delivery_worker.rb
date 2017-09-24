@@ -14,7 +14,7 @@ class ActivityPub::DeliveryWorker
 
     perform_request
 
-    raise Mastodon::UnexpectedResponseError, @response, [] unless response_successful?
+    raise Mastodon::UnexpectedResponseError, @response unless response_successful?
   rescue => e
     raise e.class, "Delivery failed for #{inbox_url}: #{e.message}"
   end
