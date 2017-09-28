@@ -11,8 +11,8 @@ class Rack::Attack
   Rack::Attack.blocklist('block reqs to slow endpoint') do |req|
     # 153.126.147.112
     req.path == '/api/v1/timelines/public' &&
-		req.query_string.include?('local=true') &&
-		req.query_string.include?('limit=40')
+    req.query_string.include?('local=true') &&
+    req.query_string.include?('limit=40')
   end
 
   # Rate limits for the API
