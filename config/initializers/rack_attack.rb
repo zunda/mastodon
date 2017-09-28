@@ -8,9 +8,11 @@ class Rack::Attack
     '127.0.0.1' == req.ip || '::1' == req.ip
   end
 
-  Rack::Attack.blocklist('block reqs to /api/v1/timelines/public?local=true&limit=40') do |req|
+  Rack::Attack.blocklist('block reqs to slow endpoint') do |req|
     # 153.126.147.112
-    req.path == '/api/v1/timelines/public?local=true&limit=40'
+    req.path == '/api/v1/timelines/public' &&
+		req.query_string.include('local=true') &&
+		req.query_string.include('limit=40')
   end
 
   # Rate limits for the API
