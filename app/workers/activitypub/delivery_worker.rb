@@ -18,8 +18,12 @@ class ActivityPub::DeliveryWorker
 
     published = JSON.parse(@json).dig('published')
     if published
-      delay = Time.now - Time.parse(published)
-      logger.info "at=delivered destination=#{@inbox_url} sample#delivery_delay=#{'%.0f' % delay}"
+      begin
+        delay = Time.now - Time.parse(published)
+        logger.info "at=delivered destination=#{@inbox_url} sample#delivery_delay=#{'%.0f' % delay}sec sample#delivery_count=1"
+      rescue
+        # Ignore possible parse errors from Time.parse
+      end
     end
 
     failure_tracker.track_success!
