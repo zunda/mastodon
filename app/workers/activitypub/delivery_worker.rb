@@ -20,7 +20,7 @@ class ActivityPub::DeliveryWorker
     if published
       begin
         delay = Time.now - Time.parse(published)
-        logger.info "source=#{self.class} at=delivered destination=#{@inbox_url} sample#delivery_delay=#{'%.0f' % delay}sec delivery_count=1"
+        logger.info "source=#{self.class} at=delivered destination=#{@inbox_url} measure#delivery.delay=#{'%.0f' % delay}sec count#delivered=1"
       rescue
         # Ignore possible parse errors from Time.parse
       end
