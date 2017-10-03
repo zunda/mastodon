@@ -16,6 +16,7 @@ class ActivityPub::DeliveryWorker
 
     raise Mastodon::UnexpectedResponseError, @response unless response_successful?
 
+    puts "Delivery completed for @inbox_url:#{@inbox_url}. @json:#{@json.inspect}"
     failure_tracker.track_success!
   rescue => e
     failure_tracker.track_failure!
