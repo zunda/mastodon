@@ -16,6 +16,9 @@ class ActivityPub::DeliveryWorker
 
     raise Mastodon::UnexpectedResponseError, @response unless response_successful?
 
+		created_at = JSON.parse(json).dig('created_at')
+		logger.debug "Delivery completed for #{inbox_url} with #{"%.3f" % (Time.now - created_at)} sec delay" if created_at
+
     failure_tracker.track_success!
   rescue => e
     failure_tracker.track_failure!
