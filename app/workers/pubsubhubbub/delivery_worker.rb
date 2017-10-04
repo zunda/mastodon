@@ -3,6 +3,7 @@
 class Pubsubhubbub::DeliveryWorker
   include Sidekiq::Worker
   include RoutingHelper
+  include WorkerLogger
 
   sidekiq_options queue: 'push', retry: 3, dead: false
 
@@ -16,17 +17,8 @@ class Pubsubhubbub::DeliveryWorker
     @subscription = Subscription.find(subscription_id)
     @payload = payload
     process_delivery unless blocked_domain?
-
     published = @payload.scan(%r|<published>([^<]+)</published>|)&.flatten[0]
-    if published
-      begin
-        delay = Time.now - Time.parse(published)
-        logger.info "source=#{self.class} at=delivered destination=#{subscription&.callback_url.inspect} measure#delivery.delay=#{'%.0f' % delay}sec count#delivered=1"
-      rescue
-        # Ignore possible parse errors from Time.parse
-      end
-    end
-
+    log_delay(published, subscription&.callback_url, 'delivered')
   rescue => e
     raise e.class, "Delivery failed for #{subscription&.callback_url}: #{e.message}", e.backtrace[0]
   end

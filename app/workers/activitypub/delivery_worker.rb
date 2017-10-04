@@ -2,6 +2,7 @@
 
 class ActivityPub::DeliveryWorker
   include Sidekiq::Worker
+  include WorkerLogger
 
   sidekiq_options queue: 'push', retry: 8, dead: false
 
@@ -16,16 +17,7 @@ class ActivityPub::DeliveryWorker
 
     raise Mastodon::UnexpectedResponseError, @response unless response_successful?
 
-    published = JSON.parse(@json).dig('published')
-    if published
-      begin
-        delay = Time.now - Time.parse(published)
-        logger.info "source=#{self.class} at=delivered destination=#{@inbox_url.inspect} measure#delivery.delay=#{'%.0f' % delay}sec count#delivered=1"
-      rescue
-        # Ignore possible parse errors from Time.parse
-      end
-    end
-
+    log_delay(JSON.parse(@json).dig('published'), @inbox_url, 'delivered')
     failure_tracker.track_success!
   rescue => e
     failure_tracker.track_failure!
