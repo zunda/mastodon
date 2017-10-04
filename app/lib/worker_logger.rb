@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'time'
 
 module WorkerLogger
   def log_delay(published, url, at)
