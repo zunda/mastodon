@@ -448,7 +448,7 @@ GEM
       nokogiri (>= 1.4.4)
       nokogumbo (~> 1.4.1)
     sass (3.4.25)
-    scout_apm (2.1.30)
+    scout_apm (2.3.0.pre3)
     scss_lint (0.54.0)
       rake (>= 0.9, < 13)
       sass (~> 3.4.20)
@@ -615,7 +615,7 @@ DEPENDENCIES
   rubocop
   ruby-oembed (~> 0.12)
   sanitize (~> 4.4)
-  scout_apm
+  scout_apm (>= 2.3.0.pre2, < 3.0.pre)
   scss_lint (~> 0.53)
   sidekiq (~> 5.0)
   sidekiq-bulk (~> 0.1.1)

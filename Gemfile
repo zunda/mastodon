@@ -118,4 +118,4 @@ group :production do
   gem 'redis-rails', '~> 5.0'
 end
 
-gem 'scout_apm'
+gem 'scout_apm', '>= 2.3.0.pre2', '< 3.0.pre'
