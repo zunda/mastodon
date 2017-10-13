@@ -24,6 +24,8 @@ class Form::AdminSettings
     :open_deletion=,
     :timeline_preview,
     :timeline_preview=,
+    :bootstrap_timeline_accounts,
+    :bootstrap_timeline_accounts=,
     :prohibit_registrations_except_qiita_oauth,
     :prohibit_registrations_except_qiita_oauth=,
     to: Setting

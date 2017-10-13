@@ -42,7 +42,6 @@ defaults: &defaults
     - root
     - webmaster
     - administrator
-
     - qiita
     - qiitan
     - qiita_team
@@ -154,6 +153,7 @@ defaults: &defaults
     - twitter
     - yahoo
     - mixi
+  bootstrap_timeline_accounts: ''
 
 development:
   <<: *defaults

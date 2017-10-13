@@ -11,8 +11,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,
       admin: object.admin&.id,
-      app_mode: object.app_mode,
-      intent_status_initial_text: object.intent_status_initial_text,
     }
 
     if object.current_account
@@ -21,7 +19,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:boost_modal]    = object.current_account.user.setting_boost_modal
       store[:delete_modal]   = object.current_account.user.setting_delete_modal
       store[:auto_play_gif]  = object.current_account.user.setting_auto_play_gif
-      store[:system_font_ui] = object.current_account.user.setting_system_font_ui
       store[:is_email_confirmed] = object.current_account.user.confirmed?
     end
 
@@ -36,6 +33,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:default_privacy]   = object.current_account.user.setting_default_privacy
       store[:default_sensitive] = object.current_account.user.setting_default_sensitive
     end
+
+    store[:text] = object.text if object.text
 
     store
   end
