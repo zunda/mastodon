@@ -17,6 +17,7 @@ class ActivityPub::DeliveryWorker
 
     raise Mastodon::UnexpectedResponseError, @response unless response_successful?
 
+    @response.connection&.close
     log_delay(JSON.parse(@json).dig('published'), @inbox_url, 'delivered')
     failure_tracker.track_success!
   rescue => e
@@ -33,7 +34,7 @@ class ActivityPub::DeliveryWorker
   end
 
   def perform_request
-    @response = build_request.perform.flush
+    @response = build_request.perform
   end
 
   def response_successful?
