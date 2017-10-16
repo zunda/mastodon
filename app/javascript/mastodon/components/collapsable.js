@@ -1,5 +1,5 @@
 import React from 'react';
-import Motion from '../features/ui/util/optional_motion';
+import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
 
