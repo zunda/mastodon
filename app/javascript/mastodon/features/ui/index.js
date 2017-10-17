@@ -3,6 +3,7 @@ import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
 import TabsBar from './components/tabs_bar';
+import AlertBarContainer from './containers/alert_bar_container';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
@@ -197,6 +198,7 @@ export default class UI extends React.PureComponent {
 
     return (
       <div className='ui' ref={this.setRef}>
+        <AlertBarContainer />
         <TabsBar />
         <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width)}>
           <WrappedSwitch>

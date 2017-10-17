@@ -30,6 +30,7 @@
 #  otp_required_for_login    :boolean          default(FALSE), not null
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
+#  dummy_password_flag       :boolean          default(FALSE), not null
 #  filtered_languages        :string           default([]), not null, is an Array
 #
 
@@ -40,10 +41,12 @@ class User < ApplicationRecord
   devise :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :confirmable,
          :two_factor_authenticatable, :two_factor_backupable,
+         :omniauthable,
          otp_secret_encryption_key: ENV['OTP_SECRET'],
          otp_number_of_backup_codes: 10
 
   belongs_to :account, inverse_of: :user, required: true
+  has_one :qiita_authorization, inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
@@ -60,6 +63,8 @@ class User < ApplicationRecord
   scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
 
   before_validation :sanitize_languages
+
+  before_validation :disable_dummy_password_flag, on: :update, if: :encrypted_password_changed?
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -137,6 +142,27 @@ class User < ApplicationRecord
 
   def web_push_subscription(session)
     session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
+  end
+
+  def has_dummy_password?
+    dummy_password_flag
+  end
+
+  def disable_dummy_password_flag
+    self.dummy_password_flag = false
+    true
+  end
+
+  def update_without_current_password(params, *options)
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
+    p params
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 
   protected

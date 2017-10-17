@@ -867,12 +867,37 @@
     font-weight: 500;
   }
 
+  .account__header__usernames {
+    display: block;
+    margin-bottom: 10px;
+  }
+
   .account__header__username {
     color: $ui-highlight-color;
     font-size: 14px;
     font-weight: 400;
-    display: block;
+    display: inline;
     margin-bottom: 10px;
+  }
+
+  .account__header__qiita--username:before {
+    content: ' ';
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+    vertical-align: middle;
+    background: url('../images/qiita-icon.png');
+    background-size: 14px;
+    margin: 0 2px;
+  }
+
+  .account__header__qiita--username a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -1906,7 +1931,7 @@
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
+  background: url('../images/qiitadon-getting-started.png') no-repeat 0 100%/contain local;
   flex: 1 0 auto;
 
   p {
@@ -2106,6 +2131,7 @@ button.icon-button.active i.fa-retweet {
   font-size: 16px;
   font-weight: 500;
   color: lighten($ui-base-color, 16%);
+  padding-top: 210px;
   background: $ui-base-color;
   cursor: default;
   display: flex;
@@ -2114,8 +2140,8 @@ button.icon-button.active i.fa-retweet {
   justify-content: center;
 
   & > div {
-    background: url('../images/mastodon-not-found.png') no-repeat center -50px;
-    padding-top: 210px;
+    background: url('../images/qiitan-cry.png') no-repeat center top;
+    padding-top: 250px;
     width: 100%;
   }
 }
@@ -3314,10 +3340,10 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal__page-one__elephant-friend {
-  background: url('../images/elephant-friend-1.png') no-repeat center center / contain;
-  width: 155px;
-  height: 193px;
-  margin-right: 15px;
+  background: url('../images/qiitan.png') no-repeat center center / contain;
+  width: 147px;
+  height: 160px;
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 400px) {

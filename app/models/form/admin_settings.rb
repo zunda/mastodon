@@ -26,6 +26,8 @@ class Form::AdminSettings
     :timeline_preview=,
     :bootstrap_timeline_accounts,
     :bootstrap_timeline_accounts=,
+    :prohibit_registrations_except_qiita_oauth,
+    :prohibit_registrations_except_qiita_oauth=,
     to: Setting
   )
 end

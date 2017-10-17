@@ -23,6 +23,8 @@ function main() {
   const { delegate } = require('rails-ujs');
   const emojify = require('../mastodon/emoji').default;
   const { getLocale } = require('../mastodon/locales');
+  const highlightCode = require('../mastodon/highlight-code').default;
+
   const { localeData } = getLocale();
   const VideoContainer = require('../mastodon/containers/video_container').default;
   const MediaGalleryContainer = require('../mastodon/containers/media_gallery_container').default;
@@ -44,6 +46,10 @@ function main() {
     });
 
     const relativeFormat = new IntlRelativeFormat(locale);
+
+    [].forEach.call(document.getElementsByTagName('code'), (content) => {
+      content.outerHTML = highlightCode(content.outerHTML);
+    });
 
     [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
       content.innerHTML = emojify(content.innerHTML);

@@ -187,6 +187,9 @@ ja:
         open:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
+        prohibit_registrations_except_qiita_oauth:
+          desc_html: Qiita連携以外の新規登録を出来ないようにします
+          title: Qiita連携以外の新規登録を禁止する
       site_description:
         desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
@@ -257,6 +260,8 @@ ja:
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     set_new_password: 新しいパスワード
+    oauth_registration: ユーザー登録
+    password_signup_closed_caution: 現在は負荷対策のため、Qiitaアカウント連携以外での新規登録を停止しています。
   authorize_follow:
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました。
     follow: フォロー
@@ -445,6 +450,7 @@ ja:
     followers: 信頼済みのインスタンス
     import: データのインポート
     preferences: ユーザー設定
+    qiita_authorizations: Qiita連携
     settings: 設定
     two_factor_authentication: 二段階認証
     your_apps: アプリ
@@ -562,3 +568,8 @@ ja:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
     signed_in_as: '下記でログイン中:'
+  omniauth_callbacks:
+    success: 連携に成功しました
+    failure: 連携に失敗しました
+  oauth_registration:
+    success: ユーザー登録しました

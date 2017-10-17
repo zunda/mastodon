@@ -22,12 +22,21 @@ Rails.application.routes.draw do
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
 
+  get 'intent/statuses/new', to: redirect(path: '/share')
+
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
     registrations:      'auth/registrations',
     passwords:          'auth/passwords',
     confirmations:      'auth/confirmations',
+    omniauth_callbacks: 'auth/omniauth_callbacks',
   }
+
+  devise_scope :user do
+    with_devise_exclusive_scope('/auth', :user, {}) do
+      resource :oauth_registration, only: [:new, :create], path: 'oauth/oauth_registrations'
+    end
+  end
 
   get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
 
@@ -93,6 +102,7 @@ Rails.application.routes.draw do
     resource :delete, only: [:show, :destroy]
 
     resources :sessions, only: [:destroy]
+    resource :qiita_authorizations, only: [:show]
   end
 
   resources :media, only: [:show]

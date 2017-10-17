@@ -215,6 +215,92 @@ RSpec.describe Formatter do
         end
       end
 
+      describe 'code block' do
+        let(:local_text) { nil }
+        let(:status)  { Fabricate(:status, text: local_text, uri: nil) }
+
+        context 'contains single line code block' do
+          let(:local_text) { "`program`" }
+          it 'has code block' do
+            expect(subject).to match '<span><code class="inline">program</code></span>'
+          end
+        end
+
+        context 'contains multiple inline code blocks' do
+          let(:local_text) { "`hoge` `piyo`" }
+          it 'has code block' do
+            expect(subject).to match('<span><code class="inline">hoge</code></span> <span><code class="inline">piyo</code></span>')
+          end
+        end
+
+        context 'contains multi line code block' do
+          let(:local_text) { "```ruby\nputs 'Hello, World!'\n```" }
+          it 'has code block' do
+            expect(subject).to match '<p><code data-language="ruby">puts \'Hello, World!\'</code></p>'
+          end
+        end
+
+        context 'contains multi line code block with filename' do
+          let(:local_text) { "```ruby:hello.rb\nputs 'Hello, World!'\n```" }
+          it 'has code block' do
+            expect(subject).to match '<p><code data-language="ruby" data-filename="hello.rb">puts \'Hello, World!\'</code></p>'
+          end
+        end
+
+        context 'contains multiple code blocks' do
+          let(:local_text) { "```ruby\nputs 'Hello, World!'\n```\n```js\nconsole.log('Hello, World!');\n```" }
+          it 'has code block' do
+            expect(subject).to include('<p><code data-language="ruby">puts \'Hello, World!\'</code></p>')
+            expect(subject).to include('<p><code data-language="js">console.log(\'Hello, World!\');</code></p>')
+          end
+        end
+
+        context 'contains capture literals in code block' do
+          let(:local_text) { '`\1`' }
+          it 'has code block' do
+            expect(subject).to include('<span><code class="inline">\1</code></span>')
+          end
+        end
+
+        context '' do
+          let(:local_text) { '[[[codeblock0]]]hoge[[[codeblock1]]]hoge[[[codeblock2]]]`hi`' }
+          it 'has code block' do
+            expect(subject).to include('<span><code class="inline">hi</code></span>')
+          end
+        end
+
+        context 'contains a mention literal in the code block' do
+          let(:status) { Fabricate(:status, mentions: [ Fabricate(:mention, account: local_account) ], text: local_text) }
+          let(:local_text) { '@alice `@alice`' }
+
+          before { local_account }
+
+          it 'has code block and its mention is raw text' do
+            expect(subject).to include('<span><code class="inline">@alice</code></span>')
+          end
+        end
+
+        context 'contains a hashtag in the code block' do
+          let(:local_text) { '`#ruby`' }
+
+          before { local_account }
+
+          it 'has code block and its mention is raw text' do
+            expect(subject).to include('<span><code class="inline">#ruby</code></span>')
+          end
+        end
+
+        context 'contains a link in the code block' do
+          let(:local_text) { '`http://example.com`' }
+
+          before { local_account }
+
+          it 'has code block and its link is raw text' do
+            expect(subject).to include('<span><code class="inline">http://example.com</code></span>')
+          end
+        end
+      end
+
       context do
         subject do
           status = Fabricate(:status, text: text, uri: nil)

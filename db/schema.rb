@@ -252,6 +252,16 @@ ActiveRecord::Schema.define(version: 20170913000752) do
     t.index ["status_id", "preview_card_id"], name: "index_preview_cards_statuses_on_status_id_and_preview_card_id"
   end
 
+  create_table "qiita_authorizations", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "uid"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_qiita_authorizations_on_uid", unique: true
+    t.index ["user_id"], name: "index_qiita_authorizations_on_user_id"
+  end
+
   create_table "reports", id: :serial, force: :cascade do |t|
     t.integer "account_id", null: false
     t.integer "target_account_id", null: false
@@ -401,6 +411,7 @@ ActiveRecord::Schema.define(version: 20170913000752) do
     t.boolean "otp_required_for_login", default: false, null: false
     t.datetime "last_emailed_at"
     t.string "otp_backup_codes", array: true
+    t.boolean "dummy_password_flag", default: false, null: false
     t.string "filtered_languages", default: [], null: false, array: true
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -451,6 +462,7 @@ ActiveRecord::Schema.define(version: 20170913000752) do
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id", on_delete: :cascade
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", on_delete: :cascade
   add_foreign_key "oauth_applications", "users", column: "owner_id", on_delete: :cascade
+  add_foreign_key "qiita_authorizations", "users"
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "reports", "accounts", on_delete: :cascade

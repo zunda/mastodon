@@ -16,6 +16,7 @@ WebMock.disable_net_connect!
 Redis.current = Redis::Namespace.new("mastodon_test#{ENV['TEST_ENV_NUMBER']}", redis: Redis.current)
 Sidekiq::Testing.inline!
 Sidekiq::Logging.logger = nil
+OmniAuth.config.test_mode = true
 
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in

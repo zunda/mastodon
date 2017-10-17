@@ -8,6 +8,7 @@
     %link{ rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }/
     %link{ rel: 'mask-icon', href: '/mask-icon.svg', color: '#2B90D9' }/
     %link{ rel: 'manifest', href: '/manifest.json' }/
+    %link{ rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css' }/
     %meta{ name: 'msapplication-config', content: '/browserconfig.xml' }/
     %meta{ name: 'theme-color', content: '#282c37' }/
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
@@ -37,5 +38,5 @@
   - body_classes ||= @body_classes || ''
   - body_classes += ' system-font' if current_account&.user&.setting_system_font_ui
 
-  %body{ class: add_rtl_body_class(body_classes) }
+  %body{ class: add_rtl_body_class([*body_classes, theme_class_name]) }
     = content_for?(:content) ? yield(:content) : yield
