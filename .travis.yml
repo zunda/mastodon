@@ -26,11 +26,9 @@ addons:
   postgresql: 9.4
   apt:
     sources:
-    - ubuntu-toolchain-r-test
     - trusty-media
     packages:
     - ffmpeg
-    - g++-6
     - libprotobuf-dev
     - protobuf-compiler
     - libicu-dev
@@ -55,5 +53,5 @@ before_script:
 
 script:
   - travis_retry bundle exec parallel_test spec/ --group-by filesize --type rspec
-  - npm test
-  - bundle exec i18n-tasks unused
+  - yarn test
+  - bundle exec i18n-tasks check-normalized && bundle exec i18n-tasks unused

@@ -3,6 +3,7 @@
 class Pubsubhubbub::DeliveryWorker
   include Sidekiq::Worker
   include RoutingHelper
+  include WorkerLogger
 
   sidekiq_options queue: 'push', retry: 3, dead: false
 
@@ -16,8 +17,10 @@ class Pubsubhubbub::DeliveryWorker
     @subscription = Subscription.find(subscription_id)
     @payload = payload
     process_delivery unless blocked_domain?
+    published = @payload.scan(%r{<published>([^<]+)</published>}).flatten.first
+    log_delay(published, subscription&.callback_url, 'delivered')
   rescue => e
-    raise e.class, "Delivery failed for #{subscription&.callback_url}: #{e.message}"
+    raise e.class, "Delivery failed for #{subscription&.callback_url}: #{e.message}", e.backtrace[0]
   end
 
   private
@@ -27,6 +30,7 @@ class Pubsubhubbub::DeliveryWorker
 
     raise Mastodon::UnexpectedResponseError, payload_delivery unless response_successful?
 
+    payload_delivery.connection&.close
     subscription.touch(:last_successful_delivery_at)
   end
 
