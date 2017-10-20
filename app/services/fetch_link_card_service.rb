@@ -85,7 +85,11 @@ class FetchLinkCardService < BaseService
 
     case @card.type
     when 'link'
-      @card.image = URI.parse(response.thumbnail_url) if response.respond_to?(:thumbnail_url)
+      begin
+        @card.image = URI.parse(response.thumbnail_url) if response.respond_to?(:thumbnail_url)
+      rescue TypeError, e
+        raise e.class, "Failed to parse thumbnail URL: #{response.thumbnail_url.inspect}"
+      end
     when 'photo'
       @card.url    = response.url
       @card.width  = response.width.presence  || 0
