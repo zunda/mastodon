@@ -408,6 +408,8 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rollbar (2.15.4)
+      multi_json
     rotp (2.1.2)
     rqrcode (0.10.1)
       chunky_png (~> 1.0)
@@ -609,6 +611,7 @@ DEPENDENCIES
   redis (~> 3.3)
   redis-namespace (~> 1.5)
   redis-rails (~> 5.0)
+  rollbar
   rqrcode (~> 0.10)
   rspec-rails (~> 3.6)
   rspec-sidekiq (~> 3.0)
