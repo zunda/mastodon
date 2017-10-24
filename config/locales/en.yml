@@ -295,12 +295,12 @@ en:
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: Log in
     logout: Logout
+    oauth_registration: User Registration
+    password_signup_closed_caution: For now, we allow registrations only with Qiita account.
     register: Sign up
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     set_new_password: Set new password
-    oauth_registration: User Registration
-    password_signup_closed_caution: For now, we allow registrations only with Qiita account.
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
     follow: Follow
@@ -420,6 +420,11 @@ en:
           thousand: K
           trillion: T
           unit: ''
+  oauth_registration:
+    success: Succeed to register
+  omniauth_callbacks:
+    failure: Failed to integrate
+    success: Succeed to integrate
   pagination:
     next: Next
     prev: Prev
@@ -618,8 +623,3 @@ en:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
     signed_in_as: 'Signed in as:'
-  omniauth_callbacks:
-    success: Succeed to integrate
-    failure: Failed to integrate
-  oauth_registration:
-    success: Succeed to register

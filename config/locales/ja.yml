@@ -295,12 +295,12 @@ ja:
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
     login: ログイン
     logout: ログアウト
+    oauth_registration: ユーザー登録
+    password_signup_closed_caution: 現在は負荷対策のため、Qiitaアカウント連携以外での新規登録を停止しています。
     register: 登録する
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     set_new_password: 新しいパスワード
-    oauth_registration: ユーザー登録
-    password_signup_closed_caution: 現在は負荷対策のため、Qiitaアカウント連携以外での新規登録を停止しています。
   authorize_follow:
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました。
     follow: フォロー
@@ -420,6 +420,11 @@ ja:
           thousand: K
           trillion: T
           unit: ''
+  oauth_registration:
+    success: ユーザー登録しました
+  omniauth_callbacks:
+    failure: 連携に失敗しました
+    success: 連携に成功しました
   pagination:
     next: 次
     prev: 前
@@ -618,8 +623,3 @@ ja:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
     signed_in_as: '下記でログイン中:'
-  omniauth_callbacks:
-    success: 連携に成功しました
-    failure: 連携に失敗しました
-  oauth_registration:
-    success: ユーザー登録しました
