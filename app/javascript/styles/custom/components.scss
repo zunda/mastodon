@@ -33,11 +33,9 @@
   background: url('../images/qiitadon-getting-started.png') no-repeat 0 100%/contain local;
 }
 
-button.icon-button i.fa-retweet {
-  padding-top: 210px;
-}
-
 .missing-indicator {
+  padding-top: 210px;
+
   & > div {
     background: url('../images/qiitan-cry.png') no-repeat center top;
     padding-top: 250px;
