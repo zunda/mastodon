@@ -21,7 +21,7 @@ function main() {
   const { length } = require('stringz');
   const IntlRelativeFormat = require('intl-relativeformat').default;
   const { delegate } = require('rails-ujs');
-  const emojify = require('../mastodon/emoji').default;
+  const emojify = require('../mastodon/features/emoji/emoji').default;
   const { getLocale } = require('../mastodon/locales');
   const highlightCode = require('../mastodon/highlight-code').default;
 
