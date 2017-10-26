@@ -120,3 +120,4 @@ end
 
 gem 'scout_apm', '>= 2.3.0.pre2', '< 3.0.pre'
 gem 'rollbar'
+gem 'barnes'
