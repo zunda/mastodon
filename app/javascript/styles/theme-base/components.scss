@@ -106,6 +106,14 @@
   background-color: darken($primary-accent-color, 10%);
 }
 
+.focusable {
+    .detailed-status,
+    .detailed-status__action-bar {
+      background: lighten($background-color, 8%);
+    }
+  }
+}
+
 .icon-button.inverted,
 .text-icon-button {
   color: $sub-text-color;
