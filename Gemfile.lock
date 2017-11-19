@@ -173,6 +173,9 @@ GEM
       fog-core (>= 1.40)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     formatador (0.2.5)
     fuubar (2.2.0)
       rspec-core (~> 3.0)
@@ -584,6 +587,7 @@ DEPENDENCIES
   faker (~> 1.7)
   fast_blank (~> 1.0)
   fog-openstack (~> 0.1)
+  foreman
   fuubar (~> 2.2)
   goldfinger (~> 2.0)
   hamlit-rails (~> 0.2)
