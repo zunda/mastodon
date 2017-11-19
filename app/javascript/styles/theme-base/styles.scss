@@ -1,0 +1,19 @@
+@import 'variables';
+
+%box-styles {
+  background-color: $box-background-color;
+  border: 1px solid $box-border-color;
+}
+
+%accent-box-styles {
+  background-color: $accent-box-background-color;
+  border: 1px solid $accent-box-border-color;
+  color: $accent-box-color;
+}
+
+%text-area-styles {
+  background-color: $text-area-background-color;
+  border: 1px solid $text-area-border-color;
+  caret-color: $text-area-caret-color;
+  color: $text-area-color;
+}
