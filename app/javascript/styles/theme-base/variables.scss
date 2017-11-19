@@ -1,0 +1,28 @@
+$text-color: #333 !default;
+$sub-text-color: #aaa !default;
+$sub-text-color-strong: #777 !default;
+$border-color: #ddd !default;
+$base-background-color: #eee !default;
+$background-color: #fff !default;
+$sub-background-color: #ddd !default;
+$primary-accent-color: #52b03b !default;
+$secondary-accent-color: #009af4 !default;
+$caret-color: #333 !default;
+$star-color: #ffbc00 !default;
+$retweet-color: #009af4 !default;
+$accent-background-color: #52b03b !default;
+$accent-text-color: #fff !default;
+$accent-sub-text-color: #fff !default;
+$accent-border-color: #52b03b !default;
+
+$box-background-color: $background-color !default;
+$box-border-color: $border-color !default;
+
+$accent-box-background-color: $primary-accent-color !default;
+$accent-box-border-color: $primary-accent-color !default;
+$accent-box-color: #fff !default;
+
+$text-area-background-color: $background-color !default;
+$text-area-border-color: $border-color !default;
+$text-area-caret-color: $caret-color !default;
+$text-area-color: $text-color !default;

@@ -1,0 +1,613 @@
+@import 'variables';
+
+%box-styles {
+  background-color: $box-background-color;
+  border: 1px solid $box-border-color;
+}
+
+%accent-box-styles {
+  background-color: $accent-box-background-color;
+  border: 1px solid $accent-box-border-color;
+  color: $accent-box-color;
+}
+
+%text-area-styles {
+  background-color: $text-area-background-color;
+  border: 1px solid $text-area-border-color;
+  caret-color: $text-area-caret-color;
+  color: $text-area-color;
+}
+
+.ui {
+  background-color: $base-background-color;
+  color: $text-color;
+}
+
+.drawer__header {
+  @extend %accent-box-styles;
+  border-radius: 2px;
+}
+
+.drawer__tab {
+  color: $accent-text-color;
+}
+
+.drawer__header a:hover {
+  background-color: lighten($accent-background-color, 5%);
+}
+
+.search__input {
+  @extend %text-area-styles;
+  border-radius: 2px;
+}
+
+.search__input:focus {
+  background-color: lighten($sub-background-color, 3%);
+}
+
+.search__input::placeholder,
+.search__icon .fa {
+  color: $text-color;
+}
+
+.drawer__inner {
+  @extend %box-styles;
+  border-radius: 2px;
+}
+
+.drawer__inner.darker,
+.search-results__header {
+  background-color: $background-color;
+  border-bottom: 1px solid $border-color;
+  border-radius: 2px;
+  color: $text-color;
+}
+
+.navigation-bar strong {
+  color: $text-color;
+  font-size: 15px;
+}
+
+.navigation-bar__profile-edit {
+  color: $sub-text-color;
+}
+
+.autosuggest-textarea__textarea {
+  @extend %text-area-styles;
+  border-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.autosuggest-textarea__textarea::placeholder {
+  color: $sub-text-color;
+}
+
+.compose-form__buttons {
+  @extend %box-styles;
+  border-top: 0;
+  box-shadow: none;
+}
+
+.compose-form__uploads-wrapper {
+  padding: 0;
+}
+
+.button {
+  background-color: $primary-accent-color;
+
+  &:disabled {
+    background-color: desaturate($primary-accent-color, 80%);
+  }
+}
+
+.button:hover,
+.button:focus,
+.button:active {
+  background-color: darken($primary-accent-color, 10%);
+}
+
+.icon-button.inverted,
+.text-icon-button {
+  color: $sub-text-color;
+}
+
+.icon-button.inverted:hover,
+.icon-button.inverted:focus {
+  color: $text-color;
+}
+
+.icon-button.inverted.active {
+  color: $primary-accent-color;
+}
+
+.text-icon-button:hover,
+.text-icon-button:focus {
+  color: $text-color;
+}
+
+.text-icon-button.active {
+  color: $primary-accent-color;
+}
+
+.column-header {
+  @extend %accent-box-styles;
+  border-bottom: 0;
+  color: $accent-text-color;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.column-header__button,
+.column-header__button.active:hover {
+  @extend %accent-box-styles;
+  border: 0;
+}
+
+.column-header__back-button {
+  @extend %accent-box-styles;
+  border: 0;
+}
+
+.collapsable-collapsed,
+.column-icon {
+  background-color: transparent;
+  color: $accent-sub-text-color;
+  border-top-right-radius: 2px;
+}
+
+.column-collapsable .column-collapsable__button {
+  @extend %accent-box-styles;
+  border: 0;
+}
+
+.collapsable:hover {
+  background-color: transparent;
+}
+
+.column-back-button {
+  @extend %accent-box-styles;
+  border-bottom: 0;
+  color: $accent-sub-text-color;
+}
+
+.column-back-button--slim-button {
+  background-color: transparent;
+  border: 0;
+}
+
+.column-back-button:hover {
+  color: $accent-text-color;
+}
+
+.column>.scrollable {
+  @extend %box-styles;
+}
+
+.column-icon:hover {
+  color: $accent-text-color;
+}
+
+.getting-started__wrapper {
+  border: 1px solid $border-color;
+  border-bottom: 0;
+}
+
+.column-subheading {
+  background-color: $background-color;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  color: $sub-text-color;
+}
+
+.getting-started__wrapper .column-subheading:first-child {
+  border-top: 0;
+}
+
+.getting-started p {
+  color: $text-color;
+}
+
+.column-link {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+.column-link:hover {
+  background-color: $sub-background-color;
+}
+
+.column-header__collapsible > div {
+  @extend %box-styles;
+  border-bottom: 0;
+}
+
+.column-header__setting-btn {
+  color: $text-color;
+}
+
+.column-settings__section {
+  color: $sub-text-color;
+}
+
+.setting-toggle__label {
+  color: $text-color;
+}
+
+.react-toggle--checked .react-toggle-track {
+  background-color: $primary-accent-color;
+}
+
+.react-toggle--checked .react-toggle-thumb {
+  border-color: $primary-accent-color;
+}
+
+.setting-text {
+  color: $text-color;
+  border-bottom-color: $border-color;
+}
+
+.status {
+  background-color: $background-color;
+  border-color: $border-color;
+  color: $text-color;
+}
+
+.icon-button {
+  color: $sub-text-color;
+}
+
+.icon-button:hover {
+  color: $text-color;
+}
+
+.star-icon.active,
+.star-icon:hover {
+  color: $star-color;
+}
+
+.status__display-name,
+.status__relative-time {
+  color: $sub-text-color;
+}
+
+.status__display-name strong,
+.account__display-name strong {
+  color: $text-color;
+}
+
+.status__content__spoiler-link {
+  background-color: lighten($sub-background-color, 5%) !important;
+  color: $sub-text-color-strong !important;
+}
+
+.status__prepend {
+  color: $sub-text-color;
+
+  & .status__display-name strong {
+    color: $sub-text-color-strong;
+  }
+}
+
+.spoiler-input__input {
+  @extend %text-area-styles;
+}
+
+.muted .status__display-name strong {
+  color: $sub-text-color;
+}
+
+.muted .status__content p,
+.muted .status__content a {
+  color: $sub-text-color;
+}
+
+.detailed-status {
+  background-color: $background-color;
+}
+
+.detailed-status__meta {
+  color: $sub-text-color;
+}
+
+.detailed-status__action-bar {
+  background-color: $background-color;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
+
+.detailed-status__display-name strong {
+  color: $text-color;
+}
+
+.detailed-status__display-name span {
+  color: $sub-text-color;
+}
+
+.notification {
+  background-color: $background-color;
+}
+
+.notification__message {
+  background-color: $background-color;
+  color: $sub-text-color-strong;
+}
+
+.notification__display-name:hover {
+  color: $sub-text-color-strong;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $sub-background-color;
+  border: 0 none $sub-background-color;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: darken($sub-background-color, 10%);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: darken($sub-background-color, 10%);
+}
+
+::-webkit-scrollbar-track {
+  background-color: $background-color;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: $background-color;
+}
+
+::-webkit-scrollbar-track:active {
+  background-color: $background-color;
+}
+
+.account .account__display-name {
+  color: $sub-text-color;
+}
+
+.active .fa-user-times {
+  color: $primary-accent-color !important;
+}
+
+.notification__message .fa {
+  color: $primary-accent-color;
+}
+
+.active .fa-star,
+.notification__message .fa-star {
+  color: $star-color !important;
+}
+
+.active .fa-retweet,
+.notification__message .fa-retweet {
+  color: $retweet-color !important;
+}
+
+.load-more {
+  background-color: $background-color;
+  color: $text-color;
+
+  &:hover {
+    background-color: $sub-background-color;
+  }
+}
+
+.account {
+  border-color: $border-color;
+}
+
+.account__header .account__header__content {
+  color: darken($text-color, 10%);
+}
+
+.account__header .account__header__username {
+  color: $text-color;
+}
+
+.account__header__display-name {
+  color: $text-color;
+}
+
+.account__header__username {
+  color: $text-color;
+}
+
+.account__header>div {
+  background-color: rgba($background-color, 0.8);
+}
+
+.account__action-bar {
+  border-color: $border-color;
+
+  &__tab {
+    border-color: $border-color;
+
+    strong {
+      color: $text-color;
+    }
+  }
+}
+
+.account__action-bar__tab>span {
+  color: darken($text-color, 10%);
+}
+
+.account-section-headline {
+  background-color: $background-color;
+  border-bottom-color: $border-color;
+  color: $text-color;
+}
+
+.account-section-headline:after,
+.account-section-headline:before {
+  border-color: transparent transparent $border-color;
+}
+
+.status__content a,
+.reply-indicator__content a,
+.empty-column-indicator a,
+.getting-started a {
+  color: $secondary-accent-color;
+}
+
+.missing-indicator {
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  padding-bottom: 30px;
+  color: $text-color;
+}
+
+.missing-indicator > div {
+  background-size: 50%;
+}
+
+.reply-indicator {
+  @extend %box-styles;
+  color: $text-color;
+}
+
+.reply-indicator .display-name {
+  color: $sub-text-color-strong;
+}
+
+.reply-indicator__content {
+  color: $sub-text-color-strong;
+}
+
+.empty-column-indicator {
+  @extend %box-styles;
+  color: $sub-text-color;
+}
+
+.dropdown--active .dropdown__content > ul {
+  background-color: $sub-background-color;
+}
+
+.dropdown--active .dropdown__content:before {
+  border-bottom-color: $sub-background-color;
+}
+
+.dropdown--active .dropdown__content > ul > li > a {
+  background-color: $sub-background-color;
+  color: $text-color;
+}
+
+.dropdown--active .dropdown__content > ul > li > a:hover {
+  background-color: $primary-accent-color;
+}
+
+.dropdown__sep {
+  border-color: $border-color;
+}
+
+.privacy-dropdown.active .privacy-dropdown__value {
+  background-color: $sub-background-color;
+}
+
+.privacy-dropdown.active .privacy-dropdown__dropdown {
+  background-color: $sub-background-color;
+}
+
+.privacy-dropdown__option:hover, .privacy-dropdown__option.active {
+  background-color: $primary-accent-color;
+}
+
+.privacy-dropdown__option.active:hover {
+  background-color: $primary-accent-color;
+}
+
+.privacy-dropdown__option {
+  color: $text-color;
+}
+
+.privacy-dropdown__option__content {
+  color: $sub-text-color;
+}
+
+.privacy-dropdown__option__content strong {
+  color: $text-color;
+}
+
+.tabs-bar {
+  background-color: $accent-background-color;
+}
+
+.tabs-bar__link {
+  border-color: darken($accent-background-color, 10%);
+}
+
+.tabs-bar__link.active {
+  border-color: $accent-text-color;
+  color: $accent-text-color;
+}
+
+.tabs-bar__link:hover,
+.tabs-bar__link:focus,
+.tabs-bar__link:active {
+  background-color: lighten($accent-background-color, 5%);
+}
+
+.status-card {
+  border-color: $border-color;
+  color: $sub-text-color;
+}
+
+.status-card:hover {
+  background-color: $base-background-color;
+}
+
+.status-card__image {
+  background-color: transparent;
+}
+
+.status-card__title {
+  font-weight: bold;
+  color: $text-color;
+}
+
+.status-card__description {
+  color: $sub-text-color;
+}
+
+.boost-modal, .confirmation-modal {
+  @extend %box-styles;
+  color: $text-color;
+}
+
+.confirmation-modal__action-bar {
+  background-color: $sub-background-color;
+}
+
+.confirmation-modal__cancel-button,
+.confirmation-modal__cancel-button:hover {
+  background-color: transparent;
+  color: $sub-text-color-strong;
+}
+
+.report__target {
+  border-bottom-color: $border-color;
+  color: $sub-text-color;
+}
+
+.report__target strong {
+  color: $text-color;
+}
+
+.report__textarea {
+  border-bottom-color: $border-color;
+  color: $text-color;
+}
+
+.report__textarea:active,
+.report__textarea:focus {
+  background-color: $sub-background-color;
+}
+
+.status-check-box {
+  border-bottom-color: $border-color;
+}
+
+.status-check-box .status__content {
+  background-color: $background-color;
+  color: $sub-text-color;
+}

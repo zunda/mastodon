@@ -1,0 +1,17 @@
+.landing-page {
+  #mastodon-timeline {
+    color: $text-color;
+
+    .column-header {
+      color: $accent-text-color;
+    }
+
+    p {
+      color: $text-color;
+
+      a {
+        color: $text-color;
+      }
+    }
+  }
+}
