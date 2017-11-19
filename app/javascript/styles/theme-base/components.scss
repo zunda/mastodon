@@ -584,22 +584,22 @@
   color: $sub-text-color-strong;
 }
 
-.report__target {
+.report-modal__target {
   border-bottom-color: $border-color;
   color: $sub-text-color;
 }
 
-.report__target strong {
+.report-modal__target strong {
   color: $text-color;
 }
 
-.report__textarea {
+.report-modal__textarea {
   border-bottom-color: $border-color;
   color: $text-color;
 }
 
-.report__textarea:active,
-.report__textarea:focus {
+.report-modal__textarea:active,
+.report-modal__textarea:focus {
   background-color: $sub-background-color;
 }
 
