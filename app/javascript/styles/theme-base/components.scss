@@ -150,6 +150,12 @@
   color: $accent-text-color;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
+
+  &.active {
+    .column-header__icon {
+      color: $ui-highlight-color; // FIXME
+    }
+  }
 }
 
 .column-header__button,
