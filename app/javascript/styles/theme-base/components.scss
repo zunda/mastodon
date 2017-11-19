@@ -107,6 +107,13 @@
 }
 
 .focusable {
+  &:focus {
+    // background: lighten($ui-base-color, 4%);
+
+    &.status-direct {
+      background: lighten($sub-background-color, 8%);
+    }
+
     .detailed-status,
     .detailed-status__action-bar {
       background: lighten($background-color, 8%);
@@ -258,6 +265,14 @@
   background-color: $background-color;
   border-color: $border-color;
   color: $text-color;
+
+  &.status-direct {
+    background: lighten($sub-background-color, 8%);
+
+    .icon-button.disabled {
+      color: lighten($sub-text-color, 16%);
+    }
+  }
 }
 
 .icon-button {
