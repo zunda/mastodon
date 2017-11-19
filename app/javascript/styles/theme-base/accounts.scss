@@ -1,0 +1,19 @@
+@import 'styles';
+
+.activity-stream-tabs {
+  @extend %box-styles;
+
+  a {
+    color: $ui-highlight-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: lighten($ui-highlight-color, 8%);
+    }
+
+    &.active {
+      color: $text-color;
+    }
+  }
+}
