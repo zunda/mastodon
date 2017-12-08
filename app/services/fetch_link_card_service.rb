@@ -74,9 +74,6 @@ class FetchLinkCardService < BaseService
 
     return false unless response.respond_to?(:type)
 
-    # The photo will change the URL. So, to avoid duplication of URLs, PreviewCard needs to be checked again.
-    @card = PreviewCard.find_by(url: response.url) || @card if response.type == 'photo'
-
     @card.type          = response.type
     @card.title         = response.respond_to?(:title)         ? response.title         : ''
     @card.author_name   = response.respond_to?(:author_name)   ? response.author_name   : ''
@@ -94,9 +91,9 @@ class FetchLinkCardService < BaseService
         raise e.class, "Failed to parse thumbnail URL: #{response.thumbnail_url.inspect}"
       end
     when 'photo'
-      @card.url    = response.url
-      @card.width  = response.width.presence  || 0
-      @card.height = response.height.presence || 0
+      @card.embed_url = response.url
+      @card.width     = response.width.presence  || 0
+      @card.height    = response.height.presence || 0
     when 'video'
       @card.width  = response.width.presence  || 0
       @card.height = response.height.presence || 0
