@@ -1,0 +1,18 @@
+.landing-page {
+  .features {
+    #mastodon-timeline {
+      color: $text-color;
+      box-shadow: 0 0 6px rgba($black, 0.1);
+      .column-header {
+        color: $accent-text-color;
+      }
+
+      p {
+        color: $text-color;
+        a {
+          color: $ui-highlight-color;
+        }
+      }
+    }
+  }
+}

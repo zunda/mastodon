@@ -31,5 +31,5 @@
   - body_classes += ' reduce-motion' if current_account&.user&.setting_reduce_motion
   - body_classes += ' system-font' if current_account&.user&.setting_system_font_ui
 
-  %body{ class: add_rtl_body_class([*body_classes, theme_class_name]) }
+  %body{ class: add_rtl_body_class(body_classes) }
     = content_for?(:content) ? yield(:content) : yield

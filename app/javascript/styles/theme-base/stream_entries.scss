@@ -1,0 +1,137 @@
+@import 'styles';
+
+.activity-stream {
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+
+  .entry {
+    background: $simple-background-color;
+
+    .detailed-status.light,
+    .status.light {
+      border-bottom: 1px solid $ui-secondary-color;
+    }
+  }
+
+
+  .status.light {
+    border-color: $border-color;
+    background-color: $background-color;
+
+    .status__header {
+      .status__meta {
+        .status__relative-time {
+          color: $sub-text-color;
+        }
+      }
+    }
+
+    .status__display-name {
+      color: $text-color;
+    }
+
+    .display-name {
+      strong {
+        color: $sub-text-color-strong;
+      }
+
+      span {
+        color: $sub-text-color;
+      }
+    }
+
+    .status__content {
+      color: $text-color;
+      a {
+        color: $ui-highlight-color;
+      }
+
+      a.status__content__spoiler-link {
+        background-color: lighten($sub-background-color, 5%) !important;
+        color: $sub-text-color-strong !important;
+
+        &:hover {
+          background-color: lighten($sub-background-color, 5%) !important;
+        }
+      }
+    }
+  }
+
+  .detailed-status.light {
+    @extend %box-styles;
+
+    .detailed-status__display-name {
+      .display-name {
+        strong {
+          color: $sub-text-color-strong;
+        }
+
+        span {
+          color: $sub-text-color;
+        }
+      }
+    }
+
+    .status__content {
+      color: $text-color;
+
+      a {
+        color: $ui-highlight-color;
+      }
+
+      a.status__content__spoiler-link {
+        background-color: lighten($sub-background-color, 5%) !important;
+        color: $sub-text-color-strong !important;
+
+        &:hover {
+          background-color: lighten($sub-background-color, 5%) !important;
+        }
+      }
+    }
+
+    .detailed-status__meta {
+      color: $sub-text-color;
+
+      a {
+        color: inherit;
+      }
+    }
+
+    .status-card {
+      border-color: $border-color;
+      color: $sub-text-color;
+
+      &:hover {
+        border-color: $border-color;
+        background-color: $base-background-color;
+      }
+    }
+
+    .status-card__title,
+    .status-card__description {
+      color: $text-color;
+    }
+
+    .status-card__image {
+      background-color: transparent;
+    }
+  }
+
+  .media-spoiler {
+    @extend %box-styles;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: darken($ui-primary-color, 5%);
+      color: unset;
+    }
+  }
+
+  .pre-header {
+    @extend %box-styles;
+
+    .status__display-name.muted strong {
+      color: $sub-text-color-strong;
+    }
+  }
+}

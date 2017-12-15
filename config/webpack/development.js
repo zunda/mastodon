@@ -8,7 +8,7 @@ const watchOptions = {
   ignored: /node_modules/,
 };
 
-if (process.env.VAGRANT) {
+if (process.env.VAGRANT || process.env.DOCKER) {
   // If we are in Vagrant, we can't rely on inotify to update us with changed
   // files, so we must poll instead. Here, we poll every second to see if
   // anything has changed.
