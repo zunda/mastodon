@@ -69,6 +69,3 @@
       %p
         = link_to t('about.source_code'), @instance_presenter.source_url
         = " (#{@instance_presenter.version_number})"
-  - unless @instance_presenter.site_description.blank?
-    %h3= t('about.description_headline', domain: site_hostname)
-    %p!= @instance_presenter.site_description
