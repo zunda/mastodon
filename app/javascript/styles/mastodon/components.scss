@@ -214,6 +214,7 @@
 
 .dropdown-menu {
   position: absolute;
+  transform-origin: 50% 0;
 }
 
 .dropdown--active .icon-button {
@@ -2104,7 +2105,7 @@
     padding: 0 10px 8px;
   }
 
-  code {
+  kbd {
     display: inline-block;
     padding: 3px 5px;
     background-color: lighten($ui-base-color, 8%);
@@ -2943,6 +2944,7 @@ button.icon-button.active i.fa-retweet {
   border-radius: 4px;
   margin-left: 40px;
   overflow: hidden;
+  transform-origin: 50% 0;
 }
 
 .privacy-dropdown__option {
