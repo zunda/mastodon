@@ -185,4 +185,32 @@ RSpec.describe PostStatusService do
   def create_status_with_options(**options)
     subject.call(Fabricate(:account), 'test', nil, options)
   end
+
+  it 'creates a new status with an inline code' do
+    account = Fabricate(:account)
+    text = 'Hello, `ruby`.'
+
+    status = subject.call(account, text)
+
+    expect(status).to be_persisted
+    expect(status.text).to eq text
+  end
+
+  it 'creates a new status with a code block' do
+    account = Fabricate(:account)
+    text = <<~EOS.chomp
+      Hello
+
+      ```ruby
+        puts 'Hello, World!'
+      ```
+      
+      Bye
+    EOS
+
+    status = subject.call(account, text)
+
+    expect(status).to be_persisted
+    expect(status.text).to eq text
+  end
 end
