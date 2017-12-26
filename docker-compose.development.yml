@@ -41,7 +41,7 @@ services:
       - ./package.json:/mastodon/package.json:cached
       - ./yarn.lock:/mastodon/yarn.lock:cached
       - ./lib:/mastodon/lib:cached
-      - ./public:/mastodon/public
+      - ./public:/mastodon/public:delegated
       - ./public/packs:/mastodon/public/packs
       - ./spec:/mastodon/spec:cached
       - ./storybook:/mastodon/storybook:cached

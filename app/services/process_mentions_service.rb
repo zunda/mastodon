@@ -10,9 +10,9 @@ class ProcessMentionsService < BaseService
   def call(status)
     return unless status.local?
 
-    status.text = CodeBlockFormatter.remove_code_blocks(status.text)
+    text, marker_replacer = CodeBlockFormatter.scan(status.text)
 
-    status.text = status.text.gsub(Account::MENTION_RE) do |match|
+    status.text = text.gsub(Account::MENTION_RE) do |match|
       begin
         mentioned_account = resolve_remote_account_service.call($1)
       rescue Goldfinger::Error, HTTP::Error
@@ -30,6 +30,7 @@ class ProcessMentionsService < BaseService
       "@#{mentioned_account.acct}"
     end
 
+    status.text = marker_replacer.replace_markers_with_original_texts(status.text)
     status.save!
 
     status.mentions.includes(:account).each do |mention|

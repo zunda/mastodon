@@ -30,12 +30,12 @@ class Formatter
 
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
-    html, marks = CodeBlockFormatter.swap_code_literal_to_marker(html)
+    html, marker_replacer = CodeBlockFormatter.scan(html)
     html = encode_and_link_urls(html, linkable_accounts)
     html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
-    html = CodeBlockFormatter.swap_marker_to_code_blocks(html, marks)
+    html = marker_replacer.replace_markers_with_codes(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end

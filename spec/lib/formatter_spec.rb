@@ -226,6 +226,13 @@ RSpec.describe Formatter do
           end
         end
 
+        context 'contains inline code with html tag' do
+          let(:local_text) { "`<div>Hello</div>`" }
+          it 'has code block' do
+            expect(subject).to match '<span><code class="inline">&lt;div&gt;Hello&lt;/div&gt;</code></span>'
+          end
+        end
+
         context 'contains multiple inline code blocks' do
           let(:local_text) { "`hoge` `piyo`" }
           it 'has code block' do
@@ -236,22 +243,29 @@ RSpec.describe Formatter do
         context 'contains multi line code block' do
           let(:local_text) { "```ruby\nputs 'Hello, World!'\n```" }
           it 'has code block' do
-            expect(subject).to match '<p><code data-language="ruby">puts \'Hello, World!\'</code></p>'
+            expect(subject).to match '<p><code data-language="ruby">puts &#39;Hello, World!&#39;</code></p>'
           end
         end
 
         context 'contains multi line code block with filename' do
           let(:local_text) { "```ruby:hello.rb\nputs 'Hello, World!'\n```" }
           it 'has code block' do
-            expect(subject).to match '<p><code data-language="ruby" data-filename="hello.rb">puts \'Hello, World!\'</code></p>'
+            expect(subject).to match '<p><code data-language="ruby" data-filename="hello.rb">puts &#39;Hello, World!&#39;</code></p>'
+          end
+        end
+
+        context 'contains code block with html tag' do
+          let(:local_text) { "```\n<div>Hello</div>\n```" }
+          it 'has code block' do
+            expect(subject).to match '<p><code>&lt;div&gt;Hello&lt;/div&gt;</code></p>'
           end
         end
 
         context 'contains multiple code blocks' do
           let(:local_text) { "```ruby\nputs 'Hello, World!'\n```\n```js\nconsole.log('Hello, World!');\n```" }
           it 'has code block' do
-            expect(subject).to include('<p><code data-language="ruby">puts \'Hello, World!\'</code></p>')
-            expect(subject).to include('<p><code data-language="js">console.log(\'Hello, World!\');</code></p>')
+            expect(subject).to include('<p><code data-language="ruby">puts &#39;Hello, World!&#39;</code></p>')
+            expect(subject).to include('<p><code data-language="js">console.log(&#39;Hello, World!&#39;);</code></p>')
           end
         end
 
