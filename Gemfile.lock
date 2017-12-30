@@ -628,6 +628,7 @@ DEPENDENCIES
   rspec-sidekiq (~> 3.0)
   rubocop
   ruby-oembed (~> 0.12)
+  ruby-progressbar (~> 1.4)
   sanitize (~> 4.4)
   scout_apm (>= 2.3.0.pre2, < 3.0.pre)
   scss_lint (~> 0.55)
@@ -651,4 +652,4 @@ RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
