@@ -17,6 +17,8 @@ module Admin
       bootstrap_timeline_accounts
       thumbnail
       min_invite_role
+      activity_api_enabled
+      peers_api_enabled
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
@@ -25,6 +27,8 @@ module Admin
       timeline_preview
       show_staff_badge
       prohibit_registrations_except_qiita_oauth
+      activity_api_enabled
+      peers_api_enabled
     ).freeze
 
     UPLOAD_SETTINGS = %w(
