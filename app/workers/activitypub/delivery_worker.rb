@@ -4,7 +4,7 @@ class ActivityPub::DeliveryWorker
   include Sidekiq::Worker
   include WorkerLogger
 
-  sidekiq_options queue: 'push', retry: 8, dead: false
+  sidekiq_options queue: 'push', retry: 16, dead: false
 
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
 
