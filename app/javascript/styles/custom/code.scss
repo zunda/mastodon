@@ -9,5 +9,7 @@ code.hljs {
   &.inline {
     display: inline;
     padding: 1px 6px;
+    white-space: pre-wrap;
+    word-break: break-all;
   }
 }
