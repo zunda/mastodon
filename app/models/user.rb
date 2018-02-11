@@ -39,6 +39,7 @@
 
 class User < ApplicationRecord
   include Settings::Extend
+  include Omniauthable
 
   ACTIVE_DURATION = 14.days
 
@@ -51,7 +52,8 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  devise :pam_authenticatable
+  devise :pam_authenticatable if Devise.pam_authentication
+  devise :omniauthable
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
@@ -82,7 +84,7 @@ class User < ApplicationRecord
   has_many :session_activations, dependent: :destroy
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :theme,
+           :reduce_motion, :system_font_ui, :noindex, :theme, :display_sensitive_media,
            to: :settings, prefix: :setting, allow_nil: false
 
   attr_accessor :invite_code
