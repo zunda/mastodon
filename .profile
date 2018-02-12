@@ -18,15 +18,11 @@ if [ -n "$REDIS_URL" ]; then
 	export REDIS_PASSWORD=$3
 fi
 
-# Obtain info from BONSAI_URL
+# Obtain info from BONSAI_URL for Bonsai Elasticsearch
 # run `heroku config:set ES_ENABLED=true` to enable Elasticsearch
 if [ -n "$BONSAI_URL" ]; then
-	set -- `echo $BONSAI_URL | sed 's/\// /g'`
-	export ES_HOST=$2
-	export ES_PREFIX=$3
-	if [ "$1" == "https:" ]; then
-		export ES_PORT=443
-	else
-		export ES_PORT=80
-	fi
+	# it seems that we can put everything into ES_HOST
+	export ES_HOST=$BONSAI_URL
+	export ES_PREFIX=
+	export ES_PORT=
 fi
