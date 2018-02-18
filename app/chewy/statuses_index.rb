@@ -18,12 +18,13 @@ class StatusesIndex < Chewy::Index
     },
     analyzer: {
       content: {
-        tokenizer: 'uax_url_email',
+        tokenizer: 'kuromoji_tokenizer',
+        char_filter: %w(
+          icu_normalizer
+        ),
         filter: %w(
           english_possessive_stemmer
-          lowercase
           asciifolding
-          cjk_width
           english_stop
           english_stemmer
         ),
