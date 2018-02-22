@@ -40,6 +40,7 @@ gem 'omniauth', '~> 1.2'
 
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'
+gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
 gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.5'
@@ -115,6 +116,7 @@ group :development do
   gem 'bullet', '~> 5.5'
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
+  gem 'memory_profiler'
   gem 'rubocop', require: false
   gem 'brakeman', '~> 4.0', require: false
   gem 'bundler-audit', '~> 0.6', require: false
