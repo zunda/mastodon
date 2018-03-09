@@ -38,7 +38,7 @@ fr:
     followers: Abonné⋅e⋅s
     following: Abonnements
     media: Médias
-    moved_html: "%{name} a déménagé vers %{new_profile_link} :"
+    moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
@@ -299,7 +299,7 @@ fr:
         desc_html: Montrer un badge de responsable sur une page utilisateur
         title: Montrer un badge de responsable
       site_description:
-        desc_html: Paragraphe introductif sur la page d'accueil et dans les balises meta. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        desc_html: Paragraphe introductif sur la page d'accueil et dans les méta-balises. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du site
       site_description_extended:
         desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
@@ -359,6 +359,7 @@ fr:
     your_token: Votre jeton d’accès
   auth:
     agreement_html: En vous inscrivant, vous souscrivez <a href="%{rules_path}">aux règles de l’instance</a> et à <a href="%{terms_path}">nos conditions d’utilisation</a>.
+    change_password: Mot de passe
     confirm_email: Confirmer mon adresse mail
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
@@ -369,11 +370,13 @@ fr:
     logout: Se déconnecter
     migrate_account: Déplacer vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
+    or: ou
     or_log_in_with: Ou authentifiez-vous avec
     providers:
       cas: CAS
       saml: SAML
     register: S’inscrire
+    register_elsewhere: S'inscrire sur un autre serveur
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
@@ -462,7 +465,7 @@ fr:
       following: Liste d’utilisateur⋅ice⋅s suivi⋅e⋅s
       muting: Liste d’utilisateur⋅ice⋅s que vous masquez
     upload: Importer
-  in_memoriam_html: In Memoriam.
+  in_memoriam_html: En mémoire de.
   invites:
     delete: Désactiver
     expired: Expiré
@@ -545,7 +548,7 @@ fr:
           trillion: T
           unit: ''
   pagination:
-    newer: Jamais
+    newer: Plus récent
     next: Suivant
     older: Plus ancien
     prev: Précédent
@@ -649,7 +652,7 @@ fr:
       unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur listés sur les fils publics
   stream_entries:
     click_to_show: Cliquer pour afficher
-    pinned: Statut épinglé
+    pinned: Pouet épinglé
     reblogged: partagé
     sensitive_content: Contenu sensible
   terms:
