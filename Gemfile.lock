@@ -586,7 +586,7 @@ DEPENDENCIES
   charlock_holmes (~> 0.7.5)
   cld3 (~> 3.2.0)
   climate_control (~> 0.2)
-  devise (~> 4.2)
+  devise (~> 4.3)
   devise-two-factor (~> 3.0)
   doorkeeper (~> 4.2)
   dotenv-rails (~> 2.2)
@@ -649,6 +649,7 @@ DEPENDENCIES
   rspec-sidekiq (~> 3.0)
   rubocop
   ruby-oembed (~> 0.12)
+  ruby-progressbar (~> 1.4)
   sanitize (~> 4.4)
   scss_lint (~> 0.55)
   sentry-raven (~> 2.4)
