@@ -32,6 +32,10 @@ class Form::AdminSettings
     :min_invite_role=,
     :prohibit_registrations_except_qiita_oauth,
     :prohibit_registrations_except_qiita_oauth=,
+    :activity_api_enabled,
+    :activity_api_enabled=,
+    :peers_api_enabled,
+    :peers_api_enabled=,
     to: Setting
   )
 end

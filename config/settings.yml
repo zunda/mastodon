@@ -159,7 +159,8 @@ defaults: &defaults
     - yahoo
     - mixi
   bootstrap_timeline_accounts: ''
-
+  activity_api_enabled: true
+  peers_api_enabled: true
 development:
   <<: *defaults
 
