@@ -95,6 +95,8 @@ class Account < ApplicationRecord
   has_many :reports
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
 
+  has_many :report_notes, dependent: :destroy
+
   # Moderation notes
   has_many :account_moderation_notes, dependent: :destroy
   has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
@@ -348,6 +350,10 @@ class Account < ApplicationRecord
 
       [textsearch, query]
     end
+  end
+
+  def emojis
+    CustomEmoji.from_text(note, domain)
   end
 
   before_create :generate_keys
