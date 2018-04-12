@@ -13,9 +13,7 @@ class ActivityPub::DeliveryWorker
     @source_account = Account.find(source_account_id)
     @inbox_url      = inbox_url
 
-    perform_request do |response|
-      raise Mastodon::UnexpectedResponseError, response unless response_successful? response
-    end
+    perform_request
 
     log_delay(JSON.parse(@json).dig('published'), @inbox_url, 'delivered')
     failure_tracker.track_success!
@@ -32,8 +30,14 @@ class ActivityPub::DeliveryWorker
     request.add_headers(HEADERS)
   end
 
-  def perform_request(&block)
-    build_request.perform(&block)
+  def perform_request
+    light = Stoplight(@inbox_url) do
+      build_request.perform do |response|
+        raise Mastodon::UnexpectedResponseError, response unless response_successful?(response)
+      end
+    end
+
+    light.run
   end
 
   def response_successful?(response)
