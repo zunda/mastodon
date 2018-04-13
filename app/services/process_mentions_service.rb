@@ -18,7 +18,7 @@ class ProcessMentionsService < BaseService
 
       if mention_undeliverable?(status, mentioned_account)
         begin
-          mentioned_account = resolve_remote_account_service.call($1)
+          mentioned_account = resolve_account_service.call($1)
         rescue Goldfinger::Error, HTTP::Error
           mentioned_account = nil
         end
@@ -66,7 +66,7 @@ class ProcessMentionsService < BaseService
     ).as_json).sign!(status.account))
   end
 
-  def resolve_remote_account_service
-    ResolveRemoteAccountService.new
+  def resolve_account_service
+    ResolveAccountService.new
   end
 end
