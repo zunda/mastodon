@@ -19,6 +19,7 @@ module Admin
       min_invite_role
       activity_api_enabled
       peers_api_enabled
+      prohibit_registrations_except_qiita_oauth
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
@@ -26,9 +27,9 @@ module Admin
       open_deletion
       timeline_preview
       show_staff_badge
-      prohibit_registrations_except_qiita_oauth
       activity_api_enabled
       peers_api_enabled
+      prohibit_registrations_except_qiita_oauth
     ).freeze
 
     UPLOAD_SETTINGS = %w(

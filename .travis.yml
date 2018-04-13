@@ -11,7 +11,8 @@ dist: trusty
 sudo: false
 branches:
   only:
-  - master
+    - master
+    - qiitadon
 
 notifications:
   email: false
