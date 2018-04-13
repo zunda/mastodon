@@ -1,4 +1,4 @@
-FROM ruby:2.4.2-alpine3.6
+FROM ruby:2.5.0-alpine3.7
 
 LABEL maintainer="https://github.com/increments/mastodon" \
       description="A GNU Social-compatible microblogging server"
@@ -38,6 +38,7 @@ RUN apk -U upgrade \
     protobuf \
     su-exec \
     tini \
+    tzdata \
  && update-ca-certificates \
  && mkdir -p /tmp/src /opt \
  && wget -O yarn.tar.gz "https://github.com/yarnpkg/yarn/releases/download/v$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
@@ -66,8 +67,11 @@ RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-in
 
 COPY . /mastodon
 
-COPY docker_entrypoint.sh /usr/local/bin/run
+RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
+ && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
+ && chown -R mastodon:mastodon /mastodon/public
 
-RUN chmod +x /usr/local/bin/run
+RUN chown -R mastodon:mastodon /mastodon
+USER mastodon
 
-ENTRYPOINT ["/usr/local/bin/run"]
+ENTRYPOINT ["/sbin/tini", "--"]
