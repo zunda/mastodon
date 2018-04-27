@@ -59,6 +59,7 @@ class Status < ApplicationRecord
   validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: -> { with_media? || reblog? }
   validates_with StatusLengthValidator
+  validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
 
   default_scope { recent }
@@ -159,7 +160,7 @@ class Status < ApplicationRecord
   end
 
   def emojis
-    CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
+    @emojis ||= CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
   end
 
   after_create_commit :store_uri, if: :local?

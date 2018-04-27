@@ -68,7 +68,7 @@ ja:
         current_email: 現在のメールアドレス
         label: メールアドレスを変更
         new_email: 新しいメールアドレス
-        submit: Change Email
+        submit: メールアドレスの変更
         title: "%{username} さんのメールアドレスを変更"
       confirm: 確認
       confirmed: 確認済み
@@ -259,6 +259,9 @@ ja:
       created_msg: レポートメモを書き込みました！
       destroyed_msg: レポートメモを削除しました！
     reports:
+      account:
+        note: メモ
+        report: レポート
       action_taken_by: レポート処理者
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
@@ -275,7 +278,7 @@ ja:
         create_and_resolve: 書き込み、解決済みにする
         create_and_unresolve: 書き込み、未解決として開く
         delete: 削除
-        placeholder: このレポートに取られた措置やその他更新を記述してください
+        placeholder: このレポートに取られた措置や、その他の更新を記述してください…
       nsfw:
         'false': NSFW オフ
         'true': NSFW オン
@@ -681,6 +684,9 @@ ja:
         one: "%{count} 本の動画"
         other: "%{count} 本の動画"
     content_warning: '閲覧注意: %{warning}'
+    disallowed_hashtags:
+      one: '許可されていないハッシュタグが含まれています: %{tags}'
+      other: '許可されていないハッシュタグが含まれています: %{tags}'
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
