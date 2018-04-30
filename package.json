@@ -12,7 +12,8 @@
     "start": "node ./streaming/index.js",
     "test": "npm-run-all test:lint test:jest",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ streaming/",
-    "test:jest": "cross-env NODE_ENV=test jest --coverage"
+    "test:jest": "cross-env NODE_ENV=test jest --coverage",
+    "postinstall": "npm rebuild uws"
   },
   "repository": {
     "type": "git",
