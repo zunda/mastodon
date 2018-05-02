@@ -8,3 +8,4 @@ libprotobuf-dev
 libxdamage1
 libxfixes3
 protobuf-compiler
+libxcb-shm0
