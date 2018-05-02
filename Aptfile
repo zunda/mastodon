@@ -13,4 +13,12 @@ libvpx5
 librsvg2-2
 libcairo2
 libharfbuzz0b
-libXrender
+libxrender1
+libcroco3
+libgdk-pixbuf2.0-0
+libgraphite2-3
+libpango-1.0-0
+libpangocairo-1.0-0
+libpangoft2-1.0-0
+libpixman-1-0
+libxcb-render0
