@@ -10,3 +10,7 @@ libxfixes3
 protobuf-compiler
 libxcb-shm0
 libvpx5
+librsvg2-2
+libcairo2
+libharfbuzz0b
+libXrender
