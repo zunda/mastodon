@@ -1,7 +1,7 @@
 ---
 sk:
   about:
-    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
+    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{hashtag}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O tejto instancii
     administered_by: 'Správca je:'
@@ -70,6 +70,7 @@ sk:
         title: Zmeň email pre %{username}
       confirm: Potvrdiť
       confirmed: Potvrdený
+      confirming: Potvrdzujúci
       demote: Degradovať
       disable: Zablokovať
       disable_two_factor_authentication: Zakázať 2FA
@@ -78,6 +79,7 @@ sk:
       domain: Doména
       edit: Upraviť
       email: Email
+      email_status: Stav Email
       enable: Povoliť
       enabled: Povolený
       feed_url: URL časovej osi
@@ -116,6 +118,10 @@ sk:
       push_subscription_expires: PuSH odoberanie expiruje
       redownload: Obnoviť avatar
       remove_avatar: Odstrániť avatár
+      resend_confirmation:
+        already_confirmed: Tento používateľ už bol potvrdený
+        send: Znova odoslať potvrdzovací e-mail
+        success: Potvrdený e-mail bol úspešne odoslaný!
       reset: Reset
       reset_password: Obnoviť heslo
       resubscribe: Znovu odoberať
@@ -629,10 +635,10 @@ sk:
     title: Sezóna
   settings:
     authorized_apps: Autorizované aplikácie
-    back: Späť do Mastodonu
-    delete: Zmazanie účtu
+    back: Späť na Mastodon
+    delete: Vymazanie účtu
     development: Vývoj
-    edit_profile: Upraviť profil
+    edit_profile: Uprav profil
     export: Exportovať dáta
     followers: Povolení sledovatelia
     import: Importovať
