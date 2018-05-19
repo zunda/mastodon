@@ -54,7 +54,7 @@ class Rack::Attack
   end
 
   throttle('throttle_public_timeline', limit: 10, period: 30.seconds) do |req|
-    req.ip if path.start_with?('/@')
+    req.ip if req.path.start_with?('/@')
   end
 
   throttle('throttle_media', limit: 30, period: 30.minutes) do |req|
