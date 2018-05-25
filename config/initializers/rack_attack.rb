@@ -57,10 +57,6 @@ class Rack::Attack
     req.ip if req.path.start_with?('/@')
   end
 
-  throttle('throttle_overall_public_timeline', limit: 20, period: 30.seconds) do |req|
-    req.path.start_with?('/@')
-  end
-
   throttle('throttle_media', limit: 30, period: 30.minutes) do |req|
     req.authenticated_user_id if req.post? && req.path.start_with?('/api/v1/media')
   end
