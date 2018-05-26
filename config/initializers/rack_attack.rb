@@ -53,11 +53,11 @@ class Rack::Attack
     req.ip if req.api_request?
   end
 
-  throttle('throttle_public_timeline', limit: 10, period: 30.seconds) do |req|
+  throttle('throttle_public_timeline', limit: 10, period: 60.seconds) do |req|
     req.ip if req.path.start_with?('/@')
   end
 
-  throttle('throttle_overall_public_timeline', limit: 20, period: 30.seconds) do |req|
+  throttle('throttle_overall_public_timeline', limit: 20, period: 60.seconds) do |req|
     req.path.start_with?('/@')
   end
 
