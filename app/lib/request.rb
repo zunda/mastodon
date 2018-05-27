@@ -145,7 +145,8 @@ class Request
             raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
             return super address.ip_address, *args
           rescue => e
-            outer_e = e
+            outer_e = e.class.new(e.message + " at #{address.ip_address}")
+            outer_e.set_backtrace(e.backtrace)
           end
         end
         raise outer_e if outer_e
