@@ -292,9 +292,6 @@ en:
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
-        prohibit_registrations_except_qiita_oauth:
-          desc_html: Prohibit anyone to create an account except Qiita OAuth
-          title: Prohibit registration except Qiita OAuth
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
         title: Show known fediverse on timeline preview
@@ -373,8 +370,6 @@ en:
     logout: Logout
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
-    oauth_registration: User Registration
-    password_signup_closed_caution: For now, we allow registrations only with Qiita account.
     or: or
     or_log_in_with: Or log in with
     providers:
@@ -552,11 +547,6 @@ en:
           thousand: K
           trillion: T
           unit: ''
-  oauth_registration:
-    success: Succeed to register
-  omniauth_callbacks:
-    failure: Failed to integrate
-    success: Succeed to integrate
   pagination:
     newer: Newer
     next: Next
@@ -640,7 +630,6 @@ en:
     migrate: Account migration
     notifications: Notifications
     preferences: Preferences
-    qiita_authorizations: Qiita Authorizations
     settings: Settings
     two_factor_authentication: Two-factor Auth
     your_apps: Your applications

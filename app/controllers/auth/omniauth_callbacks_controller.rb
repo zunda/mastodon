@@ -15,9 +15,9 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
 
       if qiita_authorization.save
-        flash[:notice] = I18n.t('omniauth_callbacks.success')
+        flash[:notice] = I18n.t('qiitadon.omniauth_callbacks.success')
       else
-        flash[:alert] = I18n.t('omniauth_callbacks.failure')
+        flash[:alert] = I18n.t('qiitadon.omniauth_callbacks.failure')
       end
       redirect_to after_sign_in_path_for(current_user)
     else

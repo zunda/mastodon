@@ -1,0 +1,14 @@
+en:
+  qiitadon:
+    registrations:
+      prohibit_registrations_except_qiita_oauth:
+        desc_html: Prohibit anyone to create an account except Qiita OAuth
+        title: Prohibit registration except Qiita OAuth
+      oauth_registration: User Registration
+      password_signup_closed_caution: For now, we allow registrations only with Qiita account.
+    qiita_authorizations: Qiita Authorizations
+    oauth_registration:
+      success: Succeed to register
+    omniauth_callbacks:
+      failure: Failed to integrate
+      success: Succeed to integrate

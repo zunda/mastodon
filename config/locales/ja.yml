@@ -292,9 +292,6 @@ ja:
         open:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
-        prohibit_registrations_except_qiita_oauth:
-          desc_html: Qiita連携以外の新規登録を出来ないようにします
-          title: Qiita連携以外の新規登録を禁止する
       show_known_fediverse_at_about_page:
         desc_html: チェックを入れるとプレビュー欄に既知の連合先全てのトゥートを表示します。外すとローカルのトゥートだけ表示します。
         title: タイムラインプレビューに連合タイムラインを表示する
@@ -373,8 +370,6 @@ ja:
     logout: ログアウト
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
-    oauth_registration: ユーザー登録
-    password_signup_closed_caution: 現在は負荷対策のため、Qiitaアカウント連携以外での新規登録を停止しています。
     or: または
     or_log_in_with: または次のサービスでログイン
     providers:
@@ -552,11 +547,6 @@ ja:
           thousand: K
           trillion: T
           unit: ''
-  oauth_registration:
-    success: ユーザー登録しました
-  omniauth_callbacks:
-    failure: 連携に失敗しました
-    success: 連携に成功しました
   pagination:
     newer: 新しいトゥート
     next: 次
@@ -640,7 +630,6 @@ ja:
     migrate: アカウントの引っ越し
     notifications: 通知
     preferences: ユーザー設定
-    qiita_authorizations: Qiita連携
     settings: 設定
     two_factor_authentication: 二段階認証
     your_apps: アプリ

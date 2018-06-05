@@ -1,0 +1,14 @@
+ja:
+  qiitadon:
+    registrations:
+      prohibit_registrations_except_qiita_oauth:
+        desc_html: Qiita連携以外の新規登録を出来ないようにします
+        title: Qiita連携以外の新規登録を禁止する
+      oauth_registration: ユーザー登録
+      password_signup_closed_caution: 現在はQiitaアカウント連携以外での新規登録を停止しています。
+    qiita_authorizations: Qiita連携
+    oauth_registration:
+      success: ユーザー登録しました
+    omniauth_callbacks:
+      failure: 連携に失敗しました
+      success: 連携に成功しました
