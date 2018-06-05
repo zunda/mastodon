@@ -39,7 +39,7 @@ RSpec.describe OauthRegistrationsController, type: :controller do
   end
 
   describe 'POST #create' do
-    subject { -> { post :create, { params: { form_oauth_registration: form_params } } } }
+    subject { -> { post :create, { params: { qiitadon_form_oauth_registration: form_params } } } }
 
     context 'when omniauth data are stored' do
       include_context 'store omniauth data'

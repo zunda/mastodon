@@ -77,7 +77,6 @@ describe Auth::OmniauthCallbacksController, type: :controller do
 
           it 'redirect_to root_path' do
             subject.call
-            expect(response).to be_redirect
             expect(response).to redirect_to(root_path)
           end
         end
@@ -87,13 +86,16 @@ describe Auth::OmniauthCallbacksController, type: :controller do
 
           it 'redirect_to settings_qiita_authorizations_path' do
             subject.call
-            expect(response).to be_redirect
             expect(response).to redirect_to(settings_qiita_authorizations_path)
           end
         end
       end
 
       context 'and there are no user linked to the qiita account' do
+        before do
+         stub_request(:get, omniauth_auth[:info][:image]).to_return(request_fixture('avatar.txt'))
+        end
+
         it 'redirects to new_user_oauth_registration_path' do
           subject.call
           expect(response).to redirect_to(new_user_oauth_registration_path)
@@ -110,9 +112,9 @@ describe Auth::OmniauthCallbacksController, type: :controller do
 
         it 'stores the omniauth data to session to build form' do
           subject.call
-          expect(Form::OauthRegistration.from_omniauth_auth(session[:devise_omniauth_auth])).to have_attributes({
+          expect(Qiitadon::Form::OauthRegistration.from_omniauth_auth(session[:devise_omniauth_auth])).to have_attributes({
             provider: omniauth_auth[:provider],
-            avatar: omniauth_auth[:info][:image],
+            avatar: be_present,
             uid: omniauth_auth[:uid],
             username: omniauth_auth[:uid],
             token: omniauth_auth[:credentials][:token],

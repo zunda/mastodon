@@ -7,13 +7,13 @@ class OauthRegistrationsController < DeviseController
   before_action :require_no_authentication
 
   def new
-    @oauth_registration = Form::OauthRegistration.from_omniauth_auth(omniauth_auth)
+    @oauth_registration = Qiitadon::Form::OauthRegistration.from_omniauth_auth(omniauth_auth)
   end
 
   def create
-    @oauth_registration = Form::OauthRegistration.from_omniauth_auth(omniauth_auth)
+    @oauth_registration = Qiitadon::Form::OauthRegistration.from_omniauth_auth(omniauth_auth)
     @oauth_registration.assign_attributes(
-      params.require(:form_oauth_registration).permit(:email, :username, :password, :password_confirmation).merge(locale: I18n.locale)
+      params.require(:qiitadon_form_oauth_registration).permit(:email, :username, :password, :password_confirmation).merge(locale: I18n.locale)
     )
 
     if @oauth_registration.save

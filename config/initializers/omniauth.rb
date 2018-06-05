@@ -63,4 +63,5 @@ Devise.setup do |config|
     config.omniauth :saml, saml_options
   end
 
+  config.omniauth :qiita, ENV['QIITA_CLIENT_ID'], ENV['QIITA_CLIENT_SECRET'], scope: 'read_qiita'
 end

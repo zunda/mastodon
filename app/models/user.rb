@@ -1,5 +1,4 @@
- frozen_string_literal: true
->>>>>>> v2.3.3
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: users
@@ -45,8 +44,6 @@ class User < ApplicationRecord
 
   ACTIVE_DURATION = 14.days
 
-  devise :omniauthable
-
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
 
@@ -62,7 +59,6 @@ class User < ApplicationRecord
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
-  has_one :qiita_authorization, inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
@@ -82,8 +78,6 @@ class User < ApplicationRecord
   scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
 
   before_validation :sanitize_languages
-
-  before_validation :disable_dummy_password_flag, on: :update, if: :encrypted_password_changed?
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -260,29 +254,6 @@ class User < ApplicationRecord
     @invite_code = code
   end
 
-  concerning :Qiitadon do
-    def has_dummy_password?
-      dummy_password_flag
-    end
-
-    def disable_dummy_password_flag
-      self.dummy_password_flag = false
-      true
-    end
-
-    def update_without_current_password(params, *options)
-      if params[:password].blank?
-        params.delete(:password)
-        params.delete(:password_confirmation) if params[:password_confirmation].blank?
-      end
-
-      result = update_attributes(params, *options)
-      clean_up_passwords
-      result
-    end
-  end
-
-
 
   def password_required?
     return false if Devise.pam_authentication || Devise.ldap_authentication
@@ -364,5 +335,32 @@ class User < ApplicationRecord
 
   def needs_feed_update?
     last_sign_in_at < ACTIVE_DURATION.ago
+  end
+
+  concerning :Qiitadon do
+    included do
+      has_one :qiita_authorization, inverse_of: :user, dependent: :destroy
+      before_validation :disable_dummy_password_flag, on: :update, if: :encrypted_password_changed?
+    end
+
+    def has_dummy_password?
+      dummy_password_flag
+    end
+
+    def disable_dummy_password_flag
+      self.dummy_password_flag = false
+      true
+    end
+
+    def update_without_current_password(params, *options)
+      if params[:password].blank?
+        params.delete(:password)
+        params.delete(:password_confirmation) if params[:password_confirmation].blank?
+      end
+
+      result = update_attributes(params, *options)
+      clean_up_passwords
+      result
+    end
   end
 end
