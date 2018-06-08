@@ -21,8 +21,8 @@
   }
 
   .button-primary {
-    border-color: #4ea30a;
-    background-color: #59bb0c;
+    border-color: $qiita-border;
+    background-color: $qiita;
     color: #fff;
   }
 
@@ -58,6 +58,7 @@
   background: darken($ui-base-color, 4%);
   width: 280px;
   padding: 15px 20px;
+  margin-top: 10px;
   border-radius: 4px 4px 0 0;
   line-height: initial;
   position: relative;
@@ -82,5 +83,25 @@
   .info a {
     color: white;
     text-transform: none;
+  }
+}
+
+.alternative-login {
+  .button-qiita {
+    border-color: $qiita-border;
+    background-color: $qiita;
+    color: #fff;
+
+    text-transform: unset;
+
+    &:hover {
+      background-color: lighten($qiita, 5%);
+    }
+
+    &:active,
+    &:focus {
+      background-color: darken($qiita, 5%);
+    }
+
   }
 }

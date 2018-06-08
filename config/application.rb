@@ -35,6 +35,7 @@ module Mastodon
 
     # All translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'qiitadon', '*.{rb,yml}').to_s]
     config.i18n.available_locales = [
       :en,
       :ar,
