@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'uri'
+require 'open-uri'
 
 module Qiitadon
   module Form
@@ -18,7 +20,7 @@ module Qiitadon
           when 'qiita'
             new(
               provider: auth[:provider],
-              avatar: auth[:info][:image],
+              avatar: fetch_qiita_thumbnail(auth[:info][:image]),
               uid: auth[:uid],
               username: normalize_username(auth[:uid]),
               token: auth[:credentials][:token],
@@ -29,6 +31,17 @@ module Qiitadon
         end
 
         private
+
+        # @param url [String]
+        def fetch_qiita_thumbnail(url)
+          return nil unless %w(http https).include?(URI.parse(url).scheme)
+          image = OpenURI.open_uri(url, 'Referer' => "https://#{Rails.configuration.x.local_domain}")
+          account = Account.new(avatar: image)
+          account.valid?
+          account.errors.key?(:avatar) ? nil : account.avatar
+        rescue URI::InvalidURIError, OpenURI::HTTPError
+          nil
+        end
 
         def normalize_username(username)
           username.to_s.downcase.tr('-', '_').gsub('@github', '').remove(/[^a-z0-9_]/i)
