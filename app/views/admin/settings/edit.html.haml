@@ -12,11 +12,15 @@
 
   .fields-group
     = f.input :thumbnail, as: :file, wrapper: :with_block_label, label: t('admin.settings.thumbnail.title'), hint: t('admin.settings.thumbnail.desc_html')
+    = f.input :hero, as: :file, wrapper: :with_block_label, label: t('admin.settings.hero.title'), hint: t('admin.settings.hero.desc_html')
 
   %hr/
 
   .fields-group
     = f.input :timeline_preview, as: :boolean, wrapper: :with_label, label: t('admin.settings.timeline_preview.title'), hint: t('admin.settings.timeline_preview.desc_html')
+
+  .fields-group
+    = f.input :show_known_fediverse_at_about_page, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_known_fediverse_at_about_page.title'), hint: t('admin.settings.show_known_fediverse_at_about_page.desc_html')
 
   .fields-group
     = f.input :show_staff_badge, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_staff_badge.title'), hint: t('admin.settings.show_staff_badge.desc_html')
@@ -31,7 +35,7 @@
     = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
 
   .fields-group
-    = f.input :prohibit_registrations_except_qiita_oauth, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.prohibit_registrations_except_qiita_oauth.title'), hint: t('admin.settings.registrations.prohibit_registrations_except_qiita_oauth.desc_html')
+    = f.input :prohibit_registrations_except_qiita_oauth, as: :boolean, wrapper: :with_label, label: t('qiitadon.registrations.prohibit_registrations_except_qiita_oauth.title'), hint: t('qiitadon.registrations.prohibit_registrations_except_qiita_oauth.desc_html')
   %hr/
 
   .fields-group

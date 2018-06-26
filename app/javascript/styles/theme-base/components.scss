@@ -46,6 +46,12 @@
   color: $text-color;
 }
 
+.drawer__inner__mastodon {
+  background-color: $background-color;
+  background-image: none;
+
+}
+
 .navigation-bar strong {
   color: $text-color;
   font-size: 15px;
@@ -66,7 +72,6 @@
 }
 
 .compose-form__buttons {
-  @extend %box-styles;
   border-top: 0;
   box-shadow: none;
 }
@@ -141,10 +146,20 @@
   }
 }
 
-.column-header__button,
-.column-header__button.active:hover {
+.column-header__button {
   @extend %accent-box-styles;
   border: 0;
+
+  &:hover {
+    background-color: lighten($accent-box-background-color, 7%);
+  }
+
+  &.active {
+    @extend %accent-box-styles;
+    &:hover {
+      background-color: lighten($accent-box-background-color, 8%);
+    }
+  }
 }
 
 .column-header__back-button {
@@ -191,6 +206,11 @@
   color: $accent-text-color;
 }
 
+.getting-started {
+  border: 1px solid $border-color;
+  background-color: $background-color;
+}
+
 .getting-started__wrapper {
   border: 1px solid $border-color;
   border-bottom: 0;
@@ -209,6 +229,13 @@
 
 .getting-started p {
   color: $text-color;
+}
+
+.keyboard-shortcuts {
+  kbd {
+    background-color: lighten($base-background-color, 8%);
+    border: 1px solid darken($base-background-color, 4%);
+  }
 }
 
 .column-link {

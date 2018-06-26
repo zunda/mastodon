@@ -7,19 +7,19 @@ class OauthRegistrationsController < DeviseController
   before_action :require_no_authentication
 
   def new
-    @oauth_registration = Form::OauthRegistration.from_omniauth_auth(omniauth_auth)
+    @oauth_registration = Qiitadon::Form::OauthRegistration.from_omniauth_auth(omniauth_auth)
   end
 
   def create
-    @oauth_registration = Form::OauthRegistration.from_omniauth_auth(omniauth_auth)
+    @oauth_registration = Qiitadon::Form::OauthRegistration.from_omniauth_auth(omniauth_auth)
     @oauth_registration.assign_attributes(
-      params.require(:form_oauth_registration).permit(:email, :username, :password, :password_confirmation).merge(locale: I18n.locale)
+      params.require(:qiitadon_form_oauth_registration).permit(:email, :username, :password, :password_confirmation).merge(locale: I18n.locale)
     )
 
     if @oauth_registration.save
       sign_in(@oauth_registration.user)
       redirect_to after_sign_in_path_for(@oauth_registration.user)
-      flash[:notice] = I18n.t('oauth_registration.success')
+      flash[:notice] = I18n.t('qiitadon.oauth_registration.success')
     else
       render :new, status: :unprocessable_entity
     end

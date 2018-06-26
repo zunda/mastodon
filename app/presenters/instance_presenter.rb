@@ -44,4 +44,8 @@ class InstancePresenter
   def open_password_registrations
     open_registrations && !prohibit_registrations_except_qiita_oauth
   end
+
+  def hero
+    @hero ||= Rails.cache.fetch('site_uploads/hero') { SiteUpload.find_by(var: 'hero') }
+  end
 end

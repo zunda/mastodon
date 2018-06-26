@@ -1,9 +1,10 @@
-FROM ruby:2.5.0-alpine3.7
+FROM ruby:2.4.3-alpine3.6
 
 LABEL maintainer="https://github.com/increments/mastodon" \
       description="A GNU Social-compatible microblogging server"
 
-ENV UID=991 GID=991
+ARG UID=991
+ARG GID=991
 
 ARG YARN_VERSION=1.3.2
 ARG YARN_DOWNLOAD_SHA256=6cfe82e530ef0837212f13e45c1565ba53f5199eec2527b85ecbcd88bf26821d
@@ -65,11 +66,11 @@ RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-in
  && bundle install -j$(getconf _NPROCESSORS_ONLN) \
  && yarn
 
-COPY . /mastodon
-
 RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
  && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
  && chown -R mastodon:mastodon /mastodon/public
+
+COPY . /mastodon
 
 RUN chown -R mastodon:mastodon /mastodon
 USER mastodon
