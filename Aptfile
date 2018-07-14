@@ -5,6 +5,7 @@ libidn11
 libidn11-dev
 libpq-dev
 libprotobuf-dev
+libssl-dev
 libxdamage1
 libxfixes3
 protobuf-compiler
@@ -25,3 +26,4 @@ libxcb-render0
 libthai0
 libthai-data
 libdatrie1
+zlib1g-dev
