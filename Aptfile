@@ -8,6 +8,3 @@ libidn11
 libidn11-dev
 libssl-dev
 libxdamage1
-libxfixes3
-zlib1g-dev
-
