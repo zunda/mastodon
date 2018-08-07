@@ -88,8 +88,6 @@ GEM
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
-    barnes (0.0.3)
-      statsd-ruby (~> 1.1)
     bcrypt (3.1.12)
     benchmark-ips (2.7.2)
     better_errors (2.4.0)
@@ -653,7 +651,6 @@ DEPENDENCIES
   addressable (~> 2.5)
   annotate (~> 2.7)
   aws-sdk-s3 (~> 1.9)
-  barnes
   better_errors (~> 2.4)
   binding_of_caller (~> 0.7)
   bootsnap (~> 1.3)
