@@ -5,9 +5,11 @@ libidn11
 libidn11-dev
 libpq-dev
 libprotobuf-dev
+libssl-dev
 libxdamage1
 libxfixes3
 protobuf-compiler
+zlib1g-dev
 libxcb-shm0
 libvpx5
 librsvg2-2
