@@ -14,3 +14,22 @@
     }
   }
 }
+
+.registrations.caution {
+  p.hint {
+    margin-bottom: 15px;
+    color: $ui-primary-color;
+    text-align: center;
+    font-size: 12px;
+    line-height: 18px;
+
+    &.subtle-hint {
+      margin-bottom: 0;
+      color: $ui-primary-color;
+
+      a {
+        color: $ui-highlight-color;
+      }
+    }
+  }
+}
