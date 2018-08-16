@@ -650,3 +650,14 @@
   background-color: $background-color;
   color: $sub-text-color;
 }
+
+.floating-action-button {
+  background: $primary-accent-color;
+  box-shadow: 2px 3px 9px rgba($primary-accent-color, 0.4);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($primary-accent-color, 10%);
+  }
+}
