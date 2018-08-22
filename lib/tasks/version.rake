@@ -4,7 +4,7 @@ namespace :source do
     hash = ENV['SOURCE_VERSION']  # available on Heroku while build
     if hash.blank?
       begin
-        hash = `git show --pretty=%H 2>/dev/null`.strip
+        hash = `git rev-parse HEAD 2>/dev/null`.strip
         # ignore the error: fatal: Not a git repository
       rescue Errno::ENOENT  # git command is not available
       end
