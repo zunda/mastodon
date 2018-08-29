@@ -77,7 +77,11 @@ COPY . /mastodon
 
 RUN chown -R mastodon:mastodon /mastodon
 
-VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
+RUN SMTP_FROM_ADDRESS=dummy SECRET_KEY_BASE=dummy OTP_SECRET=dummy bundle exec rake assets:precompile
+RUN rm -rf /mastodon/tmp
+RUN chown -R mastodon:mastodon /mastodon
+
+VOLUME /mastodon/public/system
 
 USER mastodon
 

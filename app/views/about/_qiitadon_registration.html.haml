@@ -20,5 +20,7 @@
 
       %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
 - else
-  .registrations.password_registration_closed_caution
-    = t('qiitadon.registrations.password_signup_closed_caution')
+  .registrations.caution
+    %p.hint= t('qiitadon.registrations.password_signup_closed_caution')
+
+    %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)

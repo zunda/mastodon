@@ -144,6 +144,10 @@
       color: $ui-highlight-color; // FIXME
     }
   }
+
+  .column-header__back-button {
+    color: $accent-text-color;
+  }
 }
 
 .column-header__button {
@@ -204,6 +208,10 @@
 
 .column-icon:hover {
   color: $accent-text-color;
+}
+
+.column-inline-form {
+  background-color: $background-color;
 }
 
 .getting-started {
@@ -402,6 +410,24 @@
 
 .account .account__display-name {
   color: $sub-text-color;
+}
+
+.account__section-headline {
+  background-color: $box-background-color;
+  border-bottom-color: $box-border-color;
+
+  a {
+    color: $sub-text-color-strong;
+
+    &.active {
+      color: $text-color;
+
+      &::before,
+      &::after {
+        border-color: transparent transparent $box-border-color;
+      }
+    }
+  }
 }
 
 .active .fa-user-times {
@@ -649,4 +675,15 @@
 .status-check-box .status__content {
   background-color: $background-color;
   color: $sub-text-color;
+}
+
+.floating-action-button {
+  background: $primary-accent-color;
+  box-shadow: 2px 3px 9px rgba($primary-accent-color, 0.4);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($primary-accent-color, 10%);
+  }
 }
