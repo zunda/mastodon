@@ -1110,6 +1110,12 @@
     vertical-align: middle;
     margin-right: 5px;
   }
+
+  .bot-icon {
+    position: absolute;
+    bottom: -.333em;
+    left: -.333em;
+  }
 }
 
 a .account__avatar {
@@ -1327,10 +1333,22 @@ a .account__avatar {
 .account__header__avatar {
   background-size: 90px 90px;
   display: block;
+  font-size: 1.5em;
   height: 90px;
   margin: 0 auto 10px;
-  overflow: hidden;
+  position: relative;
   width: 90px;
+
+  .bot-icon {
+    color: $dark-text-color;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    .light & {
+      color: $inverted-text-color;
+    }
+  }
 }
 
 .account-authorize {
@@ -3009,17 +3027,12 @@ a.status-card {
   line-height: 24px;
 }
 
-.setting-toggle__label,
-.setting-meta__label {
+.setting-toggle__label {
   color: $darker-text-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-left: 8px;
   vertical-align: middle;
-}
-
-.setting-meta__label {
-  float: right;
 }
 
 .empty-column-indicator,
