@@ -26,9 +26,10 @@ class Api::V1::FavouritesController < Api::BaseController
   end
 
   def results
-    @_results ||= account_favourites.paginate_by_id(
+    @_results ||= account_favourites.paginate_by_max_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
-      params_slice(:max_id, :since_id, :min_id)
+      params[:max_id],
+      params[:since_id]
     )
   end
 
@@ -48,7 +49,7 @@ class Api::V1::FavouritesController < Api::BaseController
 
   def prev_path
     unless results.empty?
-      api_v1_favourites_url pagination_params(min_id: pagination_since_id)
+      api_v1_favourites_url pagination_params(since_id: pagination_since_id)
     end
   end
 

@@ -37,9 +37,10 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def paginated_notifications
-    browserable_account_notifications.paginate_by_id(
+    browserable_account_notifications.paginate_by_max_id(
       limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
-      params_slice(:max_id, :since_id, :min_id)
+      params[:max_id],
+      params[:since_id]
     )
   end
 
@@ -63,7 +64,7 @@ class Api::V1::NotificationsController < Api::BaseController
 
   def prev_path
     unless @notifications.empty?
-      api_v1_notifications_url pagination_params(min_id: pagination_since_id)
+      api_v1_notifications_url pagination_params(since_id: pagination_since_id)
     end
   end
 

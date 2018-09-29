@@ -7,6 +7,11 @@ class Api::V1::ReportsController < Api::BaseController
 
   respond_to :json
 
+  def index
+    @reports = current_account.reports
+    render json: @reports, each_serializer: REST::ReportSerializer
+  end
+
   def create
     @report = ReportService.new.call(
       current_account,

@@ -29,9 +29,10 @@ class Api::V1::Timelines::TagController < Api::BaseController
     if @tag.nil?
       []
     else
-      statuses = tag_timeline_statuses.paginate_by_id(
+      statuses = tag_timeline_statuses.paginate_by_max_id(
         limit_param(DEFAULT_STATUSES_LIMIT),
-        params_slice(:max_id, :since_id, :min_id)
+        params[:max_id],
+        params[:since_id]
       )
 
       if truthy_param?(:only_media)
@@ -61,7 +62,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
   end
 
   def prev_path
-    api_v1_timelines_tag_url params[:id], pagination_params(min_id: pagination_since_id)
+    api_v1_timelines_tag_url params[:id], pagination_params(since_id: pagination_since_id)
   end
 
   def pagination_max_id
