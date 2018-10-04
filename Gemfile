@@ -10,14 +10,14 @@ gem 'rails', '~> 5.2.1'
 gem 'thor', '~> 0.20'
 
 gem 'hamlit-rails', '~> 0.2'
-gem 'pg', '~> 1.0'
+gem 'pg', '~> 1.1'
 gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.2', '< 2.3'
 
-gem 'aws-sdk-s3', '~> 1.9', require: false
+gem 'aws-sdk-s3', '~> 1.20', require: false
 gem 'fog-core', '~> 1.45'
-gem 'fog-openstack', '~> 0.1', require: false
+gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
@@ -53,7 +53,7 @@ gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 3.2'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2'
-gem 'httplog', '~> 1.0'
+gem 'httplog', '~> 1.1'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
@@ -108,7 +108,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 2.18'
+  gem 'capybara', '~> 3.8'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.8'
   gem 'microformats', '~> 4.0'
