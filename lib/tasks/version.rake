@@ -20,7 +20,7 @@ namespace :source do
               module_function
 
               def to_s
-                "#{mastodon_version_to_s} at #{hash_abb}"
+                "#{mastodon_version_to_s} at #{hash_abb} on ruby-#{RUBY_VERSION}"
               end
               def source_base_url
                 'https://github.com/zunda/mastodon'
