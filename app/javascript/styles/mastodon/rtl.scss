@@ -219,7 +219,7 @@ body.rtl {
     padding-right: 0;
   }
 
-  .simple_form .input-with-append .append {
+  .simple_form .label_input__append {
     right: auto;
     left: 0;
 
@@ -307,5 +307,17 @@ body.rtl {
       margin-left: 0;
       margin-right: 20px;
     }
+  }
+}
+
+.landing-page__information {
+  .account__display-name {
+    margin-right: 0;
+    margin-left: 5px;
+  }
+
+  .account__avatar-wrapper {
+    margin-left: 12px;
+    margin-right: 0;
   }
 }
