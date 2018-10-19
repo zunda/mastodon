@@ -245,6 +245,10 @@ body.rtl {
     left: auto;
   }
 
+  .landing-page__call-to-action .row__information-board {
+    direction: rtl;
+  }
+
   .landing-page .header .hero .floats .float-1 {
     left: -120px;
     right: auto;
@@ -313,11 +317,9 @@ body.rtl {
 .landing-page__information {
   .account__display-name {
     margin-right: 0;
-    margin-left: 5px;
   }
 
   .account__avatar-wrapper {
-    margin-left: 12px;
-    margin-right: 0;
+    margin-left: 0;
   }
 }
