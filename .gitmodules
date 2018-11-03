@@ -1,0 +1,3 @@
+[submodule "public/gallery"]
+	path = public/gallery
+	url = https://source.joinmastodon.org/Gargron/gallery.git
