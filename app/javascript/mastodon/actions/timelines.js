@@ -16,8 +16,6 @@ export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
 
 export function updateTimeline(timeline, status, accept) {
   return (dispatch, getState) => {
-    const references = status.reblog ? getState().get('statuses').filter((item, itemId) => (itemId === status.reblog.id || item.get('reblog') === status.reblog.id)).map((_, itemId) => itemId) : [];
-
     if (typeof accept === 'function' && !accept(status)) {
       return;
     }
@@ -28,7 +26,6 @@ export function updateTimeline(timeline, status, accept) {
       type: TIMELINE_UPDATE,
       timeline,
       status,
-      references,
     });
   };
 };
@@ -97,13 +94,12 @@ export const expandAccountTimeline         = (accountId, { maxId, withReplies } 
 export const expandAccountFeaturedTimeline = accountId => expandTimeline(`account:${accountId}:pinned`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true });
 export const expandAccountMediaTimeline    = (accountId, { maxId } = {}) => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { max_id: maxId, only_media: true });
 export const expandListTimeline            = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
-
 export const expandHashtagTimeline         = (hashtag, { maxId, tags } = {}, done = noOp) => {
   return expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`, {
     max_id: maxId,
-    any: parseTags(tags, 'any'),
-    all: parseTags(tags, 'all'),
-    none: parseTags(tags, 'none'),
+    any:    parseTags(tags, 'any'),
+    all:    parseTags(tags, 'all'),
+    none:   parseTags(tags, 'none'),
   }, done);
 };
 
@@ -111,6 +107,7 @@ export function expandTimelineRequest(timeline) {
   return {
     type: TIMELINE_EXPAND_REQUEST,
     timeline,
+    skipLoading: true,
   };
 };
 
@@ -121,6 +118,7 @@ export function expandTimelineSuccess(timeline, statuses, next, partial) {
     statuses,
     next,
     partial,
+    skipLoading: true,
   };
 };
 
@@ -129,6 +127,7 @@ export function expandTimelineFail(timeline, error) {
     type: TIMELINE_EXPAND_FAIL,
     timeline,
     error,
+    skipLoading: true,
   };
 };
 
