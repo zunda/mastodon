@@ -13,6 +13,7 @@ import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
+import EncryptionButtonContainer from '../containers/encrypt_button_container';
 import { isMobile } from '../../../is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
@@ -211,6 +212,7 @@ class ComposeForm extends ImmutablePureComponent {
             <PrivacyDropdownContainer />
             <SensitiveButtonContainer />
             <SpoilerButtonContainer />
+            <EncryptionButtonContainer />
           </div>
           <div className='character-counter__wrapper'><CharacterCounter max={1024} text={text} /></div>
         </div>

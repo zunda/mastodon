@@ -29,6 +29,7 @@ import {
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
   COMPOSE_UPLOAD_CHANGE_FAIL,
   COMPOSE_RESET,
+  COMPOSE_SET_ENCRYPTION,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -61,6 +62,7 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
+  encrypt: false,
 });
 
 function statusToTextMentions(state, status) {
@@ -325,6 +327,10 @@ export default function compose(state = initialState, action) {
         map.set('spoiler', false);
         map.set('spoiler_text', '');
       }
+    });
+  case COMPOSE_SET_ENCRYPTION:
+    return state.withMutations(map => {
+      map.set('encrypt', action.encrypt);
     });
   default:
     return state;

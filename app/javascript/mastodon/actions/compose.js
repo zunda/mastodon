@@ -49,6 +49,8 @@ export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST'
 export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
+export const COMPOSE_SET_ENCRYPTION            = 'COMPOSE_SET_ENCRYPTION';
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -461,5 +463,12 @@ export function changeComposing(value) {
   return {
     type: COMPOSE_COMPOSING_CHANGE,
     value,
+  };
+}
+
+export function setComposeEncryption(flag) {
+  return {
+    type: COMPOSE_SET_ENCRYPTION,
+    encrypt: flag,
   };
 }
