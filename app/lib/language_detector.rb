@@ -29,7 +29,7 @@ class LanguageDetector
   def detect_language_code(text)
     return if unreliable_input?(text)
 
-    return :en
+    return nil
   end
 
   def iso6391(bcp47)
