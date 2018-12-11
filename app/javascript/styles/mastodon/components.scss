@@ -304,7 +304,8 @@
   }
 
   .autosuggest-textarea,
-  .spoiler-input {
+  .spoiler-input,
+  .pubkeys-input {
     position: relative;
   }
 
@@ -315,6 +316,17 @@
 
     &.spoiler-input--visible {
       height: 47px;
+      opacity: 1.0;
+    }
+  }
+
+  .pubkeys-list {
+    height: 0;
+    transform-origin: top;
+    opacity: 0.0;
+
+    &.pubkeys-list--visible {
+      height: auto;
       opacity: 1.0;
     }
   }
@@ -577,6 +589,10 @@
 }
 
 .no-reduce-motion .spoiler-input {
+  transition: height 0.4s ease, opacity 0.4s ease;
+}
+
+.no-reduce-motion .pubkeys-list {
   transition: height 0.4s ease, opacity 0.4s ease;
 }
 
