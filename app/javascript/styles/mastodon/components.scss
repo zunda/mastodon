@@ -332,7 +332,8 @@
   }
 
   .autosuggest-textarea__textarea,
-  .spoiler-input__input {
+  .spoiler-input__input,
+  .pubkeys-list__input {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -353,6 +354,10 @@
     @media screen and (max-width: 600px) {
       font-size: 16px;
     }
+  }
+
+  .pubkeys-list__input {
+    margin-top: 2px;
   }
 
   .spoiler-input__input {
