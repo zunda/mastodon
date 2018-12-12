@@ -333,7 +333,8 @@
 
   .autosuggest-textarea__textarea,
   .spoiler-input__input,
-  .pubkeys-list__input {
+  .pubkeys-list__input,
+  .pubkeys-list__item {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -356,11 +357,21 @@
     }
   }
 
-  .pubkeys-list__input {
+  .pubkeys-list__input,
+  .pubkeys-list__item {
     margin-top: 2px;
+    padding-top: 6px;
+    padding-bottom: 6px;
   }
 
-  .spoiler-input__input {
+  .pubkeys-list__item {
+    background: darken($simple-background-color, 8%);
+    color: $inverted-text-color;
+  }
+
+  .spoiler-input__input,
+  .pubkeys-list__input,
+  .pubkeys-list__item {
     border-radius: 4px;
   }
 
@@ -593,11 +604,7 @@
   }
 }
 
-.no-reduce-motion .spoiler-input {
-  transition: height 0.4s ease, opacity 0.4s ease;
-}
-
-.no-reduce-motion .pubkeys-list {
+.no-reduce-motion .spoiler-input, .pubkeys-input {
   transition: height 0.4s ease, opacity 0.4s ease;
 }
 

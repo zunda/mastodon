@@ -19,11 +19,22 @@ const mapDispatchToProps = dispatch => ({
 
 class PubkeysContainer extends React.PureComponent {
   state = {
-    keybaseUsername: ''
+    inputUsername: '',
+    nextPubkeyId: 0,
+    pubkeys: [],
   };
 
+  addPubkey = (username) => {
+    var pubkeys = this.state.pubkeys;
+    pubkeys.push({
+      id: this.state.nextPubkeyId++,
+      username: username,
+    });
+    this.setState({ pubkeys: pubkeys });
+  }
+
   handleChange = (e) => {
-    this.setState({ keybaseUsername: e.target.value});
+    this.setState({ inputUsername: e.target.value});
   }
 
   handleKeyDown = (e) => {
@@ -33,8 +44,8 @@ class PubkeysContainer extends React.PureComponent {
   }
 
   handleSubmit = (e) => {
-    console.log(this.state.keybaseUsername);
-    this.setState({ keybaseUsername: ''});
+    this.addPubkey(this.state.inputUsername);
+    this.setState({ inputUsername: ''});
   }
 
   static propTypes = {
@@ -45,9 +56,16 @@ class PubkeysContainer extends React.PureComponent {
   render () {
     return (
       <div className={`pubkeys-list ${this.props.encrypt ? 'pubkeys-list--visible' : ''}`}>
+        <div>
+          {this.state.pubkeys.map(k =>
+            <div className='pubkeys-list__item' id={k.id}>
+              {k.username}
+            </div>
+          )}
+        </div>
         <label>
           <span style={{ display: 'none' }}>{this.props.intl.formatMessage(messages.pubkeys_placeholder)}</span>
-          <input placeholder={this.props.intl.formatMessage(messages.pubkeys_placeholder)} value={this.state.keybaseUsername} onChange={this.handleChange} onKeyDown={this.handleKeyDown} type='text' className='pubkeys-list__input' id='pubkeys-input' />
+          <input placeholder={this.props.intl.formatMessage(messages.pubkeys_placeholder)} value={this.state.inputUsername} onChange={this.handleChange} onKeyDown={this.handleKeyDown} type='text' className='pubkeys-list__input' id='pubkeys-input' />
         </label>
       </div>
     );
