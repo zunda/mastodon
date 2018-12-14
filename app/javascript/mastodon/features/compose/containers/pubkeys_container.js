@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../../../components/button';
+import { showAlert } from '../../../actions/alerts';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  showAlert: (title, error) => dispatch(showAlert(title, error)),
 });
 
 class PubkeysContainer extends React.PureComponent {
@@ -26,11 +28,15 @@ class PubkeysContainer extends React.PureComponent {
 
   addPubkey = (username) => {
     var pubkeys = this.state.pubkeys;
+    if (pubkeys.find((p) => p.username === username)) {
+      this.props.showAlert("Duplicate username", username);
+      return;
+    }
     pubkeys.push({
       id: this.state.nextPubkeyId++,
       username: username,
     });
-    this.setState({ pubkeys: pubkeys });
+    this.setState({ inputUsername: '', pubkeys: pubkeys });
   }
 
   handleChange = (e) => {
@@ -45,7 +51,6 @@ class PubkeysContainer extends React.PureComponent {
 
   handleSubmit = (e) => {
     this.addPubkey(this.state.inputUsername);
-    this.setState({ inputUsername: ''});
   }
 
   static propTypes = {
