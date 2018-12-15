@@ -51,7 +51,9 @@ class PubkeysContainer extends React.PureComponent {
   }
 
   handleAddSubmit = (e) => {
-    this.addPubkey(this.state.inputUsername);
+    if (this.state.inputUsername.length > 0) {
+      this.addPubkey(this.state.inputUsername);
+    }
   }
 
   static propTypes = {
