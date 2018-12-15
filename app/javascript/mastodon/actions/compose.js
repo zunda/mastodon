@@ -50,6 +50,7 @@ export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS'
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
 export const COMPOSE_SET_ENCRYPTION            = 'COMPOSE_SET_ENCRYPTION';
+export const ADD_PUBKEY_USERNAME               = 'ADD_PUBKEY_USERNAME';
 
 export function changeCompose(text) {
   return {
@@ -470,5 +471,12 @@ export function setComposeEncryption(flag) {
   return {
     type: COMPOSE_SET_ENCRYPTION,
     encrypt: flag,
+  };
+}
+
+export function addPubkeyUsername(username) {
+  return {
+    type: ADD_PUBKEY_USERNAME,
+    username: username,
   };
 }

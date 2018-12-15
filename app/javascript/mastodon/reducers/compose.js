@@ -30,6 +30,7 @@ import {
   COMPOSE_UPLOAD_CHANGE_FAIL,
   COMPOSE_RESET,
   COMPOSE_SET_ENCRYPTION,
+  ADD_PUBKEY_USERNAME,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -63,6 +64,8 @@ const initialState = ImmutableMap({
   idempotencyKey: null,
   tagHistory: ImmutableList(),
   encrypt: false,
+  nextPubkeyId: 0,
+  pubkeys: [],
 });
 
 function statusToTextMentions(state, status) {
@@ -331,6 +334,14 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SET_ENCRYPTION:
     return state.withMutations(map => {
       map.set('encrypt', action.encrypt);
+    });
+  case ADD_PUBKEY_USERNAME:
+    const id = state.get('nextPubkeyId');
+    var pubkeys = Object.assign([], state.get('pubkeys'));
+    pubkeys.push({ id: id, username: action.username, });
+    return state.withMutations(map => {
+      map.set('nextPubkeyId', id + 1);
+      map.set('pubkeys', pubkeys);
     });
   default:
     return state;

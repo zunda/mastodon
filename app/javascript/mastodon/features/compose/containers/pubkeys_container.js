@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
+import { addPubkeyUsername } from '../../../actions/compose';
 
 const messages = defineMessages({
   pubkeys_placeholder: { id: 'pubkeys_list.placeholder', defaultMessage: 'Keybase username for recpient' },
@@ -14,30 +15,28 @@ const messages = defineMessages({
 
 const mapStateToProps = (state) => ({
   encrypt: state.getIn(['compose', 'encrypt']),
+  nextPubkeyId: state.getIn(['compose', 'nextPubkeyId']),
+  pubkeys: state.getIn(['compose', 'pubkeys']),
 });
 
 const mapDispatchToProps = dispatch => ({
   showAlert: (title, error) => dispatch(showAlert(title, error)),
+  addPubkeyUsername: username => dispatch(addPubkeyUsername(username)),
 });
 
 class PubkeysContainer extends React.PureComponent {
   state = {
     inputUsername: '',
-    nextPubkeyId: 0,
-    pubkeys: [],
   };
 
   addPubkey = (username) => {
-    var pubkeys = this.state.pubkeys;
+    var pubkeys = this.props.pubkeys;
     if (pubkeys.find((p) => p.username === username)) {
       this.props.showAlert("Duplicate username", username);
       return;
     }
-    pubkeys.push({
-      id: this.state.nextPubkeyId++,
-      username: username,
-    });
-    this.setState({ inputUsername: '', pubkeys: pubkeys });
+    this.props.addPubkeyUsername(username);
+    this.setState({ inputUsername: '' });
   }
 
   handleChange = (e) => {
@@ -64,12 +63,12 @@ class PubkeysContainer extends React.PureComponent {
     return (
       <div className={`pubkeys-list ${this.props.encrypt ? 'pubkeys-list--visible' : ''}`}>
         <div>
-          {this.state.pubkeys.map(k =>
+          {this.props.pubkeys.map(k =>
             <form className='column-inline-form'>
               <IconButton icon='minus' title='remove from recipient' />
               <label>
                 <div className='pubkeys-list__item' id={k.id}>
-                  {k.username}
+                  {k.id}: {k.username}
                 </div>
               </label>
             </form>
