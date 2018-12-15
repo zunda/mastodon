@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { injectIntl, defineMessages } from 'react-intl';
+import IconButton from '../../../components/icon_button';
 
 const messages = defineMessages({
   pubkeys_placeholder: { id: 'pubkeys_list.placeholder', defaultMessage: 'Keybase username for recpient' },
@@ -45,11 +46,12 @@ class PubkeysContainer extends React.PureComponent {
 
   handleKeyDown = (e) => {
     if (e.keyCode === 13) {
-      this.handleSubmit(e);
+      this.handleAddSubmit(e);
+      e.preventDefault();
     }
   }
 
-  handleSubmit = (e) => {
+  handleAddSubmit = (e) => {
     this.addPubkey(this.state.inputUsername);
   }
 
@@ -63,15 +65,23 @@ class PubkeysContainer extends React.PureComponent {
       <div className={`pubkeys-list ${this.props.encrypt ? 'pubkeys-list--visible' : ''}`}>
         <div>
           {this.state.pubkeys.map(k =>
-            <div className='pubkeys-list__item' id={k.id}>
-              {k.username}
-            </div>
+            <form className='column-inline-form'>
+              <IconButton icon='minus' title='remove from recipient' />
+              <label>
+                <div className='pubkeys-list__item' id={k.id}>
+                  {k.username}
+                </div>
+              </label>
+            </form>
           )}
         </div>
-        <label>
-          <span style={{ display: 'none' }}>{this.props.intl.formatMessage(messages.pubkeys_placeholder)}</span>
-          <input placeholder={this.props.intl.formatMessage(messages.pubkeys_placeholder)} value={this.state.inputUsername} onChange={this.handleChange} onKeyDown={this.handleKeyDown} type='text' className='pubkeys-list__input' id='pubkeys-input' />
-        </label>
+        <form className='column-inline-form'>
+          <label>
+            <span style={{ display: 'none' }}>{this.props.intl.formatMessage(messages.pubkeys_placeholder)}</span>
+            <input placeholder={this.props.intl.formatMessage(messages.pubkeys_placeholder)} value={this.state.inputUsername} onChange={this.handleChange} onKeyDown={this.handleKeyDown} type='text' className='pubkeys-list__input' id='pubkeys-input' />
+          </label>
+          <IconButton icon='plus' title='add to recipient' onClick={this.handleAddSubmit} />
+        </form>
       </div>
     );
   }
