@@ -68,7 +68,7 @@ class PubkeysContainer extends React.PureComponent {
               <IconButton icon='minus' title='remove from recipient' />
               <label>
                 <div className='pubkeys-list__item' id={k.id}>
-                  {k.id}: {k.username}
+                  {k.username}
                 </div>
               </label>
             </form>
