@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import { addPubkeyUsername } from '../../../actions/compose';
+import { addPubkeyUsername, deactivatePubkey } from '../../../actions/compose';
 
 const messages = defineMessages({
   pubkeys_placeholder: { id: 'pubkeys_list.placeholder', defaultMessage: 'Keybase username for recpient' },
@@ -22,6 +22,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   showAlert: (title, error) => dispatch(showAlert(title, error)),
   addPubkeyUsername: username => dispatch(addPubkeyUsername(username)),
+  deactivatePubkey: id => dispatch(deactivatePubkey(id)),
 });
 
 class PubkeysContainer extends React.PureComponent {
@@ -37,6 +38,10 @@ class PubkeysContainer extends React.PureComponent {
     }
     this.props.addPubkeyUsername(username);
     this.setState({ inputUsername: '' });
+  }
+
+  deactivatePubkey = (id) => {
+    this.props.deactivatePubkey(id);
   }
 
   handleChange = (e) => {
@@ -56,6 +61,10 @@ class PubkeysContainer extends React.PureComponent {
     }
   }
 
+  handleRemove = (e, id) => {
+    this.deactivatePubkey(id);
+  }
+
   static propTypes = {
     encrypt: PropTypes.bool.isRequired,
     intl: PropTypes.object.isRequired,
@@ -65,14 +74,14 @@ class PubkeysContainer extends React.PureComponent {
     return (
       <div className={`pubkeys-list ${this.props.encrypt ? 'pubkeys-list--visible' : ''}`}>
         <div>
-          {this.props.pubkeys.map(k =>
+          {this.props.pubkeys.filter(k => k.active).map(k =>
             <form className='column-inline-form'>
               <label>
                 <div className='pubkeys-list__item' id={k.id}>
                   {k.username}
                 </div>
               </label>
-              <IconButton icon='minus' title='remove from recipient' />
+              <IconButton icon='minus' title='remove from recipient' onClick={e => this.handleRemove(e, k.id)} />
             </form>
           )}
         </div>
