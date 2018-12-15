@@ -333,8 +333,7 @@
 
   .autosuggest-textarea__textarea,
   .spoiler-input__input,
-  .pubkeys-list__input,
-  .pubkeys-list__item {
+  .pubkeys-list__input {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -357,22 +356,22 @@
     }
   }
 
-  .pubkeys-list__input,
-  .pubkeys-list__item {
+  .pubkeys-list__input {
     margin-top: 2px;
     padding-top: 6px;
     padding-bottom: 6px;
   }
 
   .pubkeys-list__item {
-    background: darken($simple-background-color, 8%);
-    color: $inverted-text-color;
+    color: $secondary-text-color;
   }
 
-  .spoiler-input__input,
-  .pubkeys-list__input,
-  .pubkeys-list__item {
+  .spoiler-input__input {
     border-radius: 4px;
+  }
+
+  .pubkeys-list__input {
+    border-radius: 2px;
   }
 
   .autosuggest-textarea__textarea {

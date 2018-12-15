@@ -65,12 +65,12 @@ class PubkeysContainer extends React.PureComponent {
         <div>
           {this.props.pubkeys.map(k =>
             <form className='column-inline-form'>
-              <IconButton icon='minus' title='remove from recipient' />
               <label>
                 <div className='pubkeys-list__item' id={k.id}>
                   {k.username}
                 </div>
               </label>
+              <IconButton icon='minus' title='remove from recipient' />
             </form>
           )}
         </div>
