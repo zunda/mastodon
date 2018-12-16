@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import { addPubkeyUsername, activatePubkey, deactivatePubkey } from '../../../actions/compose';
+import { addPubkeyUsername, updatePubkeyFp, activatePubkey, deactivatePubkey } from '../../../actions/compose';
 
 const messages = defineMessages({
   pubkeys_placeholder: { id: 'pubkeys_list.placeholder', defaultMessage: 'Keybase username for recpient' },
@@ -22,6 +22,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   showAlert: (title, error) => dispatch(showAlert(title, error)),
   addPubkeyUsername: username => dispatch(addPubkeyUsername(username)),
+  updatePubkeyFp: (id, fp) => dispatch(updatePubkeyFp(id, fp)),
   activatePubkey: username => dispatch(activatePubkey(username)),
   deactivatePubkey: id => dispatch(deactivatePubkey(id)),
 });
@@ -79,6 +80,12 @@ class PubkeysContainer extends React.PureComponent {
   };
 
   render () {
+console.log(this.props.pubkeys);
+    this.props.pubkeys.filter(k => k.fp === undefined).map(k => {
+console.log(k);
+      this.props.updatePubkeyFp(k.id, 'Fetching...');
+    });
+
     return (
       <div className={`pubkeys-list ${this.props.encrypt ? 'pubkeys-list--visible' : ''}`}>
         <div>
@@ -87,6 +94,9 @@ class PubkeysContainer extends React.PureComponent {
               <label>
                 <div className='pubkeys-list__item' id={k.id}>
                   {k.username}
+                  <span className='pubkeys-list__item__fp' id={k.id}>
+                    {k.fp}
+                  </span>
                 </div>
               </label>
               <IconButton icon='minus' title='remove from recipient' onClick={e => this.handleRemove(e, k.id)} key={k.id} />

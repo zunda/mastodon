@@ -31,6 +31,7 @@ import {
   COMPOSE_RESET,
   COMPOSE_SET_ENCRYPTION,
   ADD_PUBKEY_USERNAME,
+  UPDATE_PUBKEY_FP,
   ACTIVATE_PUBKEY,
   DEACTIVATE_PUBKEY,
 } from '../actions/compose';
@@ -340,11 +341,29 @@ export default function compose(state = initialState, action) {
   case ADD_PUBKEY_USERNAME:
     const id = state.get('nextPubkeyId');
     var pubkeys = Object.assign([], state.get('pubkeys'));
-    pubkeys.push({ id: id, username: action.username, active: true });
+    pubkeys.push({
+      id: id,
+      username: action.username,
+      active: true,
+      fp: undefined,
+    });
     return state.withMutations(map => {
       map.set('nextPubkeyId', id + 1);
       map.set('pubkeys', pubkeys);
     });
+  case UPDATE_PUBKEY_FP:
+    {
+      var pubkeys = Object.assign([], state.get('pubkeys'));
+      const idx = pubkeys.findIndex(p => p.id === action.id);
+      if (idx !== undefined) {
+        pubkeys[idx].fp = action.fp;
+        return state.withMutations(map => {
+          map.set('pubkeys', pubkeys);
+        });
+      } else {
+        return state;
+      }
+    }
   case ACTIVATE_PUBKEY:
     {
       var pubkeys = Object.assign([], state.get('pubkeys'));
