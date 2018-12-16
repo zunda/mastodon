@@ -10,6 +10,7 @@ import {
   changeComposeSpoilerText,
   insertEmojiCompose,
 } from '../../../actions/compose';
+import { showAlert } from '../../../actions/alerts';
 
 const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
@@ -25,6 +26,8 @@ const mapStateToProps = state => ({
   is_uploading: state.getIn(['compose', 'is_uploading']),
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
+  pubkeys: state.getIn(['compose', 'pubkeys']),
+  encryptable: state.getIn(['compose', 'encryptable']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -61,6 +64,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(insertEmojiCompose(position, data, needsSpace));
   },
 
+  showAlert (title, error) {
+    dispatch(showAlert(title, error));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComposeForm);

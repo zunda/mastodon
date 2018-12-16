@@ -10,7 +10,7 @@ import { addPubkeyUsername, updatePubkeyFp, activatePubkey, deactivatePubkey, se
 import axios from 'axios';
 import * as openpgp from 'openpgp';
 
-var pubKeyStore = {};
+export const pubKeyStore = {};
 
 const arrayToHex = (array) => {
   return Array.prototype.map.call(
