@@ -34,6 +34,7 @@ import {
   UPDATE_PUBKEY_FP,
   ACTIVATE_PUBKEY,
   DEACTIVATE_PUBKEY,
+  SET_ENCRYPTABLE,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -67,6 +68,7 @@ const initialState = ImmutableMap({
   idempotencyKey: null,
   tagHistory: ImmutableList(),
   encrypt: false,
+  encryptable: false,
   nextPubkeyId: 0,
   pubkeys: [],
 });
@@ -357,6 +359,7 @@ export default function compose(state = initialState, action) {
       const idx = pubkeys.findIndex(p => p.id === action.id);
       if (idx !== undefined) {
         pubkeys[idx].fp = action.fp;
+        pubkeys[idx].valid = action.valid;
         return state.withMutations(map => {
           map.set('pubkeys', pubkeys);
         });
@@ -393,6 +396,10 @@ export default function compose(state = initialState, action) {
         return state;
       }
     }
+  case SET_ENCRYPTABLE:
+    return state.withMutations(map => {
+      map.set('encryptable', action.flag);
+    });
   default:
     return state;
   }

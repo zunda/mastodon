@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import { addPubkeyUsername, updatePubkeyFp, activatePubkey, deactivatePubkey } from '../../../actions/compose';
+import { addPubkeyUsername, updatePubkeyFp, activatePubkey, deactivatePubkey, setEncryptable } from '../../../actions/compose';
 import axios from 'axios';
 import * as openpgp from 'openpgp';
 
@@ -36,9 +36,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   showAlert: (title, error) => dispatch(showAlert(title, error)),
   addPubkeyUsername: username => dispatch(addPubkeyUsername(username)),
-  updatePubkeyFp: (id, fp) => dispatch(updatePubkeyFp(id, fp)),
+  updatePubkeyFp: (id, fp, valid) => dispatch(updatePubkeyFp(id, fp, valid)),
   activatePubkey: username => dispatch(activatePubkey(username)),
   deactivatePubkey: id => dispatch(deactivatePubkey(id)),
+  setEncryptable: flag => dispatch(setEncryptable(flag)),
 });
 
 class PubkeysContainer extends React.PureComponent {
@@ -95,19 +96,19 @@ class PubkeysContainer extends React.PureComponent {
 
   render () {
     this.props.pubkeys.filter(k => k.fp === undefined).map(k => {
-      this.props.updatePubkeyFp(k.id, 'Fetching...');
+      this.props.updatePubkeyFp(k.id, 'Fetching...', false);
       axios.get('https://keybase.io/' + k.username + '/pgp_keys.asc')
       .then(({ data }) => {
-        this.props.updatePubkeyFp(k.id, 'Reading...');
+        this.props.updatePubkeyFp(k.id, 'Reading...', false);
         openpgp.key.readArmored(data)
         .then(({ keys }) => {
           const keyFp = arrayToHex(keys[0].primaryKey.fingerprint);
           pubKeyStore[keyFp] = keys;
-          this.props.updatePubkeyFp(k.id, keyFp);
+          this.props.updatePubkeyFp(k.id, keyFp, true);
         })
         .catch(error => {
           this.props.showAlert("Pubkey for " + k.username, error.message);
-          this.props.updatePubkeyFp(k.id, 'Error');
+          this.props.updatePubkeyFp(k.id, 'Error', false);
           this.props.deactivatePubkey(k.id);
         });
       })
@@ -117,6 +118,16 @@ class PubkeysContainer extends React.PureComponent {
         this.props.deactivatePubkey(k.id);
       });
     });
+
+    if (this.props.pubkeys.filter(k => k.valid && k.active).length > 0) {
+      if (!this.props.encryptable) {
+        this.props.setEncryptable(true);
+      }
+    } else {
+      if (!this.props.encryptable) {
+        this.props.setEncryptable(false);
+      }
+    }
 
     return (
       <div className={`pubkeys-list ${this.props.encrypt ? 'pubkeys-list--visible' : ''}`}>

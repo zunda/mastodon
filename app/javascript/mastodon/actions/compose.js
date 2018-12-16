@@ -54,6 +54,7 @@ export const ADD_PUBKEY_USERNAME               = 'ADD_PUBKEY_USERNAME';
 export const UPDATE_PUBKEY_FP                  = 'UPDATE_PUBKEY_FP';
 export const ACTIVATE_PUBKEY                   = 'ACTIVATE_PUBKEY';
 export const DEACTIVATE_PUBKEY                 = 'DEACTIVATE_PUBKEY';
+export const SET_ENCRYPTABLE                   = 'SET_ENCRYPTABLE';
 
 export function changeCompose(text) {
   return {
@@ -484,11 +485,12 @@ export function addPubkeyUsername(username) {
   };
 }
 
-export function updatePubkeyFp(id, fp) {
+export function updatePubkeyFp(id, fp, valid) {
   return {
     type: UPDATE_PUBKEY_FP,
     id: id,
     fp: fp,
+    valid: valid,
   };
 }
 
@@ -498,9 +500,17 @@ export function activatePubkey(username) {
     username, username,
   };
 }
+
 export function deactivatePubkey(id) {
   return {
     type: DEACTIVATE_PUBKEY,
     id, id,
+  };
+}
+
+export function setEncryptable(flag) {
+  return {
+    type: SET_ENCRYPTABLE,
+    flag, flag,
   };
 }

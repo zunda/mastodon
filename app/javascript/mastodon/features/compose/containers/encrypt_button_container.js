@@ -13,6 +13,7 @@ const messages = defineMessages({
 
 const mapStateToProps = (state, { intl }) => ({
   encrypt: state.getIn(['compose', 'encrypt']),
+  encryptable: state.getIn(['compose', 'encryptable']),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -32,17 +33,17 @@ class EncryptButtonContainer extends React.PureComponent {
   };
 
   render () {
-    const { encrypt, onClick, intl } = this.props;
+    const { encrypt, encryptable, onClick, intl } = this.props;
 
     return (
       <div className='compose-form__encrypt-button'>
         <IconButton
           className='compose-form__encrypt-button__icon'
           title={intl.formatMessage(encrypt ? messages.encrypt : messages.clearText)}
-          icon={ this.props.encrypt ? 'lock' : 'unlock' }
+          icon={ encrypt ? 'lock' : 'unlock' }
           onClick={() => this.props.onClick(!this.props.encrypt)}
           size={18}
-          active={encrypt}
+          active={encryptable && encrypt}
           style={{ lineHeight: '27px', height: null }}
           inverted
         />
