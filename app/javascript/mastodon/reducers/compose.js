@@ -370,6 +370,9 @@ export default function compose(state = initialState, action) {
       const idx = pubkeys.findIndex(p => p.username === action.username);
       if (idx !== undefined) {
         pubkeys[idx].active = true;
+        if (pubkeys[idx].fp === 'Error') {
+          pubkeys[idx].fp = undefined;
+        }
         return state.withMutations(map => {
           map.set('pubkeys', pubkeys);
         });

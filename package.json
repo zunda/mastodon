@@ -81,6 +81,7 @@
     "object-fit-images": "^3.2.3",
     "object.values": "^1.0.4",
     "offline-plugin": "^5.0.5",
+    "openpgp": "^4.2.2",
     "path-complete-extname": "^1.0.0",
     "pg": "^6.4.0",
     "postcss-loader": "^3.0.0",

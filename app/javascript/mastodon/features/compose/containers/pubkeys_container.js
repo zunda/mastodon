@@ -7,6 +7,20 @@ import classNames from 'classnames';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import { addPubkeyUsername, updatePubkeyFp, activatePubkey, deactivatePubkey } from '../../../actions/compose';
+import axios from 'axios';
+import * as openpgp from 'openpgp';
+
+var pubKeyStore = {};
+
+const arrayToHex = (array) => {
+  return Array.prototype.map.call(
+    array,
+    e => ("0" + e.toString(16).toUpperCase()).slice(-2)
+  ).reduce(
+    (acc, v, i) => acc + (i > 0 && i % 2 === 0 ? ' ' : '') + v,
+    ''
+  )
+}
 
 const messages = defineMessages({
   pubkeys_placeholder: { id: 'pubkeys_list.placeholder', defaultMessage: 'Keybase username for recpient' },
@@ -80,10 +94,28 @@ class PubkeysContainer extends React.PureComponent {
   };
 
   render () {
-console.log(this.props.pubkeys);
     this.props.pubkeys.filter(k => k.fp === undefined).map(k => {
-console.log(k);
       this.props.updatePubkeyFp(k.id, 'Fetching...');
+      axios.get('https://keybase.io/' + k.username + '/pgp_keys.asc')
+      .then(({ data }) => {
+        this.props.updatePubkeyFp(k.id, 'Reading...');
+        openpgp.key.readArmored(data)
+        .then(({ keys }) => {
+          const keyFp = arrayToHex(keys[0].primaryKey.fingerprint);
+          pubKeyStore[keyFp] = keys;
+          this.props.updatePubkeyFp(k.id, keyFp);
+        })
+        .catch(error => {
+          this.props.showAlert("Pubkey for " + k.username, error.message);
+          this.props.updatePubkeyFp(k.id, 'Error');
+          this.props.deactivatePubkey(k.id);
+        });
+      })
+      .catch(error => {
+        this.props.showAlert("Pubkey for " + k.username, error.message);
+        this.props.updatePubkeyFp(k.id, 'Error');
+        this.props.deactivatePubkey(k.id);
+      });
     });
 
     return (
@@ -94,9 +126,9 @@ console.log(k);
               <label>
                 <div className='pubkeys-list__item' id={k.id}>
                   {k.username}
-                  <span className='pubkeys-list__item__fp' id={k.id}>
-                    {k.fp}
-                  </span>
+                </div>
+                <div className='pubkeys-list__item__fp' id={k.id}>
+                  {k.fp}
                 </div>
               </label>
               <IconButton icon='minus' title='remove from recipient' onClick={e => this.handleRemove(e, k.id)} key={k.id} />
