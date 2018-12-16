@@ -31,6 +31,7 @@ import {
   COMPOSE_RESET,
   COMPOSE_SET_ENCRYPTION,
   ADD_PUBKEY_USERNAME,
+  ACTIVATE_PUBKEY,
   DEACTIVATE_PUBKEY,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -344,16 +345,31 @@ export default function compose(state = initialState, action) {
       map.set('nextPubkeyId', id + 1);
       map.set('pubkeys', pubkeys);
     });
+  case ACTIVATE_PUBKEY:
+    {
+      var pubkeys = Object.assign([], state.get('pubkeys'));
+      const idx = pubkeys.findIndex(p => p.username === action.username);
+      if (idx !== undefined) {
+        pubkeys[idx].active = true;
+        return state.withMutations(map => {
+          map.set('pubkeys', pubkeys);
+        });
+      } else {
+        return state;
+      }
+    }
   case DEACTIVATE_PUBKEY:
-    var pubkeys = Object.assign([], state.get('pubkeys'));
-    const idx = pubkeys.findIndex(p => p.id === action.id);
-    if (idx !== undefined) {
-      pubkeys[idx].active = false;
-      return state.withMutations(map => {
-        map.set('pubkeys', pubkeys);
-      });
-    } else {
-      return state;
+    {
+      const pubkeys = Object.assign([], state.get('pubkeys'));
+      const idx = pubkeys.findIndex(p => p.id === action.id);
+      if (idx !== undefined) {
+        pubkeys[idx].active = false;
+        return state.withMutations(map => {
+          map.set('pubkeys', pubkeys);
+        });
+      } else {
+        return state;
+      }
     }
   default:
     return state;

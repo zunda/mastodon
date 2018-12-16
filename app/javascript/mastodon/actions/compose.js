@@ -51,6 +51,7 @@ export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
 export const COMPOSE_SET_ENCRYPTION            = 'COMPOSE_SET_ENCRYPTION';
 export const ADD_PUBKEY_USERNAME               = 'ADD_PUBKEY_USERNAME';
+export const ACTIVATE_PUBKEY                   = 'ACTIVATE_PUBKEY';
 export const DEACTIVATE_PUBKEY                 = 'DEACTIVATE_PUBKEY';
 
 export function changeCompose(text) {
@@ -482,6 +483,12 @@ export function addPubkeyUsername(username) {
   };
 }
 
+export function activatePubkey(username) {
+  return {
+    type: ACTIVATE_PUBKEY,
+    username, username,
+  };
+}
 export function deactivatePubkey(id) {
   return {
     type: DEACTIVATE_PUBKEY,

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import { addPubkeyUsername, deactivatePubkey } from '../../../actions/compose';
+import { addPubkeyUsername, activatePubkey, deactivatePubkey } from '../../../actions/compose';
 
 const messages = defineMessages({
   pubkeys_placeholder: { id: 'pubkeys_list.placeholder', defaultMessage: 'Keybase username for recpient' },
@@ -22,6 +22,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   showAlert: (title, error) => dispatch(showAlert(title, error)),
   addPubkeyUsername: username => dispatch(addPubkeyUsername(username)),
+  activatePubkey: username => dispatch(activatePubkey(username)),
   deactivatePubkey: id => dispatch(deactivatePubkey(id)),
 });
 
@@ -31,13 +32,20 @@ class PubkeysContainer extends React.PureComponent {
   };
 
   addPubkey = (username) => {
-    var pubkeys = this.props.pubkeys;
-    if (pubkeys.find((p) => p.username === username)) {
-      this.props.showAlert("Duplicate username", username);
-      return;
+    const pubkeys = this.props.pubkeys;
+    const existing = pubkeys.find((p) => p.username === username);
+    if (existing !== undefined) {
+      if (existing.active) {
+        this.props.showAlert("Duplicate username", username);
+        return;
+      } else {
+        this.props.activatePubkey(username);
+        this.setState({ inputUsername: '' });
+      }
+    } else {
+      this.props.addPubkeyUsername(username);
+      this.setState({ inputUsername: '' });
     }
-    this.props.addPubkeyUsername(username);
-    this.setState({ inputUsername: '' });
   }
 
   deactivatePubkey = (id) => {
@@ -75,13 +83,13 @@ class PubkeysContainer extends React.PureComponent {
       <div className={`pubkeys-list ${this.props.encrypt ? 'pubkeys-list--visible' : ''}`}>
         <div>
           {this.props.pubkeys.filter(k => k.active).map(k =>
-            <form className='column-inline-form'>
+            <form className='column-inline-form' key={k.id}>
               <label>
                 <div className='pubkeys-list__item' id={k.id}>
                   {k.username}
                 </div>
               </label>
-              <IconButton icon='minus' title='remove from recipient' onClick={e => this.handleRemove(e, k.id)} />
+              <IconButton icon='minus' title='remove from recipient' onClick={e => this.handleRemove(e, k.id)} key={k.id} />
             </form>
           )}
         </div>
