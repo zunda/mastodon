@@ -8,6 +8,8 @@ import resizeImage from '../utils/resize_image';
 import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
 import { showAlertForError } from './alerts';
+import { pubKeyStore } from '../reducers/compose';
+import * as openpgp from 'openpgp';
 
 let cancelFetchComposeSuggestionsAccounts;
 
@@ -161,6 +163,73 @@ export function submitCompose(routerHistory) {
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
+    });
+  };
+};
+
+export function submitEncryptedCompose(routerHistory) {
+  return function (dispatch, getState) {
+    const status = getState().getIn(['compose', 'text'], '');
+    const media  = getState().getIn(['compose', 'media_attachments']);
+
+    if ((!status || !status.length) && media.size === 0) {
+      return;
+    }
+
+    const pubkeys  = getState().getIn(['compose', 'pubkeys']);
+
+    dispatch(submitComposeRequest());
+
+    openpgp.encrypt({
+      message: openpgp.message.fromText(status),
+      publicKeys:
+        pubkeys
+        .filter(k => k.active && k.valid)
+        .map(k => pubKeyStore[k.fp])
+        .reduce((acc, cur) => acc.concat(cur), []),
+    })
+    .then(cipherText => {
+      const status = cipherText.data;
+      api(getState).post('/api/v1/statuses', {
+        status,
+        in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
+        media_ids: media.map(item => item.get('id')),
+        sensitive: getState().getIn(['compose', 'sensitive']),
+        spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
+        visibility: getState().getIn(['compose', 'privacy']),
+      }, {
+        headers: {
+          'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
+        },
+      }).then(function (response) {
+        dispatch(insertIntoTagHistory(response.data.tags, status));
+        dispatch(submitComposeSuccess({ ...response.data }));
+
+        // To make the app more responsive, immediately push the status
+        // into the columns
+
+        const insertIfOnline = timelineId => {
+          if (getState().getIn(['timelines', timelineId, 'items', 0]) !== null) {
+            dispatch(updateTimeline(timelineId, { ...response.data }));
+          }
+        };
+
+        if (response.data.visibility === 'direct' && getState().getIn(['conversations', 'mounted']) <= 0 && routerHistory) {
+          routerHistory.push('/timelines/direct');
+        } else if (response.data.visibility !== 'direct') {
+          insertIfOnline('home');
+        }
+
+        if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+          insertIfOnline('community');
+          insertIfOnline('public');
+        }
+      }).catch(function (error) {
+        dispatch(submitComposeFail(error));
+      });
+    })
+    .catch(error => {
+      this.props.showAlert('Encrpyting', error.message);
     });
   };
 };

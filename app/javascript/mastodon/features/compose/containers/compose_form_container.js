@@ -4,6 +4,7 @@ import { uploadCompose } from '../../../actions/compose';
 import {
   changeCompose,
   submitCompose,
+  submitEncryptedCompose,
   clearComposeSuggestions,
   fetchComposeSuggestions,
   selectComposeSuggestion,
@@ -38,6 +39,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onSubmit (router) {
     dispatch(submitCompose(router));
+  },
+
+  onEncryptedSubmit (router) {
+    dispatch(submitEncryptedCompose(router));
   },
 
   onClearSuggestions () {
