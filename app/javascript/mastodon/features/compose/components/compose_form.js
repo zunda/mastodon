@@ -61,6 +61,7 @@ class ComposeForm extends ImmutablePureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
     anyMedia: PropTypes.bool,
+    encrypt: PropTypes.bool,
     encryptable: PropTypes.bool,
   };
 
@@ -93,7 +94,7 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    if(this.props.encryptable) {
+    if(this.props.encrypt && this.props.encryptable) {
       this.props.onEncryptedSubmit(this.context.router ? this.context.router.history : null);
     } else {
       this.props.onSubmit(this.context.router ? this.context.router.history : null);

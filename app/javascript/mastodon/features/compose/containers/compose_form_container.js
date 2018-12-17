@@ -28,6 +28,7 @@ const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
   pubkeys: state.getIn(['compose', 'pubkeys']),
+  encrypt: state.getIn(['compose', 'encrypt']),
   encryptable: state.getIn(['compose', 'encryptable']),
 });
 
