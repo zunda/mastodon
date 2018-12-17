@@ -9,8 +9,7 @@ import IconButton from '../../../components/icon_button';
 import { addPubkeyUsername, updatePubkeyFp, activatePubkey, deactivatePubkey, setEncryptable } from '../../../actions/compose';
 import axios from 'axios';
 import * as openpgp from 'openpgp';
-
-export const pubKeyStore = {};
+import { pubKeyStore } from '../../../reducers/compose';
 
 const arrayToHex = (array) => {
   return Array.prototype.map.call(

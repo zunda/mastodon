@@ -44,6 +44,8 @@ import uuid from '../uuid';
 import { me } from '../initial_state';
 import { unescapeHTML } from '../utils/html';
 
+export const pubKeyStore = {};
+
 const initialState = ImmutableMap({
   mounted: 0,
   sensitive: false,
