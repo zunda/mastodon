@@ -52,7 +52,7 @@ class AccountsController < ApplicationController
   private
 
   def show_pinned_statuses?
-    [replies_requested?, media_requested?, params[:max_id].present?, params[:min_id].present?].none?
+    [replies_requested?, media_requested?, tag_requested?, params[:max_id].present?, params[:min_id].present?].none?
   end
 
   def filtered_statuses
@@ -116,7 +116,7 @@ class AccountsController < ApplicationController
   end
 
   def tag_requested?
-    request.path.ends_with?("/tagged/#{params[:tag]}")
+    request.path.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
   def filtered_status_page(params)
