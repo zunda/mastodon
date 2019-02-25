@@ -13,7 +13,7 @@ gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.1'
 gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
-gem 'dotenv-rails', '~> 2.6'
+gem 'dotenv-rails', '~> 2.7'
 
 gem 'aws-sdk-s3', '~> 1.30', require: false
 gem 'fog-core', '<= 2.1.0'
@@ -127,7 +127,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.64', require: false
+  gem 'rubocop', '~> 0.65', require: false
   gem 'brakeman', '~> 4.4', require: false
   gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.57', require: false
