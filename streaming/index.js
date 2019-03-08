@@ -24,7 +24,7 @@ const dbUrlToConfig = (dbUrl) => {
     return {};
   }
 
-  const params = url.parse(dbUrl, true);
+  const params = url.parse(dbUrl);
   const config = {};
 
   if (params.auth) {
