@@ -21,12 +21,20 @@ class InstancePresenter
     @user_count ||= Rails.cache.fetch('user_count', expires_in: 37.hours) { User.confirmed.joins(:account).merge(Account.without_suspended).count }
   end
 
+  def active_user_count
+    Rails.cache.fetch('active_user_count') { Redis.current.pfcount(*(0..3).map { |i| "activity:logins:#{i.weeks.ago.utc.to_date.cweek}" }) }
+  end
+
   def status_count
     @status_count ||= Rails.cache.fetch('local_status_count', expires_in: 11.hours) { Account.local.joins(:account_stat).sum('account_stats.statuses_count') }.to_i
   end
 
   def domain_count
     @domain_count ||= Rails.cache.fetch('distinct_domain_count', expires_in: 17.hours) { Account.distinct.count(:domain) }
+  end
+
+  def sample_accounts
+    Rails.cache.fetch('sample_accounts', expires_in: 12.hours) { Account.local.searchable.joins(:account_stat).popular.limit(3) }
   end
 
   def version_number
