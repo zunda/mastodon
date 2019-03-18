@@ -7,7 +7,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OfflinePlugin = require('offline-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const zopfli = require('@gfx/zopfli');
 const { output } = require('./configuration');
 const sharedConfig = require('./shared');
 
@@ -55,19 +54,11 @@ module.exports = merge(sharedConfig, {
   plugins: [
     new CompressionPlugin({
       filename: '[path].gz[query]',
-      algorithm(input, compressionOptions, callback) {
-        return zopfli.gzip(input, compressionOptions, callback);
-      },
       cache: true,
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
     }),
-    new BundleAnalyzerPlugin({ // generates report.html and stats.json
+    new BundleAnalyzerPlugin({ // generates report.html
       analyzerMode: 'static',
-      generateStatsFile: true,
-      statsOptions: {
-        // allows usage with http://chrisbateman.github.io/webpack-visualizer/
-        chunkModules: true,
-      },
       openAnalyzer: false,
       logLevel: 'silent', // do not bother Webpacker, who runs with --json and parses stdout
     }),
