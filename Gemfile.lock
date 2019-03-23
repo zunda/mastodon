@@ -676,6 +676,7 @@ DEPENDENCIES
   cld3 (~> 3.2.3)
   climate_control (~> 0.2)
   concurrent-ruby
+  connection_pool
   derailed_benchmarks
   devise (~> 4.5)
   devise-two-factor (~> 3.0)
