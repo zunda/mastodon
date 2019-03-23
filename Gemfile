@@ -148,3 +148,4 @@ end
 
 gem 'scout_apm', '>= 2.3.0.pre2', '< 3.0.pre'
 gem 'concurrent-ruby', require: false
+gem 'connection_pool', require: false
