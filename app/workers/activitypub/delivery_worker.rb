@@ -64,6 +64,6 @@ class ActivityPub::DeliveryWorker
   end
 
   def request_pool
-    RequestPool.instance
+    RequestPool.current
   end
 end

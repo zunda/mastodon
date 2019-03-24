@@ -2,7 +2,7 @@
 
 require 'connection_pool'
 
-class ConnectionPool::TimedStack
+class ConnectionPool::UnlimitedTimedStack < ConnectionPool::TimedStack
   def each_connection(&block)
     @mutex.synchronize do
       @que.each(&block)
@@ -16,9 +16,9 @@ class ConnectionPool::TimedStack
     end
   end
 
-  def no_connections_left?
+  def size
     @mutex.synchronize do
-      @que.empty?
+      @que.size
     end
   end
 
@@ -29,7 +29,13 @@ class ConnectionPool::TimedStack
   end
 end
 
-class ConnectionPool
+class ManagedConnectionPool < ConnectionPool
+  def initialize(&block)
+    super
+
+    @available = ConnectionPool::UnlimitedTimedStack.new(&block)
+  end
+
   def each_connection(&block)
     @available.each_connection(&block)
   end
@@ -38,13 +44,19 @@ class ConnectionPool
     @available.delete(connection)
   end
 
+  def size
+    @available.size
+  end
+
   def empty?
-    @available.no_connections_left?
+    size.zero?
   end
 end
 
 class RequestPool
-  include Singleton
+  def self.current
+    @current ||= RequestPool.new
+  end
 
   class Reaper
     attr_reader :pool, :frequency
@@ -161,14 +173,14 @@ class RequestPool
   end
 
   def size
-    @pools.size
+    @pools.values.sum(&:size)
   end
 
   private
 
   def connection_pool_for(site)
     @pools.fetch_or_store(site) do
-      ConnectionPool.new { Connection.new(site) }
+      ManagedConnectionPool.new { Connection.new(site) }
     end
   end
 end
