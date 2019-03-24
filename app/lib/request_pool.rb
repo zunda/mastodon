@@ -81,7 +81,7 @@ class RequestPool
   MAX_IDLE_TIME = 300
 
   class Connection
-    attr_reader :last_used_at, :created_at, :in_use, :dead
+    attr_reader :last_used_at, :created_at, :in_use, :dead, :fresh
 
     def initialize(site)
       @site         = site
@@ -89,6 +89,7 @@ class RequestPool
       @last_used_at = nil
       @created_at   = Time.now.utc
       @dead         = false
+      @fresh        = true
     end
 
     def use
@@ -99,24 +100,29 @@ class RequestPool
 
       begin
         yield @http_client
-      rescue HTTP::ConnectionError => e
+      rescue HTTP::ConnectionError
         # It's possible the connection was closed, so let's
         # try re-opening it once
 
-        if retries.positive?
-          raise e
+        close
+
+        if @fresh || retries.positive?
+          raise
         else
           @http_client = http_client
+          retries     += 1
           retry
         end
-      rescue StandardError => e
+      rescue StandardError
         # If this connection raises errors of any kind, it's
         # better if it gets reaped as soon as possible
 
+        close
         @dead = true
-        raise e
+        raise
       end
     ensure
+      @fresh  = false
       @in_use = false
     end
 
