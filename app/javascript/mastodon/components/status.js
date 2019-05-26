@@ -18,6 +18,7 @@ import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import PollContainer from 'mastodon/containers/poll_container';
 import { displayMedia } from '../initial_state';
+import { is } from 'immutable';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -38,6 +39,18 @@ export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   }
 
   return values.join(', ');
+};
+
+export const defaultMediaVisibility = (status) => {
+  if (!status) {
+    return undefined;
+  }
+
+  if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+    status = status.get('reblog');
+  }
+
+  return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
 };
 
 export default @injectIntl
@@ -87,7 +100,7 @@ class Status extends ImmutablePureComponent {
   ];
 
   state = {
-    showMedia: displayMedia !== 'hide_all' && !this.props.status.get('sensitive') || displayMedia === 'show_all',
+    showMedia: defaultMediaVisibility(this.props.status),
   };
 
   // Track height changes we know about to compensate scrolling
@@ -103,11 +116,19 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (!is(nextProps.status, this.props.status) && nextProps.status) {
+      this.setState({ showMedia: defaultMediaVisibility(nextProps.status) });
+    }
+  }
+
   // Compensate height changes
   componentDidUpdate (prevProps, prevState, snapshot) {
     const doShowCard  = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
+
     if (doShowCard && !this.didShowCard) {
       this.didShowCard = true;
+
       if (snapshot !== null && this.props.updateScrollBottom) {
         if (this.node && this.node.offsetTop < snapshot.top) {
           this.props.updateScrollBottom(snapshot.height - snapshot.top);
@@ -143,6 +164,17 @@ class Status extends ImmutablePureComponent {
 
     const { status } = this.props;
     this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+  }
+
+  handleExpandClick = (e) => {
+    if (e.button === 0) {
+      if (!this.context.router) {
+        return;
+      }
+
+      const { status } = this.props;
+      this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+    }
   }
 
   handleAccountClick = (e) => {
@@ -285,7 +317,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (status.get('poll')) {
-      media = <PollContainer pollId={status.get('poll')} visible={!status.get('hidden')} />;
+      media = <PollContainer pollId={status.get('poll')} />;
     } else if (status.get('media_attachments').size > 0) {
       if (this.props.muted) {
         media = (
@@ -374,7 +406,7 @@ class Status extends ImmutablePureComponent {
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted, read: unread === false })} data-id={status.get('id')}>
-            <div className='status__expand' onClick={this.handleClick} role='presentation' />
+            <div className='status__expand' onClick={this.handleExpandClick} role='presentation' />
             <div className='status__info'>
               <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 
