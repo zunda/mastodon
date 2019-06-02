@@ -95,7 +95,6 @@
     "file-loader": "^3.0.1",
     "font-awesome": "^4.7.0",
     "glob": "^7.1.1",
-    "history": "^4.7.2",
     "http-link-header": "^1.0.2",
     "immutable": "^3.8.2",
     "imports-loader": "^0.8.0",
@@ -171,14 +170,14 @@
     "enzyme-adapter-react-16": "^1.7.1",
     "eslint": "^5.11.1",
     "eslint-plugin-import": "~2.14.0",
-    "eslint-plugin-jsx-a11y": "~6.1.2",
-    "eslint-plugin-promise": "~4.0.1",
+    "eslint-plugin-jsx-a11y": "~6.2.1",
+    "eslint-plugin-promise": "~4.1.1",
     "eslint-plugin-react": "~7.12.1",
-    "jest": "^24.5.0",
+    "jest": "^24.8.0",
     "raf": "^3.4.1",
     "react-intl-translations-manager": "^5.0.3",
     "react-test-renderer": "^16.7.0",
-    "webpack-dev-server": "^3.2.1",
+    "webpack-dev-server": "^3.5.1",
     "yargs": "^12.0.5"
   }
 }
