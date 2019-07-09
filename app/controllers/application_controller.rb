@@ -154,4 +154,8 @@ class ApplicationController < ActionController::Base
   def set_cache_headers
     response.headers['Vary'] = 'Accept'
   end
+
+  def mark_cacheable!
+    expires_in 0, public: true
+  end
 end

@@ -19,7 +19,7 @@ module WellKnown
         end
       end
 
-      expires_in 3.days, public: true
+      expires_in(3.days, public: true)
     rescue ActiveRecord::RecordNotFound
       head 404
     end
@@ -27,9 +27,12 @@ module WellKnown
     private
 
     def username_from_resource
-      resource_user    = resource_param
+      resource_user = resource_param
+
       username, domain = resource_user.split('@')
-      resource_user    = "#{username}@#{Rails.configuration.x.local_domain}" if Rails.configuration.x.alternate_domains.include?(domain)
+      if Rails.configuration.x.alternate_domains.include?(domain)
+        resource_user = "#{username}@#{Rails.configuration.x.local_domain}"
+      end
 
       WebfingerResource.new(resource_user).username
     end

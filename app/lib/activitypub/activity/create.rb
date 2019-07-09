@@ -42,7 +42,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     resolve_thread(@status)
     fetch_replies(@status)
     distribute(@status)
-    forward_for_reply if @status.distributable?
+    forward_for_reply if @status.public_visibility? || @status.unlisted_visibility?
   end
 
   def find_existing_status

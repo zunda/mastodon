@@ -21,7 +21,7 @@ class HomeController < ApplicationController
       when 'statuses'
         status = Status.find_by(id: matches[2])
 
-        if status&.distributable?
+        if status && (status.public_visibility? || status.unlisted_visibility?)
           redirect_to(ActivityPub::TagManager.instance.url_for(status))
           return
         end

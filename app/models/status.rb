@@ -193,7 +193,7 @@ class Status < ApplicationRecord
   end
 
   def hidden?
-    !distributable?
+    private_visibility? || direct_visibility? || limited_visibility?
   end
 
   def distributable?
@@ -446,8 +446,7 @@ class Status < ApplicationRecord
   end
 
   def update_statistics
-    return unless distributable?
-
+    return unless public_visibility? || unlisted_visibility?
     ActivityTracker.increment('activity:statuses:local')
   end
 
@@ -456,7 +455,7 @@ class Status < ApplicationRecord
 
     account&.increment_count!(:statuses_count)
     reblog&.increment_count!(:reblogs_count) if reblog?
-    thread&.increment_count!(:replies_count) if in_reply_to_id.present? && distributable?
+    thread&.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 
   def decrement_counter_caches
@@ -464,7 +463,7 @@ class Status < ApplicationRecord
 
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
-    thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && distributable?
+    thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 
   def unlink_from_conversations

@@ -4,8 +4,8 @@ class ActivityPub::OutboxesController < Api::BaseController
   LIMIT = 20
 
   include SignatureVerification
-  include AccountOwnedConcern
 
+  before_action :set_account
   before_action :set_statuses
   before_action :set_cache_headers
 
@@ -16,6 +16,10 @@ class ActivityPub::OutboxesController < Api::BaseController
   end
 
   private
+
+  def set_account
+    @account = Account.find_local!(params[:account_username])
+  end
 
   def outbox_presenter
     if page_requested?

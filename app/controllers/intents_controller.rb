@@ -2,7 +2,6 @@
 
 class IntentsController < ApplicationController
   before_action :check_uri
-
   rescue_from Addressable::URI::InvalidURIError, with: :handle_invalid_uri
 
   def show
