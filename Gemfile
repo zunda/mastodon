@@ -58,6 +58,7 @@ gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.2', require: 'mime/types/columnar'
+gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
 gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.7'
@@ -129,7 +130,7 @@ group :development do
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.72', require: false
-  gem 'rubocop-rails', '~> 2.0', require: false
+  gem 'rubocop-rails', '~> 2.2', require: false
   gem 'brakeman', '~> 4.5', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 

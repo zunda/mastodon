@@ -12,6 +12,13 @@ GIT
   specs:
     http_parser.rb (0.6.1)
 
+GIT
+  remote: https://github.com/witgo/nilsimsa
+  revision: fd184883048b922b176939f851338d0a4971a532
+  ref: fd184883048b922b176939f851338d0a4971a532
+  specs:
+    nilsimsa (1.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -531,9 +538,9 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
-    rubocop-rails (2.0.1)
+    rubocop-rails (2.2.0)
       rack (>= 1.1)
-      rubocop (>= 0.70.0)
+      rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
     ruby-saml (1.9.0)
       nokogiri (>= 1.5.10)
@@ -705,6 +712,7 @@ DEPENDENCIES
   microformats (~> 4.1)
   mime-types (~> 3.2)
   net-ldap (~> 0.10)
+  nilsimsa!
   nokogiri (~> 1.10)
   nsa (~> 0.2)
   oj (~> 3.7)
@@ -740,7 +748,7 @@ DEPENDENCIES
   rspec-rails (~> 3.8)
   rspec-sidekiq (~> 3.0)
   rubocop (~> 0.72)
-  rubocop-rails (~> 2.0)
+  rubocop-rails (~> 2.2)
   sanitize (~> 5.0)
   scout_apm (>= 2.3.0.pre2, < 3.0.pre)
   sidekiq (~> 5.2)
