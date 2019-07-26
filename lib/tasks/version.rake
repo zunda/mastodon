@@ -11,16 +11,14 @@ namespace :source do
     end
     unless hash.blank?
       hash_abb = hash[0..7]
-      mastodon_version_to_s = Mastodon::Version.to_s
       File.open('config/initializers/version.rb', 'w') do |f|
         f.write <<~_TEMPLATE
           # frozen_string_literal: true
           module Mastodon
             module Version
               module_function
-
-              def to_s
-                "#{mastodon_version_to_s} at #{hash_abb} on ruby-#{RUBY_VERSION}"
+              def suffix
+                " at #{hash_abb} on ruby-#{RUBY_VERSION}"
               end
               def source_base_url
                 'https://github.com/zunda/mastodon'
