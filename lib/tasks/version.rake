@@ -20,8 +20,8 @@ namespace :source do
               def suffix
                 " at #{hash_abb} on ruby-#{RUBY_VERSION}"
               end
-              def source_base_url
-                'https://github.com/zunda/mastodon'
+              def repository
+                'zunda/mastodon'
               end
               def source_tag
                 "#{hash}"
