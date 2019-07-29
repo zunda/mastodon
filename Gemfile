@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.45', require: false
+gem 'aws-sdk-s3', '~> 1.46', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -110,7 +110,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.26'
+  gem 'capybara', '~> 3.27'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.1'
@@ -132,7 +132,7 @@ group :development do
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.73', require: false
   gem 'rubocop-rails', '~> 2.2', require: false
-  gem 'brakeman', '~> 4.5', require: false
+  gem 'brakeman', '~> 4.6', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
   gem 'capistrano', '~> 3.11'
