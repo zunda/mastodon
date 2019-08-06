@@ -107,7 +107,8 @@ class User < ApplicationRecord
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
-           :advanced_layout, :use_blurhash, :use_pending_items, to: :settings, prefix: :setting, allow_nil: false
+           :advanced_layout, :use_blurhash, :use_pending_items, :trends,
+           to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
   attr_writer :external
@@ -205,6 +206,10 @@ class User < ApplicationRecord
 
   def allows_pending_account_emails?
     settings.notification_emails['pending_account']
+  end
+
+  def allows_trending_tag_emails?
+    settings.notification_emails['trending_tag']
   end
 
   def hides_network?
