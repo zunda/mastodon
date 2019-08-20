@@ -178,9 +178,7 @@ class ColumnHeader extends React.PureComponent {
     if (multiColumn || placeholder) {
       return component;
     } else {
-      var e = document.getElementById('tabs-bar__portal');
-      if (e === null) return component;
-      return createPortal(component, e);
+      return createPortal(component, document.getElementById('tabs-bar__portal'));
     }
   }
 
