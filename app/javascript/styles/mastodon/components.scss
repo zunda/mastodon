@@ -421,6 +421,10 @@
     border: 0;
     outline: 0;
 
+    &::placeholder {
+      color: $dark-text-color;
+    }
+
     &:focus {
       outline: 0;
     }
@@ -1889,6 +1893,7 @@ a.account__display-name {
       pointer-events: none;
       display: flex;
       justify-content: flex-end;
+      min-width: 285px;
 
       &--start {
         justify-content: flex-start;
@@ -1906,6 +1911,7 @@ a.account__display-name {
       box-sizing: border-box;
       width: 100%;
       max-width: 600px;
+      flex: 0 0 auto;
       display: flex;
       flex-direction: column;
 
@@ -3533,6 +3539,28 @@ a.status-card.compact:hover {
   .column-select {
     &__control {
       @include search-input;
+
+      &::placeholder {
+        color: lighten($darker-text-color, 4%);
+      }
+
+      &::-moz-focus-inner {
+        border: 0;
+      }
+
+      &::-moz-focus-inner,
+      &:focus,
+      &:active {
+        outline: 0 !important;
+      }
+
+      &:focus {
+        background: lighten($ui-base-color, 4%);
+      }
+
+      @media screen and (max-width: 600px) {
+        font-size: 16px;
+      }
     }
 
     &__placeholder {
@@ -4046,6 +4074,28 @@ a.status-card.compact:hover {
   padding-right: 30px;
   line-height: 18px;
   font-size: 16px;
+
+  &::placeholder {
+    color: lighten($darker-text-color, 4%);
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
+    outline: 0 !important;
+  }
+
+  &:focus {
+    background: lighten($ui-base-color, 4%);
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 }
 
 .search__icon {
