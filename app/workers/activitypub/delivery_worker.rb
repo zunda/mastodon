@@ -45,7 +45,7 @@ class ActivityPub::DeliveryWorker
     light = Stoplight(@inbox_url) do
       request_pool.with(@host) do |http_client|
         build_request(http_client).perform do |response|
-          raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
+          raise Mastodon::UnexpectedResponseError, response, ["#{File.expand_path(__FILE__)}:#{__LINE__ - 1}:in `http_client.public_send'"] unless response_successful?(response) || response_error_unsalvageable?(response)
 
           @performed = true
         end
