@@ -16,6 +16,7 @@ require_relative '../lib/mastodon/version'
 require_relative '../lib/devise/two_factor_ldap_authenticatable'
 require_relative '../lib/devise/two_factor_pam_authenticatable'
 require_relative '../lib/chewy/strategy/custom_sidekiq'
+require_relative '../lib/request_logger'
 
 Dotenv::Railtie.load
 
@@ -120,6 +121,8 @@ module Mastodon
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
+
+    config.middleware.use RequestLogger
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
