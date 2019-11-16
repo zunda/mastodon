@@ -1,5 +1,6 @@
 web: if [ "$RUN_STREAMING" != "true" ]; then BIND=0.0.0.0 bundle exec puma -C config/puma.rb; else BIND=0.0.0.0 node ./streaming; fi
 worker: bundle exec sidekiq
+release: if [ "$RUN_STREAMING" != "true" ]; then rake db:migrate; else echo Not migrating on this app; fi
 
 # For the streaming API, you need a separate app that shares Postgres and Redis:
 #
