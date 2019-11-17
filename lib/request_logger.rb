@@ -45,6 +45,7 @@ class RequestLogger
       begin
         req_body = JSON.parse(req_body)
       rescue JSON::ParserError
+        req_body = req_body[0...512].dump
       end
       h[:request][:body] = req_body
     end
@@ -57,7 +58,5 @@ class RequestLogger
     end
 
     Rails.logger.info(h.to_json)
-  rescue Exception => exception
-    Rails.logger.error(exception.message)
   end
 end
