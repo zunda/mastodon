@@ -4,6 +4,10 @@
 #
 # Copied from https://gist.github.com/jugyo/300e93d6624375fe4ed8674451df4fe0
 # and modified
+#
+# Please DO NOT USE this for production apps.
+# This will leak clients' credentials to app logs.
+#
 class RequestLogger
   def initialize app
     @app = app
