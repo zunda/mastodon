@@ -11,7 +11,6 @@
     },
     "LOCAL_DOMAIN": {
       "description": "The domain that your Mastodon instance will run on (this can be appname.herokuapp.com or a custom domain)",
-      "required": true
     },
     "SECRET_KEY_BASE": {
       "description": "The secret key base",
