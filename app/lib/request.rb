@@ -27,6 +27,16 @@ class Request
   def initialize(verb, url, **options)
     raise ArgumentError if url.blank?
 
+    frames = Array.new
+    prev = nil
+    caller.each do |frame|
+      path = frame.sub(/:.*/)
+      frames << frame if path != prev
+      break if frame =~ %r[/controllers/]
+      prev = path
+    end
+    Rails.logger.info(frames)
+
     @verb        = verb
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
