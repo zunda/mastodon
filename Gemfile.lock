@@ -383,7 +383,7 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.1.1)
     necromancer (0.5.0)
-    net-ldap (0.16.1)
+    net-ldap (0.16.2)
     net-scp (2.0.0)
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
@@ -423,7 +423,7 @@ GEM
     paperclip-av-transcoder (0.6.4)
       av (~> 0.9.0)
       paperclip (>= 2.5.2)
-    parallel (1.18.0)
+    parallel (1.19.1)
     parallel_tests (2.29.2)
       parallel
     parser (2.6.5.0)
@@ -741,7 +741,7 @@ DEPENDENCIES
   memory_profiler
   microformats (~> 4.1)
   mime-types (~> 3.3)
-  net-ldap (~> 0.10)
+  net-ldap (~> 0.16)
   nilsimsa!
   nokogiri (~> 1.10)
   nsa (~> 0.2)
@@ -753,7 +753,7 @@ DEPENDENCIES
   ox (~> 2.11)
   paperclip (~> 6.0)
   paperclip-av-transcoder (~> 0.6)
-  parallel (~> 1.18)
+  parallel (~> 1.19)
   parallel_tests (~> 2.29)
   parslet
   pg (~> 1.1)
