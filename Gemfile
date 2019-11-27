@@ -12,7 +12,7 @@ gem 'thor', '~> 0.20'
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.1'
 gem 'makara', '~> 0.4'
-gem 'pghero', '~> 2.3'
+gem 'pghero', '~> 2.4'
 gem 'dotenv-rails', '~> 2.7'
 
 gem 'aws-sdk-s3', '~> 1.55', require: false
@@ -27,7 +27,7 @@ gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.7'
 gem 'bootsnap', '~> 1.4', require: false
 gem 'browser'
-gem 'charlock_holmes', '~> 0.7.6'
+gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.1'
 gem 'cld3', '~> 3.2.4'
@@ -72,7 +72,7 @@ gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2
 gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.2'
-gem 'rack-cors', '~> 1.0', require: 'rack/cors'
+gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.1', require: ['redis', 'redis/connection/hiredis']
