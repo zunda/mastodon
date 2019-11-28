@@ -25,12 +25,12 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.7'
-gem 'bootsnap', '~> 1.4', require: false
+gem 'bootsnap', '~> 1.4', require: false, git: 'https://github.com/zunda/bootsnap.git', branch: 'use-ruby-2.7.0'
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
 gem 'iso-639'
 gem 'chewy', '~> 5.1'
-gem 'cld3', '~> 3.2.4'
+gem 'cld3', '~> 3.2.4', git: 'https://github.com/zunda/cld3-ruby.git', branch: 'use-ruby-2.7.0', glob: 'intermediate/*.gemspec'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
 
@@ -117,7 +117,7 @@ group :test do
   gem 'capybara', '~> 3.29'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.7'
-  gem 'microformats', '~> 4.1'
+  gem 'microformats', '~> 4.1', git: 'https://github.com/zunda/microformats-ruby.git', branch: 'use-ruby-2.7.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.17', require: false
