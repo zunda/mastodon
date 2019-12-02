@@ -57,12 +57,15 @@ class Request
 
   def perform
     begin
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
     rescue => e
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       raise e.class, "#{e.message} on #{@url}", e.backtrace
     end
 
     begin
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       response = response.extend(ClientLimit)
 
       # If we are using a persistent connection, we have to
@@ -70,10 +73,14 @@ class Request
       # However, simply calling #to_s or #flush may not be safe,
       # as the response body, if malicious, could be too big
       # for our memory. So we use the #body_with_limit method
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       response.body_with_limit if http_client.persistent?
 
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       yield response if block_given?
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
     ensure
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       http_client.close unless http_client.persistent?
     end
   end
