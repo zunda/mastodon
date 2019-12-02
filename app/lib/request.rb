@@ -79,6 +79,9 @@ class Request
       Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       yield response if block_given?
       Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
+    rescue => e
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
+      Rails.logger.debug(e.inspect)
     ensure
       Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       http_client.close unless http_client.persistent?
