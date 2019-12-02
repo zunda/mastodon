@@ -11,7 +11,11 @@ class Api::V2::SearchController < Api::BaseController
   respond_to :json
 
   def index
+    Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
     @search = Search.new(search_results)
+    Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
+    Rails.logger.debug(@search.inspect)
+    Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
     render json: @search, serializer: REST::SearchSerializer
   end
 
