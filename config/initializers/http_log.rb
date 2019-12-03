@@ -84,14 +84,18 @@ module HttpLog
     end
 
     def log_body(body, encoding = nil, content_type = nil)
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       return if already_logged? || !config.log_response
 
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       data = parse_body(body, encoding, content_type)
 
       if config.prefix_response_lines
+        Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
         log('Response:')
         log_data_lines(data)
       else
+        Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
         log("Response:\n#{data}")
       end
     rescue BodyParsingError => e
