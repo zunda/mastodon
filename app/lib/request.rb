@@ -79,6 +79,7 @@ class Request
       Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       yield response if block_given?
       Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
+      Rails.logger.debug("response.body.to_s: #{response.body.to_s}")
     rescue => e
       Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
       Rails.logger.debug(e.inspect)
