@@ -103,6 +103,8 @@ module HttpLog
     end
 
     def parse_body(body, encoding, content_type)
+      Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
+      Rails.logger.debug("body.class: #{body.class}")
       unless text_based?(content_type)
         raise BodyParsingError, "(not showing binary data)"
       end
