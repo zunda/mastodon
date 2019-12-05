@@ -70,6 +70,7 @@ module JsonLdHelper
       return unless json
 
       Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
+      Rails.logger.debug("json: #{json.inspect}")
       uri = json['id']
     end
 
