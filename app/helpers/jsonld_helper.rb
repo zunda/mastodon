@@ -84,7 +84,7 @@ module JsonLdHelper
       raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response) || !raise_on_temporary_error
 
       Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
-      Rails.logger.debug("response.code = #{response.code}")
+      Rails.logger.debug("response.code = #{response.code.inspect}")
       Rails.logger.debug("response.body_with_limit = #{response.body_with_limit}")
       body_to_json(response.body_with_limit) if response.code == 200
     end
