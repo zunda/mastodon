@@ -33,9 +33,9 @@ module HTTP
         chunk = @stream.readpartial(*args)
         if chunk
           chunk.force_encoding(@encoding)
-          @contents ||= ''
-          @contents << chunk
+          Rails.logger.debug(chunk)
         end
+        chunk
       end
 
       # Iterate over the body, allowing it to be enumerable
