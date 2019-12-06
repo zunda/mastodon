@@ -32,7 +32,11 @@ module HTTP
       def readpartial(*args)
         stream!
         chunk = @stream.readpartial(*args)
-        chunk.force_encoding(@encoding) if chunk
+        if chunk
+          chunk.force_encoding(@encoding)
+          Rails.logger.info(chunk)
+        end
+        chunk
       end
 
       # Iterate over the body, allowing it to be enumerable
