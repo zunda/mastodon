@@ -34,7 +34,8 @@ module HTTP
         chunk = @stream.readpartial(*args)
         if chunk
           chunk.force_encoding(@encoding)
-          Rails.logger.info(chunk)
+          Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
+          Rails.logger.debug(chunk)
         end
         chunk
       end
@@ -58,6 +59,8 @@ module HTTP
 
           while (chunk = @stream.readpartial)
             @contents << chunk.force_encoding(@encoding)
+            Rails.logger.debug("MARKER: #{__FILE__}:#{__LINE__}")
+            Rails.logger.debug(chunk)
             chunk.clear # deallocate string
           end
         rescue
