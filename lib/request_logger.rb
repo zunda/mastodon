@@ -16,18 +16,19 @@ class RequestLogger
   def call(env)
     request = ActionDispatch::Request.new env
     begin
-      status, _, _ = response = @app.call(env)
+      response = @app.call(env)
       req_body = request.body.read
-      log(request, req_body, status)
+      log(request, req_body, response)
     rescue Exception => exception
-      log(request, req_body, status, exception)
+      log(request, req_body, response, exception)
       raise exception
     end
 
     response
   end
 
-  def log(request, req_body, status, exception = nil)
+  def log(request, req_body, response, exception = nil)
+    status, res_headers, res_body = response
     h = {
       request: {
         method: request.method,
@@ -36,6 +37,7 @@ class RequestLogger
       },
       response: {
         status: status,
+        headers: res_headers,
       },
     }
 
@@ -45,13 +47,11 @@ class RequestLogger
       end
     end
 
-    unless req_body.blank?
-      begin
-        req_body = JSON.parse(req_body)
-      rescue JSON::ParserError
-        req_body = req_body.b[0...512].dump
-      end
-      h[:request][:body] = req_body
+    if x = parse(req_body)
+      h[:request][:body] = x
+    end
+    if x = parse(res_body.body)
+      h[:response][:body] = x
     end
 
     if exception
@@ -62,5 +62,20 @@ class RequestLogger
     end
 
     Rails.logger.info(h.to_json)
+  rescue Exception => exception
+    Rails.logger.error(exception.message)
+  end
+
+  def parse(body)
+    unless body.blank?
+      begin
+        data = JSON.parse(body)
+      rescue JSON::ParserError
+        data = body.b[0...512].dump
+      end
+      return data
+    else
+      return nil
+    end
   end
 end
