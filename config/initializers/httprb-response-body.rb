@@ -11,8 +11,7 @@ module HTTP
         chunk = @stream.readpartial(*args)
         if chunk
           chunk.force_encoding(@encoding)
-          Rails.logger.debug("Response body: #{__FILE__}:#{__LINE__}")
-          Rails.logger.debug(chunk)
+          Rails.logger.debug("Response body: #{chunk}") unless chunk.blank?
         end
         chunk
       end
@@ -28,8 +27,7 @@ module HTTP
 
           while (chunk = @stream.readpartial)
             @contents << chunk.force_encoding(@encoding)
-            Rails.logger.debug("Response body: #{__FILE__}:#{__LINE__}")
-            Rails.logger.debug(chunk)
+            Rails.logger.debug("Response body: #{chunk}") unless chunk.blank?
             chunk.clear # deallocate string
           end
         rescue
