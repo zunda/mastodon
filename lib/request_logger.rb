@@ -71,7 +71,8 @@ class RequestLogger
       begin
         data = JSON.parse(body)
       rescue JSON::ParserError
-        data = body.b[0...512].dump
+        body.force_encoding('utf-8')
+        data = body.valid_encoding? ? body[0...512] : body.b[0...512].dump
       end
       return data
     else
