@@ -6,7 +6,7 @@ ruby '>= 2.4.0', '< 2.8.0'
 gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 4.2'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 5.2.3', git: 'https://github.com/zunda/rails.git', branch: '5-2-unfreeze-error-message'
 gem 'thor', '~> 0.20'
 
 gem 'hamlit-rails', '~> 0.2'
