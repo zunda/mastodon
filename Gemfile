@@ -31,7 +31,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.1'
-gem 'cld3', '~> 3.2.4'
+gem 'cld3', '~> 3.2.4', git: 'https://github.com/zunda/cld3-ruby.git', branch: 'use-ruby-2.7.0', glob: 'intermediate/*.gemspec'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
 
