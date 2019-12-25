@@ -807,7 +807,7 @@ DEPENDENCIES
   webpush
 
 RUBY VERSION
-   ruby 2.6.5p114
+   ruby 2.7.0
 
 BUNDLED WITH
    1.17.3
