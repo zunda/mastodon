@@ -61,6 +61,17 @@ GIT
       ffi (>= 1.1.0, < 1.12.0)
 
 GIT
+  remote: https://github.com/zunda/http.git
+  revision: adf172ae447a2b9a4b834a92e0de8e3a90e1bfaa
+  branch: v3.3.0-use-ruby-2.7.0
+  specs:
+    http (3.3.0)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.0)
+      http_parser.rb (~> 0.6.0)
+
+GIT
   remote: https://github.com/zunda/microformats-ruby.git
   revision: 44addd6ece1d12f0aeb8858947be60bfd40606c0
   branch: use-ruby-2.7.0
@@ -240,7 +251,7 @@ GEM
     discard (1.1.0)
       activerecord (>= 4.2, < 7)
     docile (1.3.2)
-    domain_name (0.5.20180417)
+    domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     doorkeeper (5.2.3)
       railties (>= 5)
@@ -318,11 +329,6 @@ GEM
     hiredis (0.6.3)
     hkdf (0.3.0)
     htmlentities (4.3.4)
-    http (3.3.0)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 2.0)
-      http_parser.rb (~> 0.6.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http-form_data (2.1.1)
@@ -745,7 +751,7 @@ DEPENDENCIES
   health_check!
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
-  http (~> 3.3)
+  http (~> 3.3)!
   http_accept_language (~> 2.1)
   http_parser.rb (~> 0.6)!
   httplog (~> 1.3)
