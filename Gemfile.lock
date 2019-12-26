@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/zunda/http.git
-  revision: 6ba973a12d3510a30dced8c26c6808d239e3fee2
+  revision: 870d37406eb5221c54f1e289ee0cf7700ba5f53b
   branch: v3.3.0-use-ruby-2.7.0
   specs:
     http (3.3.0)
