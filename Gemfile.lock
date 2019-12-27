@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://github.com/zunda/bootsnap.git
-  revision: dfcfc4fd1146887924a3a658df5705a477e1af22
+  revision: 7deb9b84ed0714909105765748b8bf78961df30e
   branch: use-ruby-2.7.0
   specs:
     bootsnap (1.4.5)
