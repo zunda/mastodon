@@ -89,6 +89,14 @@ GIT
       thwait
       tilt (>= 1.4.0)
 
+GIT
+  remote: https://github.com/zunda/thwait.git
+  revision: ca2ab6033f7f445b4bbde5bfd78874d476e7e0ad
+  branch: use-ruby-2.7.0
+  specs:
+    thwait (0.1.0)
+      e2mmap
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -268,6 +276,7 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
+    e2mmap (0.1.0)
     elasticsearch (7.3.0)
       elasticsearch-api (= 7.3.0)
       elasticsearch-transport (= 7.3.0)
@@ -661,7 +670,6 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     thor (0.20.3)
     thread_safe (0.3.6)
-    thwait (0.1.0)
     tilt (2.0.9)
     tty-color (0.5.0)
     tty-command (0.9.0)
@@ -830,6 +838,7 @@ DEPENDENCIES
   streamio-ffmpeg (~> 3.0)
   strong_migrations (~> 0.5)
   thor (~> 0.20)
+  thwait!
   tty-command (~> 0.9)
   tty-prompt (~> 0.20)
   twitter-text (~> 1.14)
