@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/zunda/cld3-ruby.git
-  revision: 5c23ea9d3a77f2d19b546d234acf53693300fecc
+  revision: 984079df97a8eec9a89fcfeb574823ba32411161
   branch: use-ruby-2.7.0
   glob: intermediate/*.gemspec
   specs:
