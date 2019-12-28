@@ -60,8 +60,12 @@ class Rack::Attack
     end
   end
 
-  throttle('throttle_burst', limit: 2, period: 1.second) do |req|
+  throttle('throttle_burst', limit: 1, period: 1.second) do |req|
     req.remote_ip if req.unauthenticated?
+  end
+
+  throttle('throttle_overall_burst', limit: 2, period: 1.second) do |req|
+    req.unauthenticated?
   end
 
   throttle('throttle_authenticated_api', limit: 300, period: 5.minutes) do |req|
