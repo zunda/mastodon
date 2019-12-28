@@ -53,14 +53,14 @@ class Rack::Attack
     req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
   end
 
-  throttle('high_request_queue_time', limit: 60, period: 30.seconds) do |req|
+  throttle('high_request_queue_time', limit: 10, period: 30.seconds) do |req|
     t_ms = req.env['HTTP_X_REQUEST_START'].to_f
     if t_ms > 0 and Time.now.to_f - t_ms/1000 > 25
       'high_request_queue_time'
     end
   end
 
-  throttle('throttle_burst', limit: 5, period: 1.second) do |req|
+  throttle('throttle_burst', limit: 2, period: 1.second) do |req|
     req.remote_ip if req.unauthenticated?
   end
 
@@ -73,7 +73,7 @@ class Rack::Attack
   end
 
   throttle('throttle_public_timeline', limit: 10, period: 15.seconds) do |req|
-    req.ip if req.path.start_with?('/@')
+    req.remote_ip if req.path.start_with?('/@')
   end
 
   throttle('throttle_overall_public_timeline', limit: 20, period: 15.seconds) do |req|
