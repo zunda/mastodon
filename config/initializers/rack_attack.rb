@@ -72,7 +72,7 @@ class Rack::Attack
     req.remote_ip if req.api_request? && req.unauthenticated?
   end
 
-  throttle('throttle_public_timeline', limit: 10, period: 15.seconds) do |req|
+  throttle('throttle_public_timeline', limit: 5, period: 15.seconds) do |req|
     req.remote_ip if req.path.start_with?('/@')
   end
 
