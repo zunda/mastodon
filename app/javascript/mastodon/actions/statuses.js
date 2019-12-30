@@ -26,9 +26,8 @@ export const STATUS_UNMUTE_REQUEST = 'STATUS_UNMUTE_REQUEST';
 export const STATUS_UNMUTE_SUCCESS = 'STATUS_UNMUTE_SUCCESS';
 export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
 
-export const STATUS_REVEAL   = 'STATUS_REVEAL';
-export const STATUS_HIDE     = 'STATUS_HIDE';
-export const STATUS_COLLAPSE = 'STATUS_COLLAPSE';
+export const STATUS_REVEAL = 'STATUS_REVEAL';
+export const STATUS_HIDE   = 'STATUS_HIDE';
 
 export const REDRAFT = 'REDRAFT';
 
@@ -321,11 +320,3 @@ export function revealStatus(ids) {
     ids,
   };
 };
-
-export function toggleStatusCollapse(id, isCollapsed) {
-  return {
-    type: STATUS_COLLAPSE,
-    id,
-    isCollapsed,
-  };
-}
