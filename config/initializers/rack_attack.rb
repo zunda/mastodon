@@ -46,10 +46,6 @@ class Rack::Attack
 
   PROTECTED_PATHS_REGEX = Regexp.union(PROTECTED_PATHS.map { |path| /\A#{Regexp.escape(path)}/ })
 
-  Rack::Attack.safelist('allow from localhost') do |req|
-    req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
-  end
-
   throttle('high_request_queue_time', limit: 10, period: 30.seconds) do |req|
     t_ms = req.env['HTTP_X_REQUEST_START'].to_f
     if t_ms > 0 and Time.now.to_f - t_ms/1000 > 25
