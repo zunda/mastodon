@@ -47,7 +47,6 @@ class Rack::Attack
   PROTECTED_PATHS_REGEX = Regexp.union(PROTECTED_PATHS.map { |path| /\A#{Regexp.escape(path)}/ })
 
   Rack::Attack.safelist('allow from localhost') do |req|
-puts "SAFELIST: req.remote_ip:#{req.remote_ip.inspect} req.path:#{req.path.inspect}"
     req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
   end
 
