@@ -46,22 +46,15 @@ class Rack::Attack
 
   PROTECTED_PATHS_REGEX = Regexp.union(PROTECTED_PATHS.map { |path| /\A#{Regexp.escape(path)}/ })
 
-  # Always allow requests from localhost
-  # (blocklist & throttles are skipped)
   Rack::Attack.safelist('allow from localhost') do |req|
-    # Requests are allowed if the return value is truthy
     req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
   end
 
-  throttle('high_request_queue_time', limit: 60, period: 30.seconds) do |req|
+  throttle('high_request_queue_time', limit: 10, period: 30.seconds) do |req|
     t_ms = req.env['HTTP_X_REQUEST_START'].to_f
     if t_ms > 0 and Time.now.to_f - t_ms/1000 > 25
       'high_request_queue_time'
     end
-  end
-
-  throttle('throttle_burst', limit: 5, period: 1.second) do |req|
-    req.remote_ip if req.unauthenticated?
   end
 
   throttle('throttle_authenticated_api', limit: 300, period: 5.minutes) do |req|
@@ -72,11 +65,15 @@ class Rack::Attack
     req.remote_ip if req.api_request? && req.unauthenticated?
   end
 
-  throttle('throttle_public_timeline', limit: 10, period: 60.seconds) do |req|
-    req.ip if req.path.start_with?('/@')
+  throttle('throttle_public_timeline_burst', limit: 1, period: 5.seconds) do |req|
+    req.remote_ip if req.path.start_with?('/@')
   end
 
-  throttle('throttle_overall_public_timeline', limit: 20, period: 60.seconds) do |req|
+  throttle('throttle_public_timeline', limit: 5, period: 15.seconds) do |req|
+    req.remote_ip if req.path.start_with?('/@')
+  end
+
+  throttle('throttle_overall_public_timeline', limit: 2, period: 1.second) do |req|
     req.path.start_with?('/@')
   end
 
