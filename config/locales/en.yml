@@ -339,6 +339,7 @@ en:
       delete: Delete
       destroyed_msg: Successfully deleted e-mail domain from blacklist
       domain: Domain
+      empty: No e-mail domains currenly blacklisted.
       new:
         create: Add domain
         title: New e-mail blacklist entry
@@ -744,6 +745,7 @@ en:
       invalid_irreversible: Irreversible filtering only works with home or notifications context
     index:
       delete: Delete
+      empty: You have no filters.
       title: Filters
     new:
       title: Add new filter
