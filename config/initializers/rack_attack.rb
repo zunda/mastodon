@@ -65,15 +65,11 @@ class Rack::Attack
     req.remote_ip if req.api_request? && req.unauthenticated?
   end
 
-  throttle('throttle_public_timeline_burst', limit: 1, period: 5.seconds) do |req|
+  throttle('throttle_public_timeline', limit: 1, period: 15.seconds) do |req|
     req.remote_ip if req.path.start_with?('/@')
   end
 
-  throttle('throttle_public_timeline', limit: 5, period: 15.seconds) do |req|
-    req.remote_ip if req.path.start_with?('/@')
-  end
-
-  throttle('throttle_overall_public_timeline', limit: 2, period: 1.second) do |req|
+  throttle('throttle_overall_public_timeline', limit: 2, period: 10.second) do |req|
     req.path.start_with?('/@')
   end
 
