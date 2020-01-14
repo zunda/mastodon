@@ -69,8 +69,12 @@ class Rack::Attack
     req.remote_ip if req.path.start_with?('/@')
   end
 
-  throttle('throttle_overall_public_timeline', limit: 2, period: 10.second) do |req|
+  throttle('throttle_overall_public_timeline', limit: 2, period: 10.seconds) do |req|
     req.path.start_with?('/@')
+  end
+
+  throttle('throttle_overall_public_statuses', limit: 300, period: 15.seconds) do |req|
+    req.path.start_with?('/users')
   end
 
   throttle('throttle_api_media', limit: 30, period: 30.minutes) do |req|
