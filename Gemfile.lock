@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/rack/rack.git
-  revision: ba2b9b4cce6c7a4a8e64b128bb7b5af95e01ba4e
-  specs:
-    rack (2.2.0)
-
-GIT
   remote: https://github.com/Shopify/bootsnap.git
   revision: 224e7708a75a11bce84baf9b96715b22c7d48ab5
   specs:
@@ -18,6 +12,12 @@ GIT
   specs:
     health_check (4.0.0.pre)
       rails (>= 4.0)
+
+GIT
+  remote: https://github.com/rack/rack.git
+  revision: dfc8e020f43aa9397486d1a47529d500613af1dd
+  specs:
+    rack (2.2.0)
 
 GIT
   remote: https://github.com/rtomayko/posix-spawn
