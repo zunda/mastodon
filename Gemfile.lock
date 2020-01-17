@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/rack/rack.git
+  revision: ba2b9b4cce6c7a4a8e64b128bb7b5af95e01ba4e
+  specs:
+    rack (2.2.0)
+
+GIT
   remote: https://github.com/Shopify/bootsnap.git
   revision: 224e7708a75a11bce84baf9b96715b22c7d48ab5
   specs:
@@ -427,7 +433,7 @@ GEM
     parallel (1.19.1)
     parallel_tests (2.30.0)
       parallel
-    parser (2.6.5.0)
+    parser (2.7.0.2)
       ast (~> 2.4.0)
     parslet (1.8.2)
     pastel (0.7.3)
@@ -459,7 +465,6 @@ GEM
     pundit (2.1.0)
       activesupport (>= 3.0.0)
     raabro (1.1.6)
-    rack (2.0.8)
     rack-attack (6.2.2)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
@@ -763,6 +768,7 @@ DEPENDENCIES
   pry-rails (~> 0.3)
   puma (~> 4.3)
   pundit (~> 2.1)
+  rack!
   rack-attack (~> 6.2)
   rack-cors (~> 1.1)
   rails (~> 5.2.4)
