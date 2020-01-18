@@ -73,7 +73,7 @@ class Rack::Attack
     req.path.start_with?('/@')
   end
 
-  throttle('throttle_overall_public_statuses', limit: 300, period: 15.seconds) do |req|
+  throttle('throttle_overall_public_statuses', limit: 400, period: 15.seconds) do |req|
     req.path.start_with?('/users')
   end
 
