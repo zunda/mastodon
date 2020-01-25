@@ -3,6 +3,14 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
+.animated-number {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+}
+
 .link-button {
   display: block;
   font-size: 15px;
@@ -6623,8 +6631,7 @@ noscript {
 }
 
 .announcements {
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid $ui-base-color;
+  background: lighten($ui-base-color, 8%);
   font-size: 13px;
   display: flex;
   align-items: flex-end;
@@ -6654,17 +6661,15 @@ noscript {
     padding: 15px;
     padding-right: 15px + 18px;
     position: relative;
+    font-size: 15px;
+    line-height: 20px;
+    word-wrap: break-word;
+    font-weight: 400;
 
     &__range {
       display: block;
       font-weight: 500;
       margin-bottom: 10px;
-    }
-
-    &__dismiss-icon {
-      position: absolute;
-      top: 12px;
-      right: 12px;
     }
   }
 
@@ -6750,10 +6755,10 @@ noscript {
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 90%);
+      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 80%);
 
       .reactions-bar__item__count {
-        color: $highlight-text-color;
+        color: lighten($highlight-text-color, 8%);
       }
     }
   }
