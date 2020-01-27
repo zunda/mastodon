@@ -14,12 +14,6 @@ GIT
       rails (>= 4.0)
 
 GIT
-  remote: https://github.com/rack/rack.git
-  revision: dfc8e020f43aa9397486d1a47529d500613af1dd
-  specs:
-    rack (2.2.0)
-
-GIT
   remote: https://github.com/rtomayko/posix-spawn
   revision: 58465d2e213991f8afb13b984854a49fcdcc980c
   ref: 58465d2e213991f8afb13b984854a49fcdcc980c
@@ -768,7 +762,7 @@ DEPENDENCIES
   pry-rails (~> 0.3)
   puma (~> 4.3)
   pundit (~> 2.1)
-  rack!
+  rack (= 2.0.8)
   rack-attack (~> 6.2)
   rack-cors (~> 1.1)
   rails (~> 5.2.4)
@@ -809,9 +803,3 @@ DEPENDENCIES
   webmock (~> 3.8)
   webpacker (~> 4.2)
   webpush
-
-RUBY VERSION
-   ruby 2.7.0
-
-BUNDLED WITH
-   1.17.3
