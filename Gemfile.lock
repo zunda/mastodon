@@ -581,7 +581,8 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.8.0)
       nokogumbo (~> 2.0)
-    scout_apm (2.3.0.pre3)
+    scout_apm (2.6.6)
+      parser
     sidekiq (5.2.7)
       connection_pool (~> 2.2, >= 2.2.2)
       rack (>= 1.5.0)
@@ -781,7 +782,7 @@ DEPENDENCIES
   rubocop-rails (~> 2.4)
   ruby-progressbar (~> 1.10)
   sanitize (~> 5.1)
-  scout_apm (>= 2.3.0.pre2, < 3.0.pre)
+  scout_apm
   sidekiq (~> 5.2)
   sidekiq-bulk (~> 0.2.0)
   sidekiq-scheduler (~> 3.0)!
