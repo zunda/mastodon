@@ -34,8 +34,13 @@ class StatusesController < ApplicationController
       end
 
       format.json do
+t0 = Time.now
         expires_in 3.minutes, public: @status.distributable? && public_fetch_mode?
-        render_with_cache json: @status, content_type: 'application/activity+json', serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
+t1 = Time.now
+        r = render_with_cache json: @status, content_type: 'application/activity+json', serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
+t2 = Time.now
+Rails.logger.info("StatusesController#show t1=#{"%.2f" % (t1 - t0)} t2=#{"%.2f" % (t2 - t0)}")
+        r
       end
     end
   end
