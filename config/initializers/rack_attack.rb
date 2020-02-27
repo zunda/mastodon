@@ -73,6 +73,10 @@ class Rack::Attack
     req.path.start_with?('/@')
   end
 
+  throttle('throttle_overall_public_timeline_with_range', limit: 5, period: 20.seconds) do |req|
+    req.path.start_with?('/@') and req.query_string.include?('_id=')
+  end
+
   throttle('throttle_overall_public_statuses', limit: 600, period: 15.seconds) do |req|
     req.path.start_with?('/users')
   end
