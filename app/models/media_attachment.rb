@@ -77,6 +77,23 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
+  VIDEO_PASSTHROUGH_OPTIONS = {
+    video_codecs: ['h264'],
+    audio_codecs: ['aac', nil],
+    colorspaces: ['yuv420p'],
+    options: {
+      format: 'mp4',
+      convert_options: {
+        output: {
+          'loglevel' => 'fatal',
+          'map_metadata' => '-1',
+          'c:v' => 'copy',
+          'c:a' => 'copy',
+        },
+      },
+    },
+  }.freeze
+
   VIDEO_STYLES = {
     small: {
       convert_options: {
@@ -91,7 +108,7 @@ class MediaAttachment < ApplicationRecord
       blurhash: BLURHASH_OPTIONS,
     },
 
-    original: VIDEO_FORMAT,
+    original: VIDEO_FORMAT.merge(passthrough_options: VIDEO_PASSTHROUGH_OPTIONS),
   }.freeze
 
   AUDIO_STYLES = {
