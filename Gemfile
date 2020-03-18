@@ -85,7 +85,7 @@ gem 'rqrcode', '~> 1.1'
 gem 'ruby-progressbar', '~> 1.10'
 gem 'sanitize', '~> 5.1'
 gem 'sidekiq', '~> 5.2'
-gem 'sidekiq-scheduler', '~> 3.0', git: 'https://github.com/zunda/sidekiq-scheduler.git', branch: 'v3.0.0-ruby-2.7.0'
+gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 6.0'
 gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.1'
@@ -143,7 +143,7 @@ group :development do
   gem 'brakeman', '~> 4.7', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
-  gem 'capistrano', '~> 3.11'
+  gem 'capistrano', '~> 3.12'
   gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
