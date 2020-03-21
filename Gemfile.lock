@@ -569,11 +569,11 @@ GEM
       nokogumbo (~> 2.0)
     scout_apm (2.6.6)
       parser
-    sidekiq (5.2.7)
-      connection_pool (~> 2.2, >= 2.2.2)
-      rack (>= 1.5.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 5)
+    sidekiq (6.0.4)
+      connection_pool (>= 2.2.2)
+      rack (>= 2.0.0)
+      rack-protection (>= 2.0.0)
+      redis (>= 4.1.0)
     sidekiq-bulk (0.2.0)
       sidekiq
     sidekiq-scheduler (3.0.1)
@@ -775,7 +775,7 @@ DEPENDENCIES
   ruby-progressbar (~> 1.10)
   sanitize (~> 5.1)
   scout_apm
-  sidekiq (~> 5.2)
+  sidekiq (~> 6.0)
   sidekiq-bulk (~> 0.2.0)
   sidekiq-scheduler (~> 3.0)
   sidekiq-unique-jobs (~> 6.0)
