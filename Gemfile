@@ -91,7 +91,7 @@ gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.2.0'
 gem 'strong_migrations', '~> 0.6'
 gem 'tty-command', '~> 0.9', require: false
-gem 'tty-prompt', '~> 0.20', require: false
+gem 'tty-prompt', '~> 0.21', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2019'
 gem 'webpacker', '~> 4.2'
@@ -117,7 +117,7 @@ end
 group :test do
   gem 'capybara', '~> 3.31'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.10'
+  gem 'faker', '~> 2.11'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
