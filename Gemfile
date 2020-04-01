@@ -11,9 +11,6 @@ gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 0.20'
 gem 'rack', '~> 2.2.2'
 
-gem 'thwait', '~> 0.1.0'
-gem 'e2mmap', '~> 0.1.0'
-
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.2'
 gem 'makara', '~> 0.4'
@@ -30,7 +27,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.7'
-gem 'bootsnap', '~> 1.4', require: false, git: 'https://github.com/Shopify/bootsnap.git'
+gem 'bootsnap', '~> 1.4', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
