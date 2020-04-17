@@ -13,7 +13,7 @@ class ActivityPub::DeliveryWorker
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
 
   def perform(json, source_account_id, inbox_url, options = {})
-    return if DeliveryFailureTracker.unavailable?(inbox_url)
+    return unless DeliveryFailureTracker.available?(inbox_url)
 
     @options        = options.with_indifferent_access
     @json           = json
@@ -24,11 +24,13 @@ class ActivityPub::DeliveryWorker
 
     perform_request
   ensure
-    if @performed
-      log_delay(JSON.parse(@json).dig('published'), @inbox_url, 'delivered')
-      failure_tracker.track_success!
-    else
-      failure_tracker.track_failure!
+    if @inbox_url.present?
+      if @performed
+        log_delay(JSON.parse(@json).dig('published'), @inbox_url, 'delivered')
+        failure_tracker.track_success!
+      else
+        failure_tracker.track_failure!
+      end
     end
   end
 
