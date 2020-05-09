@@ -56,7 +56,11 @@ class Request
   end
 
   def perform
-    response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
+    begin
+      response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
+    rescue HTTP::ConnectionError, HTTP::TimeoutError => err
+      raise err.class, "#{err.message} on #{@url}"
+    end
 
     begin
       response = response.extend(ClientLimit)
