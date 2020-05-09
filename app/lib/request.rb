@@ -56,11 +56,7 @@ class Request
   end
 
   def perform
-    begin
-      response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
-    rescue => e
-      raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
-    end
+    response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
 
     begin
       response = response.extend(ClientLimit)
