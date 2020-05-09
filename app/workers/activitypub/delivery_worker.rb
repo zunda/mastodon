@@ -58,9 +58,9 @@ class ActivityPub::DeliveryWorker
       light.with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
            .with_cool_off_time(STOPLIGHT_COOLDOWN)
            .run
-    rescue => e
-      e.set_backtrace(e.backtrace.first(3))
-      raise e
+    rescue HTTP::ConnectionError, HTTP::TimeoutError, Mastodon::UnexpectedResponseError, Stoplight::Error::RedLight => err
+      err.set_backtrace(e.backtrace.first(3))
+      raise err
     end
   end
 
