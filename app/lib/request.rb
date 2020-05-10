@@ -59,7 +59,9 @@ class Request
     begin
       response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
     rescue HTTP::ConnectionError, HTTP::TimeoutError => err
-      raise err.class, "#{err.message} on #{@url}"
+      wrapper = err.class.new("#{err.message} on #{@url}")
+      wrapper.set_backtrace(err.backtrace.first(3))
+      raise wrapper
     end
 
     begin
