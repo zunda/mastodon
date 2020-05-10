@@ -54,14 +54,9 @@ class ActivityPub::DeliveryWorker
       end
     end
 
-    begin
-      light.with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
-           .with_cool_off_time(STOPLIGHT_COOLDOWN)
-           .run
-    rescue => e
-      e.set_backtrace(e.backtrace.first(3))
-      raise e
-    end
+    light.with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
+         .with_cool_off_time(STOPLIGHT_COOLDOWN)
+         .run
   end
 
   def failure_tracker
