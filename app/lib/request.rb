@@ -58,10 +58,8 @@ class Request
   def perform
     begin
       response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
-    rescue HTTP::ConnectionError, HTTP::TimeoutError => err
-      wrapper = err.class.new("#{err.message} on #{@url}")
-      wrapper.set_backtrace(err.backtrace)
-      raise wrapper
+    rescue => e
+      raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
 
     begin
