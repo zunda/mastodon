@@ -46,7 +46,7 @@ gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
 
 gem 'discard', '~> 1.2'
-gem 'doorkeeper', '~> 5.3'
+gem 'doorkeeper', '~> 5.4'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
