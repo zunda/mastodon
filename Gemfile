@@ -136,13 +136,13 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.82', require: false
+  gem 'rubocop', '~> 0.83', require: false
   gem 'rubocop-rails', '~> 2.5', require: false
   gem 'brakeman', '~> 4.8', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
   gem 'capistrano', '~> 3.14'
-  gem 'capistrano-rails', '~> 1.4'
+  gem 'capistrano-rails', '~> 1.5'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
 
