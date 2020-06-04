@@ -791,7 +791,6 @@ DEPENDENCIES
   streamio-ffmpeg (~> 3.0)
   strong_migrations (~> 0.6)
   thor (~> 0.20)
-  tty-command (~> 0.9)
   tty-prompt (~> 0.21)
   twitter-text (~> 1.14)
   tzinfo-data (~> 1.2020)
