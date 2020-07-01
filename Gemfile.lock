@@ -567,7 +567,7 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.8.0)
       nokogumbo (~> 2.0)
-    scout_apm (2.6.6)
+    scout_apm (2.6.8)
       parser
     semantic_range (2.3.0)
     sidekiq (6.1.0)
