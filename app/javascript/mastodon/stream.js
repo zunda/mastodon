@@ -28,9 +28,9 @@ let sharedConnection;
 const subscriptions = [];
 
 /**
- * @type {Object.<string, number>}
+ * @type {Object.<string, boolean>}
  */
-const subscriptionCounters = {};
+const subscriptionFlags = {};
 
 /**
  * @param {Subscription} subscription
@@ -56,13 +56,8 @@ const removeSubscription = subscription => {
 const subscribe = ({ channelName, params, onConnect }) => {
   const key = channelNameWithInlineParams(channelName, params);
 
-  subscriptionCounters[key] = subscriptionCounters[key] || 0;
-
-  if (subscriptionCounters[key] === 0) {
-    sharedConnection.send(JSON.stringify({ type: 'subscribe', stream: channelName, ...params }));
-  }
-
-  subscriptionCounters[key] += 1;
+  sharedConnection.send(JSON.stringify({ type: 'subscribe', stream: channelName, ...params }));
+  subscriptionFlags[key] = true;
   onConnect();
 };
 
@@ -72,13 +67,11 @@ const subscribe = ({ channelName, params, onConnect }) => {
 const unsubscribe = ({ channelName, params, onDisconnect }) => {
   const key = channelNameWithInlineParams(channelName, params);
 
-  subscriptionCounters[key] = subscriptionCounters[key] || 1;
-
-  if (subscriptionCounters[key] === 1 && sharedConnection.readyState === WebSocketClient.OPEN) {
+  if (subscriptionFlags[key] && sharedConnection.readyState === WebSocketClient.OPEN) {
     sharedConnection.send(JSON.stringify({ type: 'unsubscribe', stream: channelName, ...params }));
   }
 
-  subscriptionCounters[key] -= 1;
+  subscriptionFlags[key] = false;
   onDisconnect();
 };
 
