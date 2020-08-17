@@ -17,7 +17,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.75', require: false
+gem 'aws-sdk-s3', '~> 1.76', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -138,7 +138,7 @@ group :development do
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.86', require: false
   gem 'rubocop-rails', '~> 2.6', require: false
-  gem 'brakeman', '~> 4.8', require: false
+  gem 'brakeman', '~> 4.9', require: false
   gem 'bundler-audit', '~> 0.7', require: false
 
   gem 'capistrano', '~> 3.14'
