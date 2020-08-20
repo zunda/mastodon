@@ -58,7 +58,9 @@ const subscribe = ({ channelName, params, onConnect }) => {
 
   subscriptionCounters[key] = subscriptionCounters[key] || 0;
 
-  sharedConnection.send(JSON.stringify({ type: 'subscribe', stream: channelName, ...params }));
+  if (subscriptionCounters[key] === 0) {
+    sharedConnection.send(JSON.stringify({ type: 'subscribe', stream: channelName, ...params }));
+  }
 
   subscriptionCounters[key] += 1;
   onConnect();
