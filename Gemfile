@@ -17,7 +17,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.76', require: false
+gem 'aws-sdk-s3', '~> 1.78', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -94,7 +94,7 @@ gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.22', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2020'
-gem 'webpacker', '~> 5.1'
+gem 'webpacker', '~> 5.2'
 gem 'webpush'
 
 gem 'json-ld'
@@ -121,7 +121,7 @@ group :test do
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
-  gem 'simplecov', '~> 0.18', require: false
+  gem 'simplecov', '~> 0.19', require: false
   gem 'webmock', '~> 3.8'
   gem 'parallel_tests', '~> 3.1'
   gem 'rspec_junit_formatter', '~> 0.4'
