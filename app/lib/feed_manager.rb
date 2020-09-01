@@ -49,7 +49,8 @@ class FeedManager
   def push_to_list(list, status)
     if status.reply? && status.in_reply_to_account_id != status.account_id
       should_filter = status.in_reply_to_account_id != list.account_id
-      should_filter &&= !ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?
+      should_filter &&= !list.show_all_replies?
+      should_filter &&= !(list.show_list_replies? && ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?)
       return false if should_filter
     end
 
@@ -144,7 +145,7 @@ class FeedManager
     aggregate    = account.user&.aggregates_reblogs?
     timeline_key = key(:home, account.id)
 
-    account.statuses.where.not(visibility: :direct).limit(limit).each do |status|
+    account.statuses.limit(limit).each do |status|
       add_to_feed(:home, account.id, status, aggregate)
     end
 
