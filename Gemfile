@@ -6,7 +6,7 @@ ruby '>= 2.5.0', '< 3.0.0'
 gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 4.3'
-gem 'rails', '~> 5.2.4.3'
+gem 'rails', '~> 5.2.4.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 0.20'
 gem 'rack', '~> 2.2.3'
@@ -17,7 +17,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.79', require: false
+gem 'aws-sdk-s3', '~> 1.80', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
