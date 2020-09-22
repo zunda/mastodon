@@ -5,7 +5,7 @@ ruby '>= 2.5.0', '< 3.0.0'
 
 gem 'pkg-config', '~> 1.4'
 
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 5.0'
 gem 'rails', '~> 5.2.4.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.0'
@@ -124,7 +124,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.19', require: false
   gem 'webmock', '~> 3.9'
-  gem 'parallel_tests', '~> 3.2'
+  gem 'parallel_tests', '~> 3.3'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
@@ -137,7 +137,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.90', require: false
+  gem 'rubocop', '~> 0.91', require: false
   gem 'rubocop-rails', '~> 2.8', require: false
   gem 'brakeman', '~> 4.9', require: false
   gem 'bundler-audit', '~> 0.7', require: false
