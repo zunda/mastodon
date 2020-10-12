@@ -47,6 +47,7 @@ class Rack::Attack
     if t_ms > 0 and Time.now.to_f - t_ms/1000 > 25
       'high_request_queue_time'
     end
+  end
 
   Rack::Attack.blocklist('deny from blocklist') do |req|
     IpBlock.blocked?(req.remote_ip)
