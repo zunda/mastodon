@@ -17,3 +17,7 @@ if [ -n "$SEARCHBOX_SSL_URL" ]; then
 	export ES_PREFIX=
 	export ES_PORT=
 fi
+
+# Let bash ignore SIGTERM from the platfrom
+# so it waits for app processes to gracefully shutdown
+trap '' SIGTERM
