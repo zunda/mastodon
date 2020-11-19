@@ -41,7 +41,7 @@ group :pam_authentication, optional: true do
 end
 
 gem 'net-ldap', '~> 0.16'
-gem 'omniauth-cas', '~> 1.1'
+gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
 
@@ -122,7 +122,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.19', require: false
-  gem 'webmock', '~> 3.9'
+  gem 'webmock', '~> 3.10'
   gem 'parallel_tests', '~> 3.3'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
@@ -136,7 +136,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.93', require: false
+  gem 'rubocop', '~> 1.3', require: false
   gem 'rubocop-rails', '~> 2.8', require: false
   gem 'brakeman', '~> 4.10', require: false
   gem 'bundler-audit', '~> 0.7', require: false
