@@ -57,7 +57,7 @@ class Rack::Attack
     req.authenticated_user_id if req.api_request?
   end
 
-  throttle('throttle_unauthenticated_api', limit: 150, period: 5.minutes) do |req|
+  throttle('throttle_unauthenticated_api', limit: 50, period: 5.minutes) do |req|
     req.remote_ip if req.api_request? && req.unauthenticated?
   end
 
