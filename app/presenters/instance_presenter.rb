@@ -29,7 +29,7 @@ class InstancePresenter
   end
 
   def domain_count
-    @domain_count ||= Rails.cache.fetch('distinct_domain_count', expires_in: 17.hours) { Instance.count }
+    Rails.cache.fetch('distinct_domain_count') { Instance.count }
   end
 
   def sample_accounts
