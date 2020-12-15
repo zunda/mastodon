@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.5.0', '< 3.0.0'
+ruby '>= 2.5.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
 
@@ -32,7 +32,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.1'
-gem 'cld3', '~> 3.3.0'
+gem 'cld3', '~> 3.3.0', git: 'https://github.com/zunda/cld3-ruby.git', branch: 'use-ruby-3.0.0', glob: 'intermediate/*.gemspec'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
 
