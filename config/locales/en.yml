@@ -60,6 +60,7 @@ en:
       one: Follower
       other: Followers
     following: Following
+    instance_actor_flash: This account is a virtual actor used to represent the server itself and not any individual user. It is used for federation purposes and should not be suspended.
     joined: Joined %{date}
     last_active: last active
     link_verified_on: Ownership of this link was checked on %{date}
@@ -131,6 +132,7 @@ en:
       follows: Follows
       header: Header
       inbox_url: Inbox URL
+      invite_request_text: Reasons for joining
       invited_by: Invited by
       ip: IP
       joined: Joined
@@ -517,6 +519,8 @@ en:
       comment:
         none: None
       created_at: Reported
+      forwarded: Forwarded
+      forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
