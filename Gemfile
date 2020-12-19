@@ -31,7 +31,7 @@ gem 'bootsnap', '~> 1.5', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
-gem 'chewy', '~> 5.1'
+gem 'chewy', '~> 5.1', git: 'https://github.com/toptal/chewy.git'
 gem 'cld3', '~> 3.3.0', git: 'https://github.com/zunda/cld3-ruby.git', branch: 'use-ruby-3.0.0', glob: 'intermediate/*.gemspec'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
