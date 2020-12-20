@@ -65,7 +65,7 @@ GIT
 
 GIT
   remote: https://github.com/zunda/rails.git
-  revision: b2c3b1371c996c2d3476395ceda1625fb29d0c26
+  revision: cd36d96e4fa6b4f85216f825b25d617db658789a
   branch: v5.2.4.4-ruby-3.0.0
   specs:
     actioncable (5.2.4.4)
