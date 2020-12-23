@@ -9,13 +9,11 @@ class DeleteAccountService < BaseService
     aliases
     block_relationships
     blocked_by_relationships
-    bookmarks
     conversation_mutes
     conversations
     custom_filters
     devices
     domain_blocks
-    favourites
     featured_tags
     follow_requests
     identity_proofs
@@ -46,10 +44,12 @@ class DeleteAccountService < BaseService
     featured_tags
     follow_requests
     identity_proofs
+    list_accounts
     migrations
     mute_relationships
     muted_by_relationships
     notifications
+    owned_lists
     scheduled_statuses
     status_pins
   )
@@ -145,15 +145,16 @@ class DeleteAccountService < BaseService
     purge_media_attachments!
     purge_polls!
     purge_generated_notifications!
+    purge_favourites!
+    purge_bookmarks!
+    purge_feeds!
     purge_other_associations!
 
     @account.destroy unless keep_account_record?
   end
 
   def purge_statuses!
-    @account.statuses.reorder(nil).find_in_batches do |statuses|
-      statuses.reject! { |status| reported_status_ids.include?(status.id) } if keep_account_record?
-
+    @account.statuses.reorder(nil).where.not(id: reported_status_ids).in_batches do |statuses|
       BatchedRemoveStatusService.new.call(statuses, skip_side_effects: skip_side_effects?)
     end
   end
@@ -167,11 +168,7 @@ class DeleteAccountService < BaseService
   end
 
   def purge_polls!
-    @account.polls.reorder(nil).find_each do |poll|
-      next if keep_account_record? && reported_status_ids.include?(poll.status_id)
-
-      poll.delete
-    end
+    @account.polls.reorder(nil).where.not(status_id: reported_status_ids).in_batches.delete_all
   end
 
   def purge_generated_notifications!
@@ -181,10 +178,35 @@ class DeleteAccountService < BaseService
     Notification.where(from_account: @account).in_batches.delete_all
   end
 
+  def purge_favourites!
+    @account.favourites.in_batches do |favourites|
+      ids = favourites.pluck(:status_id)
+      StatusStat.where(status_id: ids).update_all('favourites_count = GREATEST(0, favourites_count - 1)')
+      Chewy.strategy.current.update(StatusesIndex, ids) if Chewy.enabled?
+      # Rails.cache.delete_multi would be better, but we don't have it yet
+      ids.each { |id| Rails.cache.delete("statuses/#{id}") }
+      favourites.delete_all
+    end
+  end
+
+  def purge_bookmarks!
+    @account.bookmarks.in_batches do |bookmarks|
+      Chewy.strategy.current.update(StatusesIndex, bookmarks.pluck(:status_id)) if Chewy.enabled?
+      bookmarks.delete_all
+    end
+  end
+
   def purge_other_associations!
     associations_for_destruction.each do |association_name|
       purge_association(association_name)
     end
+  end
+
+  def purge_feeds!
+    return unless @account.local?
+
+    FeedManager.instance.clean_feeds!(:home, [@account.id])
+    FeedManager.instance.clean_feeds!(:list, @account.owned_lists.pluck(:id))
   end
 
   def purge_profile!
