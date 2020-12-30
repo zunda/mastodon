@@ -32,7 +32,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.1'
-gem 'cld3', '~> 3.3.0'
+gem 'cld3', '~> 3.4.1'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
 
@@ -124,7 +124,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.20', require: false
-  gem 'webmock', '~> 3.10'
+  gem 'webmock', '~> 3.11'
   gem 'parallel_tests', '~> 3.4'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
@@ -139,7 +139,7 @@ group :development do
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
   gem 'rubocop', '~> 1.7', require: false
-  gem 'rubocop-rails', '~> 2.8', require: false
+  gem 'rubocop-rails', '~> 2.9', require: false
   gem 'brakeman', '~> 4.10', require: false
   gem 'bundler-audit', '~> 0.7', require: false
 
