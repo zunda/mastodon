@@ -5,7 +5,7 @@ ruby '>= 2.5.0', '< 3.0.0'
 
 gem 'pkg-config', '~> 1.4'
 
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.1'
 gem 'rails', '~> 5.2.4.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.0'
@@ -17,7 +17,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.85', require: false
+gem 'aws-sdk-s3', '~> 1.87', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -40,7 +40,7 @@ group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
 end
 
-gem 'net-ldap', '~> 0.16'
+gem 'net-ldap', '~> 0.17'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
@@ -67,7 +67,7 @@ gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b
 gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.10'
-gem 'ox', '~> 2.13'
+gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'parallel', '~> 1.20'
 gem 'posix-spawn'
@@ -79,7 +79,7 @@ gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.2', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
-gem 'rqrcode', '~> 1.1'
+gem 'rqrcode', '~> 1.2'
 gem 'ruby-progressbar', '~> 1.10'
 gem 'sanitize', '~> 5.2'
 gem 'scenic', '~> 1.5'
@@ -92,7 +92,7 @@ gem 'simple_form', '~> 5.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.2.1'
 gem 'strong_migrations', '~> 0.7'
-gem 'tty-prompt', '~> 0.22', require: false
+gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2020'
 gem 'webpacker', '~> 5.2'
@@ -117,13 +117,13 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.33'
+  gem 'capybara', '~> 3.34'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.14'
+  gem 'faker', '~> 2.15'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
-  gem 'simplecov', '~> 0.19', require: false
+  gem 'simplecov', '~> 0.20', require: false
   gem 'webmock', '~> 3.10'
   gem 'parallel_tests', '~> 3.4'
   gem 'rspec_junit_formatter', '~> 0.4'
@@ -138,7 +138,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.3', require: false
+  gem 'rubocop', '~> 1.7', require: false
   gem 'rubocop-rails', '~> 2.8', require: false
   gem 'brakeman', '~> 4.10', require: false
   gem 'bundler-audit', '~> 0.7', require: false
