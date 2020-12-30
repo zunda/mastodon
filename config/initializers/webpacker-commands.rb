@@ -18,7 +18,7 @@ class Webpacker::Commands
   def clean(count = 2, age = 3600)
 puts "Starting #{self.class}##{__method__}(count = #{count.inspect}, age = #{age.inspect}) from #{caller[1]}"
     if config.public_output_path.exist? && config.public_manifest_path.exist?
-      versions
+      versions(age)
         .sort
         .reverse
         .each_with_index
@@ -58,12 +58,12 @@ puts "Starting #{self.class}##{__method__} from #{caller[1]}"
   end
 
   private
-    def versions
+    def versions(age)
       all_files       = Dir.glob("#{config.public_output_path}/**/*")
       manifest_config = Dir.glob("#{config.public_manifest_path}*")
 
       packs = all_files - manifest_config - current_version
-      packs.reject { |file| File.directory?(file) }.group_by { |file| File.mtime(file).utc.to_i }
+      packs.reject { |file| File.directory?(file) }.group_by { |file| File.mtime(file).utc.to_i / age * age }
     end
 
     def current_version
