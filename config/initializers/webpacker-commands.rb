@@ -63,7 +63,7 @@ puts "Starting #{self.class}##{__method__} from #{caller[1]}"
       manifest_config = Dir.glob("#{config.public_manifest_path}*")
 
       packs = all_files - manifest_config - current_version
-      packs.reject { |file| File.directory?(file) }.group_by { |file| File.mtime(file).utc.to_i / age * age }
+      packs.reject { |file| File.directory?(file) }.group_by { |file| File.mtime(file).utc.to_i / age * age + age}
     end
 
     def current_version
