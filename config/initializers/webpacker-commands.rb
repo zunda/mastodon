@@ -16,22 +16,22 @@ class Webpacker::Commands
   #   age=600.
   #
   def clean(count = 2, age = 3600)
-puts "Starting #{self.class}##{__method__}(count = #{count.inspect}, age = #{age.inspect}) from #{caller[1]}"
     if config.public_output_path.exist? && config.public_manifest_path.exist?
-      versions(age)
-        .sort
-        .reverse
-        .each_with_index
-        .drop_while do |(mtime, _), index|
-          max_age = [0, Time.now - Time.at(mtime)].max
-          max_age < age && index < count
+      packs
+        .map do |paths|
+          paths.map { |path| [Time.now - File.mtime(path), path] }
+          .sort
+          .reject.with_index do |(file_age, _), index|
+            file_age < age || index < count
+          end
+          .map { |_, path| path }
         end
-        .each do |(_, files), index|
-          files.each do |file|
-            if File.file?(file)
-              File.delete(file)
-              logger.info "Removed #{file}"
-            end
+        .flatten
+        .compact
+        .each do |file|
+          if File.file?(file)
+            File.delete(file)
+            logger.info "Removed #{file}"
           end
         end
     end
@@ -40,35 +40,35 @@ puts "Starting #{self.class}##{__method__}(count = #{count.inspect}, age = #{age
   end
 
   def clobber
-puts "Starting #{self.class}##{__method__} from #{caller[1]}"
     config.public_output_path.rmtree if config.public_output_path.exist?
     config.cache_path.rmtree if config.cache_path.exist?
   end
 
   def bootstrap
-puts "Starting #{self.class}##{__method__} from #{caller[1]}"
     manifest.refresh
   end
 
   def compile
-puts "Starting #{self.class}##{__method__} from #{caller[1]}"
     compiler.compile.tap do |success|
       manifest.refresh if success
     end
   end
 
   private
-    def versions(age)
+    def packs
       all_files       = Dir.glob("#{config.public_output_path}/**/*")
       manifest_config = Dir.glob("#{config.public_manifest_path}*")
 
       packs = all_files - manifest_config - current_version
-      packs.reject { |file| File.directory?(file) }.group_by { |file| File.mtime(file).utc.to_i / age * age + age}
+      packs.reject { |file| File.directory?(file) }.group_by do |path|
+        base, _, ext = File.basename(path).scan(/(.*)(-[\da-f]+)(\.\w+)/).flatten
+        "#{File.dirname(path)}/#{base}#{ext}"
+      end.values
     end
 
     def current_version
       packs = manifest.refresh.values.map do |value|
-        value = value['src'] if value.is_a?(Hash)
+        value = value["src"] if value.is_a?(Hash)
         next unless value.is_a?(String)
 
         File.join(config.root_path, "public", "#{value}*")
