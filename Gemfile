@@ -80,7 +80,7 @@ gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.2', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 1.2'
-gem 'ruby-progressbar', '~> 1.10'
+gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 5.2'
 gem 'scenic', '~> 1.5'
 gem 'sidekiq', '~> 6.1'
@@ -123,7 +123,7 @@ group :test do
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
-  gem 'simplecov', '~> 0.20', require: false
+  gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.11'
   gem 'parallel_tests', '~> 3.4'
   gem 'rspec_junit_formatter', '~> 0.4'
