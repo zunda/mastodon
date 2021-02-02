@@ -31,7 +31,7 @@ gem 'bootsnap', '~> 1.5', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
-gem 'chewy', '~> 5.1'
+gem 'chewy', '~> 5.2'
 gem 'cld3', '~> 3.4.1'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
@@ -117,7 +117,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.34'
+  gem 'capybara', '~> 3.35'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.15'
   gem 'microformats', '~> 4.2'
