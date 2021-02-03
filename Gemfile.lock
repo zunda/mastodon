@@ -229,7 +229,7 @@ GEM
       ruby2_keywords
     faraday-net_http (1.0.1)
     fast_blank (1.0.0)
-    fastimage (2.2.1)
+    fastimage (2.2.2)
     ffi (1.10.0)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -383,7 +383,7 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.2)
       sidekiq (>= 3.5)
       statsd-ruby (~> 1.4, >= 1.4.0)
-    oj (3.11.1)
+    oj (3.11.2)
     omniauth (1.9.1)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
