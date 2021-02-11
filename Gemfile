@@ -27,7 +27,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.7'
-gem 'bootsnap', '~> 1.5', require: false
+gem 'bootsnap', '~> 1.6.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
@@ -73,7 +73,7 @@ gem 'parallel', '~> 1.20'
 gem 'posix-spawn'
 gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
-gem 'rack-attack', '~> 6.4'
+gem 'rack-attack', '~> 6.5'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
@@ -138,7 +138,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.8', require: false
+  gem 'rubocop', '~> 1.9', require: false
   gem 'rubocop-rails', '~> 2.9', require: false
   gem 'brakeman', '~> 4.10', require: false
   gem 'bundler-audit', '~> 0.7', require: false
@@ -162,3 +162,5 @@ gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
 gem 'pluck_each', '~> 0.1.3'
+
+gem 'secure_headers', '~> 3.5'
