@@ -16,6 +16,10 @@ class InstancePresenter
     Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
   end
 
+  def rules
+    Rule.ordered
+  end
+
   def user_count
     @user_count ||= Rails.cache.fetch('user_count', expires_in: 37.hours) { User.confirmed.joins(:account).merge(Account.without_suspended).count }
   end
