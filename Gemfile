@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.88', require: false
+gem 'aws-sdk-s3', '~> 1.89', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -124,7 +124,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
-  gem 'webmock', '~> 3.11'
+  gem 'webmock', '~> 3.12'
   gem 'parallel_tests', '~> 3.4'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
