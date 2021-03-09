@@ -79,7 +79,6 @@ const redisUrlToClient = (defaultConfig, redisUrl) => {
     tls: {
       requestCert: true,
       rejectUnauthorized: false,
-      agent: false,
     },
   }));
 };
