@@ -76,6 +76,10 @@ const redisUrlToClient = (defaultConfig, redisUrl) => {
 
   return redis.createClient(Object.assign(config, {
     url: redisUrl,
+    tls: {
+      requestCert: true,
+      rejectUnauthorized: false,
+    },
   }));
 };
 
