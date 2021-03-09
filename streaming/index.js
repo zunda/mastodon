@@ -126,8 +126,13 @@ const startWorker = (workerId) => {
   };
 
   if (!!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable') {
-    pgConfigs.development.ssl = true;
-    pgConfigs.production.ssl  = true;
+    if (process.env.DB_SSLMODE === 'ssl_noverify') {
+      pgConfigs.development.ssl = {rejectUnauthorized: false};
+      pgConfigs.production.ssl  = {rejectUnauthorized: false};
+    } else {
+      pgConfigs.development.ssl = true;
+      pgConfigs.production.ssl  = true;
+    }
   }
 
   const app = express();
