@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.91', require: false
+gem 'aws-sdk-s3', '~> 1.92', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -83,7 +83,7 @@ gem 'rqrcode', '~> 1.2'
 gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 5.2'
 gem 'scenic', '~> 1.5'
-gem 'sidekiq', '~> 6.1'
+gem 'sidekiq', '~> 6.2'
 gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 7.0'
 gem 'sidekiq-bulk', '~>0.2.0'
