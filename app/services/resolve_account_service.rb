@@ -10,7 +10,7 @@ class ResolveAccountService < BaseService
   # @param [String, Account] uri URI in the username@domain format or account record
   # @param [Hash] options
   # @option options [Boolean] :redirected Do not follow further Webfinger redirects
-  # @option options [Boolean] :skip_webfinger Do not attempt to refresh account data
+  # @option options [Boolean] :skip_webfinger Do not attempt any webfinger query or refreshing account data
   # @return [Account]
   def call(uri, options = {})
     return if uri.blank?
@@ -49,7 +49,7 @@ class ResolveAccountService < BaseService
     # Now it is certain, it is definitely a remote account, and it
     # either needs to be created, or updated from fresh data
 
-    process_account!
+    fetch_account!
   rescue Webfinger::Error, Oj::ParseError => e
     Rails.logger.debug "Webfinger query for #{@uri} failed: #{e}"
     nil
@@ -104,16 +104,12 @@ class ResolveAccountService < BaseService
     acct.gsub(/\Aacct:/, '').split('@')
   end
 
-  def process_account!
+  def fetch_account!
     return unless activitypub_ready?
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        @account = Account.find_remote(@username, @domain)
-
-        next if actor_json.nil?
-
-        @account = ActivityPub::ProcessAccountService.new.call(@username, @domain, actor_json)
+        @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url)
       else
         raise Mastodon::RaceConditionError
       end
@@ -124,8 +120,9 @@ class ResolveAccountService < BaseService
 
   def webfinger_update_due?
     return false if @options[:check_delivery_availability] && !DeliveryFailureTracker.available?(@domain)
+    return false if @options[:skip_webfinger]
 
-    @account.nil? || ((!@options[:skip_webfinger] || @account.ostatus?) && @account.possibly_stale?)
+    @account.nil? || (@account.ostatus? && @account.possibly_stale?)
   end
 
   def activitypub_ready?
@@ -134,13 +131,6 @@ class ResolveAccountService < BaseService
 
   def actor_url
     @actor_url ||= @webfinger.link('self', 'href')
-  end
-
-  def actor_json
-    return @actor_json if defined?(@actor_json)
-
-    json        = fetch_resource(actor_url, false)
-    @actor_json = supported_context?(json) && equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) ? json : nil
   end
 
   def gone_from_origin?

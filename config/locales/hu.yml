@@ -21,9 +21,9 @@ hu:
     federation_hint_html: Egy %{instance} fiókkal bármely más Mastodon szerveren vagy a föderációban lévő felhasználót követni tudsz.
     get_apps: Próbálj ki egy mobil appot
     hosted_on: "%{domain} Mastodon szerver"
-    instance_actor_flash: 'Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
-
-'
+    instance_actor_flash: |
+      Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét
+      felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni, hacsak nem akarod a teljes szervert kitiltani, mely esetben a domain tiltásának használata javasolt.
     learn_more: Tudj meg többet
     privacy_policy: Adatvédelmi szabályzat
     see_whats_happening: Nézd, mi történik
@@ -60,6 +60,9 @@ hu:
       one: Követő
       other: Követő
     following: Követett
+    instance_actor_flash: |-
+      Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét
+      felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni.
     joined: Csatlakozott %{date}
     last_active: utoljára aktív
     link_verified_on: A link tulajdonosát %{date} -n ellenőriztük
@@ -131,6 +134,7 @@ hu:
       follows: Követett
       header: Fejléc
       inbox_url: Beérkezett üzenetek URL-je
+      invite_request_text: Csatlakozás oka
       invited_by: Meghívta
       ip: IP
       joined: Csatlakozott
@@ -140,7 +144,7 @@ hu:
         remote: Távoli
         title: Hely
       login_status: Bejelentkezési állapot
-      media_attachments: Média-csatolmányok
+      media_attachments: Médiamellékletek
       memorialize: Emlékállítás
       memorialized: Emlékezetünkben
       memorialized_msg: A %{username} fiókot sikeresen emlékké nyilvánítottuk
@@ -224,15 +228,15 @@ hu:
         create_announcement: Közlemény létrehozása
         create_custom_emoji: Egyéni emodzsi létrehozása
         create_domain_allow: Domain engedélyezés létrehozása
-        create_domain_block: Domain blokkolás létrehozása
-        create_email_domain_block: E-mail domain blokkolás létrehozása
+        create_domain_block: Domain tiltás létrehozása
+        create_email_domain_block: E-mail domain tiltás létrehozása
         create_ip_block: IP szabály létrehozása
         demote_user: Felhasználó lefokozása
         destroy_announcement: Közlemény törlése
         destroy_custom_emoji: Egyéni emodzsi törlése
         destroy_domain_allow: Domain engedélyezés törlése
-        destroy_domain_block: Domain blokkolás törlése
-        destroy_email_domain_block: E-mail domain blokkolás törlése
+        destroy_domain_block: Domain tiltás törlése
+        destroy_email_domain_block: E-mail domain tiltás törlése
         destroy_ip_block: IP szabály törlése
         destroy_status: Állapot törlése
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
@@ -255,6 +259,7 @@ hu:
         unsuspend_account: Fiók felfüggesztésének feloldása
         update_announcement: Közlemény frissítése
         update_custom_emoji: Egyéni emodzsi frissítése
+        update_domain_block: Domain tiltás frissítése
         update_status: Állapot frissítése
       actions:
         assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
@@ -265,14 +270,14 @@ hu:
         create_custom_emoji: "%{name} új emodzsit töltött fel: %{target}"
         create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
-        create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
+        create_email_domain_block: "%{name} letiltotta az e-mail domaint: %{target}"
         create_ip_block: "%{name} létrehozott egy szabályt a %{target} IP-vel kapcsolatban"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
         destroy_announcement: "%{name} törölte a közleményt %{target}"
         destroy_custom_emoji: "%{name} törölte az emodzsit: %{target}"
         destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
-        destroy_email_domain_block: "%{name} fehérlistára tette az alábbi e-mail domaint: %{target}"
+        destroy_email_domain_block: "%{name} engedélyezte az e-mail domaint: %{target}"
         destroy_ip_block: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
         destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
         disable_2fa_user: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
@@ -295,6 +300,7 @@ hu:
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement: "%{name} frissítette a közleményt %{target}"
         update_custom_emoji: "%{name} frissítette az alábbi emodzsit: %{target}"
+        update_domain_block: "%{name} frissítette a %{target} domain tiltását"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
       deleted_status: "(törölt tülk)"
       empty: Nem található napló.
@@ -398,6 +404,8 @@ hu:
           silence: Némítás
           suspend: Felfüggesztés
         title: Új domain tiltása
+      obfuscate: Domain név álcázása
+      obfuscate_hint: Részlegesen álcázza a domain nevet a listában, ha a domain korlátozások listájának közzététele engedélyezett
       private_comment: Privát megjegyzés
       private_comment_hint: Megjegyzés domain tiltásával kapcsolatban belső használatra, a többi moderátor részére.
       public_comment: Nyilvános megjegyzés
@@ -424,19 +432,20 @@ hu:
       view: Domain tiltásának megtekintése
     email_domain_blocks:
       add_new: Új hozzáadása
-      created_msg: E-mail domain sikeresen hozzáadva a feketelistához
+      created_msg: E-mail domain sikeresen letiltva
       delete: Törlés
-      destroyed_msg: E-mail domain sikeresen eltávolítva a feketelistáról
+      destroyed_msg: E-mail domain sikeresen engedélyezve
       domain: Domain
-      empty: Nincs email domain a feketelistán.
+      empty: Nincs letiltott email domain.
       from_html: "%{domain}-ról"
       new:
         create: Domain hozzáadása
-        title: Új e-mail feketelista bejegyzés
-      title: E-mail feketelista
+        title: Új e-mail domain tiltása
+      title: Tiltott e-mail domainek
     instances:
       by_domain: Domain
       delivery_available: Kézbesítés elérhető
+      empty: Nem található domain.
       known_accounts:
         one: "%{count} ismert fiók"
         other: "%{count} ismert fiók"
@@ -514,6 +523,8 @@ hu:
       comment:
         none: Egyik sem
       created_at: Jelentve
+      forwarded: Továbbítva
+      forwarded_to: 'Továbbítva ide: %{domain}'
       mark_as_resolved: Megjelölés megoldottként
       mark_as_unresolved: Megjelölés megoldatlanként
       notes:
@@ -557,6 +568,7 @@ hu:
       domain_blocks_rationale:
         title: Mutasd meg az indokolást
       enable_bootstrap_timeline_accounts:
+        desc_html: Az új felhasználók automatikusan követik a beállított fiókokat, így a Saját idővonaluk kezdéskor nem lesz üres
         title: Alapértelmezett követés engedélyezése új felhasználóknak
       hero:
         desc_html: A kezdőoldalon látszik. Legalább 600x100px méret javasolt. Ha nincs beállítva, a szerver bélyegképet használjuk
@@ -583,6 +595,9 @@ hu:
         min_invite_role:
           disabled: Senki
           title: Meghívások engedélyezése
+        require_invite_text:
+          desc_html: Ha a regisztrációhoz kézi jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
+          title: Az új felhasználóktól legyen megkövetelve a meghívási kérés szövegének kitöltése
       registrations_mode:
         modes:
           approved: A regisztráció engedélyhez kötött
@@ -751,6 +766,7 @@ hu:
       functional: A fiókod teljesen működőképes.
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha az elbírálás megtörtént.
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
+    too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     trouble_logging_in: Problémád van a bejelentkezéssel?
     use_security_key: Biztonsági kulcs használata
   authorize_follow:
@@ -885,8 +901,8 @@ hu:
     order_by: Rendezés
     save_changes: Változások mentése
     validation_errors:
-      one: Valami nincs rendjén! Kérlek tekintsd meg a hibát alant
-      other: Valami nincs rendjén! Kérlek tekintsd meg a %{count} darab hibát alant
+      one: Valami nincs rendjén! Tekintsd meg a hibát lent
+      other: Valami nincs rendjén! Tekintsd meg a(z) %{count} hibát lent
   html_validator:
     invalid_markup: 'hibás HTML leíró: %{error}'
   identity_proofs:
@@ -910,6 +926,8 @@ hu:
     status: Ellenőrzés állapota
     view_proof: Tanúsítás megtekintése
   imports:
+    errors:
+      over_rows_processing_limit: több mint %{count} sort tartalmaz
     modes:
       merge: Összefésülés
       merge_long: Megtartjuk a meglévő bejegyzéseket és hozzávesszük az újakat
@@ -989,7 +1007,7 @@ hu:
   moderation:
     title: Moderáció
   move_handler:
-    carry_blocks_over_text: Ez a fiók elköltözött innen %{acct}, melyet blokkoltatok.
+    carry_blocks_over_text: Ez a fiók elköltözött innen %{acct}, melyet letiltottatok.
     carry_mutes_over_text: Ez a fiók elköltözött innen %{acct}, melyet lenémítottatok.
     copy_account_note_text: 'Ez a fiók elköltözött innen %{acct}, itt vannak a bejegyzéseitek róla:'
   notification_mailer:
@@ -1172,7 +1190,7 @@ hu:
     preferences: Beállítások
     profile: Profil
     relationships: Követések és követők
-    two_factor_authentication: Kétlépcsős azonosítás
+    two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
   spam_check:
     spam_detected: Ez egy automatikus jelentés. Spamet érzékeltünk.
@@ -1211,7 +1229,7 @@ hu:
         one: "%{count} szavazat"
         other: "%{count} szavazat"
       vote: Szavazás
-    show_more: Mutass többet
+    show_more: Több megjelenítése
     show_newer: Újabbak mutatása
     show_older: Régebbiek mutatása
     show_thread: Szál mutatása

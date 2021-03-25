@@ -230,6 +230,36 @@ class FeedManager
     end
   end
 
+  # Completely clear multiple feeds at once
+  # @param [Symbol] type
+  # @param [Array<Integer>] ids
+  # @return [void]
+  def clean_feeds!(type, ids)
+    reblogged_id_sets = {}
+
+    redis.pipelined do
+      ids.each do |feed_id|
+        redis.del(key(type, feed_id))
+        reblog_key = key(type, feed_id, 'reblogs')
+        # We collect a future for this: we don't block while getting
+        # it, but we can iterate over it later.
+        reblogged_id_sets[feed_id] = redis.zrange(reblog_key, 0, -1)
+        redis.del(reblog_key)
+      end
+    end
+
+    # Remove all of the reblog tracking keys we just removed the
+    # references to.
+    redis.pipelined do
+      reblogged_id_sets.each do |feed_id, future|
+        future.value.each do |reblogged_id|
+          reblog_set_key = key(type, feed_id, "reblogs:#{reblogged_id}")
+          redis.del(reblog_set_key)
+        end
+      end
+    end
+  end
+
   private
 
   # Trim a feed to maximum size by removing older items
@@ -366,8 +396,8 @@ class FeedManager
 
     active_filters.map! do |filter|
       if filter.whole_word
-        sb = filter.phrase =~ /\A[[:word:]]/ ? '\b' : ''
-        eb = filter.phrase =~ /[[:word:]]\z/ ? '\b' : ''
+        sb = /\A[[:word:]]/.match?(filter.phrase) ? '\b' : ''
+        eb = /[[:word:]]\z/.match?(filter.phrase) ? '\b' : ''
 
         /(?mix:#{sb}#{Regexp.escape(filter.phrase)}#{eb})/
       else
@@ -387,7 +417,7 @@ class FeedManager
       status.media_attachments.map(&:description).join("\n\n"),
     ].compact.join("\n\n")
 
-    !combined_regex.match(combined_text).nil?
+    combined_regex.match?(combined_text)
   end
 
   # Adds a status to an account's feed, returning true if a status was
@@ -503,12 +533,12 @@ class FeedManager
       arr
     end
 
-    crutches[:following]       = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:in_reply_to_account_id).compact).pluck(:target_account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
-    crutches[:hiding_reblogs]  = Follow.where(account_id: receiver_id, target_account_id: statuses.map { |s| s.account_id if s.reblog? }.compact, show_reblogs: false).pluck(:target_account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
-    crutches[:blocking]        = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
-    crutches[:muting]          = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
-    crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.map { |s| s.reblog&.account&.domain }.compact).pluck(:domain).each_with_object({}) { |domain, mapping| mapping[domain] = true }
-    crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| s.reblog&.account_id }.compact).pluck(:account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
+    crutches[:following]       = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:in_reply_to_account_id).compact).pluck(:target_account_id).index_with(true)
+    crutches[:hiding_reblogs]  = Follow.where(account_id: receiver_id, target_account_id: statuses.map { |s| s.account_id if s.reblog? }.compact, show_reblogs: false).pluck(:target_account_id).index_with(true)
+    crutches[:blocking]        = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
+    crutches[:muting]          = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
+    crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.map { |s| s.reblog&.account&.domain }.compact).pluck(:domain).index_with(true)
+    crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| s.reblog&.account_id }.compact).pluck(:account_id).index_with(true)
 
     crutches
   end

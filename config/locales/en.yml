@@ -26,6 +26,8 @@ en:
       It is used for federation purposes and should not be blocked unless you want to block the whole instance, in which case you should use a domain block.
     learn_more: Learn more
     privacy_policy: Privacy policy
+    rules: Server rules
+    rules_html: 'Below is a summary of rules you need to follow if you want to have an account on this server of Mastodon:'
     see_whats_happening: See what's happening
     server_stats: 'Server stats:'
     source_code: Source code under AGPL
@@ -60,6 +62,7 @@ en:
       one: Follower
       other: Followers
     following: Following
+    instance_actor_flash: This account is a virtual actor used to represent the server itself and not any individual user. It is used for federation purposes and should not be suspended.
     joined: Joined %{date}
     last_active: last active
     link_verified_on: Ownership of this link was checked on %{date}
@@ -77,7 +80,6 @@ en:
       other: Toots
     posts_tab_heading: Toots
     posts_with_replies: Toots and replies
-    reserved_username: The username is reserved
     roles:
       admin: Admin
       bot: Bot
@@ -131,6 +133,7 @@ en:
       follows: Follows
       header: Header
       inbox_url: Inbox URL
+      invite_request_text: Reasons for joining
       invited_by: Invited by
       ip: IP
       joined: Joined
@@ -255,47 +258,49 @@ en:
         unsuspend_account: Unsuspend Account
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
+        update_domain_block: Update Domain Block
         update_status: Update Status
       actions:
-        assigned_to_self_report: "%{name} assigned report %{target} to themselves"
-        change_email_user: "%{name} changed the e-mail address of user %{target}"
-        confirm_user: "%{name} confirmed e-mail address of user %{target}"
-        create_account_warning: "%{name} sent a warning to %{target}"
-        create_announcement: "%{name} created new announcement %{target}"
-        create_custom_emoji: "%{name} uploaded new emoji %{target}"
-        create_domain_allow: "%{name} allowed federation with domain %{target}"
-        create_domain_block: "%{name} blocked domain %{target}"
-        create_email_domain_block: "%{name} blocked e-mail domain %{target}"
-        create_ip_block: "%{name} created rule for IP %{target}"
-        demote_user: "%{name} demoted user %{target}"
-        destroy_announcement: "%{name} deleted announcement %{target}"
-        destroy_custom_emoji: "%{name} destroyed emoji %{target}"
-        destroy_domain_allow: "%{name} disallowed federation with domain %{target}"
-        destroy_domain_block: "%{name} unblocked domain %{target}"
-        destroy_email_domain_block: "%{name} unblocked e-mail domain %{target}"
-        destroy_ip_block: "%{name} deleted rule for IP %{target}"
-        destroy_status: "%{name} removed status by %{target}"
-        disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
-        disable_custom_emoji: "%{name} disabled emoji %{target}"
-        disable_user: "%{name} disabled login for user %{target}"
-        enable_custom_emoji: "%{name} enabled emoji %{target}"
-        enable_user: "%{name} enabled login for user %{target}"
-        memorialize_account: "%{name} turned %{target}'s account into a memoriam page"
-        promote_user: "%{name} promoted user %{target}"
-        remove_avatar_user: "%{name} removed %{target}'s avatar"
-        reopen_report: "%{name} reopened report %{target}"
-        reset_password_user: "%{name} reset password of user %{target}"
-        resolve_report: "%{name} resolved report %{target}"
-        sensitive_account: "%{name} marked %{target}'s media as sensitive"
-        silence_account: "%{name} silenced %{target}'s account"
-        suspend_account: "%{name} suspended %{target}'s account"
-        unassigned_report: "%{name} unassigned report %{target}"
-        unsensitive_account: "%{name} unmarked %{target}'s media as sensitive"
-        unsilence_account: "%{name} unsilenced %{target}'s account"
-        unsuspend_account: "%{name} unsuspended %{target}'s account"
-        update_announcement: "%{name} updated announcement %{target}"
-        update_custom_emoji: "%{name} updated emoji %{target}"
-        update_status: "%{name} updated status by %{target}"
+        assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
+        change_email_user_html: "%{name} changed the e-mail address of user %{target}"
+        confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
+        create_account_warning_html: "%{name} sent a warning to %{target}"
+        create_announcement_html: "%{name} created new announcement %{target}"
+        create_custom_emoji_html: "%{name} uploaded new emoji %{target}"
+        create_domain_allow_html: "%{name} allowed federation with domain %{target}"
+        create_domain_block_html: "%{name} blocked domain %{target}"
+        create_email_domain_block_html: "%{name} blocked e-mail domain %{target}"
+        create_ip_block_html: "%{name} created rule for IP %{target}"
+        demote_user_html: "%{name} demoted user %{target}"
+        destroy_announcement_html: "%{name} deleted announcement %{target}"
+        destroy_custom_emoji_html: "%{name} destroyed emoji %{target}"
+        destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
+        destroy_domain_block_html: "%{name} unblocked domain %{target}"
+        destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
+        destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
+        destroy_status_html: "%{name} removed status by %{target}"
+        disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
+        disable_custom_emoji_html: "%{name} disabled emoji %{target}"
+        disable_user_html: "%{name} disabled login for user %{target}"
+        enable_custom_emoji_html: "%{name} enabled emoji %{target}"
+        enable_user_html: "%{name} enabled login for user %{target}"
+        memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
+        promote_user_html: "%{name} promoted user %{target}"
+        remove_avatar_user_html: "%{name} removed %{target}'s avatar"
+        reopen_report_html: "%{name} reopened report %{target}"
+        reset_password_user_html: "%{name} reset password of user %{target}"
+        resolve_report_html: "%{name} resolved report %{target}"
+        sensitive_account_html: "%{name} marked %{target}'s media as sensitive"
+        silence_account_html: "%{name} silenced %{target}'s account"
+        suspend_account_html: "%{name} suspended %{target}'s account"
+        unassigned_report_html: "%{name} unassigned report %{target}"
+        unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
+        unsilence_account_html: "%{name} unsilenced %{target}'s account"
+        unsuspend_account_html: "%{name} unsuspended %{target}'s account"
+        update_announcement_html: "%{name} updated announcement %{target}"
+        update_custom_emoji_html: "%{name} updated emoji %{target}"
+        update_domain_block_html: "%{name} updated domain block for %{target}"
+        update_status_html: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
       empty: No logs found.
       filter_by_action: Filter by action
@@ -398,6 +403,8 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain block
+      obfuscate: Obfuscate domain name
+      obfuscate_hint: Partially obfuscate the domain name in the list if advertising the list of domain limitations is enabled
       private_comment: Private comment
       private_comment_hint: Comment about this domain limitation for internal use by the moderators.
       public_comment: Public comment
@@ -437,6 +444,7 @@ en:
     instances:
       by_domain: Domain
       delivery_available: Delivery is available
+      empty: No domains found.
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
@@ -514,6 +522,8 @@ en:
       comment:
         none: None
       created_at: Reported
+      forwarded: Forwarded
+      forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
@@ -533,6 +543,11 @@ en:
       unassign: Unassign
       unresolved: Unresolved
       updated_at: Updated
+    rules:
+      add_new: Add rule
+      description: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. Make it easier to see your server's rules at a glance by providing them in a flat bullet point list. Try to keep individual rules short and simple, but try not to split them up into many separate items either.
+      edit: Edit rule
+      title: Server rules
     settings:
       activity_api_enabled:
         desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
@@ -557,6 +572,7 @@ en:
       domain_blocks_rationale:
         title: Show rationale
       enable_bootstrap_timeline_accounts:
+        desc_html: Make new users automatically follow configured accounts so their home feed doesn't start out empty
         title: Enable default follows for new users
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
@@ -583,6 +599,9 @@ en:
         min_invite_role:
           disabled: No one
           title: Allow invitations by
+        require_invite_text:
+          desc_html: When registrations require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+          title: Require new users to enter a reason to join
       registrations_mode:
         modes:
           approved: Approval required for sign up
@@ -911,6 +930,8 @@ en:
     status: Verification status
     view_proof: View proof
   imports:
+    errors:
+      over_rows_processing_limit: contains more than %{count} rows
     modes:
       merge: Merge
       merge_long: Keep existing records and add new ones
@@ -1023,10 +1044,14 @@ en:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
       title: New mention
+    poll:
+      subject: A poll by %{name} has ended
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
       title: New boost
+    status:
+      subject: "%{name} just posted"
   notifications:
     email_events: Events for e-mail notifications
     email_events_hint: 'Select events that you want to receive notifications for:'
@@ -1388,11 +1413,8 @@ en:
       tips: Tips
       title: Welcome aboard, %{name}!
   users:
-    blocked_email_provider: This e-mail provider isn't allowed
     follow_limit_reached: You cannot follow more than %{limit} people
     generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
-    invalid_email: The e-mail address is invalid
-    invalid_email_mx: The e-mail address does not seem to exist
     invalid_otp_token: Invalid two-factor code
     invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}

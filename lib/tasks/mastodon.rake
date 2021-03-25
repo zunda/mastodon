@@ -371,18 +371,20 @@ namespace :mastodon do
           end
         end
 
-        prompt.say "\n"
-        prompt.say 'The final step is compiling CSS/JS assets.'
-        prompt.say 'This may take a while and consume a lot of RAM.'
+        unless using_docker
+          prompt.say "\n"
+          prompt.say 'The final step is compiling CSS/JS assets.'
+          prompt.say 'This may take a while and consume a lot of RAM.'
 
-        if prompt.yes?('Compile the assets now?')
-          prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
-          prompt.say "\n\n"
+          if prompt.yes?('Compile the assets now?')
+            prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
+            prompt.say "\n\n"
 
-          if !system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
-            prompt.error 'That failed! Maybe you need swap space?'
-          else
-            prompt.say 'Done!'
+            if !system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
+              prompt.error 'That failed! Maybe you need swap space?'
+            else
+              prompt.say 'Done!'
+            end
           end
         end
 
@@ -412,7 +414,7 @@ namespace :mastodon do
 
           password = SecureRandom.hex(16)
 
-          user = User.new(admin: true, email: email, password: password, confirmed_at: Time.now.utc, account_attributes: { username: username })
+          user = User.new(admin: true, email: email, password: password, confirmed_at: Time.now.utc, account_attributes: { username: username }, bypass_invite_request_check: true)
           user.save(validate: false)
 
           prompt.ok "You can login with the password: #{password}"

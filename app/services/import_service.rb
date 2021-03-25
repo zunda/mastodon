@@ -27,7 +27,7 @@ class ImportService < BaseService
 
   def import_follows!
     parse_import_data!(['Account address'])
-    import_relationships!('follow', 'unfollow', @account.following, follow_limit, reblogs: { header: 'Show boosts', default: true })
+    import_relationships!('follow', 'unfollow', @account.following, ROWS_PROCESSING_LIMIT, reblogs: { header: 'Show boosts', default: true })
   end
 
   def import_blocks!
@@ -45,7 +45,7 @@ class ImportService < BaseService
     items = @data.take(ROWS_PROCESSING_LIMIT).map { |row| row['#domain'].strip }
 
     if @import.overwrite?
-      presence_hash = items.each_with_object({}) { |id, mapping| mapping[id] = true }
+      presence_hash = items.index_with(true)
 
       @account.domain_blocks.find_each do |domain_block|
         if presence_hash[domain_block.domain]
@@ -85,6 +85,7 @@ class ImportService < BaseService
 
     head_items = items.uniq { |acct, _| acct.split('@')[1] }
     tail_items = items - head_items
+
     Import::RelationshipWorker.push_bulk(head_items + tail_items) do |acct, extra|
       [@account.id, acct, action, extra]
     end
@@ -95,7 +96,7 @@ class ImportService < BaseService
     items = @data.take(ROWS_PROCESSING_LIMIT).map { |row| row['#uri'].strip }
 
     if @import.overwrite?
-      presence_hash = items.each_with_object({}) { |id, mapping| mapping[id] = true }
+      presence_hash = items.index_with(true)
 
       @account.bookmarks.find_each do |bookmark|
         if presence_hash[bookmark.status.uri]
@@ -106,12 +107,12 @@ class ImportService < BaseService
       end
     end
 
-    statuses = items.map do |uri|
+    statuses = items.filter_map do |uri|
       status = ActivityPub::TagManager.instance.uri_to_resource(uri, Status)
       next if status.nil? && ActivityPub::TagManager.instance.local_uri?(uri)
 
       status || ActivityPub::FetchRemoteStatusService.new.call(uri)
-    end.compact
+    end
 
     account_ids         = statuses.map(&:account_id)
     preloaded_relations = relations_map_for_account(@account, account_ids)
@@ -131,10 +132,6 @@ class ImportService < BaseService
 
   def import_data
     Paperclip.io_adapters.for(@import.data).read
-  end
-
-  def follow_limit
-    FollowLimitValidator.limit_for_account(@account)
   end
 
   def relations_map_for_account(account, account_ids)

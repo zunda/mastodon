@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_234926) do
+ActiveRecord::Schema.define(version: 2021_03_08_133107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,7 +166,6 @@ ActiveRecord::Schema.define(version: 2020_10_17_234926) do
     t.integer "header_file_size"
     t.datetime "header_updated_at"
     t.string "avatar_remote_url"
-    t.datetime "subscription_expires_at"
     t.boolean "locked", default: false, null: false
     t.string "header_remote_url", default: "", null: false
     t.datetime "last_webfingered_at"
@@ -360,6 +359,7 @@ ActiveRecord::Schema.define(version: 2020_10_17_234926) do
     t.boolean "reject_reports", default: false, null: false
     t.text "private_comment"
     t.text "public_comment"
+    t.boolean "obfuscate", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
   end
 
@@ -717,8 +717,17 @@ ActiveRecord::Schema.define(version: 2020_10_17_234926) do
     t.bigint "target_account_id", null: false
     t.bigint "assigned_account_id"
     t.string "uri"
+    t.boolean "forwarded"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
+  end
+
+  create_table "rules", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.datetime "deleted_at"
+    t.text "text", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "scheduled_statuses", force: :cascade do |t|
@@ -1045,4 +1054,29 @@ ActiveRecord::Schema.define(version: 2020_10_17_234926) do
   add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
   add_foreign_key "webauthn_credentials", "users"
+
+  create_view "instances", materialized: true, sql_definition: <<-SQL
+      WITH domain_counts(domain, accounts_count) AS (
+           SELECT accounts.domain,
+              count(*) AS accounts_count
+             FROM accounts
+            WHERE (accounts.domain IS NOT NULL)
+            GROUP BY accounts.domain
+          )
+   SELECT domain_counts.domain,
+      domain_counts.accounts_count
+     FROM domain_counts
+  UNION
+   SELECT domain_blocks.domain,
+      COALESCE(domain_counts.accounts_count, (0)::bigint) AS accounts_count
+     FROM (domain_blocks
+       LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_blocks.domain)::text)))
+  UNION
+   SELECT domain_allows.domain,
+      COALESCE(domain_counts.accounts_count, (0)::bigint) AS accounts_count
+     FROM (domain_allows
+       LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_allows.domain)::text)));
+  SQL
+  add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
+
 end

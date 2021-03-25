@@ -114,7 +114,7 @@ class Status < ApplicationRecord
                    :tags,
                    :preview_cards,
                    :preloadable_poll,
-                   account: :account_stat,
+                   account: [:account_stat, :user],
                    active_mentions: { account: :account_stat },
                    reblog: [
                      :application,
@@ -124,7 +124,7 @@ class Status < ApplicationRecord
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
-                     account: :account_stat,
+                     account: [:account_stat, :user],
                      active_mentions: { account: :account_stat },
                    ],
                    thread: { account: :account_stat }
@@ -228,14 +228,6 @@ class Status < ApplicationRecord
     @emojis = CustomEmoji.from_text(fields.join(' '), account.domain)
   end
 
-  def mark_for_mass_destruction!
-    @marked_for_mass_destruction = true
-  end
-
-  def marked_for_mass_destruction?
-    @marked_for_mass_destruction
-  end
-
   def replies_count
     status_stat&.replies_count || 0
   end
@@ -309,7 +301,7 @@ class Status < ApplicationRecord
 
       return if account_ids.empty?
 
-      accounts = Account.where(id: account_ids).includes(:account_stat).each_with_object({}) { |a, h| h[a.id] = a }
+      accounts = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
 
       cached_items.each do |item|
         item.account = accounts[item.account_id]
@@ -342,7 +334,7 @@ class Status < ApplicationRecord
     def from_text(text)
       return [] if text.blank?
 
-      text.scan(FetchLinkCardService::URL_PATTERN).map(&:first).uniq.map do |url|
+      text.scan(FetchLinkCardService::URL_PATTERN).map(&:first).uniq.filter_map do |url|
         status = begin
           if TagManager.instance.local_url?(url)
             ActivityPub::TagManager.instance.uri_to_resource(url, Status)
@@ -351,7 +343,7 @@ class Status < ApplicationRecord
           end
         end
         status&.distributable? ? status : nil
-      end.compact
+      end
     end
   end
 
@@ -430,7 +422,7 @@ class Status < ApplicationRecord
   end
 
   def decrement_counter_caches
-    return if direct_visibility? || marked_for_mass_destruction?
+    return if direct_visibility?
 
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
@@ -440,7 +432,7 @@ class Status < ApplicationRecord
   def unlink_from_conversations
     return unless direct_visibility?
 
-    mentioned_accounts = mentions.includes(:account).map(&:account)
+    mentioned_accounts = (association(:mentions).loaded? ? mentions : mentions.includes(:account)).map(&:account)
     inbox_owners       = mentioned_accounts.select(&:local?) + (account.local? ? [account] : [])
 
     inbox_owners.each do |inbox_owner|

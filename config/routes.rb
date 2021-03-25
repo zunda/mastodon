@@ -220,6 +220,7 @@ Rails.application.routes.draw do
     end
 
     resources :instances, only: [:index, :show], constraints: { id: /[^\/]+/ }
+    resources :rules
 
     resources :reports, only: [:index, :show] do
       member do
@@ -402,9 +403,14 @@ Rails.application.routes.draw do
 
       resources :apps, only: [:create]
 
+      namespace :emails do
+        resources :confirmations, only: [:create]
+      end
+
       resource :instance, only: [:show] do
         resources :peers, only: [:index], controller: 'instances/peers'
         resource :activity, only: [:show], controller: 'instances/activity'
+        resources :rules, only: [:index], controller: 'instances/rules'
       end
 
       resource :domain_blocks, only: [:show, :create, :destroy]
@@ -431,6 +437,7 @@ Rails.application.routes.draw do
         get :verify_credentials, to: 'credentials#show'
         patch :update_credentials, to: 'credentials#update'
         resource :search, only: :show, controller: :search
+        resource :lookup, only: :show, controller: :lookup
         resources :relationships, only: :index
       end
 

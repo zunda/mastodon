@@ -134,18 +134,6 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '#subscribed?' do
-    it 'returns false when no subscription expiration information is present' do
-      account = Fabricate(:account, subscription_expires_at: nil)
-      expect(account.subscribed?).to be false
-    end
-
-    it 'returns true when subscription expiration has been set' do
-      account = Fabricate(:account, subscription_expires_at: 30.days.from_now)
-      expect(account.subscribed?).to be true
-    end
-  end
-
   describe '#possibly_stale?' do
     let(:account) { Fabricate(:account, last_webfingered_at: last_webfingered_at) }
 
@@ -440,13 +428,6 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '.domains' do
-    it 'returns domains' do
-      Fabricate(:account, domain: 'domain')
-      expect(Account.remote.domains).to match_array(['domain'])
-    end
-  end
-
   describe '#statuses_count' do
     subject { Fabricate(:account) }
 
@@ -714,40 +695,11 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    describe 'expiring' do
-      it 'returns remote accounts with followers whose subscription expiration date is past or not given' do
-        local = Fabricate(:account, domain: nil)
-        matches = [
-          { domain: 'remote', subscription_expires_at: '2000-01-01T00:00:00Z' },
-        ].map(&method(:Fabricate).curry(2).call(:account))
-        matches.each(&local.method(:follow!))
-        Fabricate(:account, domain: 'remote', subscription_expires_at: nil)
-        local.follow!(Fabricate(:account, domain: 'remote', subscription_expires_at: '2000-01-03T00:00:00Z'))
-        local.follow!(Fabricate(:account, domain: nil, subscription_expires_at: nil))
-
-        expect(Account.expiring('2000-01-02T00:00:00Z').recent).to eq matches.reverse
-      end
-    end
-
     describe 'remote' do
       it 'returns an array of accounts who have a domain' do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
         expect(Account.remote).to match_array([account_2])
-      end
-    end
-
-    describe 'by_domain_accounts' do
-      it 'returns accounts grouped by domain sorted by accounts' do
-        2.times { Fabricate(:account, domain: 'example.com') }
-        Fabricate(:account, domain: 'example2.com')
-
-        results = Account.where('id > 0').by_domain_accounts
-        expect(results.length).to eq 2
-        expect(results.first.domain).to eq 'example.com'
-        expect(results.first.accounts_count).to eq 2
-        expect(results.last.domain).to eq 'example2.com'
-        expect(results.last.accounts_count).to eq 1
       end
     end
 

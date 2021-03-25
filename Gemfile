@@ -5,19 +5,19 @@ ruby '>= 2.5.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
 
-gem 'puma', '~> 5.0'
-gem 'rails', '~> 5.2.4.4', git: 'https://github.com/zunda/rails.git', branch: 'v5.2.4.4-ruby-3.0.0'
+gem 'puma', '~> 5.2'
+gem 'rails', '~> 6.1.3'
 gem 'sprockets', '~> 3.7.2'
-gem 'thor', '~> 1.0'
+gem 'thor', '~> 1.1'
 gem 'rack', '~> 2.2.3'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.2'
-gem 'makara', '~> 0.4'
-gem 'pghero', '~> 2.7'
+gem 'makara', '~> 0.5'
+gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.85', require: false
+gem 'aws-sdk-s3', '~> 1.92', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -27,20 +27,20 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.7'
-gem 'bootsnap', '~> 1.5', require: false
+gem 'bootsnap', '~> 1.6.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
-gem 'chewy', '~> 5.1', git: 'https://github.com/toptal/chewy.git'
-gem 'cld3', '~> 3.3.0', git: 'https://github.com/zunda/cld3-ruby.git', branch: 'use-ruby-3.0.0', glob: 'intermediate/*.gemspec'
+gem 'chewy', '~> 5.2'
+gem 'cld3', '~> 3.4.1'
 gem 'devise', '~> 4.7'
-gem 'devise-two-factor', '~> 3.1'
+gem 'devise-two-factor', git: 'https://github.com/ClearlyClaire/devise-two-factor', ref: '594bb8a32e6f94df7e5ba7c9399eaf9ff25bac0d'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
 end
 
-gem 'net-ldap', '~> 0.16'
+gem 'net-ldap', '~> 0.17'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
@@ -48,12 +48,12 @@ gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
 gem 'color_diff', '~> 0.1'
 gem 'discard', '~> 1.2'
-gem 'doorkeeper', '~> 5.4'
+gem 'doorkeeper', '~> 5.5'
 gem 'ed25519', '~> 1.2'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'hiredis', '~> 0.6'
-gem 'redis-namespace', '~> 1.8', git: 'https://github.com/resque/redis-namespace.git'
+gem 'redis-namespace', '~> 1.8'
 gem 'health_check', git: 'https://github.com/ianheggie/health_check', ref: '0b799ead604f900ed50685e9b2d469cd2befba5b'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 4.4'
@@ -64,37 +64,37 @@ gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.3.1', require: 'mime/types/columnar'
 gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
-gem 'nokogiri', '~> 1.10'
-gem 'nsa', '~> 0.2'
-gem 'oj', '~> 3.10'
-gem 'ox', '~> 2.13'
+gem 'nokogiri', '~> 1.11'
+gem 'nsa', git: 'https://github.com/Gargron/nsa', ref: 'd1079e0cdafdfed7f9f35478d13b9bdaa65965c0'
+gem 'oj', '~> 3.11'
+gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'parallel', '~> 1.20'
 gem 'posix-spawn'
 gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
-gem 'rack-attack', '~> 6.3'
+gem 'rack-attack', '~> 6.5'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
-gem 'rails-i18n', '~> 5.1'
+gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.2', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
-gem 'rqrcode', '~> 1.1', git: 'https://github.com/zunda/rqrcode.git', branch: 'use-ruby-3.0.0'
-gem 'rqrcode_core', git: 'https://github.com/zunda/rqrcode_core.git', branch: 'use-ruby-3.0.0'
-gem 'ruby-progressbar', '~> 1.10'
+gem 'rqrcode', '~> 1.2'
+gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 5.2'
-gem 'sidekiq', '~> 6.1'
+gem 'scenic', '~> 1.5'
+gem 'sidekiq', '~> 6.2'
 gem 'sidekiq-scheduler', '~> 3.0'
-gem 'sidekiq-unique-jobs', '~> 6.0'
+gem 'sidekiq-unique-jobs', '~> 7.0'
 gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.1'
-gem 'simple_form', '~> 5.0'
+gem 'simple_form', '~> 5.1'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.2.1'
 gem 'strong_migrations', '~> 0.7'
-gem 'tty-prompt', '~> 0.22', require: false
-gem 'twitter-text', '~> 1.14'
-gem 'tzinfo-data', '~> 1.2020'
+gem 'tty-prompt', '~> 0.23', require: false
+gem 'twitter-text', '~> 3.1.0'
+gem 'tzinfo-data', '~> 1.2021'
 gem 'webpacker', '~> 5.2'
 gem 'webpush'
 gem 'webauthn', '~> 3.0.0.alpha1'
@@ -106,10 +106,10 @@ gem 'rdf-normalize', '~> 0.4'
 group :development, :test do
   gem 'fabrication', '~> 2.21'
   gem 'fuubar', '~> 2.5'
-  gem 'i18n-tasks', '~> 0.9', require: false, git: 'https://github.com/zunda/i18n-tasks.git', branch: 'use-ruby-3.0.0'
+  gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 4.0'
+  gem 'rspec-rails', '~> 5.0'
 end
 
 group :production, :test do
@@ -117,15 +117,15 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.33'
+  gem 'capybara', '~> 3.35'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.14'
+  gem 'faker', '~> 2.17'
   gem 'microformats', '~> 4.2', git: 'https://github.com/zunda/microformats-ruby.git', branch: 'use-ruby-3.0.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
-  gem 'simplecov', '~> 0.19', require: false
-  gem 'webmock', '~> 3.10'
-  gem 'parallel_tests', '~> 3.4'
+  gem 'simplecov', '~> 0.21', require: false
+  gem 'webmock', '~> 3.12'
+  gem 'parallel_tests', '~> 3.5'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
@@ -133,17 +133,17 @@ group :development do
   gem 'active_record_query_trace', '~> 1.8'
   gem 'annotate', '~> 3.1'
   gem 'better_errors', '~> 2.9'
-  #gem 'binding_of_caller', '~> 0.7'
+  gem 'binding_of_caller', '~> 1.0'
   gem 'bullet', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.3', require: false
-  gem 'rubocop-rails', '~> 2.8', require: false
-  gem 'brakeman', '~> 4.10', require: false
-  gem 'bundler-audit', '~> 0.7', require: false
+  gem 'rubocop', '~> 1.11', require: false
+  gem 'rubocop-rails', '~> 2.9', require: false
+  gem 'brakeman', '~> 5.0', require: false
+  gem 'bundler-audit', '~> 0.8', require: false
 
-  gem 'capistrano', '~> 3.14'
+  gem 'capistrano', '~> 3.16'
   gem 'capistrano-rails', '~> 1.6'
   gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-yarn', '~> 2.0'
@@ -153,7 +153,6 @@ end
 
 group :production do
   gem 'lograge', '~> 0.11'
-  gem 'redis-rails', '~> 5.0'
 end
 
 gem 'scout_apm'
@@ -161,4 +160,4 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
-gem 'pluck_each', '~> 0.1.3'
+gem 'pluck_each', git: 'https://github.com/nsommer/pluck_each', ref: '73be0947c52fc54bf6d7085378db008358aac5eb'
