@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 ruby '>= 2.5.0', '< 3.1.0'
+gem 'rexml', '~> 3.2', '>= 3.2.4'
 
 gem 'pkg-config', '~> 1.4'
 

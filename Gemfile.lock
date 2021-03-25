@@ -417,6 +417,8 @@ GEM
     nokogiri (1.11.2)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.2-x86_64-linux)
+      racc (~> 1.4)
     nokogumbo (2.0.4)
       nokogiri (~> 1.8, >= 1.8.4)
     oj (3.11.3)
@@ -720,6 +722,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
@@ -819,6 +822,7 @@ DEPENDENCIES
   rdf-normalize (~> 0.4)
   redis (~> 4.2)
   redis-namespace (~> 1.8)
+  rexml (~> 3.2, >= 3.2.4)
   rqrcode (~> 1.2)
   rspec-rails (~> 5.0)
   rspec-sidekiq (~> 3.1)
