@@ -372,6 +372,12 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kt-paperclip (6.4.1)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      mime-types
+      mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -777,6 +783,7 @@ DEPENDENCIES
   json-ld
   json-ld-preloaded (~> 3.1)
   kaminari (~> 1.2)
+  kt-paperclip (~> 6.4, >= 6.4.1)
   letter_opener (~> 1.7)
   letter_opener_web (~> 1.4)
   link_header (~> 0.0)
@@ -796,7 +803,6 @@ DEPENDENCIES
   omniauth-rails_csrf_protection (~> 0.1)
   omniauth-saml (~> 1.10)
   ox (~> 2.14)
-  paperclip (~> 6.0)
   paperclip-av-transcoder (~> 0.6)
   parallel (~> 1.20)
   parallel_tests (~> 3.5)
