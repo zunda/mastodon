@@ -1,16 +1,4 @@
 GIT
-  remote: https://github.com/ClearlyClaire/devise-two-factor
-  revision: 594bb8a32e6f94df7e5ba7c9399eaf9ff25bac0d
-  ref: 594bb8a32e6f94df7e5ba7c9399eaf9ff25bac0d
-  specs:
-    devise-two-factor (3.1.0)
-      activesupport (< 7.0)
-      attr_encrypted (>= 1.3, < 4, != 2)
-      devise
-      railties (< 7.0)
-      rotp (~> 6)
-
-GIT
   remote: https://github.com/Gargron/nsa
   revision: d1079e0cdafdfed7f9f35478d13b9bdaa65965c0
   ref: d1079e0cdafdfed7f9f35478d13b9bdaa65965c0
@@ -20,33 +8,6 @@ GIT
       concurrent-ruby (~> 1.0, >= 1.0.2)
       sidekiq (>= 3.5)
       statsd-ruby (~> 1.4, >= 1.4.0)
-
-GIT
-  remote: https://github.com/nsommer/pluck_each
-  revision: 73be0947c52fc54bf6d7085378db008358aac5eb
-  ref: 73be0947c52fc54bf6d7085378db008358aac5eb
-  specs:
-    pluck_each (0.1.3)
-      activerecord (>= 6.1.0)
-      activesupport (>= 6.1.0)
-
-GIT
-  remote: https://github.com/witgo/nilsimsa
-  revision: fd184883048b922b176939f851338d0a4971a532
-  ref: fd184883048b922b176939f851338d0a4971a532
-  specs:
-    nilsimsa (1.1.2)
-
-GIT
-  remote: https://github.com/zunda/webpacker.git
-  revision: 2843408c7013f5349d2e48416f74296425e45a67
-  branch: clear-command-with-better-versioning
-  specs:
-    webpacker (6.0.0.beta.2)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -227,6 +188,12 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-two-factor (4.0.0)
+      activesupport (< 6.2)
+      attr_encrypted (>= 1.3, < 4, != 2)
+      devise (~> 4.0)
+      railties (< 6.2)
+      rotp (~> 6.0)
     devise_pam_authenticatable2 (9.2.0)
       devise (>= 4.0.0)
       rpam2 (~> 4.0)
@@ -236,7 +203,7 @@ GEM
     docile (1.3.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    doorkeeper (5.5.0)
+    doorkeeper (5.5.1)
       railties (>= 5)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -324,7 +291,7 @@ GEM
     httplog (1.4.3)
       rack (>= 1.0)
       rainbow (>= 2.0.0)
-    i18n (1.8.9)
+    i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.34)
       activesupport (>= 4.0.2)
@@ -380,7 +347,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.9.0)
+    loofah (2.9.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -412,7 +379,7 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.7)
-    nokogiri (1.11.2)
+    nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogumbo (2.0.4)
@@ -445,7 +412,7 @@ GEM
       av (~> 0.9.0)
       paperclip (>= 2.5.2)
     parallel (1.20.1)
-    parallel_tests (3.6.0)
+    parallel_tests (3.7.0)
       parallel
     parser (3.0.1.0)
       ast (~> 2.4.1)
@@ -455,7 +422,7 @@ GEM
     pg (1.2.3)
     pghero (2.8.1)
       activerecord (>= 5)
-    pkg-config (1.4.5)
+    pkg-config (1.4.6)
     posix-spawn (0.3.15)
     premailer (1.14.2)
       addressable
@@ -603,7 +570,7 @@ GEM
       parser
     securecompare (1.0.0)
     semantic_range (2.3.0)
-    sidekiq (6.2.0)
+    sidekiq (6.2.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -699,6 +666,11 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
+    webpacker (5.2.1)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     webpush (0.3.8)
       hkdf (~> 0.2)
       jwt (~> 2.0)
@@ -741,7 +713,7 @@ DEPENDENCIES
   concurrent-ruby
   connection_pool
   devise (~> 4.7)
-  devise-two-factor!
+  devise-two-factor (~> 4.0)
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
   doorkeeper (~> 5.5)
@@ -776,7 +748,6 @@ DEPENDENCIES
   microformats (~> 4.2)
   mime-types (~> 3.3.1)
   net-ldap (~> 0.17)
-  nilsimsa!
   nokogiri (~> 1.11)
   nsa!
   oj (~> 3.11)
@@ -788,12 +759,11 @@ DEPENDENCIES
   paperclip (~> 6.0)
   paperclip-av-transcoder (~> 0.6)
   parallel (~> 1.20)
-  parallel_tests (~> 3.6)
+  parallel_tests (~> 3.7)
   parslet
   pg (~> 1.2)
   pghero (~> 2.8)
   pkg-config (~> 1.4)
-  pluck_each!
   posix-spawn
   premailer-rails
   private_address_check (~> 0.5)
@@ -840,8 +810,8 @@ DEPENDENCIES
   tzinfo-data (~> 1.2021)
   webauthn (~> 3.0.0.alpha1)
   webmock (~> 3.12)
-  webpacker!
-  webpush
+  webpacker (~> 5.2)
+  webpush (~> 0.3)
   xorcist (~> 1.1)
 
 RUBY VERSION
