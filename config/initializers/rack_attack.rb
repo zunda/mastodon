@@ -57,31 +57,31 @@ class Rack::Attack
     req.authenticated_user_id if req.api_request?
   end
 
-  throttle('throttle_unauthenticated_api', limit: 150, period: 5.minutes) do |req|
+  throttle('throttle_unauthenticated_api', limit: 300, period: 5.minutes) do |req|
     req.remote_ip if req.api_request? && req.unauthenticated?
   end
 
-  throttle('throttle_unauthenticated_api_with_range', limit: 25, period: 10.minutes) do |req|
+  throttle('throttle_unauthenticated_api_with_range', limit: 50, period: 10.minutes) do |req|
     req.remote_ip if req.api_request? && req.unauthenticated?  && req.query_string.include?('_id=')
   end
 
-  throttle('throttle_public_timeline', limit: 20, period: 30.seconds) do |req|
+  throttle('throttle_public_timeline', limit: 40, period: 30.seconds) do |req|
     req.remote_ip if req.path.start_with?('/@')
   end
 
-  throttle('throttle_overall_public_timeline', limit: 40, period: 20.seconds) do |req|
+  throttle('throttle_overall_public_timeline', limit: 80, period: 20.seconds) do |req|
     req.path.start_with?('/@')
   end
 
-  throttle('throttle_public_timeline_with_range', limit: 2, period: 120.seconds) do |req|
+  throttle('throttle_public_timeline_with_range', limit: 4, period: 120.seconds) do |req|
     req.remote_ip if req.path.start_with?('/@') and req.query_string.include?('_id=')
   end
 
-  throttle('throttle_overall_public_timeline_with_range', limit: 5, period: 20.seconds) do |req|
+  throttle('throttle_overall_public_timeline_with_range', limit: 10, period: 20.seconds) do |req|
     req.path.start_with?('/@') and req.query_string.include?('_id=')
   end
 
-  throttle('throttle_overall_public_statuses', limit: 600, period: 15.seconds) do |req|
+  throttle('throttle_overall_public_statuses', limit: 1200, period: 15.seconds) do |req|
     req.path.start_with?('/users')
   end
 
