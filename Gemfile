@@ -21,8 +21,6 @@ gem 'aws-sdk-s3', '~> 1.94', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
-gem 'paperclip-av-transcoder', '~> 0.6'
-gem 'streamio-ffmpeg', '~> 3.0'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
@@ -158,3 +156,5 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
+
+gem 'resolv', '~> 0.1.0'
