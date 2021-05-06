@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/zunda/webpacker.git
-  revision: 8ff25ffca7c6ae62aa4db16a9fbbc05b7e74801d
+  remote: https://github.com/zunda/webpacker.git
+  revision: 9a70dae08937e2c3ad85fe4c1d692aff0076e58d
   branch: clear-command-with-better-versioning
   specs:
     webpacker (6.0.0.beta.7)

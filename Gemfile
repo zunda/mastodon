@@ -91,7 +91,7 @@ gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2021'
-gem 'webpacker', git: 'git://github.com/zunda/webpacker.git', branch: 'clear-command-with-better-versioning'
+gem 'webpacker', git: 'https://github.com/zunda/webpacker.git', branch: 'clear-command-with-better-versioning'
 gem 'webpush', '~> 0.3'
 gem 'webauthn', '~> 3.0.0.alpha1'
 
