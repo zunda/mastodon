@@ -11,7 +11,7 @@ describe ActivityPub::DeliveryWorker do
   let(:payload) { '{"published":"2017-10-03T03:27:34Z"}' }
 
   before do
-    allow_any_instance_of(Account).to receive(:remote_followers_hash).with('https://example.com/').and_return('somehash')
+    allow_any_instance_of(Account).to receive(:remote_followers_hash).with('https://example.com/api').and_return('somehash')
   end
 
   describe 'perform' do
