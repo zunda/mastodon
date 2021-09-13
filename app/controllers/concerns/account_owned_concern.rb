@@ -25,7 +25,6 @@ module AccountOwnedConcern
   end
 
   def check_account_approval
-$stderr.puts "@account: #{@account.class} @account.user_pending?: #{@account.method(:user_pending?).source_location}"
     not_found if @account.local? && @account.user_pending?
   end
 
