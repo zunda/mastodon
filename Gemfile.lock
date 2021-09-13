@@ -549,8 +549,9 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
-    ruby-saml (1.11.0)
-      nokogiri (>= 1.5.10)
+    ruby-saml (1.13.0)
+      nokogiri (>= 1.10.5)
+      rexml
     ruby2_keywords (0.0.4)
     rufus-scheduler (3.7.0)
       fugit (~> 1.1, >= 1.1.6)
@@ -769,7 +770,6 @@ DEPENDENCIES
   rdf-normalize (~> 0.4)
   redis (~> 4.4)
   redis-namespace (~> 1.8)
-  rexml
   rqrcode (~> 2.1)
   rspec-rails (~> 5.0)
   rspec-sidekiq (~> 3.1)
