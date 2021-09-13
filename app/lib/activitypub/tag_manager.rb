@@ -168,6 +168,7 @@ class ActivityPub::TagManager
     elsif OStatus::TagManager.instance.local_id?(uri)
       klass.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, klass.to_s))
     else
+$stderr.puts "klass: #{klass} find_by: #{klass.method(:find_by).source_location}"
       klass.find_by(uri: uri.split('#').first)
     end
   rescue ActiveRecord::RecordNotFound

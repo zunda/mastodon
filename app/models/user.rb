@@ -193,6 +193,7 @@ class User < ApplicationRecord
   end
 
   def pending?
+$stderr.puts "self: #{self.class} approved?: #{self.method(:approved?).source_location}"
     !approved?
   end
 
