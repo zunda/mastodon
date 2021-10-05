@@ -19,6 +19,8 @@ EXPOSE 3000 4000
 WORKDIR /mastodon
 
 RUN apk -U upgrade \
+ && apk add --no-cache ca-certificates wget \
+ && update-ca-certificates \
  && apk add -t build-dependencies \
     build-base \
     icu-dev \
@@ -29,7 +31,6 @@ RUN apk -U upgrade \
     protobuf-dev \
     python \
  && apk add \
-    ca-certificates \
     ffmpeg \
     file \
     git \
@@ -40,9 +41,9 @@ RUN apk -U upgrade \
     nodejs \
     nodejs-npm \
     protobuf \
+    shared-mime-info \
     tini \
     tzdata \
- && update-ca-certificates \
  && mkdir -p /tmp/src /opt \
  && wget -O yarn.tar.gz "https://github.com/yarnpkg/yarn/releases/download/v$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
  && echo "$YARN_DOWNLOAD_SHA256 *yarn.tar.gz" | sha256sum -c - \
