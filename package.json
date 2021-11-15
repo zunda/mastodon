@@ -138,7 +138,7 @@
     "react-redux-loading-bar": "^4.0.8",
     "react-router-dom": "^4.1.1",
     "react-router-scroll-4": "^1.0.0-beta.1",
-    "react-select": "^5.1.0",
+    "react-select": "^5.2.1",
     "react-sparklines": "^1.7.0",
     "react-swipeable-views": "^0.14.0",
     "react-textarea-autosize": "^8.3.3",
@@ -150,7 +150,7 @@
     "regenerator-runtime": "^0.13.9",
     "rellax": "^1.12.1",
     "requestidlecallback": "^0.3.0",
-    "reselect": "^4.1.1",
+    "reselect": "^4.1.2",
     "rimraf": "^3.0.2",
     "sass": "^1.43.4",
     "sass-loader": "^10.2.0",
@@ -172,7 +172,7 @@
     "ws": "^8.2.3"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.3.1",
@@ -186,7 +186,7 @@
     "react-intl-translations-manager": "^5.0.3",
     "react-test-renderer": "^16.14.0",
     "sass-lint": "^1.13.1",
-    "webpack-dev-server": "^3.11.2",
+    "webpack-dev-server": "^3.11.3",
     "yargs": "^17.2.1"
   },
   "resolutions": {

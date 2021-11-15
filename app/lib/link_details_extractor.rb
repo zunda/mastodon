@@ -59,7 +59,7 @@ class LinkDetailsExtractor
     end
 
     def json
-      @json ||= Oj.load(@data)
+      @json ||= first_of_value(Oj.load(@data))
     end
   end
 
@@ -91,7 +91,7 @@ class LinkDetailsExtractor
   end
 
   def html
-    player_url.present? ? content_tag(:iframe, src: player_url, width: width, height: height, allowtransparency: 'true', scrolling: 'no', frameborder: '0') : nil
+    player_url.present? ? content_tag(:iframe, nil, src: player_url, width: width, height: height, allowtransparency: 'true', scrolling: 'no', frameborder: '0') : nil
   end
 
   def width
@@ -178,6 +178,8 @@ class LinkDetailsExtractor
     @structured_data ||= begin
       json_ld = document.xpath('//script[@type="application/ld+json"]').map(&:content).first
       json_ld.present? ? StructuredData.new(json_ld) : nil
+    rescue Oj::ParseError
+      nil
     end
   end
 
