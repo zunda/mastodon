@@ -97,7 +97,7 @@
     "file-loader": "^6.2.0",
     "font-awesome": "^4.7.0",
     "glob": "^7.2.0",
-    "history": "^4.10.1",
+    "history": "^5.1.0",
     "http-link-header": "^1.0.3",
     "immutable": "^4.0.0",
     "imports-loader": "^1.2.0",
