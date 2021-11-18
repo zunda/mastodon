@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 ruby '>= 2.5.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
+gem 'rexml', '~> 3.2'
 
 gem 'puma', '~> 5.5'
 gem 'rails', '~> 6.1.4'
@@ -29,7 +30,7 @@ gem 'bootsnap', '~> 1.9.1', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
-gem 'chewy', '~> 5.2'
+gem 'chewy', '~> 7.2'
 gem 'cld3', '~> 3.4.2'
 gem 'devise', '~> 4.8'
 gem 'devise-two-factor', '~> 4.0'
