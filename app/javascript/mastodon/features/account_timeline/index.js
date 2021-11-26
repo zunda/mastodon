@@ -12,6 +12,7 @@ import ColumnBackButton from '../../components/column_back_button';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
+import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
 import MissingIndicator from 'mastodon/components/missing_indicator';
 import TimelineHint from 'mastodon/components/timeline_hint';
 import { me } from 'mastodon/initial_state';
@@ -79,6 +80,7 @@ class AccountTimeline extends ImmutablePureComponent {
     const { accountId, withReplies, dispatch } = this.props;
 
     dispatch(fetchAccount(accountId));
+    dispatch(fetchAccountIdentityProofs(accountId));
 
     if (!withReplies) {
       dispatch(expandAccountFeaturedTimeline(accountId));

@@ -6,7 +6,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :discoverable, :olm, :suspended
+                     :moved_to, :property_value, :identity_proof,
+                     :discoverable, :olm, :suspended
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,
@@ -142,7 +143,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def virtual_attachments
-    object.suspended? ? [] : object.fields
+    object.suspended? ? [] : (object.fields + object.identity_proofs.active)
   end
 
   def moved_to

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '.well-known/nodeinfo', to: 'well_known/nodeinfo#index', as: :nodeinfo, defaults: { format: 'json' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get '.well-known/change-password', to: redirect('/auth/edit')
+  get '.well-known/keybase-proof-config', to: 'well_known/keybase_proof_config#show'
 
   get '/nodeinfo/2.0', to: 'well_known/nodeinfo#show', as: :nodeinfo_schema
 
@@ -144,6 +145,8 @@ Rails.application.routes.draw do
       resources :recovery_codes, only: [:create]
       resource :confirmation, only: [:new, :create]
     end
+
+    resources :identity_proofs, only: [:index, :new, :create, :destroy]
 
     resources :applications, except: [:edit] do
       member do
@@ -328,6 +331,9 @@ Rails.application.routes.draw do
   namespace :api do
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
+
+    # Identity proofs
+    get :proofs, to: 'proofs#index'
 
     # JSON / REST API
     namespace :v1 do
