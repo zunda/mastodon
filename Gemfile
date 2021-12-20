@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.5.0', '< 3.1.0'
+ruby '>= 2.5.0', '< 3.2.0'
 
 gem 'pkg-config', '~> 1.4'
 gem 'rexml', '~> 3.2'
@@ -11,6 +11,8 @@ gem 'rails', '~> 6.1.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.1'
 gem 'rack', '~> 2.2.3'
+
+gem 'mail', git: 'https://github.com/Shopify/mail.git', branch: 'net-smtp-dependency'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.2'
@@ -72,7 +74,7 @@ gem 'premailer-rails'
 gem 'rack-attack', '~> 6.5'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
-gem 'rails-settings-cached', '~> 0.6'
+gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/zunda/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.1'
@@ -116,7 +118,7 @@ group :test do
   gem 'capybara', '~> 3.36'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.19'
-  gem 'microformats', '~> 4.2'
+  gem 'microformats', '~> 4.2', git: 'https://github.com/zunda/microformats-ruby.git', branch: 'use-ruby-3.1.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false

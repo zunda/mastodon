@@ -1,4 +1,32 @@
 GIT
+  remote: https://github.com/Shopify/mail.git
+  revision: 651a59a231f34b5dc148decb80b45c6581fa71a8
+  branch: net-smtp-dependency
+  specs:
+    mail (2.8.0.edge)
+      mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
+
+GIT
+  remote: https://github.com/zunda/microformats-ruby.git
+  revision: 076a1d555b6121ea2de8c242e2fdb503c629555f
+  branch: use-ruby-3.1.0
+  specs:
+    microformats (4.3.1)
+      json (~> 2.2)
+      nokogiri (~> 1.10)
+
+GIT
+  remote: https://github.com/zunda/rails-settings-cached.git
+  revision: e3a3c992fac508b2ca445d2898365b6ddf8cfa64
+  branch: v0.6.6-aliases-true
+  specs:
+    rails-settings-cached (0.6.6)
+      rails (>= 4.2.0)
+
+GIT
   remote: https://github.com/zunda/webpacker.git
   revision: 4bad6dd235ca6225e1050bcc0c1ccf79a64bf2fd
   branch: clear-command-with-better-versioning
@@ -195,6 +223,7 @@ GEM
       devise (>= 4.0.0)
       rpam2 (~> 4.0)
     diff-lcs (1.4.4)
+    digest (3.0.0)
     discard (1.2.0)
       activerecord (>= 4.2, < 7)
     docile (1.3.4)
@@ -313,10 +342,11 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
     idn-ruby (0.1.4)
+    io-wait (0.2.1)
     ipaddress (0.8.3)
     iso-639 (0.3.5)
     jmespath (1.4.0)
-    json (2.5.1)
+    json (2.6.1)
     json-canonicalization (0.2.1)
     json-ld (3.1.10)
       htmlentities (~> 4.3)
@@ -369,8 +399,6 @@ GEM
     loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.1)
-      mini_mime (>= 0.1.1)
     makara (0.5.1)
       activerecord (>= 5.2.0)
     marcel (1.0.1)
@@ -379,9 +407,6 @@ GEM
     matrix (0.4.2)
     memory_profiler (1.0.0)
     method_source (1.0.0)
-    microformats (4.3.1)
-      json (~> 2.2)
-      nokogiri (~> 1.10)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.1115)
@@ -391,9 +416,24 @@ GEM
     msgpack (1.4.2)
     multi_json (1.15.0)
     multipart-post (2.1.1)
+    net-imap (0.2.2)
+      digest
+      net-protocol
+      strscan
     net-ldap (0.17.0)
+    net-pop (0.1.1)
+      digest
+      net-protocol
+      timeout
+    net-protocol (0.1.2)
+      io-wait
+      timeout
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
+    net-smtp (0.3.1)
+      digest
+      net-protocol
+      timeout
     net-ssh (6.1.0)
     nio4r (2.5.8)
     nokogiri (1.12.5)
@@ -492,8 +532,6 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
-    rails-settings-cached (0.6.6)
-      rails (>= 4.2.0)
     railties (6.1.4.1)
       actionpack (= 6.1.4.1)
       activesupport (= 6.1.4.1)
@@ -623,6 +661,7 @@ GEM
     stoplight (2.2.1)
     strong_migrations (0.7.8)
       activerecord (>= 5)
+    strscan (3.0.1)
     temple (0.8.2)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
@@ -632,6 +671,7 @@ GEM
     thwait (0.2.0)
       e2mmap
     tilt (2.0.10)
+    timeout (0.2.0)
     tpm-key_attestation (0.9.0)
       bindata (~> 2.4)
       openssl-signature_algorithm (~> 0.4.0)
@@ -745,10 +785,11 @@ DEPENDENCIES
   letter_opener_web (~> 2.0)
   link_header (~> 0.0)
   lograge (~> 0.11)
+  mail!
   makara (~> 0.5)
   mario-redis-lock (~> 1.2)
   memory_profiler
-  microformats (~> 4.2)
+  microformats (~> 4.2)!
   mime-types (~> 3.4.1)
   net-ldap (~> 0.17)
   nokogiri (~> 1.12)
@@ -776,7 +817,7 @@ DEPENDENCIES
   rails (~> 6.1.4)
   rails-controller-testing (~> 1.0)
   rails-i18n (~> 6.0)
-  rails-settings-cached (~> 0.6)
+  rails-settings-cached (~> 0.6)!
   rdf-normalize (~> 0.4)
   redis (~> 4.5)
   redis-namespace (~> 1.8)
@@ -817,4 +858,4 @@ RUBY VERSION
    ruby 3.0.3
 
 BUNDLED WITH
-   2.2.22
+   2.3.0.dev
