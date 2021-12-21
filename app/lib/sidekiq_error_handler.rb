@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SidekiqErrorHandler
-  BACKTRACE_LIMIT = 3
+  BACKTRACE_LIMIT = 30
 
   def call(*)
     yield
