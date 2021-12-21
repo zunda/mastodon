@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/zunda/rails-settings-cached.git
-  revision: e3a3c992fac508b2ca445d2898365b6ddf8cfa64
+  revision: 8ba82d478b6d7675fcc3fc59d7cc738ded92e539
   branch: v0.6.6-aliases-true
   specs:
     rails-settings-cached (0.6.6)
