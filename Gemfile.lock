@@ -376,7 +376,7 @@ GEM
     mime-types-data (3.2021.1115)
     mini_mime (1.1.2)
     mini_portile2 (2.6.1)
-    minitest (5.14.4)
+    minitest (5.15.0)
     msgpack (1.4.2)
     multi_json (1.15.0)
     multipart-post (2.1.1)
@@ -608,7 +608,7 @@ GEM
     stackprof (0.2.17)
     statsd-ruby (1.5.0)
     stoplight (2.2.1)
-    strong_migrations (0.7.8)
+    strong_migrations (0.7.9)
       activerecord (>= 5)
     temple (0.8.2)
     terminal-table (3.0.2)
@@ -675,7 +675,7 @@ GEM
     xorcist (1.1.2)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.2)
 
 PLATFORMS
   ruby
