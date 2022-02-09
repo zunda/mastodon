@@ -20,7 +20,6 @@ WORKDIR /mastodon
 
 RUN apk -U upgrade \
  && apk add --no-cache ca-certificates wget \
- && update-ca-certificates \
  && apk add -t build-dependencies \
     build-base \
     icu-dev \
@@ -30,6 +29,13 @@ RUN apk -U upgrade \
     postgresql-dev \
     protobuf-dev \
     python \
+    sed \
+ && sed -i '/CN=DST Root CA X3/,/-----END CERTIFICATE-----/d' /etc/ssl/cert.pem \
+ && sed -i /DST_Root_CA_X3.crt/d /etc/ca-certificates.conf \
+ && rm /etc/ssl/certs/2e5ac55d.0 \
+       /etc/ssl/certs/ca-cert-DST_Root_CA_X3.pem \
+       /usr/share/ca-certificates/mozilla/DST_Root_CA_X3.crt \
+ && update-ca-certificates \
  && apk add \
     ffmpeg \
     file \
