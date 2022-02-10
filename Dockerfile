@@ -73,6 +73,7 @@ COPY Gemfile Gemfile.lock package.json yarn.lock .yarnclean /mastodon/
 
 RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-include=/usr/local/include \
  && bundle install -j$(getconf _NPROCESSORS_ONLN) --deployment --without test development \
+ && sed -i '/DST Root CA X3/,/-----END CERTIFICATE-----/d' vendor/bundle/ruby/*/gems/aws-sdk-core-*/ca-bundle.crt \
  && yarn --pure-lockfile \
  && yarn cache clean
 
