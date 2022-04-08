@@ -42,7 +42,7 @@ end
 gem 'net-ldap', '~> 0.17'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
-gem 'gitlab-omniauth-openid-connect', '~>0.5.0', require: 'omniauth_openid_connect'
+gem 'gitlab-omniauth-openid-connect', '~>0.9.1', require: 'omniauth_openid_connect'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
@@ -101,7 +101,7 @@ gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.27'
+  gem 'fabrication', '~> 2.28'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.9'
@@ -148,7 +148,7 @@ group :development do
 end
 
 group :production do
-  gem 'lograge', '~> 0.11'
+  gem 'lograge', '~> 0.12'
 end
 
 gem 'scout_apm'
