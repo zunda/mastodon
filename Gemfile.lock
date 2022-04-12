@@ -903,7 +903,7 @@ DEPENDENCIES
   xorcist (~> 1.1)
 
 RUBY VERSION
-   ruby 3.1.1
+   ruby 3.1.2
 
 BUNDLED WITH
    2.3.0.dev
