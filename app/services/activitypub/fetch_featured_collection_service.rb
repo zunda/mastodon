@@ -22,6 +22,7 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   private
 
   def process_items(items)
+    return unless items
     status_ids = items.filter_map do |item|
       uri = value_or_id(item)
       next if ActivityPub::TagManager.instance.local_uri?(uri)
@@ -49,7 +50,7 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
     StatusPin.where(account: @account, status_id: to_remove).delete_all unless to_remove.empty?
 
     to_add.each do |status_id|
-      StatusPin.create!(account: @account, status_id: status_id)
+      StatusPin.create!(account: @account, status_id: status_id) if status_id
     end
   end
 
