@@ -11,15 +11,11 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
 
     return unless supported_context?
 
-    begin
-      case @json['type']
-      when 'Collection', 'CollectionPage'
-        process_items @json['items']
-      when 'OrderedCollection', 'OrderedCollectionPage'
-        process_items @json['orderedItems']
-      end
-    rescue NoMethodError => x
-      raise x, "#{x.message} processing #{@account.featured_collection_url} for #{@json['type']}"
+    case @json['type']
+    when 'Collection', 'CollectionPage'
+      process_items @json['items']
+    when 'OrderedCollection', 'OrderedCollectionPage'
+      process_items @json['orderedItems']
     end
   end
 
