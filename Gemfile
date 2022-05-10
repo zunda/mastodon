@@ -114,7 +114,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.36'
+  gem 'capybara', '~> 3.37'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.20'
   gem 'microformats', '~> 4.2', git: 'https://github.com/zunda/microformats-ruby.git', branch: 'use-ruby-3.1.0'

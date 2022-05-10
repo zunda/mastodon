@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { makeGetAccount } from '../../../selectors';
+import { makeGetAccount, getAccountHidden } from '../../../selectors';
 import Header from '../components/header';
 import {
   followAccount,
@@ -35,6 +35,7 @@ const makeMapStateToProps = () => {
     account: getAccount(state, accountId),
     domain: state.getIn(['meta', 'domain']),
     identity_proofs: state.getIn(['identity_proofs', accountId], ImmutableList()),
+    hidden: getAccountHidden(state, accountId),
   });
 
   return mapStateToProps;

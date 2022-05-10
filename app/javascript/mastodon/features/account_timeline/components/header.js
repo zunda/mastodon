@@ -25,6 +25,7 @@ export default class Header extends ImmutablePureComponent {
     onAddToList: PropTypes.func.isRequired,
     hideTabs: PropTypes.bool,
     domain: PropTypes.string.isRequired,
+    hidden: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -92,7 +93,7 @@ export default class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, hideTabs, identity_proofs } = this.props;
+    const { account, hidden, hideTabs, identity_proofs } = this.props;
 
     if (account === null) {
       return null;
@@ -100,7 +101,7 @@ export default class Header extends ImmutablePureComponent {
 
     return (
       <div className='account-timeline__header'>
-        {account.get('moved') && <MovedNote from={account} to={account.get('moved')} />}
+        {(!hidden && account.get('moved')) && <MovedNote from={account} to={account.get('moved')} />}
 
         <InnerHeader
           account={account}
@@ -119,9 +120,10 @@ export default class Header extends ImmutablePureComponent {
           onAddToList={this.handleAddToList}
           onEditAccountNote={this.handleEditAccountNote}
           domain={this.props.domain}
+          hidden={hidden}
         />
 
-        {!hideTabs && (
+        {!(hideTabs || hidden) && (
           <div className='account__section-headline'>
             <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Posts' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Posts and replies' /></NavLink>
