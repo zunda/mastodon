@@ -28,6 +28,7 @@ class ActivityPub::ProcessAccountService < BaseService
       create_account if @account.nil?
       update_account
       process_tags
+      process_attachments
 
       process_duplicate_accounts! if @options[:verified_webfinger]
     end
