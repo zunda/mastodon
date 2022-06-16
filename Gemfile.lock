@@ -433,7 +433,7 @@ GEM
       digest
       net-protocol
       strscan
-    net-ldap (0.17.0)
+    net-ldap (0.17.1)
     net-pop (0.1.1)
       digest
       net-protocol
@@ -651,7 +651,7 @@ GEM
       redis (>= 4.2.0)
     sidekiq-bulk (0.2.0)
       sidekiq
-    sidekiq-scheduler (4.0.0)
+    sidekiq-scheduler (4.0.1)
       redis (>= 4.2.0)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 4)
