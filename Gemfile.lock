@@ -561,9 +561,9 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
-    railties (6.1.5.1)
-      actionpack (= 6.1.5.1)
-      activesupport (= 6.1.5.1)
+    railties (6.1.6)
+      actionpack (= 6.1.6)
+      activesupport (= 6.1.6)
       method_source
       rake (>= 12.2)
       thor (~> 1.0)
