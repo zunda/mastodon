@@ -19,10 +19,10 @@ GIT
 
 GIT
   remote: https://github.com/zunda/webpacker.git
-  revision: 4bad6dd235ca6225e1050bcc0c1ccf79a64bf2fd
-  branch: clear-command-with-better-versioning
+  revision: ddee7243e8ee1a20285a3a888dfd80e0d44e0d34
+  branch: v5.4.3-clear-command-with-better-versioning
   specs:
-    webpacker (6.0.0.beta.7)
+    webpacker (5.4.3)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -531,7 +531,7 @@ GEM
       httpclient
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
-    rack-proxy (0.7.0)
+    rack-proxy (0.7.2)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
