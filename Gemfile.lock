@@ -646,7 +646,7 @@ GEM
       parser
     securecompare (1.0.0)
     semantic_range (3.0.0)
-    sidekiq (6.4.2)
+    sidekiq (6.5.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -871,7 +871,7 @@ DEPENDENCIES
   sanitize (~> 6.0)
   scenic (~> 1.6)
   scout_apm
-  sidekiq (~> 6.4)
+  sidekiq (~> 6.5)
   sidekiq-bulk (~> 0.2.0)
   sidekiq-scheduler (~> 4.0)
   sidekiq-unique-jobs (~> 7.1)
