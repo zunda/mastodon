@@ -151,7 +151,7 @@ group :production do
   gem 'lograge', '~> 0.12'
 end
 
-gem 'scout_apm'
+gem 'scout_apm', '>= 5.2'
 gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 
