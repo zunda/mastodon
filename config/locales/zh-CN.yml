@@ -38,7 +38,6 @@ zh-CN:
       other: 条嘟文
     status_count_before: 他们共嘟出了
     tagline: 分布式社交网络
-    terms: 使用条款
     unavailable_content: 被限制的服务器
     unavailable_content_description:
       domain: 服务器
@@ -234,6 +233,7 @@ zh-CN:
         confirm_user: 确认用户
         create_account_warning: 创建警告
         create_announcement: 创建公告
+        create_canonical_email_block: 新增 E-mail 屏蔽
         create_custom_emoji: 创建自定义表情符号
         create_domain_allow: 允许新域名
         create_domain_block: 封禁新域名
@@ -243,6 +243,7 @@ zh-CN:
         create_user_role: 创建角色
         demote_user: 给用户降职
         destroy_announcement: 删除公告
+        destroy_canonical_email_block: 删除 E-mail 封禁
         destroy_custom_emoji: 删除自定义表情符号
         destroy_domain_allow: 解除域名允许
         destroy_domain_block: 解除域名封禁
@@ -278,6 +279,7 @@ zh-CN:
         update_announcement: 更新公告
         update_custom_emoji: 更新自定义表情符号
         update_domain_block: 更新域名屏蔽
+        update_ip_block: 编辑 IP 封禁规则
         update_status: 更新嘟文
         update_user_role: 更新角色
       actions:
@@ -289,6 +291,7 @@ zh-CN:
         confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_account_warning_html: "%{name} 向 %{target} 发送了警告"
         create_announcement_html: "%{name} 创建了新公告 %{target}"
+        create_canonical_email_block_html: "%{name} 屏蔽了 hash 为 %{target} 的电子邮箱"
         create_custom_emoji_html: "%{name} 添加了新的自定义表情 %{target}"
         create_domain_allow_html: "%{name} 允许了和域名 %{target} 的跨站交互"
         create_domain_block_html: "%{name} 屏蔽了域名 %{target}"
@@ -298,6 +301,7 @@ zh-CN:
         create_user_role_html: "%{name} 创建了 %{target} 角色"
         demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
+        destroy_canonical_email_block_html: "%{name} 解除屏蔽了 hash 为 %{target} 的电子邮箱"
         destroy_custom_emoji_html: "%{name} 删除了自定义表情 %{target}"
         destroy_domain_allow_html: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block_html: "%{name} 解除了对域名 %{target} 的屏蔽"
@@ -333,6 +337,7 @@ zh-CN:
         update_announcement_html: "%{name} 更新了公告 %{target}"
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
+        update_ip_block_html: "%{name} 修改了对 IP %{target} 的规则"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
         update_user_role_html: "%{name} 更改了 %{target} 角色"
       empty: 没有找到日志
@@ -775,8 +780,8 @@ zh-CN:
         desc_html: 会在在侧栏和元数据标签中显示。可以用一小段话描述 Mastodon 是什么，以及本服务器的特点。
         title: 服务器一句话介绍
       site_terms:
-        desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
-        title: 自定义使用条款
+        desc_html: 您可以写自己的隐私政策。您可以使用 HTML 标签
+        title: 自定义隐私政策
       site_title: 本站名称
       thumbnail:
         desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
@@ -786,6 +791,7 @@ zh-CN:
         title: 时间轴预览
       title: 网站设置
       trendable_by_default:
+        desc_html: 特定的热门内容仍可以被明确地禁止
         title: 允许在未审查的情况下将话题置为热门
       trends:
         desc_html: 公开显示先前已通过审核的当前热门话题
@@ -1678,7 +1684,7 @@ zh-CN:
       <p>此文件以 CC-BY-SA 授权。最后更新时间为 2022 年 5 月 26 日。</p>
 
       <p>最初改编自 <a href="https://github.com/discourse/discourse">Discourse 隐私政策</a>.</p>
-    title: "%{instance} 使用条款和隐私权政策"
+    title: "%{instance} 的隐私政策"
   themes:
     contrast: Mastodon（高对比度）
     default: Mastodon（暗色主题）
