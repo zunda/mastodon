@@ -1,7 +1,6 @@
 ---
 vi:
   about:
-    about_hashtag_html: Đây là các tút <strong>#%{hashtag}</strong> trên mạng liên hợp. Bạn có thể tương tác với chúng sau khi đăng nhập.
     about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
     about_this: Giới thiệu
     active_count_after: hoạt động
@@ -10,14 +9,11 @@ vi:
     api: API
     apps: Apps
     apps_platforms: Lướt Mastodon trên iOS, Android và các nền tảng khác
-    browse_directory: Bạn bè từ khắp mọi nơi trên thế giới
-    browse_local_posts: Xem những gì đang xảy ra
     browse_public_posts: Đọc thử những tút công khai trên Mastodon
     contact: Liên lạc
     contact_missing: Chưa thiết lập
     contact_unavailable: N/A
     continue_to_web: Xem trong web
-    discover_users: Thành viên
     documentation: Tài liệu
     federation_hint_html: Đăng ký tài khoản %{instance} là bạn có thể giao tiếp với bất cứ ai trên bất kỳ máy chủ Mastodon nào và còn hơn thế nữa.
     get_apps: Ứng dụng di động
@@ -85,9 +81,9 @@ vi:
       action: Thực hiện hành động
       title: Áp đặt kiểm duyệt với %{acct}
     account_moderation_notes:
-      create: Thêm ghi chú
-      created_msg: Thêm ghi chú kiểm duyệt thành công!
-      destroyed_msg: Đã xóa ghi chú kiểm duyệt!
+      create: Thêm lưu ý
+      created_msg: Thêm lưu ý kiểm duyệt thành công!
+      destroyed_msg: Đã xóa lưu ý kiểm duyệt!
     accounts:
       add_email_domain_block: Chặn tên miền email
       approve: Phê duyệt
@@ -137,8 +133,8 @@ vi:
       ip: IP
       joined: Đã tham gia
       location:
-        all: Toàn bộ
-        local: Máy chủ của bạn
+        all: Tất cả
+        local: Máy chủ này
         remote: Máy chủ khác
         title: Vị trí
       login_status: Trạng thái tài khoản
@@ -148,8 +144,8 @@ vi:
       memorialized_msg: Đã chuyển %{username} thành tài khoản tưởng nhớ
       moderation:
         active: Hoạt động
-        all: Toàn bộ
-        pending: Chờ xử lý
+        all: Tất cả
+        pending: Chờ
         silenced: Hạn chế
         suspended: Vô hiệu hóa
         title: Trạng thái
@@ -229,7 +225,7 @@ vi:
         change_email_user: Đổi email người dùng
         change_role_user: Thay đổi vai trò
         confirm_user: Xác minh người dùng
-        create_account_warning: Nhắc nhở người dùng
+        create_account_warning: Cảnh cáo người dùng
         create_announcement: Tạo thông báo mới
         create_canonical_email_block: Tạo chặn tên miền email mới
         create_custom_emoji: Tạo emoji
@@ -287,7 +283,7 @@ vi:
         change_email_user_html: "%{name} đã thay đổi địa chỉ email của %{target}"
         change_role_user_html: "%{name} đã thay đổi vai trò %{target}"
         confirm_user_html: "%{name} đã xác minh địa chỉ email của %{target}"
-        create_account_warning_html: "%{name} đã nhắc nhở %{target}"
+        create_account_warning_html: "%{name} đã cảnh cáo %{target}"
         create_announcement_html: "%{name} tạo thông báo mới %{target}"
         create_canonical_email_block_html: "%{name} chặn email với hàm băm %{target}"
         create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
@@ -584,8 +580,8 @@ vi:
       status: Trạng thái
       title: Mạng liên hợp
     report_notes:
-      created_msg: Đã thêm ghi chú kiểm duyệt!
-      destroyed_msg: Đã xóa ghi chú kiểm duyệt!
+      created_msg: Đã thêm lưu ý kiểm duyệt!
+      destroyed_msg: Đã xóa lưu ý kiểm duyệt!
       today_at: Hôm nay lúc %{time}
     reports:
       account:
@@ -594,13 +590,13 @@ vi:
       action_log: Nhật ký kiểm duyệt
       action_taken_by: Quyết định bởi
       actions:
-        delete_description_html: Những tút bị báo cáo sẽ được xóa và 1 lần cảnh cáo sẽ được ghi lại để giúp bạn lưu ý về tài khoản này trong tương lai.
-        mark_as_sensitive_description_html: Media trong các tút bị báo cáo sẽ được đánh dấu là nhạy cảm và 1 lần cảnh cáo sẽ được ghi lại để giúp bạn nắm bắt nhanh những vi phạm của cùng một tài khoản.
-        other_description_html: Những tùy chọn để kiểm soát tài khoản và giao tiếp với tài khoản bị báo cáo.
-        resolve_description_html: Không có hành động nào áp dụng đối với tài khoản bị báo cáo, không có cảnh cáo, và báo cáo sẽ được đóng.
-        silence_description_html: Trang hồ sơ sẽ chỉ hiển thị với những người đã theo dõi hoặc tìm kiếm thủ công, hạn chế tối đa tầm ảnh hưởng của nó. Có thể đổi lại bình thường sau.
-        suspend_description_html: Trang hồ sơ và tất cả các nội dung sẽ không thể truy cập cho đến khi nó bị xóa hoàn toàn. Không thể tương tác với tài khoản. Đảo ngược trong vòng 30 ngày.
-      actions_description_html: Hướng xử lý báo cáo này. Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho họ, ngoại trừ <strong>Spam</strong>.
+        delete_description_html: Xóa các tút và ghi lại 1 lần cảnh cáo.
+        mark_as_sensitive_description_html: Đánh dấu nhạy cảm media trong các tút và ghi lại 1 lần cảnh cáo.
+        other_description_html: Tùy chọn cách kiểm soát và giao tiếp với tài khoản bị báo cáo.
+        resolve_description_html: Không áp dụng trừng phạt nào và đóng báo cáo.
+        silence_description_html: Chỉ hiển thị trang với những người đã theo dõi hoặc tìm kiếm thủ công.
+        suspend_description_html: Đóng băng hồ sơ và chặn truy cập tất cả các nội dung cho đến khi chúng bị xóa hoàn toàn. Đảo ngược trong vòng 30 ngày.
+      actions_description_html: Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho người này, ngoại trừ <strong>Spam</strong>.
       add_to_report: Bổ sung báo cáo
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
@@ -610,32 +606,32 @@ vi:
       category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
       comment:
         none: Không có mô tả
-      comment_description_html: 'Để cung cấp thêm thông tin, %{name} cho biết:'
+      comment_description_html: "%{name} cho biết thêm:"
       created_at: Báo cáo lúc
       delete_and_resolve: Xóa tút
       forwarded: Chuyển tiếp
       forwarded_to: Chuyển tiếp tới %{domain}
-      mark_as_resolved: Đã xử lý xong!
-      mark_as_sensitive: Đánh dấu là nhạy cảm
+      mark_as_resolved: Xử lý xong
+      mark_as_sensitive: Đánh dấu nhạy cảm
       mark_as_unresolved: Mở lại
       no_one_assigned: Chưa có
       notes:
-        create: Ghi chú
+        create: Lưu ý
         create_and_resolve: Xử lý
-        create_and_unresolve: Mở lại kèm ghi chú mới
+        create_and_unresolve: Mở lại kèm lưu ý mới
         delete: Xóa bỏ
-        placeholder: Mô tả vi phạm của người này, mức độ xử lý và những cập nhật liên quan khác...
-        title: Ghi chú
-      notes_description_html: Xem và để lại ghi chú cho các kiểm duyệt viên khác
+        placeholder: Mô tả vi phạm của người này, hướng xử lý và những cập nhật liên quan khác...
+        title: Lưu ý
+      notes_description_html: Xem và để lại lưu ý cho các kiểm duyệt viên khác
       quick_actions_description_html: 'Kiểm duyệt nhanh hoặc kéo xuống để xem nội dung bị báo cáo:'
       remote_user_placeholder: người dùng ở %{instance}
       reopen: Mở lại báo cáo
       report: 'Báo cáo #%{id}'
       reported_account: Tài khoản bị báo cáo
       reported_by: Báo cáo bởi
-      resolved: Đã xử lý xong
+      resolved: Đã xong
       resolved_msg: Đã xử lý báo cáo xong!
-      skip_to_actions: Kiểm duyệt ngay
+      skip_to_actions: Kiểm duyệt
       status: Trạng thái
       statuses: Nội dung bị báo cáo
       statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
@@ -644,7 +640,7 @@ vi:
       unassign: Bỏ qua
       unresolved: Chờ xử lý
       updated_at: Cập nhật lúc
-      view_profile: Xem trang hồ sơ
+      view_profile: Xem trang
     roles:
       add_new: Thêm vai trò
       assigned_users:
@@ -765,9 +761,6 @@ vi:
           none: Không ai có thể đăng ký
           open: Bất cứ ai cũng có thể đăng ký
         title: Chế độ đăng ký
-      show_known_fediverse_at_about_page:
-        desc_html: Nếu tắt, bảng tin sẽ chỉ hiển thị nội dung do người dùng của máy chủ này tạo ra
-        title: Bao gồm nội dung từ mạng liên hợp trên bảng tin không được cho phép
       site_description:
         desc_html: Nội dung giới thiệu về máy chủ. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể dùng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code>.
         title: Mô tả máy chủ
@@ -896,8 +889,8 @@ vi:
       add_new: Thêm mới
       delete: Xóa bỏ
       edit_preset: Sửa mẫu có sẵn
-      empty: Bạn chưa thêm mẫu nhắc nhở nào cả.
-      title: Quản lý mẫu nhắc nhở
+      empty: Bạn chưa thêm mẫu cảnh cáo nào cả.
+      title: Quản lý mẫu cảnh cáo
     webhooks:
       add_new: Thêm endpoint
       delete: Xóa bỏ
@@ -1087,10 +1080,6 @@ vi:
       more_details_html: Đọc <a href="%{terms_path}">chính sách bảo mật</a> để biết thêm chi tiết.
       username_available: Tên người dùng của bạn sẽ có thể đăng ký lại
       username_unavailable: Tên người dùng của bạn sẽ không thể đăng ký mới
-  directories:
-    directory: Khám phá
-    explanation: Tìm những người chung sở thích
-    explore_mastodon: Thành viên %{title}
   disputes:
     strikes:
       action_taken: Hành động áp dụng
@@ -1114,7 +1103,7 @@ vi:
         delete_statuses: Xóa tút
         disable: Đóng băng tài khoản
         mark_statuses_as_sensitive: Đánh dấu tút là nhạy cảm
-        none: Nhắc nhở
+        none: Cảnh cáo
         sensitive: Đánh dấu tài khoản là nhạy cảm
         silence: Hạn chế tài khoản
         suspend: Vô hiệu hóa tài khoản
@@ -1412,12 +1401,12 @@ vi:
     most_recent: Mới nhất
     moved: Đã xóa
     mutual: Đồng thời
-    primary: Bình thường
+    primary: Hoạt động
     relationship: Quan hệ
     remove_selected_domains: Xóa hết người theo dõi từ các máy chủ đã chọn
     remove_selected_followers: Xóa những người theo dõi đã chọn
     remove_selected_follows: Ngưng theo dõi những người đã chọn
-    status: Trạng thái tài khoản
+    status: Trạng thái của họ
   remote_follow:
     acct: Nhập địa chỉ Mastodon của bạn (tên@máy chủ)
     missing_resource: Không tìm thấy URL chuyển hướng cho tài khoản của bạn
@@ -1713,7 +1702,7 @@ vi:
         delete_statuses: Những tút %{acct} của bạn đã bị xóa bỏ
         disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
         mark_statuses_as_sensitive: Tút của bạn trên %{acct} bị đánh dấu nhạy cảm
-        none: Nhắc nhở tới %{acct}
+        none: Cảnh cáo %{acct}
         sensitive: Tút của bạn trên %{acct} sẽ bị đánh dấu nhạy cảm kể từ bây giờ
         silence: Tài khoản %{acct} của bạn đã bị hạn chế
         suspend: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
@@ -1721,7 +1710,7 @@ vi:
         delete_statuses: Xóa tút
         disable: Tài khoản bị đóng băng
         mark_statuses_as_sensitive: Tút đã bị đánh dấu nhạy cảm
-        none: Nhắc nhở
+        none: Cảnh cáo
         sensitive: Tài khoản đã bị đánh dấu nhạy cảm
         silence: Tài khoản bị hạn chế
         suspend: Tài khoản bị vô hiệu hóa

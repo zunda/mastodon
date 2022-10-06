@@ -96,7 +96,6 @@ Rails.application.routes.draw do
   get  '/interact/:id', to: 'remote_interaction#new', as: :remote_interaction
   post '/interact/:id', to: 'remote_interaction#create'
 
-  get '/explore', to: 'directories#index', as: :explore
   get '/settings', to: redirect('/settings/profile')
 
   namespace :settings do
@@ -191,7 +190,9 @@ Rails.application.routes.draw do
   resource :relationships, only: [:show, :update]
   resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
-  get '/public', to: 'public_timelines#show', as: :public_timeline
+  get '/explore', to: redirect('/web/explore')
+  get '/public', to: redirect('/web/public')
+  get '/public/local', to: redirect('/web/public/local')
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
   resource :authorize_interaction, only: [:show, :create]
@@ -621,10 +622,12 @@ Rails.application.routes.draw do
     end
 
     namespace :v2 do
-      resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
+
+      resources :media,       only: [:create]
       resources :suggestions, only: [:index]
       resources :filters,     only: [:index, :create, :show, :update, :destroy]
+      resource  :instance,    only: [:show]
 
       namespace :admin do
         resources :accounts, only: [:index]
