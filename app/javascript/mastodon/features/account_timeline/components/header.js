@@ -24,6 +24,7 @@ export default class Header extends ImmutablePureComponent {
     onEndorseToggle: PropTypes.func.isRequired,
     onAddToList: PropTypes.func.isRequired,
     onChangeLanguages: PropTypes.func.isRequired,
+    onInteractionModal: PropTypes.func.isRequired,
     hideTabs: PropTypes.bool,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
@@ -97,6 +98,10 @@ export default class Header extends ImmutablePureComponent {
     this.props.onChangeLanguages(this.props.account);
   }
 
+  handleInteractionModal = () => {
+    this.props.onInteractionModal(this.props.account);
+  }
+
   render () {
     const { account, hidden, hideTabs, identity_proofs } = this.props;
 
@@ -125,6 +130,7 @@ export default class Header extends ImmutablePureComponent {
           onAddToList={this.handleAddToList}
           onEditAccountNote={this.handleEditAccountNote}
           onChangeLanguages={this.handleChangeLanguages}
+          onInteractionModal={this.handleInteractionModal}
           domain={this.props.domain}
           hidden={hidden}
         />
