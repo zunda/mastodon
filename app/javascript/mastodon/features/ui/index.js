@@ -52,10 +52,10 @@ import {
   Explore,
   FollowRecommendations,
   About,
+  PrivacyPolicy,
 } from './util/async-components';
-import { me, title } from '../../initial_state';
+import { me } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
-import { Helmet } from 'react-helmet';
 import Header from './components/header';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -173,6 +173,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
           <WrappedRoute path='/about' component={About} content={children} />
+          <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
 
           <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
           <WrappedRoute path={['/public', '/timelines/public']} exact component={PublicTimeline} content={children} />
@@ -573,10 +574,6 @@ class UI extends React.PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
-
-          <Helmet>
-            <title>{title}</title>
-          </Helmet>
         </div>
       </HotKeys>
     );
