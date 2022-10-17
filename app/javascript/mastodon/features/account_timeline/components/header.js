@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import InnerHeader from '../../account/components/header';
+import FeaturedTags from '../../account/components/featured_tags';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import MovedNote from './moved_note';
 import { FormattedMessage } from 'react-intl';
@@ -28,6 +29,7 @@ export default class Header extends ImmutablePureComponent {
     hideTabs: PropTypes.bool,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
+    tagged: PropTypes.string,
   };
 
   static contextTypes = {
@@ -103,7 +105,7 @@ export default class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, hidden, hideTabs, identity_proofs } = this.props;
+    const { account, hidden, hideTabs, tagged, identity_proofs } = this.props;
 
     if (account === null) {
       return null;
@@ -136,11 +138,15 @@ export default class Header extends ImmutablePureComponent {
         />
 
         {!(hideTabs || hidden) && (
-          <div className='account__section-headline'>
-            <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Posts' /></NavLink>
-            <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Posts and replies' /></NavLink>
-            <NavLink exact to={`/@${account.get('acct')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
-          </div>
+          <Fragment>
+            <div className='account__section-headline'>
+              <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Posts' /></NavLink>
+              <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Posts and replies' /></NavLink>
+              <NavLink exact to={`/@${account.get('acct')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
+            </div>
+
+            <FeaturedTags account={account} tagged={tagged} />
+          </Fragment>
         )}
       </div>
     );
