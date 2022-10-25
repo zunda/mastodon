@@ -6,7 +6,7 @@ import Permalink from './permalink';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
-import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
+import { autoPlayGif, languages as preloadedLanguages, translationEnabled } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
@@ -181,7 +181,7 @@ class StatusContent extends React.PureComponent {
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
-    const renderTranslate = this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && status.get('language') !== null && intl.locale !== status.get('language');
+    const renderTranslate = translationEnabled && this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && status.get('language') !== null && intl.locale !== status.get('language');
     const language = preloadedLanguages.find(lang => lang[0] === status.get('language'));
     const languageName = language ? language[2] : status.get('language');
 
@@ -208,7 +208,7 @@ class StatusContent extends React.PureComponent {
 
     const translateButton = (
       <button className='status__content__read-more-button' onClick={this.handleTranslate}>
-        {status.get('translation') ? <span><FormattedMessage id='status.translated_from' defaultMessage='Translated from {lang}' values={{ lang: languageName }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
+        {status.get('translation') ? <span><FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider: status.getIn(['translation', 'provider']) }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
       </button>
     );
 
