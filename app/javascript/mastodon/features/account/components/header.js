@@ -336,20 +336,18 @@ class Header extends ImmutablePureComponent {
                     <dd>{intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' })}</dd>
                   </dl>
 
-                {(identity_proofs.size > 0) && (
-                    {identity_proofs.map((proof, i) => (
-                      <dl key={i}>
-                        <dt dangerouslySetInnerHTML={{ __html: proof.get('provider') }} />
+                  {identity_proofs.map((proof, i) => (
+                    <dl key={i}>
+                      <dt dangerouslySetInnerHTML={{ __html: proof.get('provider') }} />
 
-                        <dd className='verified'>
-                          <a href={proof.get('proof_url')} target='_blank' rel='noopener noreferrer'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
-                            <Icon id='check' className='verified__mark' />
-                          </span></a>
-                          <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} /></a>
-                        </dd>
-                      </dl>
-                    ))}
-                  )}
+                      <dd className='verified'>
+                        <a href={proof.get('proof_url')} target='_blank' rel='noopener noreferrer'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
+                          <Icon id='check' className='verified__mark' />
+                        </span></a>
+                        <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} /></a>
+                      </dd>
+                    </dl>
+                  ))}
 
                   {fields.map((pair, i) => (
                     <dl key={i}>
