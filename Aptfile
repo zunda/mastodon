@@ -1,8 +1,6 @@
 ffmpeg
 libicu[0-9][0-9]
 libicu-dev
-libidn12
-libidn-dev
 libpq-dev
 libxdamage1
 libxfixes3
