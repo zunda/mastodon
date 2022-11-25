@@ -140,8 +140,8 @@ const startWorker = async (workerId) => {
     },
   };
 
-  if (!!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable') {
-    if (process.env.DB_SSLMODE === 'ssl_noverify') {
+  if (!!process.env.NODE_DB_SSLMODE && process.env.NODE_DB_SSLMODE !== 'disable') {
+    if (process.env.NODE_DB_SSLMODE === 'ssl_noverify') {
       pgConfigs.development.ssl = {rejectUnauthorized: false};
       pgConfigs.production.ssl  = {rejectUnauthorized: false};
     } else {
