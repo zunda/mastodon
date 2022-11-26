@@ -28,7 +28,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.13.0', require: false
+gem 'bootsnap', '~> 1.14.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.2'
@@ -114,7 +114,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.37'
+  gem 'capybara', '~> 3.38'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.23'
   gem 'microformats', '~> 4.4'
@@ -137,7 +137,7 @@ group :development do
   gem 'memory_profiler'
   gem 'rubocop', '~> 1.30', require: false
   gem 'rubocop-rails', '~> 2.15', require: false
-  gem 'brakeman', '~> 5.3', require: false
+  gem 'brakeman', '~> 5.4', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   gem 'capistrano', '~> 3.17'
