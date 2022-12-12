@@ -32,7 +32,7 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/runtime": "^7.20.6",
     "@gamestdio/websocket": "^0.3.2",
-    "@github/webauthn-json": "^0.5.7",
+    "@github/webauthn-json": "^2.0.2",
     "@rails/ujs": "^6.1.7",
     "abortcontroller-polyfill": "^1.7.5",
     "array-includes": "^3.1.6",
