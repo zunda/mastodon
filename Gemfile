@@ -24,7 +24,7 @@ gem 'aws-sdk-s3', '~> 1.117', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1'
-gem 'blurhash', '~> 0.1', git: 'https://github.com/zunda/blurhash.git', branch: 'use-so-under-lib'
+gem 'blurhash', '~> 0.1', git: 'https://github.com/Gargron/blurhash.git', branch: 'master'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'

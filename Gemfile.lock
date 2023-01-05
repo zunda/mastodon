@@ -8,6 +8,13 @@ GIT
       jwt (~> 2.0)
 
 GIT
+  remote: https://github.com/Gargron/blurhash.git
+  revision: 870a34e01ce7d09a7bd4d700435e1764ca823246
+  branch: master
+  specs:
+    blurhash (0.1.6)
+
+GIT
   remote: https://github.com/Shopify/mail.git
   revision: 651a59a231f34b5dc148decb80b45c6581fa71a8
   branch: net-smtp-dependency
@@ -33,14 +40,6 @@ GIT
     microformats (4.4.1)
       json (~> 2.2)
       nokogiri (~> 1.10)
-
-GIT
-  remote: https://github.com/zunda/blurhash.git
-  revision: 7782e7068ae2fe3c91a95fac2acf4ade94045614
-  branch: use-so-under-lib
-  specs:
-    blurhash (0.1.6)
-      ffi (~> 1.14)
 
 GIT
   remote: https://github.com/zunda/rails-settings-cached.git
