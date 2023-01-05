@@ -33,15 +33,6 @@ GIT
     ox (2.14.11)
 
 GIT
-  remote: https://github.com/tenderlove/microformats-ruby.git
-  revision: 8a0ae988e7262b90c9a8167921315167dcdf60d7
-  branch: remove-ruby-limit
-  specs:
-    microformats (4.4.1)
-      json (~> 2.2)
-      nokogiri (~> 1.10)
-
-GIT
   remote: https://github.com/zunda/rails-settings-cached.git
   revision: 86328ef0bd04ce21cc0504ff5e334591e8c2ccab
   branch: v0.6.6-aliases-true
@@ -181,7 +172,7 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.5)
       redis (>= 1.0, < 6)
     builder (3.2.4)
-    bullet (7.0.4)
+    bullet (7.0.7)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     bundler-audit (0.9.1)
@@ -382,7 +373,7 @@ GEM
     jmespath (1.6.2)
     json (2.6.3)
     json-canonicalization (0.3.0)
-    json-jwt (1.13.0)
+    json-jwt (1.14.0)
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
@@ -399,7 +390,7 @@ GEM
     json-schema (3.0.0)
       addressable (>= 2.8)
     jsonapi-renderer (0.2.2)
-    jwt (2.4.1)
+    jwt (2.5.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -452,7 +443,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
-    minitest (5.16.3)
+    minitest (5.17.0)
     msgpack (1.6.0)
     multi_json (1.15.0)
     multipart-post (2.1.1)
@@ -510,7 +501,7 @@ GEM
       openssl (> 2.0, < 3.1)
     orm_adapter (0.5.0)
     parallel (1.22.1)
-    parser (3.1.2.1)
+    parser (3.1.3.0)
       ast (~> 2.4.1)
     parslet (2.0.0)
     pastel (0.8.0)
@@ -604,7 +595,7 @@ GEM
       redis (>= 4)
     redlock (1.3.2)
       redis (>= 3.0.0, < 6.0)
-    regexp_parser (2.6.0)
+    regexp_parser (2.6.1)
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.0.1)
@@ -639,26 +630,26 @@ GEM
     rspec-support (3.11.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.39.0)
+    rubocop (1.42.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.2.1)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.23.0, < 2.0)
+      rubocop-ast (>= 1.24.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.23.0)
+    rubocop-ast (1.24.1)
       parser (>= 3.1.1.0)
-    rubocop-performance (1.15.1)
+    rubocop-performance (1.15.2)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
-    rubocop-rails (2.17.2)
+    rubocop-rails (2.17.4)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
-    rubocop-rspec (2.15.0)
+    rubocop-rspec (2.16.0)
       rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
     ruby-saml (1.13.0)
@@ -860,7 +851,6 @@ DEPENDENCIES
   makara (~> 0.5)
   mario-redis-lock (~> 1.2)
   memory_profiler
-  microformats (~> 4.4)!
   mime-types (~> 3.4.1)
   net-ldap (~> 0.17)
   nokogiri (~> 1.13)
