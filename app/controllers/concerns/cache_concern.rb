@@ -34,7 +34,12 @@ module CacheConcern
     raw = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
     return [] if raw.empty?
 
-    cached_keys_with_value = Rails.cache.read_multi(*raw).transform_keys(&:id)
+    begin
+      cached_keys_with_value = Rails.cache.read_multi(*raw).transform_keys(&:id)
+    rescue NoMethodError => e
+      $stderr.puts "raw :#{raw.inspect}"
+      raise e
+    end
     uncached_ids           = raw.map(&:id) - cached_keys_with_value.keys
 
     klass.reload_stale_associations!(cached_keys_with_value.values) if klass.respond_to?(:reload_stale_associations!)
