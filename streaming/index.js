@@ -131,7 +131,6 @@ const startWorker = async (workerId) => {
       database: process.env.DB_NAME || 'mastodon_development',
       host:     process.env.DB_HOST || pg.defaults.host,
       port:     process.env.DB_PORT || pg.defaults.port,
-      max:      10,
     },
 
     production: {
@@ -140,25 +139,30 @@ const startWorker = async (workerId) => {
       database: process.env.DB_NAME || 'mastodon_production',
       host:     process.env.DB_HOST || 'localhost',
       port:     process.env.DB_PORT || 5432,
-      max:      10,
     },
   };
 
+  pgSslMode = false;
   if (!!process.env.NODE_DB_SSLMODE && process.env.NODE_DB_SSLMODE !== 'disable') {
     if (process.env.NODE_DB_SSLMODE === 'ssl_noverify') {
-      pgConfigs.development.ssl = {rejectUnauthorized: false};
-      pgConfigs.production.ssl  = {rejectUnauthorized: false};
+      pgSslMode = {rejectUnauthorized: false};
     } else {
-      pgConfigs.development.ssl = true;
-      pgConfigs.production.ssl  = true;
+      pgSslMode = true;
     }
   }
+  pgConfigs.development.ssl = pgSslMode;
+  pgConfigs.production.ssl  = pgSslMode;
 
   const app = express();
 
   app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
 
-  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)));
+  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL), {
+    max: process.env.NOCE_DB_POOL || 10,
+    connectionTimeoutMillis: 15000,
+    ssl: pgSslMode,
+  }));
+
   const server = http.createServer(app);
   const redisNamespace = process.env.REDIS_NAMESPACE || null;
 
@@ -867,6 +871,15 @@ const startWorker = async (workerId) => {
     res.write('# TYPE connected_channels gauge\n');
     res.write('# HELP connected_channels The number of Redis channels the streaming server is subscribed to\n');
     res.write(`connected_channels ${Object.keys(subs).length}.0\n`);
+    res.write('# TYPE pg.pool.total_connections gauge \n');
+    res.write('# HELP pg.pool.total_connections The total number of clients existing within the pool\n');
+    res.write(`pg.pool.total_connections ${pgPool.totalCount}.0\n`);
+    res.write('# TYPE pg.pool.idle_connections gauge \n');
+    res.write('# HELP pg.pool.idle_connections The number of clients which are not checked out but are currently idle in the pool\n');
+    res.write(`pg.pool.idle_connections ${pgPool.idleCount}.0\n`);
+    res.write('# TYPE pg.pool.waiting_queries gauge \n');
+    res.write('# HELP pg.pool.waiting_queries The number of queued requests waiting on a client when all clients are checked out\n');
+    res.write(`pg.pool.waiting_queries ${pgPool.waitingCount}.0\n`);
     res.write('# EOF\n');
     res.end();
   }));
