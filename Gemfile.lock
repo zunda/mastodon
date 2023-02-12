@@ -8,13 +8,6 @@ GIT
       jwt (~> 2.0)
 
 GIT
-  remote: https://github.com/Gargron/blurhash.git
-  revision: 870a34e01ce7d09a7bd4d700435e1764ca823246
-  branch: master
-  specs:
-    blurhash (0.1.6)
-
-GIT
   remote: https://github.com/zunda/rails-settings-cached.git
   revision: 86328ef0bd04ce21cc0504ff5e334591e8c2ccab
   branch: v0.6.6-aliases-true
@@ -146,6 +139,7 @@ GEM
     bindata (2.4.14)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
+    blurhash (0.1.7)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     brakeman (5.4.0)
@@ -786,7 +780,7 @@ DEPENDENCIES
   aws-sdk-s3 (~> 1.119)
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
-  blurhash (~> 0.1)!
+  blurhash (~> 0.1)
   bootsnap (~> 1.16.0)
   brakeman (~> 5.4)
   browser
