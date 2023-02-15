@@ -21,7 +21,7 @@ gem 'dotenv-rails', '~> 2.8'
 gem 'aws-sdk-s3', '~> 1.119', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
-gem 'kt-paperclip', '~> 7.1'
+gem 'kt-paperclip', '~> 7.1', github: 'kreeti/kt-paperclip', ref: '11abf222dc31bff71160a1d138b445214f434b2b'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
@@ -72,7 +72,7 @@ gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
-gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/zunda/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
+gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/mastodon/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
