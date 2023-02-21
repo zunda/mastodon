@@ -14,154 +14,6 @@ Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
 
-# Offense count: 81
-# This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'app/controllers/api/v1/tags_controller.rb'
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/concerns/session_tracking_concern.rb'
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/lib/activitypub/activity.rb'
-    - 'app/lib/activitypub/tag_manager.rb'
-    - 'app/lib/request.rb'
-    - 'app/lib/settings/scoped_settings.rb'
-    - 'app/lib/status_filter.rb'
-    - 'app/lib/tag_manager.rb'
-    - 'app/lib/webfinger.rb'
-    - 'app/models/account.rb'
-    - 'app/models/account_conversation.rb'
-    - 'app/models/admin/import.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/models/favourite.rb'
-    - 'app/models/form/admin_settings.rb'
-    - 'app/models/poll.rb'
-    - 'app/models/session_activation.rb'
-    - 'app/models/setting.rb'
-    - 'app/models/status_edit.rb'
-    - 'app/models/user.rb'
-    - 'app/models/user_role.rb'
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-    - 'app/services/activitypub/fetch_remote_status_service.rb'
-    - 'app/services/activitypub/fetch_replies_service.rb'
-    - 'app/services/activitypub/process_account_service.rb'
-    - 'app/services/favourite_service.rb'
-    - 'app/services/notify_service.rb'
-    - 'app/services/post_status_service.rb'
-    - 'app/services/vote_service.rb'
-    - 'app/validators/follow_limit_validator.rb'
-    - 'app/validators/unreserved_username_validator.rb'
-    - 'app/workers/scheduler/accounts_statuses_cleanup_scheduler.rb'
-    - 'db/migrate/20190314181829_migrate_open_registrations_setting.rb'
-    - 'db/migrate/20190529143559_preserve_old_layout_for_existing_users.rb'
-    - 'db/migrate/20210421121431_add_case_insensitive_btree_index_to_tags.rb'
-    - 'db/post_migrate/20221101190723_backfill_admin_action_logs.rb'
-    - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
-    - 'lib/mastodon/domains_cli.rb'
-
-# Offense count: 71
-# This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLineAfterMagicComment:
-  Exclude:
-    - 'Capfile'
-    - 'app/helpers/languages_helper.rb'
-    - 'app/models/account.rb'
-    - 'app/models/account_conversation.rb'
-    - 'app/models/account_domain_block.rb'
-    - 'app/models/account_moderation_note.rb'
-    - 'app/models/account_note.rb'
-    - 'app/models/account_pin.rb'
-    - 'app/models/account_stat.rb'
-    - 'app/models/account_summary.rb'
-    - 'app/models/account_warning.rb'
-    - 'app/models/backup.rb'
-    - 'app/models/block.rb'
-    - 'app/models/bookmark.rb'
-    - 'app/models/canonical_email_block.rb'
-    - 'app/models/conversation.rb'
-    - 'app/models/conversation_mute.rb'
-    - 'app/models/custom_emoji.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/models/custom_filter_keyword.rb'
-    - 'app/models/custom_filter_status.rb'
-    - 'app/models/device.rb'
-    - 'app/models/domain_block.rb'
-    - 'app/models/email_domain_block.rb'
-    - 'app/models/encrypted_message.rb'
-    - 'app/models/favourite.rb'
-    - 'app/models/featured_tag.rb'
-    - 'app/models/follow.rb'
-    - 'app/models/follow_recommendation.rb'
-    - 'app/models/follow_recommendation_suppression.rb'
-    - 'app/models/follow_request.rb'
-    - 'app/models/identity.rb'
-    - 'app/models/import.rb'
-    - 'app/models/instance.rb'
-    - 'app/models/invite.rb'
-    - 'app/models/ip_block.rb'
-    - 'app/models/list.rb'
-    - 'app/models/list_account.rb'
-    - 'app/models/login_activity.rb'
-    - 'app/models/media_attachment.rb'
-    - 'app/models/mention.rb'
-    - 'app/models/mute.rb'
-    - 'app/models/notification.rb'
-    - 'app/models/one_time_key.rb'
-    - 'app/models/poll.rb'
-    - 'app/models/poll_vote.rb'
-    - 'app/models/preview_card.rb'
-    - 'app/models/preview_card_provider.rb'
-    - 'app/models/relay.rb'
-    - 'app/models/report.rb'
-    - 'app/models/report_note.rb'
-    - 'app/models/session_activation.rb'
-    - 'app/models/setting.rb'
-    - 'app/models/site_upload.rb'
-    - 'app/models/status.rb'
-    - 'app/models/status_edit.rb'
-    - 'app/models/status_pin.rb'
-    - 'app/models/status_stat.rb'
-    - 'app/models/tag.rb'
-    - 'app/models/unavailable_domain.rb'
-    - 'app/models/user.rb'
-    - 'app/models/user_ip.rb'
-    - 'app/models/web/push_subscription.rb'
-    - 'app/models/web/setting.rb'
-    - 'app/models/webauthn_credential.rb'
-    - 'config.ru'
-    - 'db/migrate/20220613110834_add_action_to_custom_filters.rb'
-    - 'db/post_migrate/20220613110802_remove_whole_word_from_custom_filters.rb'
-    - 'db/post_migrate/20220613110903_remove_irreversible_from_custom_filters.rb'
-    - 'spec/controllers/api/v1/accounts/statuses_controller_spec.rb'
-    - 'spec/models/tag_spec.rb'
-
-# Offense count: 113
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
-# SupportedHashRocketStyles: key, separator, table
-# SupportedColonStyles: key, separator, table
-# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/HashAlignment:
-  Exclude:
-    - 'app/lib/activitypub/linked_data_signature.rb'
-    - 'app/lib/ostatus/tag_manager.rb'
-    - 'app/models/account/field.rb'
-    - 'app/models/account_warning.rb'
-    - 'app/models/media_attachment.rb'
-    - 'app/models/notification.rb'
-    - 'app/models/poll.rb'
-    - 'app/presenters/account_relationships_presenter.rb'
-    - 'app/services/keys/claim_service.rb'
-    - 'app/services/keys/query_service.rb'
-    - 'app/workers/web/push_notification_worker.rb'
-    - 'db/post_migrate/20200917193528_migrate_notifications_type.rb'
-    - 'lib/sanitize_ext/sanitize_config.rb'
-    - 'lib/tasks/auto_annotate_models.rake'
-    - 'lib/tasks/mastodon.rake'
-    - 'spec/models/admin/account_action_spec.rb'
-    - 'spec/models/concerns/account_interactions_spec.rb'
-
 # Offense count: 581
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
@@ -544,49 +396,6 @@ RSpec/AnyInstance:
     - 'spec/validators/follow_limit_validator_spec.rb'
     - 'spec/workers/activitypub/delivery_worker_spec.rb'
     - 'spec/workers/web/push_notification_worker_spec.rb'
-
-# Offense count: 139
-# This cop supports unsafe autocorrection (--autocorrect-all).
-RSpec/BeEq:
-  Exclude:
-    - 'spec/controllers/admin/export_domain_allows_controller_spec.rb'
-    - 'spec/controllers/admin/reports/actions_controller_spec.rb'
-    - 'spec/controllers/admin/reports_controller_spec.rb'
-    - 'spec/controllers/admin/users/two_factor_authentications_controller_spec.rb'
-    - 'spec/controllers/api/v1/accounts/credentials_controller_spec.rb'
-    - 'spec/controllers/api/v1/bookmarks_controller_spec.rb'
-    - 'spec/controllers/api/v1/favourites_controller_spec.rb'
-    - 'spec/controllers/api/v2/filters/keywords_controller_spec.rb'
-    - 'spec/controllers/application_controller_spec.rb'
-    - 'spec/controllers/auth/registrations_controller_spec.rb'
-    - 'spec/controllers/statuses_cleanup_controller_spec.rb'
-    - 'spec/helpers/application_helper_spec.rb'
-    - 'spec/helpers/jsonld_helper_spec.rb'
-    - 'spec/lib/activitypub/activity/add_spec.rb'
-    - 'spec/lib/activitypub/activity/create_spec.rb'
-    - 'spec/lib/feed_manager_spec.rb'
-    - 'spec/lib/ostatus/tag_manager_spec.rb'
-    - 'spec/lib/tag_manager_spec.rb'
-    - 'spec/lib/user_settings_decorator_spec.rb'
-    - 'spec/models/account_domain_block_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/block_spec.rb'
-    - 'spec/models/domain_block_spec.rb'
-    - 'spec/models/favourite_spec.rb'
-    - 'spec/models/media_attachment_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/models/web/push_subscription_spec.rb'
-    - 'spec/services/activitypub/process_status_update_service_spec.rb'
-    - 'spec/services/fetch_oembed_service_spec.rb'
-    - 'spec/services/fetch_resource_service_spec.rb'
-    - 'spec/services/post_status_service_spec.rb'
-    - 'spec/services/precompute_feed_service_spec.rb'
-    - 'spec/services/resolve_account_service_spec.rb'
-    - 'spec/support/examples/lib/settings/scoped_settings.rb'
-    - 'spec/workers/domain_block_worker_spec.rb'
-    - 'spec/workers/domain_clear_media_worker_spec.rb'
-    - 'spec/workers/feed_insert_worker_spec.rb'
-    - 'spec/workers/regeneration_worker_spec.rb'
 
 # Offense count: 1
 RSpec/BeforeAfterAll:
@@ -1836,13 +1645,6 @@ Rails/FilePath:
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Rails/FindById:
-  Exclude:
-    - 'app/controllers/api/v1/notifications_controller.rb'
-    - 'app/controllers/media_controller.rb'
-
 # Offense count: 6
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
@@ -2107,13 +1909,6 @@ Rails/UnusedIgnoredColumns:
     - 'app/models/status_edit.rb'
     - 'app/models/user.rb'
 
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/WhereEquals:
-  Exclude:
-    - 'app/models/announcement.rb'
-    - 'app/models/status.rb'
-
 # Offense count: 61
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
@@ -2153,13 +1948,6 @@ Rails/WhereExists:
     - 'spec/services/post_status_service_spec.rb'
     - 'spec/services/purge_domain_service_spec.rb'
     - 'spec/services/unallow_domain_service_spec.rb'
-
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Security/IoMethods:
-  Exclude:
-    - 'spec/controllers/admin/export_domain_allows_controller_spec.rb'
-    - 'spec/controllers/admin/export_domain_blocks_controller_spec.rb'
 
 # Offense count: 5
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -2216,16 +2004,6 @@ Style/FetchEnvVar:
     - 'lib/mastodon/redis_config.rb'
     - 'lib/tasks/repo.rake'
     - 'spec/features/profile_spec.rb'
-
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: format, sprintf, percent
-Style/FormatString:
-  Exclude:
-    - 'app/serializers/rest/privacy_policy_serializer.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-    - 'lib/paperclip/color_extractor.rb'
 
 # Offense count: 15
 # This cop supports safe autocorrection (--autocorrect).
@@ -2435,24 +2213,6 @@ Style/RegexpLiteral:
     - 'lib/mastodon/premailer_webpack_strategy.rb'
     - 'lib/tasks/mastodon.rake'
 
-# Offense count: 21
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'app/lib/activitypub/activity/move.rb'
-    - 'app/lib/request.rb'
-    - 'app/models/account.rb'
-    - 'app/workers/move_worker.rb'
-    - 'app/workers/scheduler/vacuum_scheduler.rb'
-    - 'lib/mastodon/accounts_cli.rb'
-    - 'lib/mastodon/cli_helper.rb'
-    - 'lib/mastodon/media_cli.rb'
-    - 'lib/mastodon/sidekiq_middleware.rb'
-    - 'lib/mastodon/statuses_cli.rb'
-    - 'lib/mastodon/upgrade_cli.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
@@ -2652,41 +2412,3 @@ Style/SymbolArray:
     - 'spec/controllers/concerns/signature_verification_spec.rb'
     - 'spec/fabricators/notification_fabricator.rb'
     - 'spec/models/public_feed_spec.rb'
-
-# Offense count: 4
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowMethodsWithArguments, AllowedMethods, AllowedPatterns, AllowComments.
-# AllowedMethods: define_method, mail, respond_to
-Style/SymbolProc:
-  Exclude:
-    - 'spec/lib/request_spec.rb'
-
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-Style/UnpackFirst:
-  Exclude:
-    - 'app/models/concerns/account_interactions.rb'
-    - 'lib/paperclip/gif_transcoder.rb'
-
-# Offense count: 25
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
-# SupportedStyles: percent, brackets
-Style/WordArray:
-  Exclude:
-    - 'db/migrate/20170610000000_add_statuses_index_on_account_id_id.rb'
-    - 'db/migrate/20180514140000_revert_index_change_on_statuses_for_api_v1_accounts_account_id_statuses.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-    - 'lib/tasks/statistics.rake'
-    - 'spec/controllers/api/v1/blocks_controller_spec.rb'
-    - 'spec/controllers/api/v1/bookmarks_controller_spec.rb'
-    - 'spec/controllers/api/v1/favourites_controller_spec.rb'
-    - 'spec/controllers/api/v1/mutes_controller_spec.rb'
-    - 'spec/controllers/settings/applications_controller_spec.rb'
-    - 'spec/controllers/settings/preferences/other_controller_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/account_statuses_cleanup_policy_spec.rb'
-    - 'spec/services/activitypub/fetch_featured_tags_collection_service_spec.rb'
-    - 'spec/services/activitypub/process_account_service_spec.rb'
-    - 'spec/services/delete_account_service_spec.rb'
-    - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
