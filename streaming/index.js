@@ -47,7 +47,11 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
     }));
   }
 
-  client.on('error', (err) => log.error('Redis Client Error!', err));
+  client.on('error', (err) => {
+    if (err.message !== 'Socket closed unexpectedly') {
+      log.error('Redis Client Error!', err)
+    }
+  });
   await client.connect();
 
   return client;
