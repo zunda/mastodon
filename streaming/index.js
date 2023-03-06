@@ -115,8 +115,8 @@ const pgConfigFromEnv = () => {
     baseConfig = pgConfigs[env];
   }
 
-  if (process.env.DB_SSLMODE) {
-    switch(process.env.DB_SSLMODE) {
+  if (process.env.NODE_DB_SSLMODE) {
+    switch(process.env.NODE_DB_SSLMODE) {
     case 'disable':
     case '':
       baseConfig.ssl = false;
