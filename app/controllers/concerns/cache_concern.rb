@@ -31,7 +31,24 @@ module CacheConcern
   def cache_collection(raw, klass)
     return raw unless klass.respond_to?(:with_includes)
 
-    raw = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
+    begin
+      raw = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
+    rescue NoMethodError
+      culprit = raw.find do |item|
+        Rails.cache.read(item)
+        false
+      rescue NoMethodError
+        true
+      end
+
+      $stderr.puts "culprit: #{culprit.inspect}\n"
+
+      cache_key = Rails.cache.send(:normalize_key, culprit, {})
+      entry = Rails.cache.send(:read_entry, cache_key)
+      raw_marshal = Zlib::Inflate.inflate(entry.instance_variable_get(:@value))
+      # .puts "base64 marshal: #{Base64.encode64(raw_marshal)}"
+    end
+
     return [] if raw.empty?
 
     begin
