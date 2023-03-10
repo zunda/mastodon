@@ -33,28 +33,24 @@ module CacheConcern
 
     begin
       raw = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
-    rescue NoMethodError
+
+      return [] if raw.empty?
+
+      cached_keys_with_value = Rails.cache.read_multi(*raw).transform_keys(&:id)
+    rescue NoMethodError => e
       culprit = raw.find do |item|
         Rails.cache.read(item)
         false
       rescue NoMethodError
         true
       end
-
       $stderr.puts "culprit: #{culprit.inspect}\n"
 
       cache_key = Rails.cache.send(:normalize_key, culprit, {})
       entry = Rails.cache.send(:read_entry, cache_key)
       raw_marshal = Zlib::Inflate.inflate(entry.instance_variable_get(:@value))
-      # .puts "base64 marshal: #{Base64.encode64(raw_marshal)}"
-    end
+      $stderr.puts "base64 marshal: #{Base64.encode64(raw_marshal)}"
 
-    return [] if raw.empty?
-
-    begin
-      cached_keys_with_value = Rails.cache.read_multi(*raw).transform_keys(&:id)
-    rescue NoMethodError => e
-      $stderr.puts "raw :#{raw.inspect}"
       raise e
     end
     uncached_ids           = raw.map(&:id) - cached_keys_with_value.keys
