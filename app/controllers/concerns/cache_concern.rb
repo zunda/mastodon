@@ -31,28 +31,10 @@ module CacheConcern
   def cache_collection(raw, klass)
     return raw unless klass.respond_to?(:with_includes)
 
-    begin
-      raw = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
+    raw = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
+    return [] if raw.empty?
 
-      return [] if raw.empty?
-
-      cached_keys_with_value = Rails.cache.read_multi(*raw).transform_keys(&:id)
-    rescue NoMethodError => e
-      culprit = raw.find do |item|
-        Rails.cache.read(item)
-        false
-      rescue NoMethodError
-        true
-      end
-      $stderr.puts "culprit: #{culprit.inspect}\n"
-
-      cache_key = Rails.cache.send(:normalize_key, culprit, {})
-      entry = Rails.cache.send(:read_entry, cache_key)
-      raw_marshal = Zlib::Inflate.inflate(entry.instance_variable_get(:@value))
-      $stderr.puts "base64 marshal: #{Base64.encode64(raw_marshal)}"
-
-      raise e
-    end
+    cached_keys_with_value = Rails.cache.read_multi(*raw).transform_keys(&:id)
     uncached_ids           = raw.map(&:id) - cached_keys_with_value.keys
 
     klass.reload_stale_associations!(cached_keys_with_value.values) if klass.respond_to?(:reload_stale_associations!)
