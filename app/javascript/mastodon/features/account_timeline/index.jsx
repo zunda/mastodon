@@ -13,7 +13,6 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
 import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
-import MissingIndicator from 'mastodon/components/missing_indicator';
 import TimelineHint from 'mastodon/components/timeline_hint';
 import { me } from 'mastodon/initial_state';
 import { connectTimeline, disconnectTimeline } from 'mastodon/actions/timelines';
@@ -21,6 +20,7 @@ import LimitedAccountHint from './components/limited_account_hint';
 import { getAccountHidden } from 'mastodon/selectors';
 import { fetchFeaturedTags } from '../../actions/featured_tags';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
+import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 
 const emptyList = ImmutableList();
 
@@ -159,10 +159,7 @@ class AccountTimeline extends ImmutablePureComponent {
       );
     } else if (!isLoading && !isAccount) {
       return (
-        <Column>
-          <ColumnBackButton multiColumn={multiColumn} />
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 
