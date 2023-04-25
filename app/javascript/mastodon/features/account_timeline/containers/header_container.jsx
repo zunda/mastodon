@@ -10,6 +10,7 @@ import {
   pinAccount,
   unpinAccount,
 } from '../../../actions/accounts';
+import { openURL } from 'mastodon/actions/search';
 import {
   mentionCompose,
   directCompose,
@@ -159,6 +160,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       src: account.get('avatar'),
       alt: account.get('acct'),
     }));
+  },
+
+  onOpenURL (url, routerHistory, onFailure) {
+    dispatch(openURL(url, routerHistory, onFailure));
   },
 
 });
