@@ -101,20 +101,20 @@ const pgConfigFromEnv = (env) => {
     baseConfig = dbUrlToConfig(env.DATABASE_URL);
   } else {
     baseConfig = pgConfigs[environment];
+  }
 
-    if (env.NODE_DB_SSLMODE) {
-      switch(env.NODE_DB_SSLMODE) {
-      case 'disable':
-      case '':
-        baseConfig.ssl = false;
-        break;
-      case 'no-verify':
-        baseConfig.ssl = { rejectUnauthorized: false };
-        break;
-      default:
-        baseConfig.ssl = {};
-        break;
-      }
+  if (env.NODE_DB_SSLMODE) {
+    switch(env.NODE_DB_SSLMODE) {
+    case 'disable':
+    case '':
+      baseConfig.ssl = false;
+      break;
+    case 'no-verify':
+      baseConfig.ssl = { rejectUnauthorized: false };
+      break;
+    default:
+      baseConfig.ssl = {};
+      break;
     }
   }
 
