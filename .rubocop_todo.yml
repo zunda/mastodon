@@ -119,15 +119,6 @@ Lint/ConstantDefinitionInBlock:
     - 'spec/lib/connection_pool/shared_timed_stack_spec.rb'
     - 'spec/models/concerns/remotable_spec.rb'
 
-# Configuration parameters: IgnoreLiteralBranches, IgnoreConstantBranches.
-Lint/DuplicateBranch:
-  Exclude:
-    - 'app/lib/permalink_redirector.rb'
-    - 'app/models/account_statuses_filter.rb'
-    - 'app/validators/email_mx_validator.rb'
-    - 'app/validators/vote_validator.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
   Exclude:
@@ -167,11 +158,6 @@ Lint/EmptyBlock:
     - 'spec/models/user_invite_request_spec.rb'
     - 'spec/models/user_role_spec.rb'
     - 'spec/models/web/setting_spec.rb'
-
-# Configuration parameters: AllowComments.
-Lint/EmptyClass:
-  Exclude:
-    - 'spec/controllers/api/base_controller_spec.rb'
 
 Lint/NonLocalExitFromIterator:
   Exclude:
@@ -318,27 +304,6 @@ Performance/CollectionLiteralInLoop:
     - 'lib/mastodon/media_cli.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-Performance/Count:
-  Exclude:
-    - 'app/lib/importer/accounts_index_importer.rb'
-    - 'app/lib/importer/tags_index_importer.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SafeMultiline.
-Performance/DeletePrefix:
-  Exclude:
-    - 'app/controllers/authorize_interactions_controller.rb'
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/controllers/intents_controller.rb'
-    - 'app/lib/activitypub/case_transform.rb'
-    - 'app/lib/permalink_redirector.rb'
-    - 'app/lib/webfinger_resource.rb'
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-    - 'app/services/backup_service.rb'
-    - 'app/services/resolve_account_service.rb'
-    - 'app/services/tag_search_service.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/MapCompact:
   Exclude:
     - 'app/lib/admin/metrics/dimension.rb'
@@ -379,23 +344,6 @@ Performance/RedundantMerge:
 Performance/StartWith:
   Exclude:
     - 'app/lib/extractor.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: OnlySumOrWithInitialValue.
-Performance/Sum:
-  Exclude:
-    - 'app/lib/activity_tracker.rb'
-    - 'app/models/trends/history.rb'
-    - 'lib/paperclip/color_extractor.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Performance/TimesMap:
-  Exclude:
-    - 'spec/controllers/api/v1/blocks_controller_spec.rb'
-    - 'spec/controllers/api/v1/mutes_controller_spec.rb'
-    - 'spec/lib/feed_manager_spec.rb'
-    - 'spec/lib/request_pool_spec.rb'
-    - 'spec/models/account_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/UnfreezeString:
@@ -741,6 +689,7 @@ RSpec/LetSetup:
     - 'spec/controllers/following_accounts_controller_spec.rb'
     - 'spec/controllers/oauth/authorized_applications_controller_spec.rb'
     - 'spec/controllers/oauth/tokens_controller_spec.rb'
+    - 'spec/controllers/settings/imports_controller_spec.rb'
     - 'spec/lib/activitypub/activity/delete_spec.rb'
     - 'spec/lib/vacuum/preview_cards_vacuum_spec.rb'
     - 'spec/models/account_spec.rb'
@@ -755,6 +704,7 @@ RSpec/LetSetup:
     - 'spec/services/activitypub/process_collection_service_spec.rb'
     - 'spec/services/batched_remove_status_service_spec.rb'
     - 'spec/services/block_domain_service_spec.rb'
+    - 'spec/services/bulk_import_service_spec.rb'
     - 'spec/services/delete_account_service_spec.rb'
     - 'spec/services/import_service_spec.rb'
     - 'spec/services/notify_service_spec.rb'
@@ -1144,19 +1094,6 @@ RSpec/VerifiedDoubles:
     - 'spec/workers/feed_insert_worker_spec.rb'
     - 'spec/workers/regeneration_worker_spec.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/ActiveRecordCallbacksOrder:
-  Exclude:
-    - 'app/models/account.rb'
-    - 'app/models/account_conversation.rb'
-    - 'app/models/announcement_reaction.rb'
-    - 'app/models/block.rb'
-    - 'app/models/media_attachment.rb'
-    - 'app/models/session_activation.rb'
-    - 'app/models/status.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/ApplicationController:
   Exclude:
@@ -1211,12 +1148,6 @@ Rails/CreateTableWithTimestamps:
     - 'db/migrate/20190103124649_create_scheduled_statuses.rb'
     - 'db/migrate/20220824233535_create_status_trends.rb'
     - 'db/migrate/20221006061337_create_preview_card_trends.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Severity.
-Rails/DeprecatedActiveModelErrorsMethods:
-  Exclude:
-    - 'lib/mastodon/accounts_cli.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Severity.
@@ -1439,13 +1370,6 @@ Rails/SkipsModelValidations:
     - 'spec/lib/activitypub/activity/follow_spec.rb'
     - 'spec/services/follow_service_spec.rb'
     - 'spec/services/update_account_service_spec.rb'
-
-Rails/TransactionExitStatement:
-  Exclude:
-    - 'app/lib/activitypub/activity/announce.rb'
-    - 'app/lib/activitypub/activity/create.rb'
-    - 'app/lib/activitypub/activity/delete.rb'
-    - 'app/services/activitypub/process_account_service.rb'
 
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
@@ -2031,7 +1955,6 @@ Style/HashAsLastArrayItem:
   Exclude:
     - 'app/controllers/admin/statuses_controller.rb'
     - 'app/controllers/api/v1/statuses_controller.rb'
-    - 'app/models/account.rb'
     - 'app/models/concerns/account_counters.rb'
     - 'app/models/concerns/status_threading_concern.rb'
     - 'app/models/status.rb'
@@ -2105,7 +2028,6 @@ Style/MapToHash:
 # SupportedStyles: literals, strict
 Style/MutableConstant:
   Exclude:
-    - 'app/models/account.rb'
     - 'app/models/tag.rb'
     - 'app/services/delete_account_service.rb'
     - 'config/initializers/twitter_regex.rb'
