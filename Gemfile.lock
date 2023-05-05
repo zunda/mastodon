@@ -28,18 +28,6 @@ GIT
       rails (>= 4.2.0)
 
 GIT
-  remote: https://github.com/tinfoil/devise-two-factor.git
-  revision: e685f91ce62d036259885fbe31fcb4fa930bcfcb
-  branch: v4.x
-  specs:
-    devise-two-factor (4.0.2)
-      activesupport (< 7.1)
-      attr_encrypted (>= 1.3, < 5, != 2)
-      devise (~> 4.0)
-      railties (< 7.1)
-      rotp (~> 6.0)
-
-GIT
   remote: https://github.com/zunda/webpacker.git
   revision: 251c561a9ccc83b1239631eaa911cc92627ce305
   branch: v5.4.4-clear-command-with-better-versioning
@@ -229,6 +217,12 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-two-factor (4.1.0)
+      activesupport (< 7.1)
+      attr_encrypted (>= 1.3, < 5, != 2)
+      devise (~> 4.0)
+      railties (< 7.1)
+      rotp (~> 6.0)
     devise_pam_authenticatable2 (9.2.0)
       devise (>= 4.0.0)
       rpam2 (~> 4.0)
@@ -784,7 +778,6 @@ DEPENDENCIES
   active_model_serializers (~> 0.10)
   addressable (~> 2.8)
   annotate (~> 3.2)
-  attr_encrypted (~> 4.0)
   aws-sdk-s3 (~> 1.120)
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
@@ -806,7 +799,7 @@ DEPENDENCIES
   concurrent-ruby
   connection_pool
   devise (~> 4.9)
-  devise-two-factor!
+  devise-two-factor (~> 4.1)
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
   doorkeeper (~> 5.6)
