@@ -9,7 +9,13 @@ type Props = {
   label: React.ReactNode;
 };
 
-export const RadioButton: React.FC<Props> = ({ name, value, checked, onChange, label }) => {
+export const RadioButton: React.FC<Props> = ({
+  name,
+  value,
+  checked,
+  onChange,
+  label,
+}) => {
   return (
     <label className='radio-button'>
       <input
@@ -26,5 +32,3 @@ export const RadioButton: React.FC<Props> = ({ name, value, checked, onChange, l
     </label>
   );
 };
-
-export default RadioButton;
