@@ -11,6 +11,9 @@
   - @account.fields.select(&:verifiable?).each do |field|
     %link{ rel: 'me', type: 'text/html', href: field.value }/
 
+  - @account.identity_proofs.active.each do |proof|
+    %link{ rel: 'me', type: 'text/html', href: proof.badge.profile_url }/
+
   = opengraph 'og:type', 'profile'
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
 
