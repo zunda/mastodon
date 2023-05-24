@@ -23,6 +23,8 @@ import { initReport } from '../../../actions/reports';
 import { makeGetAccount, getAccountHidden } from '../../../selectors';
 import Header from '../components/header';
 
+import { List as ImmutableList } from 'immutable';
+
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
