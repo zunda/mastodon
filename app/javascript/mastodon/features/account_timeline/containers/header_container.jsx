@@ -25,6 +25,8 @@ import { unfollowModal } from '../../../initial_state';
 import { makeGetAccount, getAccountHidden } from '../../../selectors';
 import Header from '../components/header';
 
+import { List as ImmutableList } from 'immutable';
+
 const messages = defineMessages({
   cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Withdraw request' },
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
