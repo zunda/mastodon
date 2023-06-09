@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_31_154811) do
+ActiveRecord::Schema.define(version: 2023_06_05_085710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -579,6 +579,7 @@ ActiveRecord::Schema.define(version: 2023_05_31_154811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "replies_policy", default: 0, null: false
+    t.boolean "exclusive", default: false, null: false
     t.index ["account_id"], name: "index_lists_on_account_id"
   end
 
@@ -1147,6 +1148,7 @@ ActiveRecord::Schema.define(version: 2023_05_31_154811) do
     t.boolean "enabled", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "template"
     t.index ["url"], name: "index_webhooks_on_url", unique: true
   end
 
