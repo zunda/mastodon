@@ -832,7 +832,11 @@ const startServer = async () => {
       return;
     }
 
-    ws.send(JSON.stringify({ stream: streamName, event, payload }));
+    ws.send(JSON.stringify({ stream: streamName, event, payload }), (err) => {
+      if (err) {
+        log.error(req.requestId, `Failed to send to websocket: ${err}`);
+      }
+    });
   };
 
   /**
@@ -1213,7 +1217,7 @@ const startServer = async () => {
 
     ws.on('message', (data, isBinary) => {
       if (isBinary) {
-        log.debug('Received binary data, closing connection');
+        log.warn('socket', 'Received binary data, closing connection');
         ws.close(1003, 'The mastodon streaming server does not support binary messages');
         return;
       }
