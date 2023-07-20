@@ -80,7 +80,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     set_immediate_protocol_attributes!
 
-    @account.save
+    @account.save!
   end
 
   def update_account
