@@ -6,6 +6,7 @@ class TextFormatter
   include RoutingHelper
 
   URL_PREFIX_REGEX = %r{\A(xmpp:)}
+  URL_MAX_LENGTH = 90
 
   DEFAULT_REL = %w(nofollow noopener noreferrer).freeze
 
@@ -56,9 +57,9 @@ class TextFormatter
       rel = rel_me ? (DEFAULT_REL + %w(me)) : DEFAULT_REL
 
       prefix      = url.match(URL_PREFIX_REGEX).to_s
-      display_url = url[prefix.length, 30]
-      suffix      = url[prefix.length + 30..]
-      cutoff      = url[prefix.length..].length > 30
+      display_url = url[prefix.length, URL_MAX_LENGTH]
+      suffix      = url[prefix.length + URL_MAX_LENGTH..]
+      cutoff      = url[prefix.length..].length > URL_MAX_LENGTH
 
       <<~HTML.squish.html_safe # rubocop:disable Rails/OutputSafety
         <a href="#{h(url)}" target="_blank" rel="#{rel.join(' ')}" translate="no"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
