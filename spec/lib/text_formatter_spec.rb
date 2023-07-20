@@ -74,7 +74,7 @@ RSpec.describe TextFormatter do
       end
 
       it 'has display URL' do
-        expect(subject).to include '<span class="">nic.みんな/</span>'
+        expect(subject).to include '<span class="">https://nic.みんな/</span>'
       end
     end
 
@@ -269,6 +269,14 @@ RSpec.describe TextFormatter do
 
       it 'outputs the raw URL' do
         expect(subject).to eq '<p>http://www\.google\.com</p>'
+      end
+    end
+
+    context 'when given a URL with the scheme and www subdomain in hostname' do
+      let(:text) { 'http://www.google.com' }
+
+      it 'shows the scheme and subdomain' do
+        expect(subject).to include '<span class="">http://www.google.com</span>'
       end
     end
 
