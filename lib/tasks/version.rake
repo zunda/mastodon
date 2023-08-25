@@ -20,6 +20,9 @@ namespace :source do
               def suffix
                 " at #{hash_abb} on ruby-#{RUBY_VERSION}"
               end
+              def build_metadata
+                "#{hash_abb}-ruby-#{RUBY_VERSION}"
+              end
               def repository
                 'zunda/mastodon'
               end
