@@ -2,7 +2,7 @@
   "name": "@mastodon/mastodon",
   "license": "AGPL-3.0-or-later",
   "engines": {
-    "node": ">=16"
+    "node": ">=16 <21"
   },
   "scripts": {
     "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack",
