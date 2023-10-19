@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import 'wicg-inert';
-
 import { multiply } from 'color-blend';
 import { createBrowserHistory } from 'history';
 
-import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';
+export default class ModalRoot extends PureComponent {
 
-class ModalRoot extends PureComponent {
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     children: PropTypes.node,
@@ -19,7 +20,6 @@ class ModalRoot extends PureComponent {
       b: PropTypes.number,
     }),
     ignoreFocus: PropTypes.bool,
-    ...WithOptionalRouterPropTypes,
   };
 
   activeElement = this.props.children ? document.activeElement : null;
@@ -55,7 +55,7 @@ class ModalRoot extends PureComponent {
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
     window.addEventListener('keydown', this.handleKeyDown, false);
-    this.history = this.props.history || createBrowserHistory();
+    this.history = this.context.router ? this.context.router.history : createBrowserHistory();
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
@@ -156,5 +156,3 @@ class ModalRoot extends PureComponent {
   }
 
 }
-
-export default withOptionalRouter(ModalRoot);

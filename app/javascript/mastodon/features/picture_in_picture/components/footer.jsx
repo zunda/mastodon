@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -16,7 +15,6 @@ import { openModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
 import { me, boostModal } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
@@ -45,6 +43,7 @@ const makeMapStateToProps = () => {
 class Footer extends ImmutablePureComponent {
 
   static contextTypes = {
+    router: PropTypes.object,
     identity: PropTypes.object,
   };
 
@@ -56,17 +55,17 @@ class Footer extends ImmutablePureComponent {
     askReplyConfirmation: PropTypes.bool,
     withOpenButton: PropTypes.bool,
     onClose: PropTypes.func,
-    ...WithRouterPropTypes,
   };
 
   _performReply = () => {
-    const { dispatch, status, onClose, history } = this.props;
+    const { dispatch, status, onClose } = this.props;
+    const { router } = this.context;
 
     if (onClose) {
       onClose(true);
     }
 
-    dispatch(replyCompose(status, history));
+    dispatch(replyCompose(status, router.history));
   };
 
   handleReplyClick = () => {
@@ -150,7 +149,9 @@ class Footer extends ImmutablePureComponent {
   };
 
   handleOpenClick = e => {
-    if (e.button !== 0 || !history) {
+    const { router } = this.context;
+
+    if (e.button !== 0 || !router) {
       return;
     }
 
@@ -160,7 +161,7 @@ class Footer extends ImmutablePureComponent {
       onClose();
     }
 
-    history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+    router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
   };
 
   render () {
@@ -203,4 +204,4 @@ class Footer extends ImmutablePureComponent {
 
 }
 
-export default  withRouter(connect(makeMapStateToProps)(injectIntl(Footer)));
+export default connect(makeMapStateToProps)(injectIntl(Footer));

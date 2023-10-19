@@ -16,7 +16,6 @@ import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodo
 import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 import PictureInPicture from 'mastodon/features/picture_in_picture';
 import { layoutFromWindow } from 'mastodon/is_mobile';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -249,6 +248,7 @@ class SwitchingColumnsArea extends PureComponent {
 class UI extends PureComponent {
 
   static contextTypes = {
+    router: PropTypes.object.isRequired,
     identity: PropTypes.object.isRequired,
   };
 
@@ -259,12 +259,12 @@ class UI extends PureComponent {
     hasComposingText: PropTypes.bool,
     hasMediaAttachments: PropTypes.bool,
     canUploadMore: PropTypes.bool,
+    location: PropTypes.object,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
     username: PropTypes.string,
-    ...WithRouterPropTypes,
   };
 
   state = {
@@ -361,7 +361,7 @@ class UI extends PureComponent {
 
   handleServiceWorkerPostMessage = ({ data }) => {
     if (data.type === 'navigate') {
-      this.props.history.push(data.path);
+      this.context.router.history.push(data.path);
     } else {
       console.warn('Unknown message type:', data.type);
     }
@@ -482,12 +482,12 @@ class UI extends PureComponent {
   };
 
   handleHotkeyBack = () => {
-    const { history } = this.props;
+    const { router } = this.context;
 
-    if (history.location?.state?.fromMastodon) {
-      history.goBack();
+    if (router.history.location?.state?.fromMastodon) {
+      router.history.goBack();
     } else {
-      history.push('/');
+      router.history.push('/');
     }
   };
 
@@ -497,58 +497,58 @@ class UI extends PureComponent {
 
   handleHotkeyToggleHelp = () => {
     if (this.props.location.pathname === '/keyboard-shortcuts') {
-      this.props.history.goBack();
+      this.context.router.history.goBack();
     } else {
-      this.props.history.push('/keyboard-shortcuts');
+      this.context.router.history.push('/keyboard-shortcuts');
     }
   };
 
   handleHotkeyGoToHome = () => {
-    this.props.history.push('/home');
+    this.context.router.history.push('/home');
   };
 
   handleHotkeyGoToNotifications = () => {
-    this.props.history.push('/notifications');
+    this.context.router.history.push('/notifications');
   };
 
   handleHotkeyGoToLocal = () => {
-    this.props.history.push('/public/local');
+    this.context.router.history.push('/public/local');
   };
 
   handleHotkeyGoToFederated = () => {
-    this.props.history.push('/public');
+    this.context.router.history.push('/public');
   };
 
   handleHotkeyGoToDirect = () => {
-    this.props.history.push('/conversations');
+    this.context.router.history.push('/conversations');
   };
 
   handleHotkeyGoToStart = () => {
-    this.props.history.push('/getting-started');
+    this.context.router.history.push('/getting-started');
   };
 
   handleHotkeyGoToFavourites = () => {
-    this.props.history.push('/favourites');
+    this.context.router.history.push('/favourites');
   };
 
   handleHotkeyGoToPinned = () => {
-    this.props.history.push('/pinned');
+    this.context.router.history.push('/pinned');
   };
 
   handleHotkeyGoToProfile = () => {
-    this.props.history.push(`/@${this.props.username}`);
+    this.context.router.history.push(`/@${this.props.username}`);
   };
 
   handleHotkeyGoToBlocked = () => {
-    this.props.history.push('/blocks');
+    this.context.router.history.push('/blocks');
   };
 
   handleHotkeyGoToMuted = () => {
-    this.props.history.push('/mutes');
+    this.context.router.history.push('/mutes');
   };
 
   handleHotkeyGoToRequests = () => {
-    this.props.history.push('/follow_requests');
+    this.context.router.history.push('/follow_requests');
   };
 
   render () {

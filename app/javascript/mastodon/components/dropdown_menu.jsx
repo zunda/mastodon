@@ -2,22 +2,23 @@ import PropTypes from 'prop-types';
 import { PureComponent, cloneElement, Children } from 'react';
 
 import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import { CircularProgress } from 'mastodon/components/circular_progress';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
-
+import { CircularProgress } from "./circular_progress";
 import { IconButton } from './icon_button';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 let id = 0;
 
 class DropdownMenu extends PureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
@@ -158,7 +159,11 @@ class DropdownMenu extends PureComponent {
 
 }
 
-class Dropdown extends PureComponent {
+export default class Dropdown extends PureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     children: PropTypes.node,
@@ -178,7 +183,6 @@ class Dropdown extends PureComponent {
     renderItem: PropTypes.func,
     renderHeader: PropTypes.func,
     onItemClick: PropTypes.func,
-    ...WithRouterPropTypes
   };
 
   static defaultProps = {
@@ -246,7 +250,7 @@ class Dropdown extends PureComponent {
       item.action();
     } else if (item && item.to) {
       e.preventDefault();
-      this.props.history.push(item.to);
+      this.context.router.history.push(item.to);
     }
   };
 
@@ -334,5 +338,3 @@ class Dropdown extends PureComponent {
   }
 
 }
-
-export default withRouter(Dropdown);
