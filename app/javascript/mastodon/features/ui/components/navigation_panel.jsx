@@ -6,7 +6,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import { WordmarkLogo } from 'mastodon/components/logo';
-import NavigationPortal from 'mastodon/components/navigation_portal';
+import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 
@@ -37,7 +37,6 @@ const messages = defineMessages({
 class NavigationPanel extends Component {
 
   static contextTypes = {
-    router: PropTypes.object.isRequired,
     identity: PropTypes.object.isRequired,
   };
 
@@ -53,23 +52,29 @@ class NavigationPanel extends Component {
     const { intl } = this.props;
     const { signedIn, disabledAccountId } = this.context.identity;
 
+    let banner = undefined;
+
+    if(transientSingleColumn)
+      banner = (<div className='switch-to-advanced'>
+        {intl.formatMessage(messages.openedInClassicInterface)}
+        {" "}
+        <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
+          {intl.formatMessage(messages.advancedInterface)}
+        </a>
+      </div>);
+
     return (
       <div className='navigation-panel'>
         <div className='navigation-panel__logo'>
           <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
-
-          {transientSingleColumn ? (
-            <div class='switch-to-advanced'>
-              {intl.formatMessage(messages.openedInClassicInterface)}
-              {" "}
-              <a href={`/deck${location.pathname}`} class='switch-to-advanced__toggle'>
-                {intl.formatMessage(messages.advancedInterface)}
-              </a>
-            </div>
-          ) : (
-            <hr />
-          )}
+          {!banner && <hr />}
         </div>
+
+        {banner &&
+          <div class='navigation-panel__banner'>
+            {banner}
+          </div>
+        }
 
         {signedIn && (
           <>
