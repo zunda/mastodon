@@ -10,7 +10,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 
 import { Icon }  from 'mastodon/components/icon';
-import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
@@ -40,6 +39,11 @@ const messages = defineMessages({
 });
 
 class ComposeForm extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     intl: PropTypes.object.isRequired,
     text: PropTypes.string.isRequired,
@@ -67,7 +71,6 @@ class ComposeForm extends ImmutablePureComponent {
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
-    ...WithOptionalRouterPropTypes
   };
 
   static defaultProps = {
@@ -111,7 +114,7 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit(this.props.history || null);
+    this.props.onSubmit(this.context.router ? this.context.router.history : null);
 
     if (e) {
       e.preventDefault();
@@ -315,4 +318,4 @@ class ComposeForm extends ImmutablePureComponent {
 
 }
 
-export default withOptionalRouter(injectIntl(ComposeForm));
+export default injectIntl(ComposeForm);

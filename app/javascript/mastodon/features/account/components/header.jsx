@@ -4,7 +4,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -19,7 +19,6 @@ import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
@@ -84,6 +83,11 @@ const dateFormatOptions = {
 
 class Header extends ImmutablePureComponent {
 
+  static contextTypes = {
+    identity: PropTypes.object,
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     account: ImmutablePropTypes.map,
     identity_props: ImmutablePropTypes.list,
@@ -107,11 +111,6 @@ class Header extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
-    ...WithRouterPropTypes,
-  };
-
-  static contextTypes = {
-    identity: PropTypes.object,
   };
 
   setRef = c => {
@@ -174,24 +173,25 @@ class Header extends ImmutablePureComponent {
   };
 
   handleHashtagClick = e => {
-    const { history } = this.props;
+    const { router } = this.context;
     const value = e.currentTarget.textContent.replace(/^#/, '');
 
-    if (history && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    if (router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      history.push(`/tags/${value}`);
+      router.history.push(`/tags/${value}`);
     }
   };
 
   handleMentionClick = e => {
-    const { history, onOpenURL } = this.props;
+    const { router } = this.context;
+    const { onOpenURL } = this.props;
 
-    if (history && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    if (router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
 
       const link = e.currentTarget;
 
-      onOpenURL(link.href, history, () => {
+      onOpenURL(link.href, router.history, () => {
         window.location = link.href;
       });
     }
@@ -505,4 +505,4 @@ class Header extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(Header));
+export default injectIntl(Header);

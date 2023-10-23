@@ -4,14 +4,12 @@ import { PureComponent } from 'react';
 import { defineMessages, injectIntl, FormattedMessage, FormattedList } from 'react-intl';
 
 import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Icon }  from 'mastodon/components/icon';
 import { domain, searchEnabled } from 'mastodon/initial_state';
 import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
@@ -32,6 +30,7 @@ const labelForRecentSearch = search => {
 class Search extends PureComponent {
 
   static contextTypes = {
+    router: PropTypes.object.isRequired,
     identity: PropTypes.object.isRequired,
   };
 
@@ -49,7 +48,6 @@ class Search extends PureComponent {
     openInRoute: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     singleColumn: PropTypes.bool,
-    ...WithRouterPropTypes,
   };
 
   state = {
@@ -162,29 +160,32 @@ class Search extends PureComponent {
   };
 
   handleHashtagClick = () => {
-    const { value, onClickSearchResult, history } = this.props;
+    const { router } = this.context;
+    const { value, onClickSearchResult } = this.props;
 
     const query = value.trim().replace(/^#/, '');
 
-    history.push(`/tags/${query}`);
+    router.history.push(`/tags/${query}`);
     onClickSearchResult(query, 'hashtag');
     this._unfocus();
   };
 
   handleAccountClick = () => {
-    const { value, onClickSearchResult, history } = this.props;
+    const { router } = this.context;
+    const { value, onClickSearchResult } = this.props;
 
     const query = value.trim().replace(/^@/, '');
 
-    history.push(`/@${query}`);
+    router.history.push(`/@${query}`);
     onClickSearchResult(query, 'account');
     this._unfocus();
   };
 
   handleURLClick = () => {
-    const { value, onOpenURL, history } = this.props;
+    const { router } = this.context;
+    const { value, onOpenURL } = this.props;
 
-    onOpenURL(value, history);
+    onOpenURL(value, router.history);
     this._unfocus();
   };
 
@@ -197,12 +198,13 @@ class Search extends PureComponent {
   };
 
   handleRecentSearchClick = search => {
-    const { onChange, history } = this.props;
+    const { onChange } = this.props;
+    const { router } = this.context;
 
     if (search.get('type') === 'account') {
-      history.push(`/@${search.get('q')}`);
+      router.history.push(`/@${search.get('q')}`);
     } else if (search.get('type') === 'hashtag') {
-      history.push(`/tags/${search.get('q')}`);
+      router.history.push(`/tags/${search.get('q')}`);
     } else {
       onChange(search.get('q'));
       this._submit(search.get('type'));
@@ -234,7 +236,8 @@ class Search extends PureComponent {
   }
 
   _submit (type) {
-    const { onSubmit, openInRoute, value, onClickSearchResult, history } = this.props;
+    const { onSubmit, openInRoute, value, onClickSearchResult } = this.props;
+    const { router } = this.context;
 
     onSubmit(type);
 
@@ -243,7 +246,7 @@ class Search extends PureComponent {
     }
 
     if (openInRoute) {
-      history.push('/search');
+      router.history.push('/search');
     }
 
     this._unfocus();
@@ -392,4 +395,4 @@ class Search extends PureComponent {
 
 }
 
-export default withRouter(injectIntl(Search));
+export default injectIntl(Search);

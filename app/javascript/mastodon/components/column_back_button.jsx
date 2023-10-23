@@ -4,28 +4,29 @@ import { createPortal } from 'react-dom';
 
 import { FormattedMessage } from 'react-intl';
 
-import { withRouter } from 'react-router-dom';
-
 import { Icon }  from 'mastodon/components/icon';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
-class ColumnBackButton extends PureComponent {
+export default class ColumnBackButton extends PureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     multiColumn: PropTypes.bool,
     onClick: PropTypes.func,
-    ...WithRouterPropTypes,
   };
 
   handleClick = () => {
-    const { onClick, history } = this.props;
+    const { router } = this.context;
+    const { onClick } = this.props;
 
     if (onClick) {
       onClick();
-    } else if (history.location?.state?.fromMastodon) {
-      history.goBack();
+    } else if (router.history.location?.state?.fromMastodon) {
+      router.history.goBack();
     } else {
-      history.push('/');
+      router.history.push('/');
     }
   };
 
@@ -59,5 +60,3 @@ class ColumnBackButton extends PureComponent {
   }
 
 }
-
-export default withRouter(ColumnBackButton);

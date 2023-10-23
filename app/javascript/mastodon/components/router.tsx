@@ -1,10 +1,8 @@
 import type { PropsWithChildren } from 'react';
 import React from 'react';
 
-import { Router as OriginalRouter } from 'react-router';
-
-import type { LocationDescriptor, Path } from 'history';
 import { createBrowserHistory } from 'history';
+import { Router as OriginalRouter } from 'react-router';
 
 import { layoutFromWindow } from 'mastodon/is_mobile';
 
@@ -12,7 +10,6 @@ interface MastodonLocationState {
   fromMastodon?: boolean;
   mastodonModalKey?: string;
 }
-type HistoryPath = Path | LocationDescriptor<MastodonLocationState>;
 
 const browserHistory = createBrowserHistory<
   MastodonLocationState | undefined
@@ -20,36 +17,25 @@ const browserHistory = createBrowserHistory<
 const originalPush = browserHistory.push.bind(browserHistory);
 const originalReplace = browserHistory.replace.bind(browserHistory);
 
-function extractRealPath(path: HistoryPath) {
-  if (typeof path === 'string') return path;
-  else return path.pathname;
-}
-
-browserHistory.push = (path: HistoryPath, state?: MastodonLocationState) => {
+browserHistory.push = (path: string, state?: MastodonLocationState) => {
   state = state ?? {};
   state.fromMastodon = true;
 
-  const realPath = extractRealPath(path);
-  if (!realPath) return;
-
-  if (layoutFromWindow() === 'multi-column' && !realPath.startsWith('/deck')) {
-    originalPush(`/deck${realPath}`, state);
+  if (layoutFromWindow() === 'multi-column' && !path.startsWith('/deck')) {
+    originalPush(`/deck${path}`, state);
   } else {
     originalPush(path, state);
   }
 };
 
-browserHistory.replace = (path: HistoryPath, state?: MastodonLocationState) => {
+browserHistory.replace = (path: string, state?: MastodonLocationState) => {
   if (browserHistory.location.state?.fromMastodon) {
     state = state ?? {};
     state.fromMastodon = true;
   }
 
-  const realPath = extractRealPath(path);
-  if (!realPath) return;
-
-  if (layoutFromWindow() === 'multi-column' && !realPath.startsWith('/deck')) {
-    originalReplace(`/deck${realPath}`, state);
+  if (layoutFromWindow() === 'multi-column' && !path.startsWith('/deck')) {
+    originalReplace(`/deck${path}`, state);
   } else {
     originalReplace(path, state);
   }
