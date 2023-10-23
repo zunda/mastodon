@@ -49,7 +49,6 @@ export function withOptionalRouter(Component) {
   C.displayName = displayName;
   C.WrappedComponent = Component;
   C.propTypes = {
-    ...Component.propTypes,
     wrappedComponentRef: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
