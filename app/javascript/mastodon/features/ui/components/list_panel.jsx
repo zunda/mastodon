@@ -7,6 +7,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
+
 import { fetchLists } from 'mastodon/actions/lists';
 
 import ColumnLink from './column_link';
@@ -47,7 +49,7 @@ class ListPanel extends ImmutablePureComponent {
         <hr />
 
         {lists.map(list => (
-          <ColumnLink icon='list-ul' key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
+          <ColumnLink icon='list-ul' iconComponent={ListAltIcon} key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
         ))}
       </div>
     );
