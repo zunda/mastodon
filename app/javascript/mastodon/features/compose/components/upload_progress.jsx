@@ -3,7 +3,6 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as UploadFileIcon } from '@material-symbols/svg-600/outlined/upload_file.svg';
 import spring from 'react-motion/lib/spring';
 
 import { Icon }  from 'mastodon/components/icon';
@@ -36,7 +35,7 @@ export default class UploadProgress extends PureComponent {
     return (
       <div className='upload-progress'>
         <div className='upload-progress__icon'>
-          <Icon id='upload' icon={UploadFileIcon} />
+          <Icon id='upload' />
         </div>
 
         <div className='upload-progress__message'>

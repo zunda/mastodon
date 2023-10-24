@@ -3,9 +3,7 @@ import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
-
-import { Icon }  from 'mastodon/components/icon';
+import { Check } from 'mastodon/components/check';
 
 export default class Option extends PureComponent {
 
@@ -49,7 +47,7 @@ export default class Option extends PureComponent {
           onKeyPress={this.handleKeyPress}
           aria-checked={checked}
           aria-label={label}
-        >{checked && <Icon icon={CheckIcon} />}</span>
+        >{checked && <Check />}</span>
 
         {labelComponent ? labelComponent : (
           <span className='poll__option__text'>

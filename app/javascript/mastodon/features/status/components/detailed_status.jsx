@@ -1,24 +1,18 @@
 import PropTypes from 'prop-types';
 
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-
-import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-600/outlined/alternate_email.svg';
-import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
 
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import EditedTimestamp from 'mastodon/components/edited_timestamp';
 import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
-import { VisibilityIcon } from 'mastodon/components/visibility_icon';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
@@ -30,7 +24,18 @@ import Video from '../../video';
 
 import Card from './card';
 
+const messages = defineMessages({
+  public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+});
+
 class DetailedStatus extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     status: ImmutablePropTypes.map,
@@ -48,7 +53,6 @@ class DetailedStatus extends ImmutablePureComponent {
       available: PropTypes.bool,
     }),
     onToggleMediaVisibility: PropTypes.func,
-    ...WithRouterPropTypes,
   };
 
   state = {
@@ -56,9 +60,9 @@ class DetailedStatus extends ImmutablePureComponent {
   };
 
   handleAccountClick = (e) => {
-    if (e.button === 0 && !(e.ctrlKey || e.metaKey) && this.props.history) {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey) && this.context.router) {
       e.preventDefault();
-      this.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
+      this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
     }
 
     e.stopPropagation();
@@ -135,7 +139,7 @@ class DetailedStatus extends ImmutablePureComponent {
   render () {
     const status = this._properStatus();
     const outerStyle = { boxSizing: 'border-box' };
-    const { compact, pictureInPicture } = this.props;
+    const { intl, compact, pictureInPicture } = this.props;
 
     if (!status) {
       return null;
@@ -144,8 +148,7 @@ class DetailedStatus extends ImmutablePureComponent {
     let media           = '';
     let applicationLink = '';
     let reblogLink = '';
-    const reblogIcon = 'retweet';
-    const reblogIconComponent = RepeatIcon;
+    let reblogIcon = 'retweet';
     let favouriteLink = '';
     let edited = '';
 
@@ -222,16 +225,24 @@ class DetailedStatus extends ImmutablePureComponent {
       applicationLink = <> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></>;
     }
 
-    const visibilityLink = <> · <VisibilityIcon visibility={status.get('visibility')} /></>;
+    const visibilityIconInfo = {
+      'public': { icon: 'globe', text: intl.formatMessage(messages.public_short) },
+      'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
+      'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
+      'direct': { icon: 'at', text: intl.formatMessage(messages.direct_short) },
+    };
+
+    const visibilityIcon = visibilityIconInfo[status.get('visibility')];
+    const visibilityLink = <> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></>;
 
     if (['private', 'direct'].includes(status.get('visibility'))) {
       reblogLink = '';
-    } else if (this.props.history) {
+    } else if (this.context.router) {
       reblogLink = (
         <>
           {' · '}
           <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
-            <Icon id={reblogIcon} icon={reblogIconComponent} />
+            <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
@@ -243,7 +254,7 @@ class DetailedStatus extends ImmutablePureComponent {
         <>
           {' · '}
           <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
-            <Icon id={reblogIcon} icon={reblogIconComponent} />
+            <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
@@ -252,10 +263,10 @@ class DetailedStatus extends ImmutablePureComponent {
       );
     }
 
-    if (this.props.history) {
+    if (this.context.router) {
       favouriteLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`} className='detailed-status__link'>
-          <Icon id='star' icon={StarIcon} />
+          <Icon id='star' />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get('favourites_count')} />
           </span>
@@ -264,7 +275,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       favouriteLink = (
         <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id='star' icon={StarIcon} />
+          <Icon id='star' />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get('favourites_count')} />
           </span>
@@ -289,7 +300,7 @@ class DetailedStatus extends ImmutablePureComponent {
         <div ref={this.setRef} className={classNames('detailed-status', { compact })}>
           {status.get('visibility') === 'direct' && (
             <div className='status__prepend'>
-              <div className='status__prepend-icon-wrapper'><Icon id='at' icon={AlternateEmailIcon} className='status__prepend-icon' /></div>
+              <div className='status__prepend-icon-wrapper'><Icon id='at' className='status__prepend-icon' fixedWidth /></div>
               <FormattedMessage id='status.direct_indicator' defaultMessage='Private mention' />
             </div>
           )}
@@ -322,4 +333,4 @@ class DetailedStatus extends ImmutablePureComponent {
 
 }
 
-export default withRouter(DetailedStatus);
+export default injectIntl(DetailedStatus);

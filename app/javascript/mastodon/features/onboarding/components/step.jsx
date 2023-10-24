@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 
-import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
-
+import { Check } from 'mastodon/components/check';
 import { Icon }  from 'mastodon/components/icon';
 
-const Step = ({ label, description, icon, iconComponent, completed, onClick, href }) => {
+import ArrowSmallRight from './arrow_small_right';
+
+const Step = ({ label, description, icon, completed, onClick, href }) => {
   const content = (
     <>
       <div className='onboarding__steps__item__icon'>
-        <Icon id={icon} icon={iconComponent} />
+        <Icon id={icon} />
       </div>
 
       <div className='onboarding__steps__item__description'>
@@ -18,7 +18,7 @@ const Step = ({ label, description, icon, iconComponent, completed, onClick, hre
       </div>
 
       <div className={completed ? 'onboarding__steps__item__progress' : 'onboarding__steps__item__go'}>
-        {completed ? <Icon icon={CheckIcon} /> : <Icon icon={ArrowRightAltIcon} />}
+        {completed ? <Check /> : <ArrowSmallRight />}
       </div>
     </>
   );
@@ -42,7 +42,6 @@ Step.propTypes = {
   label: PropTypes.node,
   description: PropTypes.node,
   icon: PropTypes.string,
-  iconComponent: PropTypes.func,
   completed: PropTypes.bool,
   href: PropTypes.string,
   onClick: PropTypes.func,

@@ -8,7 +8,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as BookmarksIcon } from '@material-symbols/svg-600/outlined/bookmarks-fill.svg';
 import { debounce } from 'lodash';
 
 import { fetchBookmarkedStatuses, expandBookmarkedStatuses } from 'mastodon/actions/bookmarks';
@@ -80,8 +79,7 @@ class Bookmarks extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
-          icon='bookmarks'
-          iconComponent={BookmarksIcon}
+          icon='bookmark'
           title={intl.formatMessage(messages.heading)}
           onPin={this.handlePin}
           onMove={this.handleMove}

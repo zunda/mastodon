@@ -8,7 +8,6 @@ import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
 import { isEqual } from 'lodash';
 
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
@@ -191,7 +190,6 @@ class HashtagTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
         <ColumnHeader
           icon='hashtag'
-          iconComponent={TagIcon}
           active={hasUnread}
           title={this.title()}
           onPin={this.handlePin}

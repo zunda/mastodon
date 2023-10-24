@@ -5,14 +5,8 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
-
-import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-600/outlined/alternate_email.svg';
-import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
-import { ReactComponent as LockOpenIcon } from '@material-symbols/svg-600/outlined/lock_open.svg';
-import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
-
 
 import { Icon }  from 'mastodon/components/icon';
 
@@ -129,7 +123,7 @@ class PrivacyDropdownMenu extends PureComponent {
         {items.map(item => (
           <div role='option' tabIndex={0} key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
             <div className='privacy-dropdown__option__icon'>
-              <Icon id={item.icon} icon={item.iconComponent} />
+              <Icon id={item.icon} fixedWidth />
             </div>
 
             <div className='privacy-dropdown__option__content'>
@@ -228,14 +222,14 @@ class PrivacyDropdown extends PureComponent {
     const { intl: { formatMessage } } = this.props;
 
     this.options = [
-      { icon: 'globe', iconComponent: PublicIcon, value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
-      { icon: 'unlock', iconComponent: LockOpenIcon,  value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
-      { icon: 'lock', iconComponent: LockIcon, value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
+      { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
+      { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
+      { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
     ];
 
     if (!this.props.noDirect) {
       this.options.push(
-        { icon: 'at', iconComponent: AlternateEmailIcon, value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
+        { icon: 'at', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
       );
     }
   }
@@ -259,24 +253,25 @@ class PrivacyDropdown extends PureComponent {
     const valueOption = this.options.find(item => item.value === value);
 
     return (
-      <div ref={this.setTargetRef} onKeyDown={this.handleKeyDown}>
-        <IconButton
-          className='privacy-dropdown__value-icon'
-          icon={valueOption.icon}
-          iconComponent={valueOption.iconComponent}
-          title={intl.formatMessage(messages.change_privacy)}
-          size={18}
-          expanded={open}
-          active={open}
-          inverted
-          onClick={this.handleToggle}
-          onMouseDown={this.handleMouseDown}
-          onKeyDown={this.handleButtonKeyDown}
-          style={{ height: null, lineHeight: '27px' }}
-          disabled={disabled}
-        />
+      <div className={classNames('privacy-dropdown', placement, { active: open })} onKeyDown={this.handleKeyDown}>
+        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === (placement === 'bottom' ? 0 : (this.options.length - 1)) })} ref={this.setTargetRef}>
+          <IconButton
+            className='privacy-dropdown__value-icon'
+            icon={valueOption.icon}
+            title={intl.formatMessage(messages.change_privacy)}
+            size={18}
+            expanded={open}
+            active={open}
+            inverted
+            onClick={this.handleToggle}
+            onMouseDown={this.handleMouseDown}
+            onKeyDown={this.handleButtonKeyDown}
+            style={{ height: null, lineHeight: '27px' }}
+            disabled={disabled}
+          />
+        </div>
 
-        <Overlay show={open} placement={placement} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
+        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
           {({ props, placement }) => (
             <div {...props}>
               <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
