@@ -2,9 +2,10 @@ import { FormattedMessage } from 'react-intl';
 
 import { Icon }  from 'mastodon/components/icon';
 
-import { ColumnBackButton } from './column_back_button';
+import ColumnBackButton from './column_back_button';
 
 export default class ColumnBackButtonSlim extends ColumnBackButton {
+
   render () {
     return (
       <div className='column-back-button--slim'>
@@ -15,4 +16,5 @@ export default class ColumnBackButtonSlim extends ColumnBackButton {
       </div>
     );
   }
+
 }
