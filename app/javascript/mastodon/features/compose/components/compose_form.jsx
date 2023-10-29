@@ -277,11 +277,12 @@ class ComposeForm extends ImmutablePureComponent {
             onPaste={onPaste}
             autoFocus={autoFocus}
             lang={this.props.lang}
-          />
-          <div className='compose-form__modifiers'>
-            <UploadFormContainer />
-            <PollFormContainer />
-          </div>
+          >
+            <div className='compose-form__modifiers'>
+              <UploadFormContainer />
+              <PollFormContainer />
+            </div>
+          </AutosuggestTextarea>
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
 
           <div className='compose-form__buttons-wrapper'>
