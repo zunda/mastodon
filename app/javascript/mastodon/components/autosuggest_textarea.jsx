@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { useCallback, useRef, useState, forwardRef } from 'react';
 
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import Textarea from 'react-textarea-autosize';
 
@@ -37,45 +37,54 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
   }
 };
 
-const AutosuggestTextarea = forwardRef(({
-  value,
-  suggestions,
-  disabled,
-  placeholder,
-  onSuggestionSelected,
-  onSuggestionsClearRequested,
-  onSuggestionsFetchRequested,
-  onChange,
-  onKeyUp,
-  onKeyDown,
-  onPaste,
-  onFocus,
-  autoFocus = true,
-  lang,
-  children,
-}, textareaRef) => {
+export default class AutosuggestTextarea extends ImmutablePureComponent {
 
-  const [selectedSuggestion, setSelectedSuggestion] = useState(0);
-  const lastTokenRef = useRef(null);
-  const tokenStartRef = useRef(0);
+  static propTypes = {
+    value: PropTypes.string,
+    suggestions: ImmutablePropTypes.list,
+    disabled: PropTypes.bool,
+    placeholder: PropTypes.string,
+    onSuggestionSelected: PropTypes.func.isRequired,
+    onSuggestionsClearRequested: PropTypes.func.isRequired,
+    onSuggestionsFetchRequested: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onKeyUp: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onPaste: PropTypes.func.isRequired,
+    autoFocus: PropTypes.bool,
+    lang: PropTypes.string,
+  };
 
-  const handleChange = useCallback((e) => {
+  static defaultProps = {
+    autoFocus: true,
+  };
+
+  state = {
+    suggestionsHidden: true,
+    focused: false,
+    selectedSuggestion: 0,
+    lastToken: null,
+    tokenStart: 0,
+  };
+
+  onChange = (e) => {
     const [ tokenStart, token ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart);
 
-    if (token !== null && lastTokenRef.current !== token) {
-      tokenStartRef.current = tokenStart;
-      lastTokenRef.current = token;
-      setSelectedSuggestion(0);
-      onSuggestionsFetchRequested(token);
+    if (token !== null && this.state.lastToken !== token) {
+      this.setState({ lastToken: token, selectedSuggestion: 0, tokenStart });
+      this.props.onSuggestionsFetchRequested(token);
     } else if (token === null) {
-      lastTokenRef.current = null;
-      onSuggestionsClearRequested();
+      this.setState({ lastToken: null });
+      this.props.onSuggestionsClearRequested();
     }
 
-    onChange(e);
-  }, [onSuggestionsFetchRequested, onSuggestionsClearRequested, onChange, setSelectedSuggestion]);
+    this.props.onChange(e);
+  };
 
-  const handleKeyDown = useCallback((e) => {
+  onKeyDown = (e) => {
+    const { suggestions, disabled } = this.props;
+    const { selectedSuggestion, suggestionsHidden } = this.state;
+
     if (disabled) {
       e.preventDefault();
       return;
@@ -89,68 +98,84 @@ const AutosuggestTextarea = forwardRef(({
 
     switch(e.key) {
     case 'Escape':
-      if (suggestions.size === 0) {
+      if (suggestions.size === 0 || suggestionsHidden) {
         document.querySelector('.ui').parentElement.focus();
       } else {
         e.preventDefault();
-        onSuggestionsClearRequested();
+        this.setState({ suggestionsHidden: true });
       }
 
       break;
     case 'ArrowDown':
-      if (suggestions.size > 0) {
+      if (suggestions.size > 0 && !suggestionsHidden) {
         e.preventDefault();
-        setSelectedSuggestion(Math.min(selectedSuggestion + 1, suggestions.size - 1));
+        this.setState({ selectedSuggestion: Math.min(selectedSuggestion + 1, suggestions.size - 1) });
       }
 
       break;
     case 'ArrowUp':
-      if (suggestions.size > 0) {
+      if (suggestions.size > 0 && !suggestionsHidden) {
         e.preventDefault();
-        setSelectedSuggestion(Math.max(selectedSuggestion - 1, 0));
+        this.setState({ selectedSuggestion: Math.max(selectedSuggestion - 1, 0) });
       }
 
       break;
     case 'Enter':
     case 'Tab':
       // Select suggestion
-      if (lastTokenRef.current !== null && suggestions.size > 0) {
+      if (this.state.lastToken !== null && suggestions.size > 0 && !suggestionsHidden) {
         e.preventDefault();
         e.stopPropagation();
-        onSuggestionSelected(tokenStartRef.current, lastTokenRef.current, suggestions.get(selectedSuggestion));
+        this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
       }
 
       break;
     }
 
-    if (e.defaultPrevented || !onKeyDown) {
+    if (e.defaultPrevented || !this.props.onKeyDown) {
       return;
     }
 
-    onKeyDown(e);
-  }, [disabled, suggestions, selectedSuggestion, setSelectedSuggestion, onSuggestionSelected, onSuggestionsClearRequested, onKeyDown]);
+    this.props.onKeyDown(e);
+  };
 
-  const handleFocus = useCallback((e) => {
-    if (onFocus) {
-      onFocus(e);
+  onBlur = () => {
+    this.setState({ suggestionsHidden: true, focused: false });
+  };
+
+  onFocus = (e) => {
+    this.setState({ focused: true });
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
     }
-  }, [onFocus]);
+  };
 
-  const handleSuggestionClick = useCallback((e) => {
-    const suggestion = suggestions.get(e.currentTarget.getAttribute('data-index'));
+  onSuggestionClick = (e) => {
+    const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
-    onSuggestionSelected(tokenStartRef.current, lastTokenRef.current, suggestion);
-    textareaRef.current?.focus();
-  }, [suggestions, onSuggestionSelected, textareaRef]);
+    this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
+    this.textarea.focus();
+  };
 
-  const handlePaste = useCallback((e) => {
+  UNSAFE_componentWillReceiveProps (nextProps) {
+    if (nextProps.suggestions !== this.props.suggestions && nextProps.suggestions.size > 0 && this.state.suggestionsHidden && this.state.focused) {
+      this.setState({ suggestionsHidden: false });
+    }
+  }
+
+  setTextarea = (c) => {
+    this.textarea = c;
+  };
+
+  onPaste = (e) => {
     if (e.clipboardData && e.clipboardData.files.length === 1) {
-      onPaste(e.clipboardData.files);
+      this.props.onPaste(e.clipboardData.files);
       e.preventDefault();
     }
-  }, [onPaste]);
+  };
 
-  const renderSuggestion = (suggestion, i) => {
+  renderSuggestion = (suggestion, i) => {
+    const { selectedSuggestion } = this.state;
     let inner, key;
 
     if (suggestion.type === 'emoji') {
@@ -165,63 +190,50 @@ const AutosuggestTextarea = forwardRef(({
     }
 
     return (
-      <div role='button' tabIndex={0} key={key} data-index={i} className={classNames('autosuggest-textarea__suggestions__item', { selected: i === selectedSuggestion })} onMouseDown={handleSuggestionClick}>
+      <div role='button' tabIndex={0} key={key} data-index={i} className={classNames('autosuggest-textarea__suggestions__item', { selected: i === selectedSuggestion })} onMouseDown={this.onSuggestionClick}>
         {inner}
       </div>
     );
   };
 
-  return [
-    <div className='compose-form__autosuggest-wrapper' key='autosuggest-wrapper'>
-      <div className='autosuggest-textarea'>
-        <label>
-          <span style={{ display: 'none' }}>{placeholder}</span>
+  render () {
+    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, lang, children } = this.props;
+    const { suggestionsHidden } = this.state;
 
-          <Textarea
-            ref={textareaRef}
-            className='autosuggest-textarea__textarea'
-            disabled={disabled}
-            placeholder={placeholder}
-            autoFocus={autoFocus}
-            value={value}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            onKeyUp={onKeyUp}
-            onFocus={handleFocus}
-            onPaste={handlePaste}
-            dir='auto'
-            aria-autocomplete='list'
-            lang={lang}
-          />
-        </label>
-      </div>
-      {children}
-    </div>,
+    return [
+      <div className='compose-form__autosuggest-wrapper' key='autosuggest-wrapper'>
+        <div className='autosuggest-textarea'>
+          <label>
+            <span style={{ display: 'none' }}>{placeholder}</span>
 
-    <div className='autosuggest-textarea__suggestions-wrapper' key='suggestions-wrapper'>
-      <div className={`autosuggest-textarea__suggestions ${suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
-        {suggestions.map(renderSuggestion)}
-      </div>
-    </div>,
-  ];
-});
+            <Textarea
+              ref={this.setTextarea}
+              className='autosuggest-textarea__textarea'
+              disabled={disabled}
+              placeholder={placeholder}
+              autoFocus={autoFocus}
+              value={value}
+              onChange={this.onChange}
+              onKeyDown={this.onKeyDown}
+              onKeyUp={onKeyUp}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              onPaste={this.onPaste}
+              dir='auto'
+              aria-autocomplete='list'
+              lang={lang}
+            />
+          </label>
+        </div>
+        {children}
+      </div>,
 
-AutosuggestTextarea.propTypes = {
-  value: PropTypes.string,
-  suggestions: ImmutablePropTypes.list,
-  disabled: PropTypes.bool,
-  placeholder: PropTypes.string,
-  onSuggestionSelected: PropTypes.func.isRequired,
-  onSuggestionsClearRequested: PropTypes.func.isRequired,
-  onSuggestionsFetchRequested: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onKeyUp: PropTypes.func,
-  onKeyDown: PropTypes.func,
-  onPaste: PropTypes.func.isRequired,
-  onFocus:PropTypes.func,
-  children: PropTypes.node,
-  autoFocus: PropTypes.bool,
-  lang: PropTypes.string,
-};
+      <div className='autosuggest-textarea__suggestions-wrapper' key='suggestions-wrapper'>
+        <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
+          {suggestions.map(this.renderSuggestion)}
+        </div>
+      </div>,
+    ];
+  }
 
-export default AutosuggestTextarea;
+}
