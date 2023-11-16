@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '3.3.0.preview2'
+
+::RUBY_DESCRIPTION = Object.send(:remove_const, :RUBY_DESCRIPTION).sub(/dev/, 'preview3')
+Gem.remove_instance_variable(:@ruby_version) if Gem.instance_variable_defined?(:@ruby_version)
+ruby '3.3.0.preview3'
 
 gem 'puma', '~> 6.3'
 gem 'rails', '~> 7.1.1'
