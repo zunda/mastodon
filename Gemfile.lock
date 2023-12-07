@@ -208,7 +208,7 @@ GEM
       activesupport
     cbor (0.5.9.6)
     charlock_holmes (0.7.7)
-    chewy (7.3.4)
+    chewy (7.3.5)
       activesupport (>= 5.2)
       elasticsearch (>= 7.12.0, < 7.14.0)
       elasticsearch-dsl
@@ -495,7 +495,8 @@ GEM
     nokogiri (1.15.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    oj (3.16.1)
+    oj (3.16.2)
+      bigdecimal (~> 3.1)
     omniauth (2.1.1)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
