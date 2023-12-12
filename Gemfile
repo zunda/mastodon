@@ -2,9 +2,7 @@
 
 source 'https://rubygems.org'
 
-::RUBY_DESCRIPTION = Object.send(:remove_const, :RUBY_DESCRIPTION).sub(/dev/, 'preview3')
-Gem.remove_instance_variable(:@ruby_version) if Gem.instance_variable_defined?(:@ruby_version)
-ruby '3.3.0.preview3'
+ruby '3.3.0.rc1'
 
 gem 'puma', '~> 6.3'
 gem 'rails', '~> 7.1.1'
