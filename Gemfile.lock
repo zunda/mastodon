@@ -184,8 +184,6 @@ GEM
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
     blurhash (0.1.7)
-    bootsnap (1.17.0)
-      msgpack (~> 1.2)
     brakeman (6.1.0)
     browser (5.3.1)
     brpoplpush-redis_script (0.1.3)
@@ -473,7 +471,6 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
     minitest (5.20.0)
-    msgpack (1.7.2)
     multi_json (1.15.0)
     multipart-post (2.3.0)
     mutex_m (0.2.0)
@@ -848,7 +845,6 @@ DEPENDENCIES
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
   blurhash (~> 0.1)
-  bootsnap (~> 1.17.0)
   brakeman (~> 6.0)
   browser
   bundler-audit (~> 0.9)
@@ -1010,7 +1006,6 @@ CHECKSUMS
   bindata (2.4.15) sha256=e567e4278223e041caf4e623de870b2df8a93479d8f13e2b478bad45e0fbc413
   binding_of_caller (1.0.0) sha256=3aad25d1d538fc6e7972978f9bf512ccd992784009947c81633bea776713161d
   blurhash (0.1.7) sha256=c8f553d3d0ebf352df3a9d5c8a4ab518c250f9ba24b3314fddc88ee3f173ea14
-  bootsnap (1.17.0) sha256=6b0ea4dd68f0d424968dcd13953c3f04b13a19a8761c540d3af13507fcfa1347
   brakeman (6.1.0) sha256=0d4066936dd58f0fe757d0ff1ec0744479be9ff06c771be4b581bdf0cb8d7403
   browser (5.3.1) sha256=62745301701ff2c6c5d32d077bb12532b20be261929dcb52c6781ed0d5658b3c
   brpoplpush-redis_script (0.1.3) sha256=3411dc086d093908bf3d3ce3923cf764238171131a7dac334d1b56ec8bfca5d9
@@ -1136,7 +1131,6 @@ CHECKSUMS
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
   mini_portile2 (2.8.5) sha256=7a37db8ae758086c3c3ac3a59c036704d331e965d5e106635e4a42d6e66089ce
   minitest (5.20.0) sha256=a3faf26a757ced073aaae0bd10481340f53e221a4f50d8a6033591555374752e
-  msgpack (1.7.2) sha256=59ab62fd8a4d0dfbde45009f87eb6f158ab2628a7c48886b0256f175166baaa8
   multi_json (1.15.0) sha256=1fd04138b6e4a90017e8d1b804c039031399866ff3fbabb7822aea367c78615d
   multipart-post (2.3.0) sha256=3dcdd74a767302559fcf91a63b568ee00770494ce24195167b1c147ab3f6fe51
   mutex_m (0.2.0) sha256=b6ef0c6c842ede846f2ec0ade9e266b1a9dac0bc151682b04835e8ebd54840d5
