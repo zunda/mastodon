@@ -716,8 +716,6 @@ GEM
     scenic (1.7.0)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
-    scout_apm (5.2.0)
-      parser
     selenium-webdriver (4.16.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -944,7 +942,6 @@ DEPENDENCIES
   rubyzip (~> 2.3)
   sanitize (~> 6.0)
   scenic (~> 1.7)
-  scout_apm (>= 5.2)
   selenium-webdriver
   sidekiq (~> 6.5)
   sidekiq-bulk (~> 0.2.0)
@@ -1230,7 +1227,6 @@ CHECKSUMS
   safety_net_attestation (0.4.0) sha256=96be2d74e7ed26453a51894913449bea0e072f44490021545ac2d1c38b0718ce
   sanitize (6.1.0) sha256=92fcd93c9c50c72ba6866465b93a593eef98b43382b33d451f9606087c015c73
   scenic (1.7.0) sha256=8894a27e7734911b9d0006a9126415cafbecfd413d183047a6f172fbaa244d13
-  scout_apm (5.2.0) sha256=fa0e0fa69e673a1c368aa86f1e8259d0f011bd66558beaad31b2abc817bf24e3
   selenium-webdriver (4.16.0) sha256=237013649ea52435fe386cf4069b56d3f64c127b05af5f4d5c059bd71ee4c3e3
   semantic_range (3.0.0) sha256=3066777ba546f807060d3c93892d5c52eff40f45fd48ac94cef496f4f64997b6
   sidekiq (6.5.12) sha256=b4f93b2204c42220d0b526a7b8e0c49b5f9da82c1ce1a05d2baf1e8f744c197f
