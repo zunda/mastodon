@@ -1285,7 +1285,7 @@ CHECKSUMS
   zeitwerk (2.6.12) sha256=561e12975d0332fd3b62cc859aff3bab432e5f320689c8a10cd4674b5c0439be
 
 RUBY VERSION
-   ruby 3.3.0.rc1
+   ruby 3.3.0
 
 BUNDLED WITH
    2.5.0.dev

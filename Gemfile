@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.0.rc1'
+ruby '3.3.0'
 
 gem 'puma', '~> 6.3'
 gem 'rails', '~> 7.1.1'
