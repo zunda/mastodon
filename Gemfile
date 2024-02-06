@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-
 ruby '3.3.0'
 
 gem 'puma', '~> 6.3'
@@ -63,7 +62,7 @@ gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.5.0', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.15'
-gem 'nsa', github: 'jhawthorn/nsa', ref: 'e020fcc3a54d993ab45b7194d89ab720296c111b'
+gem 'nsa'
 gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
 gem 'parslet'
