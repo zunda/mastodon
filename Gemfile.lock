@@ -360,7 +360,7 @@ GEM
       terminal-table (>= 1.5.1)
     idn-ruby (0.1.5)
     io-console (0.7.2)
-    irb (1.11.1)
+    irb (1.11.2)
       rdoc
       reline (>= 0.4.2)
     jmespath (1.6.2)
@@ -514,7 +514,7 @@ GEM
     pastel (0.8.0)
       tty-color (~> 0.5)
     pg (1.5.4)
-    pghero (3.4.0)
+    pghero (3.4.1)
       activerecord (>= 6)
     posix-spawn (0.3.15)
     premailer (1.21.0)
