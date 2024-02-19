@@ -69,9 +69,13 @@ class Request
   # Each of timeouts below has 5 more seconds
   TIMEOUT = { connect_timeout: 10, read_timeout: 15, write_timeout: 15, read_deadline: 35 }.freeze
 
+  # Allow egress requests only when allowed
+  ALLOW_EGRESS_REQUESTS = ENV.fetch('ALLOW_EGRESS_REQUESTS', false)
+
   include RoutingHelper
 
   def initialize(verb, url, **options)
+    raise RuntimeError, 'Not allowed to make egress requests' unless ALLOW_EGRESS_REQUESTS
     raise ArgumentError if url.blank?
 
     @verb        = verb
