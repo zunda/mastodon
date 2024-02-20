@@ -75,7 +75,7 @@ class Request
   include RoutingHelper
 
   def initialize(verb, url, **options)
-    raise RuntimeError, 'Not allowed to make egress requests' unless ALLOW_EGRESS_REQUESTS
+    raise Mastodon::NotPermittedError, 'Not allowed to make egress requests' unless ALLOW_EGRESS_REQUESTS
     raise ArgumentError if url.blank?
 
     @verb        = verb

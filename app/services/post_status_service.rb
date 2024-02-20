@@ -74,7 +74,10 @@ class PostStatusService < BaseService
 
   def process_status!
     @status = @account.statuses.new(status_attributes)
-    process_mentions_service.call(@status, save_records: false)
+    begin
+      process_mentions_service.call(@status, save_records: false)
+    rescue Mastodon::NotPermittedError
+    end
     safeguard_mentions!(@status)
 
     # The following transaction block is needed to wrap the UPDATEs to
