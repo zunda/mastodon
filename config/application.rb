@@ -51,6 +51,7 @@ require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
 require_relative '../lib/http_extensions'
+require_relative '../lib/request_logger'
 
 Dotenv::Railtie.load
 
@@ -94,6 +95,8 @@ module Mastodon
     config.middleware.use PublicFileServerMiddleware if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
+
+    config.middleware.use RequestLogger
 
     initializer :deprecator do |app|
       app.deprecators[:mastodon] = ActiveSupport::Deprecation.new('4.3', 'mastodon/mastodon')
