@@ -1719,8 +1719,6 @@ en:
         other: "%{count} votes"
       vote: Vote
     show_more: Show more
-    show_newer: Show newer
-    show_older: Show older
     show_thread: Show thread
     title: '%{name}: "%{quote}"'
     visibilities:
