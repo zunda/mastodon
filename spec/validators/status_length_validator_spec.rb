@@ -25,19 +25,19 @@ describe StatusLengthValidator do
     end
 
     it 'adds an error when content warning is over character limit' do
-      status = status_double(spoiler_text: 'a' * 1044)
+      status = status_double(spoiler_text: 'a' * 520)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
     it 'adds an error when text is over character limit' do
-      status = status_double(text: 'a' * 1044)
+      status = status_double(text: 'a' * 520)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
     it 'adds an error when text and content warning are over character limit total' do
-      status = status_double(spoiler_text: 'a' * 512, text: 'b' * 513)
+      status = status_double(spoiler_text: 'a' * 250, text: 'b' * 251)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
@@ -51,7 +51,7 @@ describe StatusLengthValidator do
     end
 
     it 'does not count non-autolinkable URLs as 23 characters flat' do
-      text   = ('a' * 1000) + "http://#{'b' * 30}.com/example"
+      text   = ('a' * 476) + "http://#{'b' * 30}.com/example"
       status = status_double(text: text)
 
       subject.validate(status)
@@ -66,7 +66,7 @@ describe StatusLengthValidator do
     end
 
     it 'counts only the front part of remote usernames' do
-      text   = ('a' * 999) + " @alice@#{'b' * 30}.com"
+      text   = ('a' * 475) + " @alice@#{'b' * 30}.com"
       status = status_double(text: text)
 
       subject.validate(status)
@@ -74,7 +74,7 @@ describe StatusLengthValidator do
     end
 
     it 'does count both parts of remote usernames for overly long domains' do
-      text   = "@alice@#{'b' * 1024}.com"
+      text   = "@alice@#{'b' * 500}.com"
       status = status_double(text: text)
 
       subject.validate(status)
