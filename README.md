@@ -101,11 +101,13 @@ To set up **MacOS** for native development, complete the following steps:
 
 ### Docker
 
-For development with **Docker**, complete the following steps:
+For production hosting and deployment with **Docker**, use the `Dockerfile` and
+`docker-compose.yml` in the project root directory. To create a local
+development environment with **Docker**, complete the following steps:
 
 - Install Docker Desktop
 - Run `docker compose -f .devcontainer/docker-compose.yml up -d`
-- Run `docker compose -f .devcontainer/docker-compose.yml exec app .devcontainer/post-create.sh`
+- Run `docker compose -f .devcontainer/docker-compose.yml exec app bin/setup`
 - Finally, run `docker compose -f .devcontainer/docker-compose.yml exec app bin/dev`
 
 If you are using an IDE with [support for the Development Container specification](https://containers.dev/supporting), it will run the above `docker compose` commands automatically. For **Visual Studio Code** this requires the [Dev Container extension](https://containers.dev/supporting#dev-containers).
