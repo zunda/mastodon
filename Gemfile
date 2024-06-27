@@ -99,8 +99,6 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'private_address_check', '~> 0.5'
-
 gem 'opentelemetry-api', '~> 1.2.5'
 
 group :opentelemetry do
@@ -122,6 +120,9 @@ group :opentelemetry do
 end
 
 group :test do
+  # Enable usage of all available CPUs/cores during spec runs
+  gem 'flatware-rspec'
+
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
 
