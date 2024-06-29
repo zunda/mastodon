@@ -2,13 +2,11 @@ import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import { useIdentity } from '@/mastodon/identity_context';
 import {
   fetchRelationships,
   followAccount,
   unfollowAccount,
 } from 'mastodon/actions/accounts';
-import { openModal } from 'mastodon/actions/modal';
 import { Button } from 'mastodon/components/button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { me } from 'mastodon/initial_state';
@@ -31,37 +29,17 @@ export const FollowButton: React.FC<{
 }> = ({ accountId }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const { signedIn } = useIdentity();
-  const account = useAppSelector((state) =>
-    accountId ? state.accounts.get(accountId) : undefined,
-  );
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
   );
   const following = relationship?.following || relationship?.requested;
 
   useEffect(() => {
-    if (accountId && signedIn) {
-      dispatch(fetchRelationships([accountId]));
-    }
-  }, [dispatch, accountId, signedIn]);
+    dispatch(fetchRelationships([accountId]));
+  }, [dispatch, accountId]);
 
   const handleClick = useCallback(() => {
-    if (!signedIn) {
-      dispatch(
-        openModal({
-          modalType: 'INTERACTION',
-          modalProps: {
-            type: 'follow',
-            accountId: accountId,
-            url: account?.url,
-          },
-        }),
-      );
-    }
-
     if (!relationship) return;
-
     if (accountId === me) {
       return;
     } else if (relationship.following || relationship.requested) {
@@ -69,13 +47,11 @@ export const FollowButton: React.FC<{
     } else {
       dispatch(followAccount(accountId));
     }
-  }, [dispatch, accountId, relationship, account, signedIn]);
+  }, [dispatch, accountId, relationship]);
 
   let label;
 
-  if (!signedIn) {
-    label = intl.formatMessage(messages.follow);
-  } else if (accountId === me) {
+  if (accountId === me) {
     label = intl.formatMessage(messages.edit_profile);
   } else if (!relationship) {
     label = <LoadingIndicator />;
