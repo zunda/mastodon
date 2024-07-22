@@ -2,12 +2,16 @@ import { connect } from 'react-redux';
 
 import { mentionCompose } from '../../../actions/compose';
 import {
-  toggleFavourite,
-  toggleReblog,
+  reblog,
+  favourite,
+  unreblog,
+  unfavourite,
 } from '../../../actions/interactions';
+import { openModal } from '../../../actions/modal';
 import {
   toggleStatusSpoilers,
 } from '../../../actions/statuses';
+import { boostModal } from '../../../initial_state';
 import { makeGetNotification, makeGetStatus, makeGetReport } from '../../../selectors';
 import Notification from '../components/notification';
 
@@ -33,12 +37,28 @@ const mapDispatchToProps = dispatch => ({
     dispatch(mentionCompose(account));
   },
 
+  onModalReblog (status, privacy) {
+    dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
+  },
+
   onReblog (status, e) {
-    dispatch(toggleReblog(status.get('id'), e.shiftKey));
+    if (status.get('reblogged')) {
+      dispatch(unreblog({ statusId: status.get('id') }));
+    } else {
+      if (e.shiftKey || !boostModal) {
+        this.onModalReblog(status);
+      } else {
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog } }));
+      }
+    }
   },
 
   onFavourite (status) {
-    dispatch(toggleFavourite(status.get('id')));
+    if (status.get('favourited')) {
+      dispatch(unfavourite(status));
+    } else {
+      dispatch(favourite(status));
+    }
   },
 
   onToggleHidden (status) {

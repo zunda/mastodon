@@ -38,10 +38,12 @@ import {
   unblockDomain,
 } from '../../actions/domain_blocks';
 import {
-  toggleFavourite,
+  favourite,
+  unfavourite,
   bookmark,
   unbookmark,
-  toggleReblog,
+  reblog,
+  unreblog,
   pin,
   unpin,
 } from '../../actions/interactions';
@@ -62,7 +64,7 @@ import {
 import ColumnHeader from '../../components/column_header';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import StatusContainer from '../../containers/status_container';
-import { deleteModal } from '../../initial_state';
+import { boostModal, deleteModal } from '../../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
 import Column from '../ui/components/column';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
@@ -242,7 +244,11 @@ class Status extends ImmutablePureComponent {
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      dispatch(toggleFavourite(status.get('id')));
+      if (status.get('favourited')) {
+        dispatch(unfavourite(status));
+      } else {
+        dispatch(favourite(status));
+      }
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
@@ -292,12 +298,24 @@ class Status extends ImmutablePureComponent {
     }
   };
 
+  handleModalReblog = (status, privacy) => {
+    this.props.dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
+  };
+
   handleReblogClick = (status, e) => {
     const { dispatch } = this.props;
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      dispatch(toggleReblog(status.get('id'), e && e.shiftKey));
+      if (status.get('reblogged')) {
+        dispatch(unreblog({ statusId: status.get('id') }));
+      } else {
+        if ((e && e.shiftKey) || !boostModal) {
+          this.handleModalReblog(status);
+        } else {
+          dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.handleModalReblog } }));
+        }
+      }
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
