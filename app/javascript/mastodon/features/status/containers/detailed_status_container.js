@@ -10,10 +10,8 @@ import {
   directCompose,
 } from '../../../actions/compose';
 import {
-  reblog,
-  favourite,
-  unreblog,
-  unfavourite,
+  toggleReblog,
+  toggleFavourite,
   pin,
   unpin,
 } from '../../../actions/interactions';
@@ -24,10 +22,9 @@ import {
   muteStatus,
   unmuteStatus,
   deleteStatus,
-  hideStatus,
-  revealStatus,
+  toggleStatusSpoilers,
 } from '../../../actions/statuses';
-import { boostModal, deleteModal } from '../../../initial_state';
+import { deleteModal } from '../../../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../../../selectors';
 import DetailedStatus from '../components/detailed_status';
 
@@ -73,28 +70,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     });
   },
 
-  onModalReblog (status, privacy) {
-    dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
-  },
-
   onReblog (status, e) {
-    if (status.get('reblogged')) {
-      dispatch(unreblog({ statusId: status.get('id') }));
-    } else {
-      if (e.shiftKey || !boostModal) {
-        this.onModalReblog(status);
-      } else {
-        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog } }));
-      }
-    }
+    dispatch(toggleReblog(status.get('id'), e.shiftKey));
   },
 
   onFavourite (status) {
-    if (status.get('favourited')) {
-      dispatch(unfavourite(status));
-    } else {
-      dispatch(favourite(status));
-    }
+    dispatch(toggleFavourite(status.get('id')));
   },
 
   onPin (status) {
@@ -174,11 +155,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onToggleHidden (status) {
-    if (status.get('hidden')) {
-      dispatch(revealStatus(status.get('id')));
-    } else {
-      dispatch(hideStatus(status.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(status.get('id')));
   },
 
 });

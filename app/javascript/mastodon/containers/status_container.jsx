@@ -21,11 +21,9 @@ import {
   initAddFilter,
 } from '../actions/filters';
 import {
-  reblog,
-  favourite,
+  toggleReblog,
+  toggleFavourite,
   bookmark,
-  unreblog,
-  unfavourite,
   unbookmark,
   pin,
   unpin,
@@ -38,15 +36,14 @@ import {
   muteStatus,
   unmuteStatus,
   deleteStatus,
-  hideStatus,
-  revealStatus,
+  toggleStatusSpoilers,
   toggleStatusCollapse,
   editStatus,
   translateStatus,
   undoStatusTranslation,
 } from '../actions/statuses';
 import Status from '../components/status';
-import { boostModal, deleteModal } from '../initial_state';
+import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
 
 const messages = defineMessages({
@@ -94,28 +91,12 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     });
   },
 
-  onModalReblog (status, privacy) {
-    if (status.get('reblogged')) {
-      dispatch(unreblog({ statusId: status.get('id') }));
-    } else {
-      dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
-    }
-  },
-
   onReblog (status, e) {
-    if ((e && e.shiftKey) || !boostModal) {
-      this.onModalReblog(status);
-    } else {
-      dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog } }));
-    }
+    dispatch(toggleReblog(status.get('id'), e.shiftKey));
   },
 
   onFavourite (status) {
-    if (status.get('favourited')) {
-      dispatch(unfavourite(status));
-    } else {
-      dispatch(favourite(status));
-    }
+    dispatch(toggleFavourite(status.get('id')));
   },
 
   onBookmark (status) {
@@ -241,11 +222,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onToggleHidden (status) {
-    if (status.get('hidden')) {
-      dispatch(revealStatus(status.get('id')));
-    } else {
-      dispatch(hideStatus(status.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(status.get('id')));
   },
 
   onToggleCollapsed (status, isCollapsed) {
