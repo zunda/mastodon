@@ -170,6 +170,7 @@ namespace :api, format: false do
     resources :notifications, only: [:index, :show] do
       collection do
         post :clear
+        get :unread_count
       end
 
       member do
@@ -339,6 +340,7 @@ namespace :api, format: false do
     resources :notifications, only: [:index, :show] do
       collection do
         post :clear
+        get :unread_count
       end
 
       member do
