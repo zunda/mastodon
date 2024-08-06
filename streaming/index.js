@@ -198,6 +198,8 @@ const pgConfigFromEnv = (env) => {
     }
   } else if (Object.hasOwn(pgConfigs, environment)) {
     baseConfig = pgConfigs[environment];
+  } else {
+    throw new Error('Unable to resolve postgresql database configuration.');
   }
 
   if (env.NODE_DB_SSLMODE) {
@@ -213,8 +215,6 @@ const pgConfigFromEnv = (env) => {
       baseConfig.ssl = {};
       break;
     }
-  } else {
-    throw new Error('Unable to resolve postgresql database configuration.');
   }
 
   return {
