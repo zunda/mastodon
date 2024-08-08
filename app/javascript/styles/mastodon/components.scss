@@ -403,7 +403,7 @@ body > [data-popper-placement] {
   &__suggestions {
     box-shadow: var(--dropdown-shadow);
     background: $ui-base-color;
-    border: 1px solid lighten($ui-base-color, 14%);
+    border: 1px solid var(--background-border-color);
     border-radius: 0 0 4px 4px;
     color: $secondary-text-color;
     font-size: 14px;
@@ -2779,6 +2779,11 @@ $ui-header-logo-wordmark-width: 99px;
     &.privacy-policy {
       border-top: 1px solid var(--background-border-color);
       border-radius: 4px;
+
+      @media screen and (max-width: $no-gap-breakpoint) {
+        border-top: 0;
+        border-bottom: 0;
+      }
     }
   }
 }
@@ -3085,11 +3090,6 @@ $ui-header-logo-wordmark-width: 99px;
 
   .explore__search-header {
     display: flex;
-  }
-
-  .explore__search-results {
-    border: 0;
-    border-radius: 0;
   }
 }
 
@@ -3881,18 +3881,17 @@ $ui-header-logo-wordmark-width: 99px;
   display: block;
   box-sizing: border-box;
   margin: 0;
-  color: $inverted-text-color;
-  background: $white;
+  color: $primary-text-color;
+  background: $ui-base-color;
   padding: 7px 10px;
   font-family: inherit;
   font-size: 14px;
   line-height: 22px;
   border-radius: 4px;
-  border: 1px solid $white;
+  border: 1px solid var(--background-border-color);
 
   &:focus {
     outline: 0;
-    border-color: lighten($ui-highlight-color, 12%);
   }
 
   &__wrapper {
@@ -4477,6 +4476,11 @@ a.status-card {
 .column-header__collapsible-inner {
   border: 1px solid var(--background-border-color);
   border-top: 0;
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-left: 0;
+    border-right: 0;
+  }
 }
 
 .column-header__setting-btn {
@@ -7662,6 +7666,11 @@ noscript {
       width: 100%;
     }
   }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-left: 0;
+    border-right: 0;
+  }
 }
 
 .drawer__backdrop {
@@ -8789,10 +8798,13 @@ noscript {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--background-border-color);
-  border-top: 0;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+
+  @media screen and (min-width: $no-gap-breakpoint) {
+    border: 1px solid var(--background-border-color);
+    border-top: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
 }
 
 .story {
