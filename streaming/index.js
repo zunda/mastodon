@@ -265,6 +265,13 @@ const redisConfigFromEnv = (env) => {
     redisParams.path = env.REDIS_URL.slice(7);
   }
 
+  // allow self-signed certificate on rediss:// connection
+  if (env.REDIS_URL && env.REDIS_URL.startsWith('rediss://')) {
+    redisParams.tls = {
+      rejectUnauthorized: false
+    };
+  }
+
   return {
     redisParams,
     redisPrefix,
