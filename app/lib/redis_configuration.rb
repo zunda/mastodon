@@ -42,13 +42,17 @@ class RedisConfiguration
     ENV['REDIS_URL']
   end
 
-  def redis_driver
-    ENV.fetch('REDIS_DRIVER', 'hiredis') == 'ruby' ? :ruby : :hiredis
-  end
+  # def redis_driver
+  #  ENV.fetch('REDIS_DRIVER', 'hiredis') == 'ruby' ? :ruby : :hiredis
+  # end
 
   private
 
   def raw_connection
-    Redis.new(url: url, driver: redis_driver)
+    Redis.new(
+      url: url,
+      ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE },
+      driver: :ruby
+    )
   end
 end
