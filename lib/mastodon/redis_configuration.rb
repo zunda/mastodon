@@ -6,6 +6,7 @@ class Mastodon::RedisConfiguration
       url: setup_base_redis_url,
       driver: driver,
       namespace: base_namespace,
+      ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE },
     }
   end
 
@@ -14,6 +15,7 @@ class Mastodon::RedisConfiguration
       url: setup_prefixed_redis_url(:sidekiq),
       driver: driver,
       namespace: sidekiq_namespace,
+      ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE },
     }
   end
 
@@ -22,6 +24,7 @@ class Mastodon::RedisConfiguration
       url: setup_prefixed_redis_url(:cache),
       driver: driver,
       namespace: cache_namespace,
+      ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE },
       expires_in: 10.minutes,
       connect_timeout: 5,
       pool: {
@@ -34,7 +37,7 @@ class Mastodon::RedisConfiguration
   private
 
   def driver
-    ENV['REDIS_DRIVER'] == 'ruby' ? :ruby : :hiredis
+    :ruby
   end
 
   def namespace
