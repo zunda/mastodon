@@ -12,4 +12,4 @@ release: if [ "$RUN_STREAMING" != "true" ]; then rake db:migrate && rails runner
 #
 # and let the main app use the separate app:
 #
-# heroku config:set STREAMING_API_BASE_URL=wss://<streaming-app>.herokuapp.com -a <main-app>
+# heroku config:set STREAMING_API_BASE_URL=wss://<streaming-app-random>.herokuapp.com -a <main-app>
