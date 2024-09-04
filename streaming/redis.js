@@ -80,6 +80,12 @@ export function configFromEnv(env) {
   // If we receive REDIS_URL, don't continue parsing any other REDIS_*
   // environment variables:
   if (typeof env.REDIS_URL === 'string' && env.REDIS_URL.length > 0) {
+    // allow self-signed certificate on rediss:// connection
+    if (env.REDIS_URL.startsWith('rediss://')) {
+      commonOptions.tls = {
+        rejectUnauthorized: false
+      };
+    }
     return {
       url: env.REDIS_URL,
       options: commonOptions,
@@ -108,13 +114,6 @@ export function configFromEnv(env) {
     password: env.REDIS_PASSWORD,
     ...commonOptions,
   };
-
-  // allow self-signed certificate on rediss:// connection
-  if (env.REDIS_URL && env.REDIS_URL.startsWith('rediss://')) {
-    options.tls = {
-      rejectUnauthorized: false
-    };
-  }
 
   return {
     options,
