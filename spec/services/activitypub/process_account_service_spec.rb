@@ -75,6 +75,18 @@ RSpec.describe ActivityPub::ProcessAccountService do
       }.with_indifferent_access
     end
 
+  context 'with attribution domains' do
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        attributionDomains: [
+          'example.com',
+        ],
+      }.with_indifferent_access
+    end
+
     it 'parses out of attachment' do
       allow(ProofProvider::Keybase::Worker).to receive(:perform_async)
 
@@ -105,6 +117,13 @@ RSpec.describe ActivityPub::ProcessAccountService do
       allow(ProofProvider::Keybase::Worker).to receive(:perform_async)
       account = subject.call('alice', 'example.com', payload)
       expect(ProofProvider::Keybase::Worker).to have_received(:perform_async)
+    end
+
+    it 'parses attribution domains' do
+      account = subject.call('alice', 'example.com', payload)
+
+      expect(account.attribution_domains)
+        .to match_array(%w(example.com))
     end
   end
 

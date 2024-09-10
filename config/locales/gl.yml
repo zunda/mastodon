@@ -25,7 +25,7 @@ gl:
   admin:
     account_actions:
       action: Executar acción
-      already_silenced: Esta conta xa está silenciada.
+      already_silenced: A conta xa está limitada
       already_suspended: Esta conta xa está suspendida.
       title: Executar acción de moderación a %{acct}
     account_moderation_notes:
@@ -1235,8 +1235,6 @@ gl:
       your_appeal_approved: A apelación foi aprobada
       your_appeal_pending: Enviaches unha apelación
       your_appeal_rejected: A apelación foi rexeitada
-  domain_validator:
-    invalid_domain: non é un nome de dominio válido
   edit_profile:
     basic_information: Información básica
     hint_html: "<strong>Personaliza o que van ver no teu perfil público e ao lado das túas publicacións.</strong> As outras persoas estarán máis animadas a seguirte e interactuar contigo se engades algún dato sobre ti así como unha imaxe de perfil."
@@ -1854,7 +1852,7 @@ gl:
     failed_2fa:
       details: 'Detalles do intento de acceso:'
       explanation: Alguén intentou acceder á túa conta mais fíxoo cun segundo factor de autenticación non válido.
-      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente xa que a conta podería estar en risco.
+      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente porque a conta podería estar en risco.
       subject: Fallo co segundo factor de autenticación
       title: Fallou o segundo factor de autenticación
     suspicious_sign_in:

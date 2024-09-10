@@ -25,7 +25,6 @@ fr-CA:
   admin:
     account_actions:
       action: Effectuer l'action
-      already_silenced: Ce compte est déjà limité.
       already_suspended: Ce compte est déjà suspendu.
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
@@ -1223,8 +1222,6 @@ fr-CA:
       your_appeal_approved: Votre appel a été approuvé
       your_appeal_pending: Vous avez soumis un appel
       your_appeal_rejected: Votre appel a été rejeté
-  domain_validator:
-    invalid_domain: n’est pas un nom de domaine valide
   edit_profile:
     basic_information: Informations de base
     hint_html: "<strong>Personnalisez ce que les gens voient sur votre profil public et à côté de vos messages.</strong> Les autres personnes seront plus susceptibles de vous suivre et d’interagir avec vous lorsque vous avez un profil complet et une photo."
