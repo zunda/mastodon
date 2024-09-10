@@ -169,8 +169,11 @@ RSpec.describe Mastodon::RedisConfiguration do
       it 'uses defaults' do
         expect(subject).to eq({
           url: 'redis://localhost:6379/0',
-          driver: :hiredis,
+          driver: :ruby,
           namespace: nil,
+          ssl_params: {
+            verify_mode: 0,
+          },
         })
       end
     end
@@ -185,8 +188,11 @@ RSpec.describe Mastodon::RedisConfiguration do
       it 'uses the provided URL' do
         expect(subject).to eq({
           url: 'redis::/user@example.com/2',
-          driver: :hiredis,
+          driver: :ruby,
           namespace: nil,
+          ssl_params: {
+            verify_mode: 0,
+          },
         })
       end
     end
@@ -201,8 +207,11 @@ RSpec.describe Mastodon::RedisConfiguration do
       it 'constructs the url from them' do
         expect(subject).to eq({
           url: 'redis://:testpass@redis.example.com:3333/3',
-          driver: :hiredis,
+          driver: :ruby,
           namespace: nil,
+          ssl_params: {
+            verify_mode: 0,
+          },
         })
       end
     end
@@ -227,13 +236,16 @@ RSpec.describe Mastodon::RedisConfiguration do
     it 'includes extra configuration' do
       expect(subject).to eq({
         url: 'redis://localhost:6379/0',
-        driver: :hiredis,
+        driver: :ruby,
         namespace: 'cache',
         expires_in: 10.minutes,
         connect_timeout: 5,
         pool: {
           size: 5,
           timeout: 5,
+        },
+        ssl_params: {
+          verify_mode: 0,
         },
       })
     end
