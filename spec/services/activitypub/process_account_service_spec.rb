@@ -74,6 +74,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         ],
       }.with_indifferent_access
     end
+  end
 
   context 'with attribution domains' do
     let(:payload) do

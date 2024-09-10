@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe WellKnown::KeybaseProofConfigController, type: :controller do
+RSpec.describe WellKnown::KeybaseProofConfigController, type: :controller do
   render_views
 
   describe 'GET #show' do

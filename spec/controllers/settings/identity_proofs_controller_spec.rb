@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Settings::IdentityProofsController do
+RSpec.describe Settings::IdentityProofsController do
   include RoutingHelper
   render_views
 

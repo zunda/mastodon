@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe WorkerLogger do
+RSpec.describe WorkerLogger do
   subject { dummy_class.new }
 	let(:dummy_class) { Class.new { include WorkerLogger } }
 
