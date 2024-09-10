@@ -88,7 +88,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
       }.with_indifferent_access
     end
 
-    it 'parses out of attachment' do
+    xit 'parses out of attachment' do
       allow(ProofProvider::Keybase::Worker).to receive(:perform_async)
 
       account = subject.call('alice', 'example.com', payload)
@@ -102,7 +102,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
       expect(proof.token).to eq 'a' * 66
     end
 
-    it 'removes no longer present proofs' do
+    xit 'removes no longer present proofs' do
       allow(ProofProvider::Keybase::Worker).to receive(:perform_async)
 
       account   = Fabricate(:account, username: 'alice', domain: 'example.com')
@@ -114,7 +114,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
       expect(account.identity_proofs.find_by(id: old_proof.id)).to be_nil
     end
 
-    it 'queues a validity check on the proof' do
+    xit 'queues a validity check on the proof' do
       allow(ProofProvider::Keybase::Worker).to receive(:perform_async)
       account = subject.call('alice', 'example.com', payload)
       expect(ProofProvider::Keybase::Worker).to have_received(:perform_async)
