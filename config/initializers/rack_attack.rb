@@ -30,7 +30,7 @@ class Rack::Attack
     end
 
     def authenticated_user_id
-      authenticated_token&.resource_owner_id || warden_user_id
+      authenticated_token&.resource_owner_id
     end
 
     def authenticated_token_id
