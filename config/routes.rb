@@ -127,6 +127,8 @@ Rails.application.routes.draw do
       end
 
       resources :replies, only: [:index], module: :activitypub
+      resources :likes, only: [:index], module: :activitypub
+      resources :shares, only: [:index], module: :activitypub
     end
 
     resources :followers, only: [:index], controller: :follower_accounts
