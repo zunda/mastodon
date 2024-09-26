@@ -1713,7 +1713,7 @@ en:
     delete: Account deletion
     development: Development
     edit_profile: Edit profile
-    export: Data export
+    export: Export
     featured_tags: Featured hashtags
     identity_proofs: Identity proofs
     import: Import
