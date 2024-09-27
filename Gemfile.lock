@@ -145,7 +145,7 @@ GEM
     bindata (2.5.0)
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
-    blurhash (0.1.7)
+    blurhash (0.1.8)
     brakeman (6.2.1)
       racc
     browser (5.3.1)
