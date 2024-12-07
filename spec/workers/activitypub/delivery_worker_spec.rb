@@ -6,7 +6,7 @@ RSpec.describe ActivityPub::DeliveryWorker do
   include RoutingHelper
 
   let(:sender) { Fabricate(:account) }
-  let(:payload) { 'test' }
+  let(:payload) { '{"published":"2024-12-06 15:21:49 -1000"}' }
   let(:url) { 'https://example.com/api' }
 
   before do
