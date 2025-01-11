@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe WorkerLogger do
   subject { dummy_class.new }
-	let(:dummy_class) { Class.new { include WorkerLogger } }
+
+  let(:dummy_class) { Class.new { include WorkerLogger } }
 
   before do
     allow(Rails.logger).to receive(:info)

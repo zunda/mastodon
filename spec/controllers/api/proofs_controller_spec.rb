@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::ProofsController do
@@ -15,15 +17,15 @@ RSpec.describe Api::ProofsController do
       it '404s' do
         get :index, params: { username: 'nonexistent', provider: 'keybase' }
 
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
 
     describe 'with a user that has no proofs' do
-      xit 'is an empty list of signatures' do
+      it 'is an empty list of signatures' do
         get :index, params: { username: alice.username, provider: 'keybase' }
 
-        expect(body_as_json[:signatures]).to eq []
+        expect(response.parsed_body[:signatures]).to eq []
       end
     end
 
@@ -35,11 +37,11 @@ RSpec.describe Api::ProofsController do
         Fabricate(:account_identity_proof, account: alice, verified: true, live: true, token: token1, provider_username: kb_name1)
       end
 
-      xit 'is a list with that proof in it' do
+      it 'is a list with that proof in it' do
         get :index, params: { username: alice.username, provider: 'keybase' }
 
-        expect(body_as_json[:signatures]).to eq [
-          { kb_username: kb_name1, sig_hash: token1 },
+        expect(response.parsed_body[:signatures]).to eq [
+          { 'kb_username' => kb_name1, 'sig_hash' => token1 },
         ]
       end
 
@@ -51,12 +53,12 @@ RSpec.describe Api::ProofsController do
           Fabricate(:account_identity_proof, account: alice, verified: false, live: false, token: token2, provider_username: kb_name2)
         end
 
-        xit 'is a list with both proofs' do
+        it 'is a list with both proofs' do
           get :index, params: { username: alice.username, provider: 'keybase' }
 
-          expect(body_as_json[:signatures]).to eq [
-            { kb_username: kb_name1, sig_hash: token1 },
-            { kb_username: kb_name2, sig_hash: token2 },
+          expect(response.parsed_body[:signatures]).to eq [
+            { 'kb_username' => kb_name1, 'sig_hash' => token1 },
+            { 'kb_username' => kb_name2, 'sig_hash' => token2 },
           ]
         end
       end
@@ -65,7 +67,7 @@ RSpec.describe Api::ProofsController do
     describe 'a user that has an avatar' do
       let(:alice) { Fabricate(:account, username: 'alice', avatar: attachment_fixture('avatar.gif')) }
 
-      context 'and a proof' do
+      context 'with a proof' do
         let(:token1) { '111111111111111111111111111111111111111111111111111111111111111111' }
         let(:kb_name1) { 'crypto_alice' }
 
@@ -74,18 +76,18 @@ RSpec.describe Api::ProofsController do
           get :index, params: { username: alice.username, provider: 'keybase' }
         end
 
-        xit 'has two keys: signatures and avatar' do
-          expect(body_as_json.keys).to match_array [:signatures, :avatar]
+        it 'has two keys: signatures and avatar' do
+          expect(response.parsed_body.keys).to contain_exactly('signatures', 'avatar')
         end
 
-        xit 'has the correct signatures' do
-          expect(body_as_json[:signatures]).to eq [
-            { kb_username: kb_name1, sig_hash: token1 },
+        it 'has the correct signatures' do
+          expect(response.parsed_body[:signatures]).to eq [
+            { 'kb_username' => kb_name1, 'sig_hash' => token1 },
           ]
         end
 
-        xit 'has the correct avatar url' do
-          expect(body_as_json[:avatar]).to match "https://cb6e6126.ngrok.io#{alice.avatar.url}"
+        it 'has the correct avatar url' do
+          expect(response.parsed_body[:avatar]).to match "https://cb6e6126.ngrok.io#{alice.avatar.url}"
         end
       end
     end

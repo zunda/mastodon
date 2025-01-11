@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ProofProvider::Keybase::Verifier do
   let(:my_domain) { Rails.configuration.x.local_domain }
 
   let(:keybase_proof) do
-    local_proof = AccountIdentityProof.new(
+    AccountIdentityProof.new(
       provider: 'Keybase',
       provider_username: 'cryptoalice',
       token: '11111111111111111111111111'
@@ -27,7 +29,7 @@ RSpec.describe ProofProvider::Keybase::Verifier do
       end
 
       it 'calls out to keybase and returns true' do
-        expect(keybase_proof.valid?).to eq true
+        expect(keybase_proof.valid?).to be true
       end
     end
 
@@ -38,7 +40,7 @@ RSpec.describe ProofProvider::Keybase::Verifier do
       end
 
       it 'calls out to keybase and returns false' do
-        expect(keybase_proof.valid?).to eq false
+        expect(keybase_proof.valid?).to be false
       end
     end
 
@@ -49,7 +51,7 @@ RSpec.describe ProofProvider::Keybase::Verifier do
       end
 
       it 'swallows the error and returns false' do
-        expect(keybase_proof.valid?).to eq false
+        expect(keybase_proof.valid?).to be false
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Settings::IdentityProofsController do
@@ -5,7 +7,7 @@ RSpec.describe Settings::IdentityProofsController do
   render_views
 
   let(:user) { Fabricate(:user) }
-  let(:valid_token) { '1'*66 }
+  let(:valid_token) { '1' * 66 }
   let(:kbname) { 'kbuser' }
   let(:provider) { 'keybase' }
   let(:findable_id) { Faker::Number.number(digits: 5) }
@@ -22,18 +24,18 @@ RSpec.describe Settings::IdentityProofsController do
   end
 
   before do
-    allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:status) { { 'proof_valid' => true, 'proof_live' => true } }
+    allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:status).and_return({ 'proof_valid' => true, 'proof_live' => true })
     sign_in user, scope: :user
   end
 
   describe 'new proof creation' do
     context 'GET #new' do
       before do
-        allow_any_instance_of(ProofProvider::Keybase::Badge).to receive(:avatar_url) { full_pack_url('media/images/void.png') }
+        allow_any_instance_of(ProofProvider::Keybase::Badge).to receive(:avatar_url) { frontend_asset_url('images/void.png') }
       end
 
       context 'with all of the correct params' do
-        xit 'renders the template' do
+        it 'renders the template' do
           get :new, params: new_proof_params
           expect(response).to render_template(:new)
         end
@@ -58,7 +60,7 @@ RSpec.describe Settings::IdentityProofsController do
       context 'with params to prove the same username cased differently' do
         let(:capitalized_username) { new_proof_params.merge(username: user.account.username.upcase) }
 
-        xit 'renders the new template' do
+        it 'renders the new template' do
           get :new, params: capitalized_username
           expect(response).to render_template(:new)
         end
@@ -69,7 +71,7 @@ RSpec.describe Settings::IdentityProofsController do
       context 'when saving works' do
         before do
           allow(ProofProvider::Keybase::Worker).to receive(:perform_async)
-          allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?) { true }
+          allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?).and_return(true)
           allow_any_instance_of(AccountIdentityProof).to receive(:on_success_path) { root_url }
         end
 
@@ -85,7 +87,7 @@ RSpec.describe Settings::IdentityProofsController do
         end
 
         it 'does not post a status' do
-          expect(PostStatusService).not_to receive(:new)
+          expect(PostStatusService).to_not receive(:new)
           post :create, params: postable_params
         end
 
@@ -104,7 +106,7 @@ RSpec.describe Settings::IdentityProofsController do
 
       context 'when saving fails' do
         before do
-          allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?) { false }
+          allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?).and_return(false)
         end
 
         it 'redirects to :index' do
@@ -120,7 +122,7 @@ RSpec.describe Settings::IdentityProofsController do
 
       context 'it can also do an update if the provider and username match an existing proof' do
         before do
-          allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?) { true }
+          allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?).and_return(true)
           allow(ProofProvider::Keybase::Worker).to receive(:perform_async)
           Fabricate(:account_identity_proof, account: user.account, provider: provider, provider_username: kbname)
           allow_any_instance_of(AccountIdentityProof).to receive(:on_success_path) { root_url }
@@ -147,31 +149,31 @@ RSpec.describe Settings::IdentityProofsController do
 
     context 'with two proofs' do
       before do
-        allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?) { true }
+        allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?).and_return(true)
         @proof1 = Fabricate(:account_identity_proof, account: user.account)
         @proof2 = Fabricate(:account_identity_proof, account: user.account)
         allow_any_instance_of(AccountIdentityProof).to receive(:badge) { double(avatar_url: '', profile_url: '', proof_url: '') }
-        allow_any_instance_of(AccountIdentityProof).to receive(:refresh!) {}
+        allow_any_instance_of(AccountIdentityProof).to receive(:refresh!).and_return(nil)
       end
 
       it 'has the first proof username on the page' do
         get :index
-        expect(response.body).to match /#{Regexp.quote(@proof1.provider_username)}/
+        expect(response.body).to match(/#{Regexp.quote(@proof1.provider_username)}/)
       end
 
       it 'has the second proof username on the page' do
         get :index
-        expect(response.body).to match /#{Regexp.quote(@proof2.provider_username)}/
+        expect(response.body).to match(/#{Regexp.quote(@proof2.provider_username)}/)
       end
     end
   end
 
   describe 'DELETE #destroy' do
     before do
-      allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?) { true }
+      allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?).and_return(true)
       @proof1 = Fabricate(:account_identity_proof, account: user.account)
       allow_any_instance_of(AccountIdentityProof).to receive(:badge) { double(avatar_url: '', profile_url: '', proof_url: '') }
-      allow_any_instance_of(AccountIdentityProof).to receive(:refresh!) {}
+      allow_any_instance_of(AccountIdentityProof).to receive(:refresh!).and_return(nil)
       delete :destroy, params: { id: @proof1.id }
     end
 

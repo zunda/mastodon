@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe WellKnown::KeybaseProofConfigController, type: :controller do
+RSpec.describe WellKnown::KeybaseProofConfigController do
   render_views
 
   describe 'GET #show' do
-    xit 'renders json' do
+    it 'renders json' do
       get :show
 
       expect(response).to have_http_status(200)
       expect(response.media_type).to eq 'application/json'
-      expect { JSON.parse(response.body) }.not_to raise_exception
+      expect { response.parsed_body }.to_not raise_exception
     end
   end
 end
