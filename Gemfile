@@ -93,7 +93,7 @@ gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
 gem 'webauthn', '~> 3.0'
 gem 'webpacker', git: 'https://github.com/zunda/webpacker.git', branch: 'v5.4.4-clear-command-with-better-versioning'
-gem 'webpush', github: 'mastodon/webpush', ref: '52725def8baf67e0d645c9d1c6c0bdff69da0c60'
+gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
@@ -124,7 +124,7 @@ group :test do
   gem 'flatware-rspec'
 
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
-  gem 'rspec-github', '~> 2.4', require: false
+  gem 'rspec-github', '~> 3.0', require: false
 
   # RSpec helpers for email specs
   gem 'email_spec'

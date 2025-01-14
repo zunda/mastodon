@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/mastodon/webpush.git
-  revision: 52725def8baf67e0d645c9d1c6c0bdff69da0c60
-  ref: 52725def8baf67e0d645c9d1c6c0bdff69da0c60
+  revision: 9631ac63045cfabddacc69fc06e919b4c13eb913
+  ref: 9631ac63045cfabddacc69fc06e919b4c13eb913
   specs:
     webpush (1.1.0)
       hkdf (~> 0.2)
@@ -698,7 +698,7 @@ GEM
     rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-github (2.4.0)
+    rspec-github (3.0.0)
       rspec-core (~> 3.0)
     rspec-mocks (3.13.2)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -996,7 +996,7 @@ DEPENDENCIES
   redis (~> 4.5)
   redis-namespace (~> 1.10)
   rqrcode (~> 2.2)
-  rspec-github (~> 2.4)
+  rspec-github (~> 3.0)
   rspec-rails (~> 7.0)
   rspec-sidekiq (~> 5.0)
   rubocop
