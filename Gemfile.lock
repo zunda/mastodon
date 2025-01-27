@@ -565,7 +565,7 @@ GEM
       opentelemetry-api (~> 1.0)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
-    ox (2.14.20)
+    ox (2.14.21)
       bigdecimal (>= 3.0)
     parallel (1.26.3)
     parser (3.3.7.0)
@@ -588,6 +588,8 @@ GEM
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
     prettyprint (0.2.0)
+    prometheus_exporter (2.2.0)
+      webrick
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -986,6 +988,7 @@ DEPENDENCIES
   pg (~> 1.5)
   pghero
   premailer-rails
+  prometheus_exporter (~> 2.2)
   propshaft
   public_suffix (~> 6.0)
   puma (~> 6.3)
