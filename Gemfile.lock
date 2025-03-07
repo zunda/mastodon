@@ -1168,8 +1168,8 @@ CHECKSUMS
   formatador (1.1.0) sha256=54e23e2af4d60bb9327c7fac62b29968e4cf28cee0111f726d0bdeadc85e06d0
   fugit (1.11.1) sha256=e89485e7be22226d8e9c6da411664d0660284b4b1c08cacb540f505907869868
   globalid (1.2.1) sha256=70bf76711871f843dbba72beb8613229a49429d1866828476f9c9d6ccc327ce9
-  google-protobuf (3.25.5) sha256=4333fe2e9009131d8bec9b4ffcfae7b5a0a2d1bd18061e8aaaf0fd3d5c835639
-  googleapis-common-protos-types (1.15.0) sha256=57b1600c271fa3312096e55a3040d20d2c0f9a5d65d0fde1f16e5cd99bab156b
+  google-protobuf (3.25.6) sha256=bb668bf3c400cd10c576524c92cc5015dacb66bb4573d79a1ca9ef18793e103c
+  googleapis-common-protos-types (1.18.0) sha256=280d19dcf431f86b9ff7ed8b23994915c5f4f7a0282ad3e870a2d3595976559f
   haml (6.3.0) sha256=8e6eb87d869639e348852009e74a2a1663d79663ed7e7dbcb38beb1f12bcdd97
   haml-rails (2.1.0) sha256=273ba0189e2f82ce4b2385019dd9138884017e3103cc2eaebeee7f45186f59ea
   haml_lint (0.61.0) sha256=a8d7c912a9cad1ff1785011289fc54ff3be019cc786e1f0d0af04134c81fd623
@@ -1246,9 +1246,9 @@ CHECKSUMS
   openid_connect (2.3.1) sha256=5d808380cff80d78e3d3d54cfaebe2d6461d835c674faa29e2314a402c1b2182
   openssl (3.3.0) sha256=ff3a573fc97ab30f69483fddc80029f91669bf36532859bd182d1836f45aee79
   openssl-signature_algorithm (1.3.0) sha256=a3b40b5e8276162d4a6e50c7c97cdaf1446f9b2c3946a6fa2c14628e0c957e80
-  opentelemetry-api (1.4.0) sha256=a733dee4d56c2140e946eb5ba99993575d4e96dd97e07ac948823af03b664036
-  opentelemetry-common (0.21.0) sha256=fe891a44583a20bc3217b324aec76d066504494951682d391cfd57d40cd01c98
-  opentelemetry-exporter-otlp (0.29.1) sha256=3244c5f489f4ee1900dbb197a15e8ed49d0c777aaa52a5cd1d1fb3cb0a190eb0
+  opentelemetry-api (1.5.0) sha256=8dcc33e7aba70b1da630065ce0db3d6f50cb8ebd2017383209739439025ea997
+  opentelemetry-common (0.22.0) sha256=ce5e96a0f838d67eb70a1d32e02bdbe7b8f41767bc71994d73b299a8b0c5878d
+  opentelemetry-exporter-otlp (0.30.0) sha256=07cb0446bb782dfcf7cc27d2d6ebcf9aef1a4585b3f4952be6276a1e77d5ba97
   opentelemetry-helpers-sql-obfuscation (0.3.0) sha256=f5d866d58f98267b5302be479c9dddad25ddf7db19030d44fb5ab93025ea9e4b
   opentelemetry-instrumentation-action_mailer (0.4.0) sha256=e8b5959572038dc0367300b5425f2f7b297fc0b372a966832b1aad4af06ee9a2
   opentelemetry-instrumentation-action_pack (0.12.0) sha256=c7940b1771cff440f7828841ed3b0f4546ae71d89f8433b1afcde9dbc7e8ee35
@@ -1256,7 +1256,7 @@ CHECKSUMS
   opentelemetry-instrumentation-active_job (0.8.0) sha256=9d5d884e05421ca9444635ac9c96886bccf1a042d4ee5d3282f620d0acd5613d
   opentelemetry-instrumentation-active_model_serializers (0.22.0) sha256=fdfd0fafb1c90e4f121c4c215540abdc928f72c4de4b0643db870459d56c4bbe
   opentelemetry-instrumentation-active_record (0.9.0) sha256=9cbcb92dbfd48fa7bbf7524e3567e334f1773055467e9c6fbeaa49d911a60140
-  opentelemetry-instrumentation-active_storage (0.1.0) sha256=1325706ee9e13980d66caea90af4965ceaebda3441be7ee2737a65fd6ab64d6f
+  opentelemetry-instrumentation-active_storage (0.1.1) sha256=a654926abbeca00ec1fe942f9e4ded610530e23630d2cfb88fb876eabef4a703
   opentelemetry-instrumentation-active_support (0.8.0) sha256=9be102354e420ed08a6841d113e39d9c5480ed35940fe7268c7297656167d999
   opentelemetry-instrumentation-base (0.23.0) sha256=b3e103ceea2ccf3e6269a394938a5bc239c80d113869fe2b2ac49ba27c3c1c50
   opentelemetry-instrumentation-concurrent_ruby (0.22.0) sha256=fba61e55b4f66331a53ad82cb0a0c225a1ddea9a4f693fcf2e9fa7e7199c6897
@@ -1270,9 +1270,9 @@ CHECKSUMS
   opentelemetry-instrumentation-rails (0.36.0) sha256=f21e26fad6660d64a9711b9317f059c21376cc9a1facdeb3956c9f20098eb717
   opentelemetry-instrumentation-redis (0.26.1) sha256=315efba5560c943dfe8ea41b16ab162418fc7423c45bb36c4bcc91a310467ba0
   opentelemetry-instrumentation-sidekiq (0.26.0) sha256=c2caa1e5799d35bf655a9fe714f630871b922176ee9d76e737866077370ebe41
-  opentelemetry-registry (0.3.1) sha256=73a48234635b0ed1c75e4b5fb267fb3004baf616d43fe38e8380ecbb933d88df
-  opentelemetry-sdk (1.7.0) sha256=5960aa56ddeccbea4a668cd18df68471e7ae8a59a7fcadc980be9c73bd1edbb3
-  opentelemetry-semantic_conventions (1.10.1) sha256=fe9cf823a846cbbbb0300cb5a090c4072b57b2ed21ac8db82de85d330eef5681
+  opentelemetry-registry (0.4.0) sha256=903fa6bfaa29eac1c1d73a4fdd29b850977b5353b84b8cdff11222c00ad2968f
+  opentelemetry-sdk (1.8.0) sha256=fad979b4a6c7ad5b2f9f2bfde77ab5c0c6a9b81d5a6458becf5957e3fa371df7
+  opentelemetry-semantic_conventions (1.11.0) sha256=89f209f588d48a8e38ca2205c24c6b4a35f3d2622c2f1854bd476c56290afdcb
   orm_adapter (0.5.0) sha256=aa5d0be5d540cbb46d3a93e88061f4ece6a25f6e97d6a47122beb84fe595e9b9
   ostruct (0.6.1) sha256=09a3fb7ecc1fa4039f25418cc05ae9c82bd520472c5c6a6f515f03e4988cb817
   ox (2.14.22) sha256=0bbc4a40d109e4b76295c4927b5f2d453070eb5af221e5b05ec0ff58e291c6a9
