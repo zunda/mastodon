@@ -595,7 +595,7 @@ GEM
     pastel (0.8.0)
       tty-color (~> 0.5)
     pg (1.5.9)
-    pghero (3.6.1)
+    pghero (3.6.2)
       activerecord (>= 6.1)
     pp (0.6.2)
       prettyprint
@@ -842,7 +842,7 @@ GEM
     stoplight (4.1.1)
       redlock (~> 1.0)
     stringio (3.1.5)
-    strong_migrations (2.2.0)
+    strong_migrations (2.2.1)
       activerecord (>= 7)
     swd (2.0.3)
       activesupport (>= 3)
@@ -878,7 +878,7 @@ GEM
       unf (~> 0.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2025.1)
+    tzinfo-data (1.2025.2)
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
