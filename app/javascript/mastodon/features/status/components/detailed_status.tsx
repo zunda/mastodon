@@ -6,7 +6,7 @@
 import type { CSSProperties } from 'react';
 import { useState, useRef, useCallback } from 'react';
 
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,7 @@ import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { ContentWarning } from 'mastodon/components/content_warning';
 import EditedTimestamp from 'mastodon/components/edited_timestamp';
 import { FilterWarning } from 'mastodon/components/filter_warning';
+import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import type { StatusLike } from 'mastodon/components/hashtag_bar';
 import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon } from 'mastodon/components/icon';
@@ -175,6 +176,7 @@ export const DetailedStatus: React.FC<{
           onOpenMedia={onOpenMedia}
           visible={showMedia}
           onToggleVisibility={onToggleMediaVisibility}
+          matchedFilters={status.get('matched_media_filters')}
         />
       );
     } else if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
@@ -201,6 +203,7 @@ export const DetailedStatus: React.FC<{
           blurhash={attachment.get('blurhash')}
           height={150}
           onToggleVisibility={onToggleMediaVisibility}
+          matchedFilters={status.get('matched_media_filters')}
         />
       );
     } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
@@ -224,6 +227,7 @@ export const DetailedStatus: React.FC<{
           sensitive={status.get('sensitive')}
           visible={showMedia}
           onToggleVisibility={onToggleMediaVisibility}
+          matchedFilters={status.get('matched_media_filters')}
         />
       );
     }
@@ -385,7 +389,7 @@ export const DetailedStatus: React.FC<{
               target='_blank'
               rel='noopener noreferrer'
             >
-              <FormattedDate
+              <FormattedDateWrapper
                 value={new Date(status.get('created_at') as string)}
                 year='numeric'
                 month='short'
