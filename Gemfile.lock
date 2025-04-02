@@ -1289,7 +1289,7 @@ CHECKSUMS
   opentelemetry-instrumentation-rack (0.26.0) sha256=8a55910b358e08acab0899fc99227058b72fca76a27e382e6b34b365abb87bad
   opentelemetry-instrumentation-rails (0.36.0) sha256=f21e26fad6660d64a9711b9317f059c21376cc9a1facdeb3956c9f20098eb717
   opentelemetry-instrumentation-redis (0.26.1) sha256=315efba5560c943dfe8ea41b16ab162418fc7423c45bb36c4bcc91a310467ba0
-  opentelemetry-instrumentation-sidekiq (0.26.0) sha256=c2caa1e5799d35bf655a9fe714f630871b922176ee9d76e737866077370ebe41
+  opentelemetry-instrumentation-sidekiq (0.26.1) sha256=853aea9d88642643b29a8ed818e290e374586f72f304c785b672b9086360f3d2
   opentelemetry-registry (0.4.0) sha256=903fa6bfaa29eac1c1d73a4fdd29b850977b5353b84b8cdff11222c00ad2968f
   opentelemetry-sdk (1.8.0) sha256=fad979b4a6c7ad5b2f9f2bfde77ab5c0c6a9b81d5a6458becf5957e3fa371df7
   opentelemetry-semantic_conventions (1.11.0) sha256=89f209f588d48a8e38ca2205c24c6b4a35f3d2622c2f1854bd476c56290afdcb
