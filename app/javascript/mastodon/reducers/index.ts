@@ -13,7 +13,6 @@ import conversations from './conversations';
 import custom_emojis from './custom_emojis';
 import { dropdownMenuReducer } from './dropdown_menu';
 import filters from './filters';
-import followed_tags from './followed_tags';
 import height_cache from './height_cache';
 import history from './history';
 import identity_proofs from './identity_proofs';
@@ -75,7 +74,6 @@ const reducers = {
   markers: markersReducer,
   picture_in_picture: pictureInPictureReducer,
   history,
-  followed_tags,
   notificationPolicy: notificationPolicyReducer,
   notificationRequests: notificationRequestsReducer,
 };
