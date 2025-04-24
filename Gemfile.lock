@@ -169,7 +169,7 @@ GEM
     cocoon (1.2.15)
     color_diff (0.1)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.1)
+    connection_pool (2.5.2)
     cose (1.3.1)
       cbor (~> 0.5.9)
       openssl-signature_algorithm (~> 1.0)
@@ -755,7 +755,7 @@ GEM
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 9)
     rspec-support (3.13.2)
-    rubocop (1.75.2)
+    rubocop (1.75.3)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -785,7 +785,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rspec (3.5.0)
+    rubocop-rspec (3.6.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
     rubocop-rspec_rails (2.31.0)
@@ -1142,7 +1142,7 @@ CHECKSUMS
   cocoon (1.2.15) sha256=d08f14e69653287d7a060ee43389b8c824e55191dffbca0c5c586f38ef491f0d
   color_diff (0.1) sha256=99dc39f4453e42aa3bbc6d738f82194870b974993135cee61deb2eff29deb705
   concurrent-ruby (1.3.5) sha256=813b3e37aca6df2a21a3b9f1d497f8cbab24a2b94cab325bffe65ee0f6cbebc6
-  connection_pool (2.5.1) sha256=ae802a90a4b5a081101b39d618e69921a9a50bea9ac3420a5b8c71f1befa3e9c
+  connection_pool (2.5.2) sha256=c121d090f8217911f960c7b628bf2bf1b1444f284fd854edc188821c4f602108
   cose (1.3.1) sha256=d5d4dbcd6b035d513edc4e1ab9bc10e9ce13b4011c96e3d1b8fe5e6413fd6de5
   crack (1.0.0) sha256=c83aefdb428cdc7b66c7f287e488c796f055c0839e6e545fec2c7047743c4a49
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
@@ -1361,13 +1361,13 @@ CHECKSUMS
   rspec-rails (7.1.1) sha256=e15dccabed211e2fd92f21330c819adcbeb1591c1d66c580d8f2d8288557e331
   rspec-sidekiq (5.1.0) sha256=ed671ce4a9948ea2395db464c8c846651ea006e124f7868ee5d497f693102867
   rspec-support (3.13.2) sha256=cea3a2463fd9b84b9dcc9685efd80ea701aa8f7b3decb3b3ce795ed67737dbec
-  rubocop (1.75.2) sha256=8efde647e278417e8074421b007e0d7d7c591482ef99d980528b18fea015a7c8
+  rubocop (1.75.3) sha256=1860a1b571fe4a15dff79d6683642ebf3ea4b3f7ae7903743ab0885b4686a1d5
   rubocop-ast (1.44.1) sha256=e3cc04203b2ef04f6d6cf5f85fe6d643f442b18cc3b23e3ada0ce5b6521b8e92
   rubocop-capybara (2.22.1) sha256=ced88caef23efea53f46e098ff352f8fc1068c649606ca75cb74650970f51c0c
   rubocop-i18n (3.2.3) sha256=9620228f372892c0e6c0a3a73d7caed964a932404bee567e5ff4b8292e2a2bda
   rubocop-performance (1.25.0) sha256=6f7d03568a770054117a78d0a8e191cefeffb703b382871ca7743831b1a52ec1
   rubocop-rails (2.31.0) sha256=79476e1075299c3e60fc50549c7c32614f9ebaae719b899ed75785c6786c52bd
-  rubocop-rspec (3.5.0) sha256=710c942fe1af884ba8eea75cbb8bdbb051929a2208880a6fc2e2dce1eed5304c
+  rubocop-rspec (3.6.0) sha256=c0e4205871776727e54dee9cc91af5fd74578001551ba40e1fe1a1ab4b404479
   rubocop-rspec_rails (2.31.0) sha256=775375e18a26a1184a812ef3054b79d218e85601b9ae897f38f8be24dddf1f45
   ruby-prof (1.7.1) sha256=026393448cf92fd24a91739bf71ccd2bfe88fe8a1401ee8afc4948a16d62ea24
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
