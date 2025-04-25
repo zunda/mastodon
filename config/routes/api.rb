@@ -219,6 +219,8 @@ namespace :api, format: false do
       member do
         post :follow
         post :unfollow
+        post :feature
+        post :unfeature
       end
     end
 
