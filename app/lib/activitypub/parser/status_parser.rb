@@ -95,11 +95,11 @@ class ActivityPub::Parser::StatusParser
   end
 
   def favourites_count
-    @object.dig(:likes, :totalItems)
+    @object.dig('likes', 'totalItems')
   end
 
   def reblogs_count
-    @object.dig(:shares, :totalItems)
+    @object.dig('shares', 'totalItems')
   end
 
   def quote_policy
@@ -118,6 +118,11 @@ class ActivityPub::Parser::StatusParser
     %w(quote _misskey_quote quoteUrl quoteUri).filter_map do |key|
       value_or_id(as_array(@object[key]).first)
     end.first
+  end
+
+  # The inlined quote; out of the attributes we support, only `https://w3id.org/fep/044f#quote` explicitly supports inlined objects
+  def quoted_object
+    as_array(@object['quote']).first
   end
 
   def quote_approval_uri
