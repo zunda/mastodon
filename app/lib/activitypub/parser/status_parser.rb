@@ -29,7 +29,10 @@ class ActivityPub::Parser::StatusParser
   end
 
   def url
-    url_to_href(@object['url'], 'text/html') if @object['url'].present?
+    return if @object['url'].blank?
+
+    url = url_to_href(@object['url'], 'text/html')
+    url unless unsupported_uri_scheme?(url)
   end
 
   def text
@@ -95,11 +98,11 @@ class ActivityPub::Parser::StatusParser
   end
 
   def favourites_count
-    @object.dig('likes', 'totalItems')
+    @object['likes']['totalItems'] if @object.is_a?(Hash) && @object['likes'].is_a?(Hash)
   end
 
   def reblogs_count
-    @object.dig('shares', 'totalItems')
+    @object['shares']['totalItems'] if @object.is_a?(Hash) && @object['shares'].is_a?(Hash)
   end
 
   def quote_policy
