@@ -2091,6 +2091,7 @@ body > [data-popper-placement] {
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
+  background: var(--surface-background-color);
 
   img {
     width: 100%;
@@ -2178,11 +2179,19 @@ a .account__avatar {
   flex-wrap: nowrap;
 
   & > :not(:first-child) {
-    margin-inline-start: -8px;
+    margin-inline-start: -12px;
+  }
 
-    .account__avatar {
-      box-shadow: 0 0 0 2px var(--background-color);
-    }
+  & > :first-child {
+    transform: rotate(-4deg);
+  }
+
+  & > :nth-child(2) {
+    transform: rotate(-2deg);
+  }
+
+  .account__avatar {
+    box-shadow: 0 0 0 2px var(--background-color);
   }
 }
 
@@ -8143,16 +8152,13 @@ noscript {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-block-end: 16px;
+    margin-block: 16px;
     color: $darker-text-color;
 
     a:any-link {
-      color: inherit;
-      text-decoration: underline;
-    }
-
-    a:hover {
+      font-weight: 500;
       text-decoration: none;
+      color: $primary-text-color;
     }
   }
 }
