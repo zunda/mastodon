@@ -7,17 +7,6 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
-GIT
-  remote: https://github.com/zunda/webpacker.git
-  revision: 251c561a9ccc83b1239631eaa911cc92627ce305
-  branch: v5.4.4-clear-command-with-better-versioning
-  specs:
-    webpacker (5.4.4)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -105,7 +94,7 @@ GEM
     ast (2.4.3)
     attr_required (1.0.2)
     aws-eventstream (1.3.2)
-    aws-partitions (1.1087.0)
+    aws-partitions (1.1103.0)
     aws-sdk-core (3.215.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -120,7 +109,7 @@ GEM
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.11.0)
       aws-eventstream (~> 1, >= 1.0.2)
-    azure-blob (0.5.7)
+    azure-blob (0.5.8)
       rexml
     base64 (0.2.0)
     bcp47_spec (0.2.1)
@@ -203,7 +192,7 @@ GEM
     devise_pam_authenticatable2 (9.2.0)
       devise (>= 4.0.0)
       rpam2 (~> 4.0)
-    diff-lcs (1.6.1)
+    diff-lcs (1.6.2)
     discard (1.4.0)
       activerecord (>= 4.2, < 9.0)
     docile (1.4.1)
@@ -212,6 +201,7 @@ GEM
       railties (>= 5)
     dotenv (3.1.8)
     drb (2.2.1)
+    dry-cli (1.2.0)
     elasticsearch (7.17.11)
       elasticsearch-api (= 7.17.11)
       elasticsearch-transport (= 7.17.11)
@@ -236,7 +226,7 @@ GEM
     fabrication (2.31.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
-    faraday (2.13.0)
+    faraday (2.13.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -275,10 +265,10 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (4.30.2)
+    google-protobuf (4.31.0)
       bigdecimal
       rake (>= 13)
-    googleapis-common-protos-types (1.19.0)
+    googleapis-common-protos-types (1.20.0)
       google-protobuf (>= 3.18, < 5.a)
     haml (6.3.0)
       temple (>= 0.8.2)
@@ -346,7 +336,7 @@ GEM
       azure-blob (~> 0.5.2)
       hashie (~> 5.0)
     jmespath (1.6.2)
-    json (2.10.2)
+    json (2.12.0)
     json-canonicalization (1.0.0)
     json-jwt (1.16.7)
       activesupport (>= 4.2)
@@ -390,7 +380,7 @@ GEM
       marcel (~> 1.0.1)
       mime-types
       terrapin (>= 0.6.0, < 2.0)
-    language_server-protocol (3.17.0.4)
+    language_server-protocol (3.17.0.5)
     launchy (3.1.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -419,7 +409,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.24.0)
+    loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -435,9 +425,9 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0507)
+    mime-types-data (3.2025.0514)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.8)
+    mini_portile2 (2.8.9)
     minitest (5.25.5)
     multi_json (1.15.0)
     mutex_m (0.3.0)
@@ -511,7 +501,7 @@ GEM
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-active_support (~> 0.7)
       opentelemetry-instrumentation-base (~> 0.23.0)
-    opentelemetry-instrumentation-action_pack (0.12.0)
+    opentelemetry-instrumentation-action_pack (0.12.1)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.23.0)
       opentelemetry-instrumentation-rack (~> 0.21)
@@ -625,7 +615,7 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
-    psych (5.2.3)
+    psych (5.2.6)
       date
       stringio
     public_suffix (6.0.2)
@@ -721,7 +711,7 @@ GEM
       railties (>= 5.2)
     rexml (3.4.1)
     rotp (6.3.0)
-    rouge (4.5.1)
+    rouge (4.5.2)
     rpam2 (4.0.2)
     rqrcode (3.1.0)
       chunky_png (~> 1.0)
@@ -738,7 +728,7 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-github (3.0.0)
       rspec-core (~> 3.0)
-    rspec-mocks (3.13.3)
+    rspec-mocks (3.13.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-rails (8.0.0)
@@ -755,7 +745,7 @@ GEM
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 9)
     rspec-support (3.13.3)
-    rubocop (1.75.5)
+    rubocop (1.75.6)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -818,7 +808,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    semantic_range (3.1.0)
     shoulda-matchers (6.5.0)
       activesupport (>= 5.2.0)
     sidekiq (6.5.12)
@@ -904,6 +893,15 @@ GEM
     validate_url (1.0.15)
       activemodel (>= 3.0.0)
       public_suffix
+    vite_rails (3.0.19)
+      railties (>= 5.1, < 9)
+      vite_ruby (~> 3.0, >= 3.2.2)
+    vite_ruby (3.9.2)
+      dry-cli (>= 0.7, < 2)
+      logger (~> 1.6)
+      mutex_m
+      rack-proxy (~> 0.6, >= 0.6.1)
+      zeitwerk (~> 2.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     webauthn (3.4.0)
@@ -1085,9 +1083,9 @@ DEPENDENCIES
   tty-prompt (~> 0.23)
   twitter-text (~> 3.1.0)
   tzinfo-data (~> 1.2023)
+  vite_rails (~> 3.0.19)
   webauthn (~> 3.0)
   webmock (~> 3.18)
-  webpacker!
   webpush!
   xorcist (~> 1.1)
 
@@ -1441,4 +1439,4 @@ RUBY VERSION
    ruby 3.4.4p34
 
 BUNDLED WITH
-   2.6.7
+   2.6.9
