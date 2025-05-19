@@ -846,7 +846,6 @@ he:
         preamble: הצפה של תוכן מעניין בקבלת פני משתמשות חדשות שאולי אינן מכירות עדיין א.נשים במסטודון. ניתן לשלוט איך אפשרויות גילוי שונות עובדות על השרת שלך.
         profile_directory: ספריית פרופילים
         public_timelines: פידים פומביים
-        publish_discovered_servers: פרסום שרתים שנתגלו
         publish_statistics: פרסום הסטטיסטיקות בפומבי
         title: תגליות
         trends: נושאים חמים
@@ -2001,6 +2000,11 @@ he:
     does_not_match_previous_name: לא תואם את השם האחרון
   terms_of_service:
     title: תנאי השירות
+  terms_of_service_interstitial:
+    future_preamble_html: אנו מבצעים שינויים בתנאי השירות, שיכנסו לתוקף בתאריך <strong>%{date}</strong>. אנו מבקשים ממך לעבור על העידכונים.
+    past_preamble_html: שינינו את תנאי השירות שלנו מאז ביקורך האחרון. אנו ממליצים לך לעבור על העידכונים.
+    review_link: קריאת תנאי השירות
+    title: תנאי השירות של %{domain} משתנים
   themes:
     contrast: מסטודון (ניגודיות גבוהה)
     default: מסטודון (כהה)

@@ -818,7 +818,6 @@ tr:
         preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
         profile_directory: Profil dizini
         public_timelines: Genel zaman çizelgeleri
-        publish_discovered_servers: Keşfedilen sunucuları yayınla
         publish_statistics: İstatistikleri yayınla
         title: Keşfet
         trends: Öne çıkanlar
@@ -1915,6 +1914,11 @@ tr:
     does_not_match_previous_name: önceki adla eşleşmiyor
   terms_of_service:
     title: Hizmet Şartları
+  terms_of_service_interstitial:
+    future_preamble_html: Hizmet şartlarımızda <strong>%{date}</strong> tarihinden itibaren geçerli olacak bazı değişiklikler yapıyoruz. Güncellenen şartları incelemenizi öneririz.
+    past_preamble_html: Son ziyaretinizden bu yana hizmet şartlarımızı değiştirdik. Güncellenen şartları incelemenizi öneririz.
+    review_link: Hizmet şartlarını incele
+    title: "%{domain} adresindeki hizmet şartları değişiyor"
   themes:
     contrast: Mastodon (Yüksek karşıtlık)
     default: Mastodon (Karanlık)

@@ -818,7 +818,6 @@ es-AR:
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controlá cómo funcionan varias opciones de descubrimiento en tu servidor.
         profile_directory: Directorio de perfiles
         public_timelines: Líneas temporales públicas
-        publish_discovered_servers: Publicar servidores descubiertos
         publish_statistics: Publicar estadísticas
         title: Descubrí
         trends: Tendencias
@@ -1915,6 +1914,11 @@ es-AR:
     does_not_match_previous_name: no coincide con el nombre anterior
   terms_of_service:
     title: Términos del servicio
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos haciendo algunos cambios a nuestros términos de servicio, que serán efectivos en <strong>%{date}</strong>. Te invitamos a revisar los términos actualizados.
+    past_preamble_html: Hemos cambiado nuestros términos de servicio desde tu última visita. Te invitamos a revisar los términos actualizados.
+    review_link: Revisar los términos del servicio
+    title: Los términos del servicio de %{domain} están cambiando
   themes:
     contrast: Alto contraste
     default: Oscuro

@@ -874,7 +874,6 @@ cy:
         preamble: Mae amlygu cynnwys diddorol yn allweddol ar gyfer derbyn defnyddwyr newydd nad ydynt efallai'n gyfarwydd ag unrhyw un Mastodon. Rheolwch sut mae nodweddion darganfod amrywiol yn gweithio ar eich gweinydd.
         profile_directory: Cyfeiriadur proffiliau
         public_timelines: Ffrydiau cyhoeddus
-        publish_discovered_servers: Cyhoeddi gweinyddion a ddarganfuwyd
         publish_statistics: Cyhoeddi ystadegau
         title: Darganfod
         trends: Tueddiadau
@@ -2087,6 +2086,11 @@ cy:
     does_not_match_previous_name: ddim yn cyfateb i'r enw blaenorol
   terms_of_service:
     title: Telerau Gwasanaeth
+  terms_of_service_interstitial:
+    future_preamble_html: Rydym yn gwneud rhai newidiadau i'n telerau gwasanaeth, a fydd yn weithredol ar <strong>%{date}</strong>. Rydym yn eich annog i ddarllen y telerau wedi'u diweddaru.
+    past_preamble_html: Rydym wedi newid ein telerau gwasanaeth ers eich ymweliad diwethaf. Rydym yn eich annog i ddarllen y telerau wedi'u diweddaru.
+    review_link: Darllen y telerau gwasanaeth
+    title: Mae telerau gwasanaeth %{domain} yn newid
   themes:
     contrast: Mastodon (Cyferbyniad uchel)
     default: Mastodon (Tywyll)

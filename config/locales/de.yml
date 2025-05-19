@@ -815,7 +815,6 @@ de:
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
         profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timeline
-        publish_discovered_servers: Entdeckte Server offenlegen
         publish_statistics: Statistiken veröffentlichen
         title: Entdecken
         trends: Trends
@@ -1912,6 +1911,11 @@ de:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   terms_of_service:
     title: Nutzungsbedingungen
+  terms_of_service_interstitial:
+    future_preamble_html: Wir aktualisieren unsere Nutzungsbedingungen, die am <strong>%{date}</strong> in Kraft treten. Bitte lies dir die aktualisierten Bedingungen sorgfältig durch.
+    past_preamble_html: Wir haben unsere Nutzungsbedingungen seit deinem letzten Besuch geändert. Bitte lies dir die aktualisierten Bedingungen sorgfältig durch.
+    review_link: Nutzungsbedingungen lesen
+    title: Die Nutzungsbedingungen von %{domain} ändern sich
   themes:
     contrast: Mastodon (Hoher Kontrast)
     default: Mastodon (Dunkel)
