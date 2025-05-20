@@ -9,18 +9,17 @@ class Mastodon::RedisConfiguration
 
   def base
     @base ||= setup_config(prefix: nil, defaults: DEFAULTS)
-              .merge(namespace: base_namespace)
+              .merge(namespace: nil)
   end
 
   def sidekiq
     @sidekiq ||= setup_config(prefix: 'SIDEKIQ_')
-                 .merge(namespace: sidekiq_namespace)
   end
 
   def cache
     @cache ||= setup_config(prefix: 'CACHE_')
                .merge({
-                 namespace: cache_namespace,
+                 namespace: 'cache',
                  expires_in: 10.minutes,
                  connect_timeout: 5,
                  pool: {
@@ -40,24 +39,6 @@ class Mastodon::RedisConfiguration
     { verify_mode: OpenSSL::SSL::VERIFY_NONE }
   end
 
-  def namespace
-    @namespace ||= ENV.fetch('REDIS_NAMESPACE', nil)
-  end
-
-  def base_namespace
-    return "mastodon_test#{ENV.fetch('TEST_ENV_NUMBER', nil)}" if Rails.env.test?
-
-    namespace
-  end
-
-  def sidekiq_namespace
-    namespace
-  end
-
-  def cache_namespace
-    namespace ? "#{namespace}_cache" : 'cache'
-  end
-
   def setup_config(prefix: nil, defaults: {})
     prefix = "#{prefix}REDIS_"
 
@@ -66,7 +47,7 @@ class Mastodon::RedisConfiguration
     password = ENV.fetch("#{prefix}PASSWORD", nil)
     host     = ENV.fetch("#{prefix}HOST", defaults[:host])
     port     = ENV.fetch("#{prefix}PORT", defaults[:port])
-    db       = ENV.fetch("#{prefix}DB", defaults[:db])
+    db       = Rails.env.test? ? ENV.fetch('TEST_ENV_NUMBER', defaults[:db]).to_i + 1 : ENV.fetch("#{prefix}DB", defaults[:db])
 
     return { url:, driver:, ssl_params: } if url
 

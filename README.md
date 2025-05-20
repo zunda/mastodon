@@ -57,10 +57,10 @@ Mastodon is a **free, open-source social network server** based on ActivityPub w
 
 ### Requirements
 
-- **PostgreSQL** 12+
-- **Redis** 4+
+- **PostgreSQL** 13+
+- **Redis** 6.2+
 - **Ruby** 3.2+
-- **Node.js** 18+
+- **Node.js** 20+
 
 The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, and **Scalingo**. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 
