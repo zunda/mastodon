@@ -156,7 +156,6 @@ RSpec.describe Mastodon::RedisConfiguration do
         expect(subject).to eq({
           url: 'redis://localhost:6379/0',
           driver: :ruby,
-          namespace: nil,
           ssl_params: {
             verify_mode: 0,
           },
@@ -175,7 +174,6 @@ RSpec.describe Mastodon::RedisConfiguration do
         expect(subject).to eq({
           url: 'redis::/user@example.com/2',
           driver: :ruby,
-          namespace: nil,
           ssl_params: {
             verify_mode: 0,
           },
@@ -194,7 +192,6 @@ RSpec.describe Mastodon::RedisConfiguration do
         expect(subject).to eq({
           url: 'redis://:testpass@redis.example.com:3333/3',
           driver: :ruby,
-          namespace: nil,
           ssl_params: {
             verify_mode: 0,
           },
