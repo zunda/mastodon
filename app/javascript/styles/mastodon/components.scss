@@ -7963,7 +7963,6 @@ noscript {
     .avatar {
       display: block;
       flex: 0 0 auto;
-      width: 94px;
 
       .account__avatar {
         background: var(--background-color);
@@ -10766,7 +10765,7 @@ noscript {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 2px 10px;
   }
 
   &__numbers {
@@ -11044,7 +11043,7 @@ noscript {
   overflow: hidden;
   flex-shrink: 0;
   border-bottom: 1px solid var(--background-border-color);
-  touch-action: pan-x;
+  touch-action: pan-y;
 
   &__slides {
     display: flex;
