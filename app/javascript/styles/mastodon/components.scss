@@ -6605,7 +6605,6 @@ a.status-card {
 
   ul {
     overflow-y: auto;
-    flex-shrink: 0;
     padding-bottom: 8px;
   }
 
@@ -11074,5 +11073,13 @@ noscript {
     font-size: 12px;
     font-weight: 500;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
