@@ -12,6 +12,8 @@ import {
   muteAccount,
   unmuteAccount,
   followAccountSuccess,
+  unpinAccount,
+  pinAccount,
 } from 'mastodon/actions/accounts';
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { openModal } from 'mastodon/actions/modal';
@@ -62,14 +64,25 @@ const messages = defineMessages({
   },
 });
 
-export const Account: React.FC<{
+interface AccountProps {
   size?: number;
   id: string;
   hidden?: boolean;
   minimal?: boolean;
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
-}> = ({ id, size = 46, hidden, minimal, defaultAction, withBio }) => {
+  withMenu?: boolean;
+}
+
+export const Account: React.FC<AccountProps> = ({
+  id,
+  size = 46,
+  hidden,
+  minimal,
+  defaultAction,
+  withBio,
+  withMenu = true,
+}) => {
   const intl = useIntl();
   const { signedIn } = useIdentity();
   const account = useAppSelector((state) => state.accounts.get(id));
@@ -119,8 +132,6 @@ export const Account: React.FC<{
         },
       ];
     } else if (defaultAction !== 'block') {
-      arr = [];
-
       if (isRemote && accountUrl) {
         arr.push({
           text: intl.formatMessage(messages.openOriginalPage),
@@ -173,6 +184,25 @@ export const Account: React.FC<{
           text: intl.formatMessage(messages.addToLists),
           action: handleAddToLists,
         });
+
+        if (id !== me && (relationship?.following || relationship?.requested)) {
+          const handleEndorseToggle = () => {
+            if (relationship.endorsed) {
+              dispatch(unpinAccount(id));
+            } else {
+              dispatch(pinAccount(id));
+            }
+          };
+          arr.push({
+            text: intl.formatMessage(
+              // Defined in features/account_timeline/components/account_header.tsx
+              relationship.endorsed
+                ? { id: 'account.unendorse' }
+                : { id: 'account.endorse' },
+            ),
+            action: handleEndorseToggle,
+          });
+        }
       }
     }
 
@@ -197,9 +227,10 @@ export const Account: React.FC<{
     );
   }
 
-  let button: React.ReactNode, dropdown: React.ReactNode;
+  let button: React.ReactNode;
+  let dropdown: React.ReactNode;
 
-  if (menu.length > 0) {
+  if (menu.length > 0 && withMenu) {
     dropdown = (
       <Dropdown
         items={menu}
@@ -251,42 +282,68 @@ export const Account: React.FC<{
   }
 
   return (
-    <div className={classNames('account', { 'account--minimal': minimal })}>
-      <div className='account__wrapper'>
-        <Link
-          className='account__display-name'
-          title={account?.acct}
-          to={`/@${account?.acct}`}
-          data-hover-card-account={id}
-        >
-          <div className='account__avatar-wrapper'>
-            {account ? (
-              <Avatar account={account} size={size} />
+    <div
+      className={classNames('account', {
+        'account--minimal': minimal,
+      })}
+    >
+      <div
+        className={classNames('account__wrapper', {
+          'account__wrapper--with-bio': account && withBio,
+        })}
+      >
+        <div className='account__info-wrapper'>
+          <Link
+            className='account__display-name'
+            title={account?.acct}
+            to={`/@${account?.acct}`}
+            data-hover-card-account={id}
+          >
+            <div className='account__avatar-wrapper'>
+              {account ? (
+                <Avatar account={account} size={size} />
+              ) : (
+                <Skeleton width={size} height={size} />
+              )}
+            </div>
+
+            <div className='account__contents'>
+              <DisplayName account={account} />
+
+              {!minimal && (
+                <div className='account__details'>
+                  {account ? (
+                    <>
+                      <ShortNumber
+                        value={account.followers_count}
+                        renderer={FollowersCounter}
+                      />{' '}
+                      {verification} {muteTimeRemaining}
+                    </>
+                  ) : (
+                    <Skeleton width='7ch' />
+                  )}
+                </div>
+              )}
+            </div>
+          </Link>
+
+          {account &&
+            withBio &&
+            (account.note.length > 0 ? (
+              <div
+                className='account__note translate'
+                dangerouslySetInnerHTML={{ __html: account.note_emojified }}
+              />
             ) : (
-              <Skeleton width={size} height={size} />
-            )}
-          </div>
-
-          <div className='account__contents'>
-            <DisplayName account={account} />
-
-            {!minimal && (
-              <div className='account__details'>
-                {account ? (
-                  <>
-                    <ShortNumber
-                      value={account.followers_count}
-                      renderer={FollowersCounter}
-                    />{' '}
-                    {verification} {muteTimeRemaining}
-                  </>
-                ) : (
-                  <Skeleton width='7ch' />
-                )}
+              <div className='account__note account__note--missing'>
+                <FormattedMessage
+                  id='account.no_bio'
+                  defaultMessage='No description provided.'
+                />
               </div>
-            )}
-          </div>
-        </Link>
+            ))}
+        </div>
 
         {!minimal && (
           <div className='account__relationship'>
@@ -295,22 +352,6 @@ export const Account: React.FC<{
           </div>
         )}
       </div>
-
-      {account &&
-        withBio &&
-        (account.note.length > 0 ? (
-          <div
-            className='account__note translate'
-            dangerouslySetInnerHTML={{ __html: account.note_emojified }}
-          />
-        ) : (
-          <div className='account__note account__note--missing'>
-            <FormattedMessage
-              id='account.no_bio'
-              defaultMessage='No description provided.'
-            />
-          </div>
-        ))}
     </div>
   );
 };

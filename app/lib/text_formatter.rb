@@ -59,7 +59,7 @@ class TextFormatter
 
       prefix      = url.match(URL_PREFIX_REGEX).to_s
       display_url = url[prefix.length, URL_MAX_LENGTH]
-      suffix      = url[prefix.length + URL_MAX_LENGTH..]
+      suffix      = url[(prefix.length + URL_MAX_LENGTH)..]
       cutoff      = url[prefix.length..].length > URL_MAX_LENGTH
 
       if suffix && suffix.length == 1 # revert truncation to account for ellipsis

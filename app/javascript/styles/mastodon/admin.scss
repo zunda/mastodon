@@ -9,8 +9,11 @@ $content-width: 840px;
 .admin-wrapper {
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
 
   .icon {
     width: 16px;
@@ -585,16 +588,6 @@ body,
 .account-status {
   display: flex;
   margin-bottom: 10px;
-
-  .activity-stream {
-    flex: 2 0 0;
-    margin-inline-end: 20px;
-    max-width: calc(100% - 60px);
-
-    .entry {
-      border-radius: 4px;
-    }
-  }
 }
 
 .report-status__actions,

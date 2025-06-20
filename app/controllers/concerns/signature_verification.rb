@@ -24,14 +24,14 @@ module SignatureVerification
 
   def signature_key_id
     signed_request.key_id
+  rescue Mastodon::SignatureVerificationError
+    nil
   end
 
   private
 
   def signed_request
     @signed_request ||= SignedRequest.new(request) if signed_request?
-  rescue SignatureVerificationError
-    nil
   end
 
   def signature_verification_failure_reason
@@ -82,7 +82,7 @@ module SignatureVerification
   end
 
   def actor_from_key_id
-    key_id = signature_key_id
+    key_id = signed_request.key_id
     domain = key_id.start_with?('acct:') ? key_id.split('@').last : key_id
 
     if domain_not_allowed?(domain)
