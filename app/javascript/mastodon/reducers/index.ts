@@ -37,6 +37,7 @@ import settings from './settings';
 import status_lists from './status_lists';
 import statuses from './statuses';
 import { suggestionsReducer } from './suggestions';
+import { followedTagsReducer } from './tags';
 import timelines from './timelines';
 import trends from './trends';
 import user_lists from './user_lists';
@@ -69,6 +70,7 @@ const reducers = {
   custom_emojis,
   identity_proofs,
   lists: listsReducer,
+  followedTags: followedTagsReducer,
   filters,
   conversations,
   suggestions: suggestionsReducer,
