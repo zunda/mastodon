@@ -5764,7 +5764,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^3.5.3":
+"chokidar@npm:^3.6.0":
   version: 3.6.0
   resolution: "chokidar@npm:3.6.0"
   dependencies:
@@ -11298,8 +11298,8 @@ __metadata:
   linkType: hard
 
 "react-select@npm:^5.7.3":
-  version: 5.10.1
-  resolution: "react-select@npm:5.10.1"
+  version: 5.10.2
+  resolution: "react-select@npm:5.10.2"
   dependencies:
     "@babel/runtime": "npm:^7.12.0"
     "@emotion/cache": "npm:^11.4.0"
@@ -11313,7 +11313,7 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/0d10a249b96150bd648f2575d59c848b8fac7f4d368a97ae84e4aaba5bbc1035deba4cdc82e49a43904b79ec50494505809618b0e98022b2d51e7629551912ed
+  checksum: 10c0/2027ef57b0a375d1accdad60550329dc0911b31d429ec6eb9ae391ae9baf9f26991b0ff8615eb99de319a55ce6e9382107783e615cb2116522ed0275b214b7f7
   languageName: node
   linkType: hard
 
@@ -13904,17 +13904,17 @@ __metadata:
   linkType: hard
 
 "vite-plugin-static-copy@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "vite-plugin-static-copy@npm:3.1.0"
+  version: 3.1.1
+  resolution: "vite-plugin-static-copy@npm:3.1.1"
   dependencies:
-    chokidar: "npm:^3.5.3"
+    chokidar: "npm:^3.6.0"
     fs-extra: "npm:^11.3.0"
     p-map: "npm:^7.0.3"
     picocolors: "npm:^1.1.1"
     tinyglobby: "npm:^0.2.14"
   peerDependencies:
     vite: ^5.0.0 || ^6.0.0 || ^7.0.0
-  checksum: 10c0/dce43f12ecc71417f1afd530d15b316774fe0441c2502e48e2bfafcd07fd4ae90a5782621f932d8d12a8c8213bed6746e80d5452e2fb216ece2bcf7e80309f82
+  checksum: 10c0/a4dd5d31212b037d4902d55c2ee83866e496857bf948f258599dc24ec61b4628cf0dd23e4a7d7dc189d33ad1489427e976fa95e4db61b394d0be4f63077ef92c
   languageName: node
   linkType: hard
 
