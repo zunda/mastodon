@@ -7,7 +7,7 @@
 
 = render 'application/card', account: @account
 
-- proofs = account.identity_proofs.active
+- proofs = @account.identity_proofs.active
 - if @account.fields? || @account.note? || not proofs.empty?
   .admin-account-bio
     - if @account.fields? || not proofs.empty?
