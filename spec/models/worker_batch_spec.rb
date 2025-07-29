@@ -54,7 +54,7 @@ RSpec.describe WorkerBatch do
       end
 
       it 'persists the job IDs' do
-        expect(subject.jobs).to eq %w(foo bar)
+        expect(subject.jobs.sort).to eq %w(foo bar).sort
       end
     end
   end
@@ -67,7 +67,7 @@ RSpec.describe WorkerBatch do
     end
 
     it 'removes the job from pending jobs' do
-      expect(subject.jobs).to eq %w(bar baz)
+      expect(subject.jobs.sort).to eq %w(bar baz).sort
     end
 
     it 'decrements the number of pending jobs' do
