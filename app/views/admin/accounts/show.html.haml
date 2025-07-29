@@ -7,12 +7,10 @@
 
 = render 'application/card', account: @account
 
-- account = @account
 - proofs = account.identity_proofs.active
-- fields = account.fields
-- unless fields.empty? && proofs.empty? && account.note.blank?
+- if @account.fields? || @account.note? || not proofs.empty?
   .admin-account-bio
-    - unless fields.empty? && proofs.empty?
+    - if @account.fields? || not proofs.empty?
       %div
         .account__header__fields
           - proofs.each do |proof|
@@ -21,19 +19,12 @@
               %dd.verified
                 = link_to fa_icon('check'), proof.badge.proof_url, class: 'verified__mark', title: t('accounts.link_verified_on', date: l(proof.updated_at))
                 = link_to proof.provider_username, proof.badge.profile_url
+          = render partial: 'field', collection: @account.fields, locals: { account: @account }
 
-          - fields.each do |field|
-            %dl
-              %dt.emojify{ title: field.name }= prerender_custom_emojis(h(field.name), account.emojis)
-              %dd{ title: field.value, class: custom_field_classes(field) }
-                - if field.verified?
-                  %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
-                    = material_symbol 'check'
-                = prerender_custom_emojis(account_field_value_format(field, with_rel_me: false), account.emojis)
-
-    - if account.note.present?
+    - if @account.note?
       %div
-        .account__header__content.emojify= prerender_custom_emojis(account_bio_format(account), account.emojis)
+        .account__header__content.emojify
+          = prerender_custom_emojis(account_bio_format(@account), @account.emojis)
 
 = render 'admin/accounts/counters', account: @account
 

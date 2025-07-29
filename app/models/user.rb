@@ -443,7 +443,7 @@ class User < ApplicationRecord
 
   def set_approved
     self.approved = begin
-      if sign_up_from_ip_requires_approval? || sign_up_email_requires_approval?
+      if sign_up_from_ip_requires_approval? || sign_up_email_requires_approval? || sign_up_username_requires_approval?
         false
       else
         open_registrations? || valid_invitation? || external?
@@ -466,16 +466,17 @@ class User < ApplicationRecord
 
     yield
 
-    if new_user
-      # Avoid extremely unlikely race condition when approving and confirming
-      # the user at the same time
-      reload unless approved?
+    after_confirmation_tasks if new_user
+  end
 
-      if approved?
-        prepare_new_user!
-      else
-        notify_staff_about_pending_account!
-      end
+  def after_confirmation_tasks
+    # Handle condition when approving and confirming a user at the same time
+    reload unless approved?
+
+    if approved?
+      prepare_new_user!
+    else
+      notify_staff_about_pending_account!
     end
   end
 
@@ -496,6 +497,10 @@ class User < ApplicationRecord
     records = DomainResource.new(domain).mx unless self.class.skip_mx_check?
 
     EmailDomainBlock.requires_approval?(records + [domain], attempt_ip: sign_up_ip)
+  end
+
+  def sign_up_username_requires_approval?
+    account.username? && UsernameBlock.matches?(account.username, allow_with_approval: true)
   end
 
   def open_registrations?
@@ -539,10 +544,10 @@ class User < ApplicationRecord
 
   def regenerate_feed!
     home_feed = HomeFeed.new(account)
-    unless home_feed.regenerating?
-      home_feed.regeneration_in_progress!
-      RegenerationWorker.perform_async(account_id)
-    end
+    return if home_feed.regenerating?
+
+    home_feed.regeneration_in_progress!
+    RegenerationWorker.perform_async(account_id)
   end
 
   def needs_feed_update?

@@ -1220,9 +1220,9 @@ ga:
     confirmation_dialogs: Dialóga deimhnithe
     discovery: Fionnachtain
     localization:
-      body: Aistríonn oibrithe deonacha Mastodon.
+      body: Oibrithe deonacha a dhéanann aistriúchán Mastodon.
       guide_link: https://crowdin.com/project/mastodon
-      guide_link_text: Is féidir le gach duine rannchuidiú.
+      guide_link_text: Is féidir le gach duine cur leis.
     sensitive_content: Ábhar íogair
   application_mailer:
     notification_preferences: Athraigh roghanna ríomhphoist
@@ -2001,6 +2001,7 @@ ga:
     edited_at_html: "%{date} curtha in eagar"
     errors:
       in_reply_not_found: Is cosúil nach ann don phostáil a bhfuil tú ag iarraidh freagra a thabhairt air.
+      quoted_status_not_found: Is cosúil nach bhfuil an post atá tú ag iarraidh a lua ann.
     over_character_limit: teorainn carachtar %{max} sáraithe
     pin_errors:
       direct: Ní féidir postálacha nach bhfuil le feiceáil ach ag úsáideoirí luaite a phinnáil

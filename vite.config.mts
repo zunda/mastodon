@@ -4,7 +4,6 @@ import { readdir } from 'node:fs/promises';
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
-import glob from 'fast-glob';
 import postcssPresetEnv from 'postcss-preset-env';
 import Compress from 'rollup-plugin-gzip';
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -24,6 +23,7 @@ import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
 import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
+import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 
@@ -64,6 +64,11 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         // This is needed in dev environment because we load the worker from `/dev-sw/dev-sw.js`,
         // but it needs to be scoped to the whole domain
         'Service-Worker-Allowed': '/',
+      },
+      hmr: {
+        // Forcing the protocol to be insecure helps if you are proxying your dev server with SSL,
+        // because Vite still tries to connect to localhost.
+        protocol: 'ws',
       },
       port: 3036,
     },
@@ -120,6 +125,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         },
       }),
       MastodonThemes(),
+      MastodonAssetsManifest(),
       viteStaticCopy({
         targets: [
           {
@@ -144,7 +150,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       isProdBuild && (Compress() as PluginOption),
       command === 'build' &&
         manifestSRI({
-          manifestPaths: ['.vite/manifest.json', '.vite/manifest-assets.json'],
+          manifestPaths: ['.vite/manifest.json'],
         }),
       VitePWA({
         srcDir: path.resolve(jsRoot, 'mastodon/service_worker'),
@@ -183,47 +189,33 @@ async function findEntrypoints() {
   const entrypoints: Record<string, string> = {};
 
   // First, JS entrypoints
-  const jsEntrypoints = await readdir(path.resolve(jsRoot, 'entrypoints'), {
+  const jsEntrypointsDir = path.resolve(jsRoot, 'entrypoints');
+  const jsEntrypoints = await readdir(jsEntrypointsDir, {
     withFileTypes: true,
   });
   const jsExtTest = /\.[jt]sx?$/;
   for (const file of jsEntrypoints) {
     if (file.isFile() && jsExtTest.test(file.name)) {
       entrypoints[file.name.replace(jsExtTest, '')] = path.resolve(
-        file.parentPath,
+        jsEntrypointsDir,
         file.name,
       );
     }
   }
 
   // Next, SCSS entrypoints
-  const scssEntrypoints = await readdir(
-    path.resolve(jsRoot, 'styles/entrypoints'),
-    { withFileTypes: true },
-  );
+  const scssEntrypointsDir = path.resolve(jsRoot, 'styles/entrypoints');
+  const scssEntrypoints = await readdir(scssEntrypointsDir, {
+    withFileTypes: true,
+  });
   const scssExtTest = /\.s?css$/;
   for (const file of scssEntrypoints) {
     if (file.isFile() && scssExtTest.test(file.name)) {
       entrypoints[file.name.replace(scssExtTest, '')] = path.resolve(
-        file.parentPath,
+        scssEntrypointsDir,
         file.name,
       );
     }
-  }
-
-  // Lastly other assets
-  const assetEntrypoints = await glob('{fonts,icons,images}/**/*', {
-    cwd: jsRoot,
-    absolute: true,
-  });
-  const excludeExts = ['', '.md'];
-  for (const file of assetEntrypoints) {
-    const ext = path.extname(file);
-    if (excludeExts.includes(ext)) {
-      continue;
-    }
-    const name = path.basename(file);
-    entrypoints[name] = path.resolve(jsRoot, file);
   }
 
   return entrypoints;
