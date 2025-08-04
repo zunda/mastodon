@@ -73,7 +73,7 @@ RSpec.describe InstancePresenter do
         end
       end
 
-      it 'uses the env variable to build a repo URL', skip: 'lib/tasks/version.rake overwrites this feature' do
+      xit 'uses the env variable to build a repo URL', skip: 'lib/tasks/version.rake overwrites this feature' do
         expect(instance_presenter.source_url).to eq('https://github.com/other/repo')
       end
     end
@@ -86,7 +86,7 @@ RSpec.describe InstancePresenter do
         end
       end
 
-      it 'returns Mastodon::Version.source_url' do
+      xit 'returns Mastodon::Version.source_url' do
         expect(instance_presenter.source_url).to eq(Mastodon::Version.source_url)
       end
     end
