@@ -42,6 +42,8 @@ namespace :api, format: false do
         resource :history, only: :show
         resource :source, only: :show
 
+        resource :interaction_policy, only: :update
+
         post :translate, to: 'translations#create'
       end
 
