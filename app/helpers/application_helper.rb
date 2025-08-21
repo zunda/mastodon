@@ -110,6 +110,16 @@ module ApplicationHelper
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 
+  def conditional_link_to(condition, name, options = {}, html_options = {}, &block)
+    if condition && !current_page?(block_given? ? name : options)
+      link_to(name, options, html_options, &block)
+    elsif block_given?
+      content_tag(:span, options, html_options, &block)
+    else
+      content_tag(:span, name, html_options)
+    end
+  end
+
   def material_symbol(icon, attributes = {})
     safe_join(
       [
