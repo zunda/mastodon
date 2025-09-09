@@ -5694,28 +5694,23 @@ a.status-card {
     z-index: 9999;
   }
 
+  &.disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
   &__label {
-    cursor: pointer;
     display: block;
-
-    > span {
-      display: block;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    &.disabled {
-      cursor: default;
-      opacity: 0.5;
-    }
+    font-weight: 500;
+    margin-bottom: 8px;
   }
 
   &__button {
     display: flex;
     align-items: center;
     color: $primary-text-color;
-    background: var(--dropdown-background-color);
-    border: 1px solid var(--dropdown-border-color);
+    background: var(--input-background-color);
+    border: 1px solid var(--background-border-color);
     padding: 8px 12px;
     width: 100%;
     text-align: left;
