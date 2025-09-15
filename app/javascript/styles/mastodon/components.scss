@@ -1630,7 +1630,7 @@
   align-items: center;
   gap: 10px;
   overflow: hidden;
-  flex-grow: 1;
+  margin-inline-end: auto;
 
   .display-name {
     bdi {
@@ -9531,13 +9531,6 @@ noscript {
   p.hint {
     margin-bottom: 14px;
     font-size: 14px;
-  }
-
-  &__icon {
-    color: $highlight-text-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   &__lead {
