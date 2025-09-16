@@ -8,9 +8,9 @@
 = render 'application/card', account: @account
 
 - proofs = @account.identity_proofs.active
-- if @account.fields? || @account.note? || not proofs.empty?
+- if @account.fields? || @account.note? || !proofs.empty?
   .admin-account-bio
-    - if @account.fields? || not proofs.empty?
+    - if @account.fields? || !proofs.empty?
       %div
         .account__header__fields
           - proofs.each do |proof|
