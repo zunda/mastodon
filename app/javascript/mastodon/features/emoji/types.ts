@@ -56,7 +56,9 @@ export type EmojiStateMap = LimitedCache<string, EmojiState>;
 
 export type CustomEmojiMapArg =
   | ExtraCustomEmojiMap
-  | ImmutableList<CustomEmoji>;
+  | ImmutableList<CustomEmoji>
+  | CustomEmoji[]
+  | ApiCustomEmojiJSON[];
 
 export type ExtraCustomEmojiMap = Record<
   string,
