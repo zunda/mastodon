@@ -1611,6 +1611,13 @@ en:
       expires_at: Expires
       uses: Uses
     title: Invite people
+  link_preview:
+    author_html: By %{name}
+    potentially_sensitive_content:
+      action: Click to show
+      confirm_visit: Are you sure you wish to open this link?
+      hide_button: Hide
+      label: Potentially sensitive content
   lists:
     errors:
       limit: You have reached the maximum number of lists
@@ -1923,6 +1930,9 @@ en:
         other: "%{count} videos"
     boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
+    content_warnings:
+      hide: Hide post
+      show: Show more
     default_language: Same as interface language
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
