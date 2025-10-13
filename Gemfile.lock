@@ -1282,7 +1282,7 @@ CHECKSUMS
   opentelemetry-instrumentation-active_support (0.9.1) sha256=deab7f8583c30a50220452e2f5fa3e84d3f6eb5941f6f950d623a5e7db99b1e1
   opentelemetry-instrumentation-base (0.24.0) sha256=38bc93fcb399bd3b06dcb04395ca617576de16cd1acc26594aec17529b2a0dab
   opentelemetry-instrumentation-concurrent_ruby (0.23.1) sha256=b34f0f63b6396af6e35b2d2997d0edb66ad8f7e3918f0e3aed50bf1aa2c42801
-  opentelemetry-instrumentation-excon (0.25.1) sha256=b9a03ad7c0162402f2aa2355076d79b021259982c77a86219b5ed1d5220a0439
+  opentelemetry-instrumentation-excon (0.25.2) sha256=e1f3e7e6a6f83c2beab067a942fa9e6be6e7884d66436d784ca9eb268687d692
   opentelemetry-instrumentation-faraday (0.29.1) sha256=b25b5ccce6380dabcf98b4fabb0b2e2f76d4e3b79b05b4c563dd357b7fdfd625
   opentelemetry-instrumentation-http (0.26.1) sha256=f018c4f4285fc00ab7bce67a5ca94a76c2fde5d560dd089fb01ee0b0a30a4d31
   opentelemetry-instrumentation-http_client (0.25.1) sha256=ce1cffff3f822805cda47e3e28839f495bfdcbd7524def1258f258f790fe666a
@@ -1318,7 +1318,7 @@ CHECKSUMS
   pundit (2.5.2) sha256=e374152baa24f90b630428293faf4b4c5468fc3cc010165f7d8fcb44ce108bbd
   raabro (1.4.0) sha256=d4fa9ff5172391edb92b242eed8be802d1934b1464061ae5e70d80962c5da882
   racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
-  rack (3.2.2) sha256=74d20a7a17e8c6bc1fd506fa7d83ccf6b7a40869e81572928ca95346dccd92b0
+  rack (3.2.3) sha256=239a373da6584574f25f042d8ed4ba21e691c9799f1d2b5c8920bbbc23ca3d41
   rack-attack (6.7.0) sha256=3ca47e8f66cd33b2c96af53ea4754525cd928ed3fa8da10ee6dad0277791d77c
   rack-cors (3.0.0) sha256=7b95be61db39606906b61b83bd7203fa802b0ceaaad8fcb2fef39e097bf53f68
   rack-oauth2 (2.2.1) sha256=c73aa87c508043e2258f02b4fb110cacba9b37d2ccf884e22487d014a120d1a5
