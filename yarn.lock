@@ -2397,15 +2397,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ecma402-abstract@npm:2.3.5":
-  version: 2.3.5
-  resolution: "@formatjs/ecma402-abstract@npm:2.3.5"
+"@formatjs/ecma402-abstract@npm:2.3.6":
+  version: 2.3.6
+  resolution: "@formatjs/ecma402-abstract@npm:2.3.6"
   dependencies:
     "@formatjs/fast-memoize": "npm:2.2.7"
     "@formatjs/intl-localematcher": "npm:0.6.2"
     decimal.js: "npm:^10.4.3"
     tslib: "npm:^2.8.0"
-  checksum: 10c0/c6cac6312a1228347adf3a6a5fd09c0593e7d199e7a56484ece7cb8121c4138ba5c2777b70f82e88d8fbe3199ef5f48b2b1444f0348ee315b930e9db33c67d84
+  checksum: 10c0/63be2a73d3168bf45ab5d50db58376e852db5652d89511ae6e44f1fa03ad96ebbfe9b06a1dfaa743db06e40eb7f33bd77530b9388289855cca79a0e3fc29eacf
   languageName: node
   linkType: hard
 
@@ -2429,14 +2429,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/icu-messageformat-parser@npm:2.11.3":
-  version: 2.11.3
-  resolution: "@formatjs/icu-messageformat-parser@npm:2.11.3"
+"@formatjs/icu-messageformat-parser@npm:2.11.4":
+  version: 2.11.4
+  resolution: "@formatjs/icu-messageformat-parser@npm:2.11.4"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
-    "@formatjs/icu-skeleton-parser": "npm:1.8.15"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
+    "@formatjs/icu-skeleton-parser": "npm:1.8.16"
     tslib: "npm:^2.8.0"
-  checksum: 10c0/dfa08a671318bc9425f9b8e77ba0fb11856c9e1bb366b2a9c820212711d3483d9337fba50ef0a65c259c5564a6306355b065d739feae56e03b3046edba739460
+  checksum: 10c0/3ea9e9dae18282881d19a5f88107b6013f514ec8675684ed2c04bee2a174032377858937243e3bd9c9263a470988a3773a53bf8d208a34a78e7843ce66f87f3b
   languageName: node
   linkType: hard
 
@@ -2450,13 +2450,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/icu-skeleton-parser@npm:1.8.15":
-  version: 1.8.15
-  resolution: "@formatjs/icu-skeleton-parser@npm:1.8.15"
+"@formatjs/icu-skeleton-parser@npm:1.8.16":
+  version: 1.8.16
+  resolution: "@formatjs/icu-skeleton-parser@npm:1.8.16"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
     tslib: "npm:^2.8.0"
-  checksum: 10c0/e33478f3cdb6d49f8531f35fb80db98d49533add42cd4ab8d3f3cef72c3496ae3042dfe24f252e6afffd3e4f6c9f1dec88367973c14e779dc07947c75641cede
+  checksum: 10c0/6fa1586dc11c925cd8d17e927cc635d238c969a6b7e97282a924376f78622fc25336c407589d19796fb6f8124a0e7765f99ecdb1aac014edcfbe852e7c3d87f3
   languageName: node
   linkType: hard
 
@@ -2479,32 +2479,32 @@ __metadata:
   linkType: hard
 
 "@formatjs/intl-pluralrules@npm:^5.4.4":
-  version: 5.4.5
-  resolution: "@formatjs/intl-pluralrules@npm:5.4.5"
+  version: 5.4.6
+  resolution: "@formatjs/intl-pluralrules@npm:5.4.6"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
     "@formatjs/intl-localematcher": "npm:0.6.2"
     decimal.js: "npm:^10.4.3"
     tslib: "npm:^2.8.0"
-  checksum: 10c0/2405fd2a4c8ce7a5c25ae824daa1408b07664a4f5ca573683fedad78a487a118b50391b0a2234db921c615e1ed4f53e860a55cd9892708ae49f5766980495b6e
+  checksum: 10c0/95dd6fb3e9bd84ce44cc194f6f815d690703bd60b75bf2ae895535d2d9a1a675765879de9b54f854882fc1335cbfac6a535873d5b2d75cc5ca93c6ca172aa272
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:3.1.7":
-  version: 3.1.7
-  resolution: "@formatjs/intl@npm:3.1.7"
+"@formatjs/intl@npm:3.1.8":
+  version: 3.1.8
+  resolution: "@formatjs/intl@npm:3.1.8"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
     "@formatjs/fast-memoize": "npm:2.2.7"
-    "@formatjs/icu-messageformat-parser": "npm:2.11.3"
-    intl-messageformat: "npm:10.7.17"
+    "@formatjs/icu-messageformat-parser": "npm:2.11.4"
+    intl-messageformat: "npm:10.7.18"
     tslib: "npm:^2.8.0"
   peerDependencies:
-    typescript: 5.8.3
+    typescript: ^5.6.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/52d800f587ed11407879f44b971a498844f116d966f9348ef1b597b7a4ee91f8023e0270797961be8126989512859f5944c4115e39675f4959a22b7837b62e77
+  checksum: 10c0/b291e867bcde491737f70254ec30898e120f36784b5ee2911dcc271fbd744e90382f03232ac7f5a55d46071f4ffccfc84b63445734117b75ca1ced659f6b7827
   languageName: node
   linkType: hard
 
@@ -2528,22 +2528,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ts-transformer@npm:3.14.1":
-  version: 3.14.1
-  resolution: "@formatjs/ts-transformer@npm:3.14.1"
+"@formatjs/ts-transformer@npm:3.14.2":
+  version: 3.14.2
+  resolution: "@formatjs/ts-transformer@npm:3.14.2"
   dependencies:
-    "@formatjs/icu-messageformat-parser": "npm:2.11.3"
+    "@formatjs/icu-messageformat-parser": "npm:2.11.4"
     "@types/node": "npm:^22.0.0"
     chalk: "npm:^4.1.2"
     json-stable-stringify: "npm:^1.3.0"
     tslib: "npm:^2.8.0"
-    typescript: "npm:5.8.3"
+    typescript: "npm:^5.6.0"
   peerDependencies:
     ts-jest: ^29
   peerDependenciesMeta:
     ts-jest:
       optional: true
-  checksum: 10c0/ed412d70fb0b8a57b74f1453e2605481295fda71ba462f4c65fab3d1a7f5a0c51c70fa78b9e9e2b291917eb63bbc5cffc7df27f04645832ae64e881e1327a11c
+  checksum: 10c0/990cf49cdc318e37825ec26b1b24d7368e89c5d03184867a4accd8b35d6d6d99a20a8abe6366c9870e56da9e04f4672990ca428686306c9ad8204b401c7d19f8
   languageName: node
   linkType: hard
 
@@ -2915,7 +2915,7 @@ __metadata:
     stringz: "npm:^2.1.0"
     stylelint: "npm:^16.19.1"
     stylelint-config-prettier-scss: "npm:^1.0.0"
-    stylelint-config-standard-scss: "npm:^15.0.1"
+    stylelint-config-standard-scss: "npm:^16.0.0"
     substring-trie: "npm:^1.0.2"
     tesseract.js: "npm:^6.0.0"
     tiny-queue: "npm:^0.2.1"
@@ -5467,21 +5467,21 @@ __metadata:
   linkType: hard
 
 "babel-plugin-formatjs@npm:^10.5.37":
-  version: 10.5.40
-  resolution: "babel-plugin-formatjs@npm:10.5.40"
+  version: 10.5.41
+  resolution: "babel-plugin-formatjs@npm:10.5.41"
   dependencies:
     "@babel/core": "npm:^7.26.10"
     "@babel/helper-plugin-utils": "npm:^7.26.5"
     "@babel/plugin-syntax-jsx": "npm:^7.25.9"
     "@babel/traverse": "npm:^7.26.10"
     "@babel/types": "npm:^7.26.10"
-    "@formatjs/icu-messageformat-parser": "npm:2.11.3"
-    "@formatjs/ts-transformer": "npm:3.14.1"
+    "@formatjs/icu-messageformat-parser": "npm:2.11.4"
+    "@formatjs/ts-transformer": "npm:3.14.2"
     "@types/babel__core": "npm:^7.20.5"
     "@types/babel__helper-plugin-utils": "npm:^7.10.3"
     "@types/babel__traverse": "npm:^7.20.6"
     tslib: "npm:^2.8.0"
-  checksum: 10c0/b065cc92ae70dd237bc2aa151f52f91f06337b2ad268d9332cf257414da528f8376aabe7019f9ff630abf55c1b409ecbac720a6ea163397179133b244982320e
+  checksum: 10c0/bbe0e182185c72e4136a4cf37b2366952ad5b1d090de00a132757d2a65a5a6aef95ada93dffdc4ed0cf4338a0ff29c5a0d025d77e8b774b088c69bd68ac07ca6
   languageName: node
   linkType: hard
 
@@ -6109,9 +6109,9 @@ __metadata:
   linkType: hard
 
 "core-js@npm:^3.30.2, core-js@npm:^3.45.0":
-  version: 3.45.1
-  resolution: "core-js@npm:3.45.1"
-  checksum: 10c0/c38e5fae5a05ee3a129c45e10056aafe61dbb15fd35d27e0c289f5490387541c89741185e0aeb61acb558559c6697e016c245cca738fa169a73f2b06cd30e6b6
+  version: 3.46.0
+  resolution: "core-js@npm:3.46.0"
+  checksum: 10c0/12d559d39a58227881bc6c86c36d24dcfbe2d56e52dac42e35e8643278172596ab67f57ede98baf40b153ca1b830f37420ea32c3f7417c0c5a1fed46438ae187
   languageName: node
   linkType: hard
 
@@ -8379,15 +8379,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"intl-messageformat@npm:10.7.17, intl-messageformat@npm:^10.7.16":
-  version: 10.7.17
-  resolution: "intl-messageformat@npm:10.7.17"
+"intl-messageformat@npm:10.7.18, intl-messageformat@npm:^10.7.16":
+  version: 10.7.18
+  resolution: "intl-messageformat@npm:10.7.18"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
     "@formatjs/fast-memoize": "npm:2.2.7"
-    "@formatjs/icu-messageformat-parser": "npm:2.11.3"
+    "@formatjs/icu-messageformat-parser": "npm:2.11.4"
     tslib: "npm:^2.8.0"
-  checksum: 10c0/74445987da233cd5a6df0e4d35813ff11483b0788ff5cbbcf9e2a07c276cdd18001a3ba68583bf8d28920494b68a2be91a9c9f796062973dec3c95a4e88ffa81
+  checksum: 10c0/d54da9987335cb2bca26246304cea2ca6b1cb44ca416d6b28f3aa62b11477c72f7ce0bf3f11f5d236ceb1842bdc3378a926e606496d146fde18783ec92c314e1
   languageName: node
   linkType: hard
 
@@ -11203,16 +11203,16 @@ __metadata:
   linkType: hard
 
 "react-intl@npm:^7.1.10":
-  version: 7.1.13
-  resolution: "react-intl@npm:7.1.13"
+  version: 7.1.14
+  resolution: "react-intl@npm:7.1.14"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
-    "@formatjs/icu-messageformat-parser": "npm:2.11.3"
-    "@formatjs/intl": "npm:3.1.7"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
+    "@formatjs/icu-messageformat-parser": "npm:2.11.4"
+    "@formatjs/intl": "npm:3.1.8"
     "@types/hoist-non-react-statics": "npm:^3.3.1"
     "@types/react": "npm:16 || 17 || 18 || 19"
     hoist-non-react-statics: "npm:^3.3.2"
-    intl-messageformat: "npm:10.7.17"
+    intl-messageformat: "npm:10.7.18"
     tslib: "npm:^2.8.0"
   peerDependencies:
     react: 16 || 17 || 18 || 19
@@ -11220,7 +11220,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/2288c63c3eb2b3fdb79af5fa7b0d297469cc2530143fec798d4603d713c2caf28c9cc1e3a0a53c7b0f90331a3b672ae18e0edefd2fe816de90f90daa7612fb41
+  checksum: 10c0/b4361427ea05b4c9e7d87635a323854ca871710e01cd2a46b5da70b34b78a50661c04b2065258f3f49be134ca414c429c804bc34edc277784a9ffa0c04a30b04
   languageName: node
   linkType: hard
 
@@ -12861,62 +12861,62 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-config-recommended-scss@npm:^15.0.1":
-  version: 15.0.1
-  resolution: "stylelint-config-recommended-scss@npm:15.0.1"
+"stylelint-config-recommended-scss@npm:^16.0.1":
+  version: 16.0.2
+  resolution: "stylelint-config-recommended-scss@npm:16.0.2"
   dependencies:
     postcss-scss: "npm:^4.0.9"
-    stylelint-config-recommended: "npm:^16.0.0"
-    stylelint-scss: "npm:^6.12.0"
+    stylelint-config-recommended: "npm:^17.0.0"
+    stylelint-scss: "npm:^6.12.1"
   peerDependencies:
     postcss: ^8.3.3
-    stylelint: ^16.16.0
+    stylelint: ^16.24.0
   peerDependenciesMeta:
     postcss:
       optional: true
-  checksum: 10c0/8c5854e143145241dbff3d921298eb59e837aa695c0e6d7f08acf75de81f3f8307d39a931781bf8ac7cbe6bf9079a402fee89566206e9cfb1d728ef6b6486890
+  checksum: 10c0/d4e30a881e248d8b039347bf967526f6afe6d6a07f18e2747e14568de32273e819ba478be7a61a0dd63178931b4e891050a34e73d296ab533aa434209a7f3146
   languageName: node
   linkType: hard
 
-"stylelint-config-recommended@npm:^16.0.0":
+"stylelint-config-recommended@npm:^17.0.0":
+  version: 17.0.0
+  resolution: "stylelint-config-recommended@npm:17.0.0"
+  peerDependencies:
+    stylelint: ^16.23.0
+  checksum: 10c0/49e5d1c0f58197b2c5585b85fad814fed9bdec44c9870368c46a762664c5ff158c1145b6337456ae194409d692992b5b87421d62880422f71d8a3360417f5ad1
+  languageName: node
+  linkType: hard
+
+"stylelint-config-standard-scss@npm:^16.0.0":
   version: 16.0.0
-  resolution: "stylelint-config-recommended@npm:16.0.0"
-  peerDependencies:
-    stylelint: ^16.16.0
-  checksum: 10c0/b2b4ea2633a606a0f686521aa5e8908810c9dd21fd4525c86b34213de1e362b445fd5472b6e5ff251d46f999e2ca2c6c704f2efc1c08d5a532084427f4e1c9d8
-  languageName: node
-  linkType: hard
-
-"stylelint-config-standard-scss@npm:^15.0.1":
-  version: 15.0.1
-  resolution: "stylelint-config-standard-scss@npm:15.0.1"
+  resolution: "stylelint-config-standard-scss@npm:16.0.0"
   dependencies:
-    stylelint-config-recommended-scss: "npm:^15.0.1"
-    stylelint-config-standard: "npm:^38.0.0"
+    stylelint-config-recommended-scss: "npm:^16.0.1"
+    stylelint-config-standard: "npm:^39.0.0"
   peerDependencies:
     postcss: ^8.3.3
-    stylelint: ^16.18.0
+    stylelint: ^16.23.1
   peerDependenciesMeta:
     postcss:
       optional: true
-  checksum: 10c0/85b4c85a9ecd97176ac104fb4590cd48047b6253b830d08749c024752b9bc8871bbf69eca592769d69cd4c6e3f90005960630f1c2cdaf85dbfabdb5621ecc55f
+  checksum: 10c0/eb77f23824c5d649b193cb71d7f9b538b32b8cc1769451b2993270361127243d4011baf891ec265711b8e34e69ce28acb57ab6c3947b51fa3713ac26f4276439
   languageName: node
   linkType: hard
 
-"stylelint-config-standard@npm:^38.0.0":
-  version: 38.0.0
-  resolution: "stylelint-config-standard@npm:38.0.0"
+"stylelint-config-standard@npm:^39.0.0":
+  version: 39.0.1
+  resolution: "stylelint-config-standard@npm:39.0.1"
   dependencies:
-    stylelint-config-recommended: "npm:^16.0.0"
+    stylelint-config-recommended: "npm:^17.0.0"
   peerDependencies:
-    stylelint: ^16.18.0
-  checksum: 10c0/8b52c7b7d6287c7495a8fe3a681e07ea9478374e7e66b28d61779072d46cd5b845530b2410df7496a008a8efafe834fb46cf07792f4cf57f996e39f24a801b90
+    stylelint: ^16.23.0
+  checksum: 10c0/70a9862a2cedcc2a1807bd92fc91c40877270cf8a39576b91ae056d6de51d3b68104b26f71056ff22461b4319e9ec988d009abf10ead513b2ec15569d82e865a
   languageName: node
   linkType: hard
 
-"stylelint-scss@npm:^6.12.0":
-  version: 6.12.0
-  resolution: "stylelint-scss@npm:6.12.0"
+"stylelint-scss@npm:^6.12.1":
+  version: 6.12.1
+  resolution: "stylelint-scss@npm:6.12.1"
   dependencies:
     css-tree: "npm:^3.0.1"
     is-plain-object: "npm:^5.0.0"
@@ -12928,7 +12928,7 @@ __metadata:
     postcss-value-parser: "npm:^4.2.0"
   peerDependencies:
     stylelint: ^16.0.2
-  checksum: 10c0/c0ba314badd22118047e374febf8dabac56bd351d612ed9c9fc2da5dc760996c2768605aa8d4e483cf0b0fe649c35ae5a003c8a872ee5bec1bbc2d8d45673ff5
+  checksum: 10c0/9a0903d34be3c75a72bef32402899db5f6b94c0823c5944fdf1acb2c3dc61c1f70fbb322558f8cb7e42dd01ed5e0dec22ed298f03b7bacc9f467c28330acae71
   languageName: node
   linkType: hard
 
@@ -13496,16 +13496,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.8.3":
-  version: 5.8.3
-  resolution: "typescript@npm:5.8.3"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/5f8bb01196e542e64d44db3d16ee0e4063ce4f3e3966df6005f2588e86d91c03e1fb131c2581baf0fb65ee79669eea6e161cd448178986587e9f6844446dbb48
-  languageName: node
-  linkType: hard
-
 "typescript@npm:^5.6.0, typescript@npm:~5.9.0":
   version: 5.9.2
   resolution: "typescript@npm:5.9.2"
@@ -13513,16 +13503,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/cd635d50f02d6cf98ed42de2f76289701c1ec587a363369255f01ed15aaf22be0813226bff3c53e99d971f9b540e0b3cc7583dbe05faded49b1b0bed2f638a18
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>":
-  version: 5.8.3
-  resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/39117e346ff8ebd87ae1510b3a77d5d92dae5a89bde588c747d25da5c146603a99c8ee588c7ef80faaf123d89ed46f6dbd918d534d641083177d5fac38b8a1cb
   languageName: node
   linkType: hard
 
@@ -13894,8 +13874,8 @@ __metadata:
   linkType: hard
 
 "vite-plugin-pwa@npm:^1.0.2":
-  version: 1.0.3
-  resolution: "vite-plugin-pwa@npm:1.0.3"
+  version: 1.1.0
+  resolution: "vite-plugin-pwa@npm:1.1.0"
   dependencies:
     debug: "npm:^4.3.6"
     pretty-bytes: "npm:^6.1.1"
@@ -13910,7 +13890,7 @@ __metadata:
   peerDependenciesMeta:
     "@vite-pwa/assets-generator":
       optional: true
-  checksum: 10c0/03fc24bd12ae4a4130979da4877e3dabddf13d7d6ff2bd68e5e8497a2643b8874a78e6c2502874277ddf2f28593d0a3b025d78af2335bdcc5d2966295784fd46
+  checksum: 10c0/dc199ccbb3cd0a9f740edcbbc8efa7820f67481ae80a15340ca769c21d4f7452d9a9c1d184eac4f6e3fd1ecd9f7fdfd31cc8f9520e43e6795860fe187c77103a
   languageName: node
   linkType: hard
 
@@ -13959,8 +13939,8 @@ __metadata:
   linkType: hard
 
 "vite@npm:^5.0.0 || ^6.0.0 || ^7.0.0-0, vite@npm:^7.1.1":
-  version: 7.1.9
-  resolution: "vite@npm:7.1.9"
+  version: 7.1.10
+  resolution: "vite@npm:7.1.10"
   dependencies:
     esbuild: "npm:^0.25.0"
     fdir: "npm:^6.5.0"
@@ -14009,7 +13989,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/f628f903a137c1410232558bde99c223ea00a090bda6af77752c61f912955f0050aac12d3cfe024d08a0f150ff6fab61b3d0be75d634a59b94d49f525392e1f7
+  checksum: 10c0/ea296971a3094b0e463a91af58de64dca56c8c5c563237e59d158641f8ad7f600f624c4f7c05c18fad68f414e23d50d7145118169b8dcd4bc85283c63c7185bb
   languageName: node
   linkType: hard
 
