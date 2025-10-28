@@ -1101,7 +1101,8 @@
   font-size: inherit;
   vertical-align: middle;
   object-fit: contain;
-  margin: -0.2ex 0.15em 0;
+  margin: -0.2ex 0.15em 0.2ex;
+  width: 16px;
   height: 16px;
 
   img {
@@ -1143,6 +1144,7 @@
   }
 
   .emojione {
+    width: 20px;
     height: 20px;
     margin: -3px 0 0;
   }
@@ -1365,6 +1367,7 @@
   overflow-y: auto;
 
   .emojione {
+    width: 20px;
     height: 20px;
     margin: -3px 0 0;
   }
@@ -1791,6 +1794,7 @@
     line-height: 24px;
 
     .emojione {
+      width: 24px;
       height: 24px;
       margin: -1px 0 0;
     }
@@ -4027,6 +4031,7 @@ a.account__display-name {
   background: lighten($ui-highlight-color, 5%);
 }
 
+.follow_requests-unlocked_explanation,
 .switch-to-advanced {
   color: $light-text-color;
   background-color: $ui-base-color;
@@ -4037,7 +4042,7 @@ a.account__display-name {
   font-size: 13px;
   line-height: 18px;
 
-  .switch-to-advanced__toggle {
+  a {
     color: $ui-button-tertiary-color;
     font-weight: bold;
   }
@@ -5219,8 +5224,7 @@ a.status-card {
   }
 }
 
-.empty-column-indicator,
-.follow_requests-unlocked_explanation {
+.empty-column-indicator {
   color: $dark-text-color;
   text-align: center;
   padding: 20px;
@@ -5259,10 +5263,8 @@ a.status-card {
 }
 
 .follow_requests-unlocked_explanation {
-  background: var(--surface-background-color);
-  border-bottom: 1px solid var(--background-border-color);
-  contain: initial;
-  flex-grow: 0;
+  margin: 16px;
+  margin-bottom: 0;
 }
 
 .error-column {
@@ -7085,6 +7087,7 @@ a.status-card {
     line-height: 24px;
 
     .emojione {
+      width: 24px;
       height: 24px;
       margin: -1px 0 0;
     }
@@ -8416,6 +8419,7 @@ noscript {
       margin-bottom: 16px;
 
       .emojione {
+        width: 22px;
         height: 22px;
       }
 
