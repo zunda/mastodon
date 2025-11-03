@@ -222,7 +222,7 @@ GEM
       mail (~> 2.7)
     email_validator (2.2.4)
       activemodel
-    erb (5.1.1)
+    erb (5.1.3)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
@@ -277,7 +277,7 @@ GEM
       rake (>= 13)
     googleapis-common-protos-types (1.22.0)
       google-protobuf (~> 4.26)
-    haml (6.3.0)
+    haml (6.4.0)
       temple (>= 0.8.2)
       thor
       tilt
@@ -286,7 +286,7 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
-    haml_lint (0.66.0)
+    haml_lint (0.67.0)
       haml (>= 5.0)
       parallel (~> 1.10)
       rainbow
@@ -335,7 +335,7 @@ GEM
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
     io-console (0.8.1)
-    irb (1.15.2)
+    irb (1.15.3)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -601,7 +601,7 @@ GEM
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
     prettyprint (0.2.0)
-    prism (1.5.2)
+    prism (1.6.0)
     prometheus_exporter (2.3.0)
       webrick
     propshaft (1.3.1)
@@ -692,7 +692,7 @@ GEM
       readline (~> 0.0)
     rdf-normalize (0.7.0)
       rdf (~> 3.3)
-    rdoc (6.15.0)
+    rdoc (6.15.1)
       erb
       psych (>= 4.0.0)
       tsort
@@ -792,7 +792,7 @@ GEM
     ruby-vips (2.2.5)
       ffi (~> 1.12)
       logger
-    rubyzip (3.2.1)
+    rubyzip (3.2.2)
     rufus-scheduler (3.9.2)
       fugit (~> 1.1, >= 1.11.1)
     safety_net_attestation (0.5.0)
