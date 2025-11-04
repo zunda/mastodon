@@ -2685,6 +2685,7 @@ a.account__display-name {
     outline-offset: -1px;
     border-radius: 8px;
     touch-action: none;
+    user-select: none;
   }
 
   &--zoomed-in {
@@ -5743,6 +5744,34 @@ a.status-card {
   }
 }
 
+.visibility-modal {
+  &__quote-warning {
+    color: var(--nested-card-text);
+    background:
+      /* This is a bit of a silly hack for layering two background colours
+       * since --nested-card-background is too transparent for a tooltip */
+      linear-gradient(
+        var(--nested-card-background),
+        var(--nested-card-background)
+      ),
+      linear-gradient(var(--background-color), var(--background-color));
+    border: var(--nested-card-border);
+    padding: 16px;
+    border-radius: 4px;
+
+    h3 {
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: $darker-text-color;
+    }
+
+    p {
+      font-size: 0.8em;
+      color: $dark-text-color;
+    }
+  }
+}
+
 .visibility-dropdown {
   &__overlay[data-popper-placement] {
     z-index: 9999;
@@ -6096,6 +6125,7 @@ a.status-card {
   width: 100%;
   height: 100%;
   position: relative;
+  touch-action: pan-y;
 
   &__buttons {
     position: absolute;
@@ -6131,11 +6161,17 @@ a.status-card {
 }
 
 .media-modal__closer {
+  display: flex;
   position: absolute;
   top: 0;
   inset-inline-start: 0;
   inset-inline-end: 0;
   bottom: 0;
+
+  > div {
+    flex-shrink: 0;
+    overflow: auto;
+  }
 }
 
 .media-modal__navigation {
@@ -8935,6 +8971,10 @@ noscript {
   flex: 0 0 auto;
   position: relative;
   overflow: hidden;
+
+  .layout-multiple-columns & {
+    width: 100%;
+  }
 
   @media screen and (max-width: (124px + 300px)) {
     width: 100%;
