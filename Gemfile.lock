@@ -108,7 +108,7 @@ GEM
     aws-sdk-kms (1.116.0)
       aws-sdk-core (~> 3, >= 3.234.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.202.0)
+    aws-sdk-s3 (1.203.0)
       aws-sdk-core (~> 3, >= 3.234.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
@@ -839,7 +839,7 @@ GEM
     stackprof (0.2.27)
     starry (0.2.0)
       base64
-    stoplight (5.4.0)
+    stoplight (5.5.0)
       zeitwerk
     stringio (3.1.7)
     strong_migrations (2.5.1)
