@@ -2764,6 +2764,7 @@ __metadata:
     core-js: "npm:^3.30.2"
     cross-env: "npm:^10.0.0"
     debug: "npm:^4.4.1"
+    delegated-events: "npm:^1.1.2"
     detect-passive-events: "npm:^2.0.3"
     emoji-mart: "npm:emoji-mart-lazyload@latest"
     emojibase: "npm:^16.0.0"
@@ -6388,6 +6389,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"delegated-events@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "delegated-events@npm:1.1.2"
+  dependencies:
+    selector-set: "npm:^1.1.5"
+  checksum: 10c0/b295a6d6c6cef4b9312bfd4132ac3a1255f3c2fadf3692a04cf7ddf8f0d472bfce9de06323faa75e922d20e5674d45022e1a5378b8500cd7d573ffa0cf7ca602
+  languageName: node
+  linkType: hard
+
 "denque@npm:^2.1.0":
   version: 2.1.0
   resolution: "denque@npm:2.1.0"
@@ -8865,13 +8875,13 @@ __metadata:
   linkType: hard
 
 "js-yaml@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "js-yaml@npm:4.1.0"
+  version: 4.1.1
+  resolution: "js-yaml@npm:4.1.1"
   dependencies:
     argparse: "npm:^2.0.1"
   bin:
     js-yaml: bin/js-yaml.js
-  checksum: 10c0/184a24b4eaacfce40ad9074c64fd42ac83cf74d8c8cd137718d456ced75051229e5061b8633c3366b8aada17945a7a356b337828c19da92b51ae62126575018f
+  checksum: 10c0/561c7d7088c40a9bb53cc75becbfb1df6ae49b34b5e6e5a81744b14ae8667ec564ad2527709d1a6e7d5e5fa6d483aa0f373a50ad98d42fde368ec4a190d4fae7
   languageName: node
   linkType: hard
 
@@ -12150,6 +12160,13 @@ __metadata:
   version: 4.0.0
   resolution: "secure-json-parse@npm:4.0.0"
   checksum: 10c0/1a298cf00e1de91e833cee5eb406d6e77fb2f7eca9bef3902047d49e7f5d3e6c21b5de61ff73466c831e716430bfe87d732a6e645a7dabb5f1e8a8e4d3e15eb4
+  languageName: node
+  linkType: hard
+
+"selector-set@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "selector-set@npm:1.1.5"
+  checksum: 10c0/4835907846eb8496c2cc4e5ce48355cce1ef3b55e82789542739dcdc71ebfb756e133d1d7f7ec9f0cf4b1c11fc0375a1d3b99a482d9c973493ca85a6d4b012ab
   languageName: node
   linkType: hard
 
