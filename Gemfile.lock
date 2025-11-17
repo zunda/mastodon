@@ -7,6 +7,32 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
+GIT
+  remote: https://github.com/whomwah/rqrcode.git
+  revision: f9fa33704951158a38b3cf04311e295d3a0e947d
+  specs:
+    rqrcode (3.1.0)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 2.0)
+
+GIT
+  remote: https://github.com/whomwah/rqrcode_core.git
+  revision: a35eebde0f650074331206ccc7c6dc39a3fbb664
+  specs:
+    rqrcode_core (2.0.0)
+
+GIT
+  remote: https://github.com/zunda/flatware.git
+  revision: 0e30a70d3fa548b163306f68230124516a21d483
+  branch: allow-newer-ruby
+  specs:
+    flatware (2.3.4)
+      drb
+      thor (< 2.0)
+    flatware-rspec (2.3.4)
+      flatware (= 2.3.4)
+      rspec (>= 3.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -250,12 +276,6 @@ GEM
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
-    flatware (2.3.4)
-      drb
-      thor (< 2.0)
-    flatware-rspec (2.3.4)
-      flatware (= 2.3.4)
-      rspec (>= 3.6)
     fog-core (2.6.0)
       builder
       excon (~> 1.0)
@@ -718,10 +738,6 @@ GEM
     rotp (6.3.0)
     rouge (4.6.1)
     rpam2 (4.0.2)
-    rqrcode (3.1.0)
-      chunky_png (~> 1.0)
-      rqrcode_core (~> 2.0)
-    rqrcode_core (2.0.0)
     rspec (3.13.1)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -970,7 +986,7 @@ DEPENDENCIES
   faraday-httpclient
   fast_blank (~> 1.0)
   fastimage
-  flatware-rspec
+  flatware-rspec!
   fog-core (<= 2.6.0)
   fog-openstack (~> 1.0)
   haml-rails (~> 3.0)
@@ -1048,7 +1064,8 @@ DEPENDENCIES
   rdf-normalize (~> 0.5)
   redcarpet (~> 3.6)
   redis (~> 4.5)
-  rqrcode (~> 3.0)
+  rqrcode (~> 3.0)!
+  rqrcode_core!
   rspec-github (~> 3.0)
   rspec-rails (~> 8.0)
   rspec-sidekiq (~> 5.0)
@@ -1183,8 +1200,8 @@ CHECKSUMS
   fastimage (2.4.0) sha256=5fce375e27d3bdbb46c18dbca6ba9af29d3304801ae1eb995771c4796c5ac7e8
   ffi (1.17.2) sha256=297235842e5947cc3036ebe64077584bff583cd7a4e94e9a02fdec399ef46da6
   ffi-compiler (1.3.2) sha256=a94f3d81d12caf5c5d4ecf13980a70d0aeaa72268f3b9cc13358bcc6509184a0
-  flatware (2.3.4) sha256=33464fc43fb7bae4cb13e44787f5b7dc63515f3a6280acc26667c5d2ffa5d41b
-  flatware-rspec (2.3.4) sha256=cba63a6ea683a4249af749980677b3942e79af5c6ef40c10c6a62dac689413bf
+  flatware (2.3.4)
+  flatware-rspec (2.3.4)
   fog-core (2.6.0) sha256=3fe08aa83a23cddce42f4ba412040c08f890d7ff04c175c0ee59119371245be6
   fog-json (1.2.0) sha256=dd4f5ab362dbc72b687240bba9d2dd841d5dfe888a285797533f85c03ea548fe
   fog-openstack (1.1.5) sha256=46472a9a50416b99086d67e038f476d57fc5064805fe6ea60ccdf2ec0f13bd46
@@ -1355,8 +1372,8 @@ CHECKSUMS
   rotp (6.3.0) sha256=75d40087e65ed0d8022c33055a6306c1c400d1c12261932533b5d6cbcd868854
   rouge (4.6.1) sha256=5075346d5797d6864be93f7adc75a16047a7dbfa572c63c502419ffa582c77de
   rpam2 (4.0.2) sha256=6338bf6e56264ad3555c300ec6bccdd2a9114b9d2c3aff0e150e864ff48874ff
-  rqrcode (3.1.0) sha256=e2d5996375f6e9a013823c289ed575dbea678b8e0388574302c1fac563f098af
-  rqrcode_core (2.0.0) sha256=1e40b823ab57a96482a417fff5dd5c33645a00cea6ef5d9e342fecc5ef91d9ab
+  rqrcode (3.1.0)
+  rqrcode_core (2.0.0)
   rspec (3.13.1) sha256=b9f9a58fa915b8d94a1d6b3195fe6dd28c4c34836a6097015142c4a9ace72140
   rspec-core (3.13.5) sha256=ab3f682897c6131c67f9a17cfee5022a597f283aebe654d329a565f9937a4fa3
   rspec-expectations (3.13.5) sha256=33a4d3a1d95060aea4c94e9f237030a8f9eae5615e9bd85718fe3a09e4b58836
@@ -1441,7 +1458,7 @@ CHECKSUMS
   zeitwerk (2.7.3) sha256=b2e86b4a9b57d26ba68a15230dcc7fe6f040f06831ce64417b0621ad96ba3e85
 
 RUBY VERSION
-   ruby 3.4.7p58
+   ruby 4.0.0.preview2
 
 BUNDLED WITH
    2.7.2

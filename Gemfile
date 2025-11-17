@@ -77,7 +77,8 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'rails-i18n', '~> 8.0'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
-gem 'rqrcode', '~> 3.0'
+gem 'rqrcode', '~> 3.0', github: 'whomwah/rqrcode'
+gem 'rqrcode_core', github: 'whomwah/rqrcode_core'
 gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 7.0'
 gem 'scenic', '~> 1.7'
@@ -123,7 +124,7 @@ end
 
 group :test do
   # Enable usage of all available CPUs/cores during spec runs
-  gem 'flatware-rspec'
+  gem 'flatware-rspec', github: 'zunda/flatware', branch: 'allow-newer-ruby'
 
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 3.0', require: false
