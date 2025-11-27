@@ -6204,12 +6204,14 @@ a.status-card {
   inset-inline-start: 0;
   inset-inline-end: 0;
   bottom: 0;
-  align-items: center;
-  justify-content: space-around; // If set to center, the fullscreen image overlay is misaligned.
 
   > div {
     flex-shrink: 0;
     overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 }
 
@@ -7373,6 +7375,13 @@ a.status-card {
   grid-template-rows: 1fr 1fr;
   gap: 2px;
 
+  &--layout-1 {
+    // The size of single images is determined by their
+    // aspect-ratio, applied via inline style attribute
+    width: initial;
+    max-height: 460px;
+  }
+
   &--layout-2 {
     & > .media-gallery__item:nth-child(1) {
       border-end-end-radius: 0;
@@ -7698,14 +7707,11 @@ a.status-card {
   overflow: hidden;
   position: relative;
   background: $base-shadow-color;
-  max-width: 100%;
-  max-height: max(400px, 60vh);
-  margin-inline: auto;
+  max-height: 460px;
   border-radius: 8px;
   box-sizing: border-box;
   color: $white;
   display: flex;
-  align-items: center;
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
   z-index: 2;
