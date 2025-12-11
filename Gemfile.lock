@@ -65,7 +65,7 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
-    active_model_serializers (0.10.15)
+    active_model_serializers (0.10.16)
       actionpack (>= 4.1)
       activemodel (>= 4.1)
       case_transform (>= 0.2)
@@ -484,7 +484,7 @@ GEM
       addressable (~> 2.8)
       nokogiri (~> 1.12)
       omniauth (~> 2.1)
-    omniauth-rails_csrf_protection (2.0.0)
+    omniauth-rails_csrf_protection (2.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     omniauth-saml (2.2.4)
@@ -846,7 +846,8 @@ GEM
     stackprof (0.2.27)
     starry (0.2.0)
       base64
-    stoplight (5.6.0)
+    stoplight (5.7.0)
+      concurrent-ruby
       zeitwerk
     stringio (3.1.8)
     strong_migrations (2.5.1)
