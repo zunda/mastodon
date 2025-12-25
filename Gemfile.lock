@@ -8,6 +8,13 @@ GIT
       jwt (~> 2.0)
 
 GIT
+  remote: https://github.com/tisba/faraday-follow-redirects.git
+  revision: 92ef4495bb6ca817f6d1f368f67ca9f0513671ae
+  specs:
+    faraday-follow_redirects (0.5.0)
+      faraday (>= 1, < 3)
+
+GIT
   remote: https://github.com/zunda/flatware.git
   revision: 0e30a70d3fa548b163306f68230124516a21d483
   branch: allow-newer-ruby
@@ -250,8 +257,6 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-follow_redirects (0.4.0)
-      faraday (>= 1, < 3)
     faraday-httpclient (2.0.2)
       httpclient (>= 2.2)
     faraday-net_http (3.4.2)
@@ -894,7 +899,7 @@ GEM
     unf_ext (0.0.9.1)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
-    unicode-emoji (4.1.0)
+    unicode-emoji (4.2.0)
     uri (1.1.1)
     useragent (0.16.11)
     validate_url (1.0.15)
@@ -974,6 +979,7 @@ DEPENDENCIES
   email_spec
   fabrication
   faker (~> 3.2)
+  faraday-follow_redirects!
   faraday-httpclient
   fast_blank (~> 1.0)
   fastimage
@@ -1183,7 +1189,7 @@ CHECKSUMS
   fabrication (3.0.0) sha256=a6a0bfad9071348ad3cb1701df788524b888c0cdd044b988893e7509f7463be3
   faker (3.5.3) sha256=b961482dc0bb15ccb9a98ea7878b925669e9ae8f5e59b607da540b768137d765
   faraday (2.14.0) sha256=8699cfe5d97e55268f2596f9a9d5a43736808a943714e3d9a53e6110593941cd
-  faraday-follow_redirects (0.4.0) sha256=d3fa1118ab1350e24035a272b4cff64948643bb7182846db89acaf87abadd5d9
+  faraday-follow_redirects (0.5.0)
   faraday-httpclient (2.0.2) sha256=d95fbe60cce5a87e157957d67c539a4c22fb8b0b0611d493a939cdde19d8d67c
   faraday-net_http (3.4.2) sha256=f147758260d3526939bf57ecf911682f94926a3666502e24c69992765875906c
   fast_blank (1.0.1) sha256=269fc30414fed4e6403bc4a49081e1ea539f8b9226e59276ed1efaefabaa17ea
@@ -1428,7 +1434,7 @@ CHECKSUMS
   unf (0.1.4) sha256=4999517a531f2a955750f8831941891f6158498ec9b6cb1c81ce89388e63022e
   unf_ext (0.0.9.1) sha256=926114a858934126c6bbfd3254347dadb5dae354711869368c0f75e3765fc6e9
   unicode-display_width (3.2.0) sha256=0cdd96b5681a5949cdbc2c55e7b420facae74c4aaf9a9815eee1087cb1853c42
-  unicode-emoji (4.1.0) sha256=4997d2d5df1ed4252f4830a9b6e86f932e2013fbff2182a9ce9ccabda4f325a5
+  unicode-emoji (4.2.0) sha256=519e69150f75652e40bf736106cfbc8f0f73aa3fb6a65afe62fefa7f80b0f80f
   uri (1.1.1) sha256=379fa58d27ffb1387eaada68c749d1426738bd0f654d812fcc07e7568f5c57c6
   useragent (0.16.11) sha256=700e6413ad4bb954bb63547fa098dddf7b0ebe75b40cc6f93b8d54255b173844
   validate_url (1.0.15) sha256=72fe164c0713d63a9970bd6700bea948babbfbdcec392f2342b6704042f57451
@@ -1448,7 +1454,7 @@ CHECKSUMS
   zeitwerk (2.7.3) sha256=b2e86b4a9b57d26ba68a15230dcc7fe6f040f06831ce64417b0621ad96ba3e85
 
 RUBY VERSION
-  ruby 4.0.0.preview3
+  ruby 4.0.0
 
 BUNDLED WITH
-  4.0.2
+  4.0.3
