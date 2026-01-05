@@ -8,13 +8,6 @@ GIT
       jwt (~> 2.0)
 
 GIT
-  remote: https://github.com/tisba/faraday-follow-redirects.git
-  revision: 92ef4495bb6ca817f6d1f368f67ca9f0513671ae
-  specs:
-    faraday-follow_redirects (0.5.0)
-      faraday (>= 1, < 3)
-
-GIT
   remote: https://github.com/zunda/flatware.git
   revision: 0e30a70d3fa548b163306f68230124516a21d483
   branch: allow-newer-ruby
@@ -257,6 +250,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
+    faraday-follow_redirects (0.5.0)
+      faraday (>= 1, < 3)
     faraday-httpclient (2.0.2)
       httpclient (>= 2.2)
     faraday-net_http (3.4.2)
@@ -980,7 +975,6 @@ DEPENDENCIES
   email_spec
   fabrication
   faker (~> 3.2)
-  faraday-follow_redirects!
   faraday-httpclient
   fast_blank (~> 1.0)
   fastimage
@@ -1190,7 +1184,7 @@ CHECKSUMS
   fabrication (3.0.0) sha256=a6a0bfad9071348ad3cb1701df788524b888c0cdd044b988893e7509f7463be3
   faker (3.5.3) sha256=b961482dc0bb15ccb9a98ea7878b925669e9ae8f5e59b607da540b768137d765
   faraday (2.14.0) sha256=8699cfe5d97e55268f2596f9a9d5a43736808a943714e3d9a53e6110593941cd
-  faraday-follow_redirects (0.5.0)
+  faraday-follow_redirects (0.5.0) sha256=5cde93c894b30943a5d2b93c2fe9284216a6b756f7af406a1e55f211d97d10ad
   faraday-httpclient (2.0.2) sha256=d95fbe60cce5a87e157957d67c539a4c22fb8b0b0611d493a939cdde19d8d67c
   faraday-net_http (3.4.2) sha256=f147758260d3526939bf57ecf911682f94926a3666502e24c69992765875906c
   fast_blank (1.0.1) sha256=269fc30414fed4e6403bc4a49081e1ea539f8b9226e59276ed1efaefabaa17ea
