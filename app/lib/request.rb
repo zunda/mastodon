@@ -379,5 +379,5 @@ class Request
     end
   end
 
-  private_constant :ClientLimit, :Socket, :ProxySocket
+  private_constant :ClientLimit
 end
