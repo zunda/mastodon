@@ -2919,6 +2919,7 @@ __metadata:
     punycode: "npm:^2.3.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-easy-crop: "npm:^5.5.6"
     react-helmet: "npm:^6.1.0"
     react-immutable-proptypes: "npm:^2.2.0"
     react-immutable-pure-component: "npm:^2.2.2"
@@ -8565,16 +8566,16 @@ __metadata:
   linkType: hard
 
 "immutable@npm:^3.8.2":
-  version: 3.8.2
-  resolution: "immutable@npm:3.8.2"
-  checksum: 10c0/fb6a2999ad3bda9e51741721e42547076dd492635ee4df9241224055fe953ec843583a700088cc4915f23dc326e5084f4e17f1bbd7388c3e872ef5a242e0ac5e
+  version: 3.8.3
+  resolution: "immutable@npm:3.8.3"
+  checksum: 10c0/bafa7b8371b7622bc3d128cd9e6bba3a654b968f09a237929629f43ac26f7e974a5879cd38baad0c26f6f0628753968611bf832add7bf0c44d647bf4306a2988
   languageName: node
   linkType: hard
 
 "immutable@npm:^4.0.0-rc.1, immutable@npm:^4.3.0":
-  version: 4.3.7
-  resolution: "immutable@npm:4.3.7"
-  checksum: 10c0/9b099197081b22f6433003e34929da8ecddbbdc1474cdc8aa3b7669dee4adda349c06143de22def36016d1b6de5322b043eccd7a11db1dad2ca85dad4fff5435
+  version: 4.3.8
+  resolution: "immutable@npm:4.3.8"
+  checksum: 10c0/3de58996305a0faf6ef3fc0685f996c42653ad757760214f5aec7d4a6b59ea7abb882522c5f9a61776fae88c0b45e08eb77cbded5a4f57745ec7c63f9642e44b
   languageName: node
   linkType: hard
 
@@ -10244,6 +10245,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"normalize-wheel@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "normalize-wheel@npm:1.0.1"
+  checksum: 10c0/5daf4c97e39f36658a5263a6499bbc148676ae2bd85f12c8d03c46ffe7bc3c68d44564c00413d88d0457ac0d94450559bb1c24c2ce7ae0c107031f82d093ac06
+  languageName: node
+  linkType: hard
+
 "object-assign@npm:^4, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
@@ -11700,6 +11708,19 @@ __metadata:
   peerDependencies:
     react: ^18.3.1
   checksum: 10c0/a752496c1941f958f2e8ac56239172296fcddce1365ce45222d04a1947e0cc5547df3e8447f855a81d6d39f008d7c32eab43db3712077f09e3f67c4874973e85
+  languageName: node
+  linkType: hard
+
+"react-easy-crop@npm:^5.5.6":
+  version: 5.5.6
+  resolution: "react-easy-crop@npm:5.5.6"
+  dependencies:
+    normalize-wheel: "npm:^1.0.1"
+    tslib: "npm:^2.0.1"
+  peerDependencies:
+    react: ">=16.4.0"
+    react-dom: ">=16.4.0"
+  checksum: 10c0/ce623791d31559fc46f210ece7b22c0f659710d5de219ef9fb05650940f50445d5e6573ed229b66fad06dfda9651ae458c0f5efb8e1cabdf01511dc32942cdc8
   languageName: node
   linkType: hard
 
