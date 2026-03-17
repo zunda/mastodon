@@ -65,7 +65,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: version,
       human_value: version,
     }
-  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+  rescue Faraday::ConnectionFailed, Elastic::Transport::Transport::Error
     nil
   end
 
@@ -88,7 +88,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: version,
       human_value: version,
     }
-  rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError, Oj::ParseError
+  rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError, JSON::ParserError
     nil
   end
 end

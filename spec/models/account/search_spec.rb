@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples 'Account::Search' do
+require 'rails_helper'
+
+RSpec.describe Account::Search do
   describe '.search_for' do
     before do
       _missing = Fabricate(
@@ -20,7 +22,7 @@ RSpec.shared_examples 'Account::Search' do
         suspended: true
       )
 
-      results = described_class.search_for('username')
+      results = Account.search_for('username')
       expect(results).to eq []
     end
 
@@ -33,7 +35,7 @@ RSpec.shared_examples 'Account::Search' do
 
       match.user.update(approved: false)
 
-      results = described_class.search_for('username')
+      results = Account.search_for('username')
       expect(results).to eq []
     end
 
@@ -46,7 +48,7 @@ RSpec.shared_examples 'Account::Search' do
 
       match.user.update(confirmed_at: nil)
 
-      results = described_class.search_for('username')
+      results = Account.search_for('username')
       expect(results).to eq []
     end
 
@@ -58,7 +60,7 @@ RSpec.shared_examples 'Account::Search' do
         domain: 'example.com'
       )
 
-      results = described_class.search_for('A?l\i:c e')
+      results = Account.search_for('A?l\i:c e')
       expect(results).to eq [match]
     end
 
@@ -70,7 +72,7 @@ RSpec.shared_examples 'Account::Search' do
         domain: 'example.com'
       )
 
-      results = described_class.search_for('display')
+      results = Account.search_for('display')
       expect(results).to eq [match]
     end
 
@@ -82,7 +84,7 @@ RSpec.shared_examples 'Account::Search' do
         domain: 'example.com'
       )
 
-      results = described_class.search_for('username')
+      results = Account.search_for('username')
       expect(results).to eq [match]
     end
 
@@ -94,20 +96,20 @@ RSpec.shared_examples 'Account::Search' do
         domain: 'example.com'
       )
 
-      results = described_class.search_for('example')
+      results = Account.search_for('example')
       expect(results).to eq [match]
     end
 
     it 'limits via constant by default' do
       stub_const('Account::Search::DEFAULT_LIMIT', 1)
       2.times.each { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.search_for('display')
+      results = Account.search_for('display')
       expect(results.size).to eq 1
     end
 
     it 'accepts arbitrary limits' do
       2.times.each { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.search_for('display', limit: 1)
+      results = Account.search_for('display', limit: 1)
       expect(results.size).to eq 1
     end
 
@@ -117,7 +119,7 @@ RSpec.shared_examples 'Account::Search' do
         { display_name: 'Display Name', username: 'username', domain: 'example.com' },
       ].map(&method(:Fabricate).curry(2).call(:account))
 
-      results = described_class.search_for('username')
+      results = Account.search_for('username')
       expect(results).to eq matches
     end
   end
@@ -135,7 +137,7 @@ RSpec.shared_examples 'Account::Search' do
         )
         account.follow!(match)
 
-        results = described_class.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
+        results = Account.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
         expect(results).to eq [match]
       end
 
@@ -147,7 +149,7 @@ RSpec.shared_examples 'Account::Search' do
           domain: 'example.com'
         )
 
-        results = described_class.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
+        results = Account.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
         expect(results).to eq []
       end
 
@@ -160,7 +162,7 @@ RSpec.shared_examples 'Account::Search' do
           suspended: true
         )
 
-        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
+        results = Account.advanced_search_for('username', account, limit: 10, following: true)
         expect(results).to eq []
       end
 
@@ -173,7 +175,7 @@ RSpec.shared_examples 'Account::Search' do
 
         match.user.update(approved: false)
 
-        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
+        results = Account.advanced_search_for('username', account, limit: 10, following: true)
         expect(results).to eq []
       end
 
@@ -186,7 +188,7 @@ RSpec.shared_examples 'Account::Search' do
 
         match.user.update(confirmed_at: nil)
 
-        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
+        results = Account.advanced_search_for('username', account, limit: 10, following: true)
         expect(results).to eq []
       end
     end
@@ -200,7 +202,7 @@ RSpec.shared_examples 'Account::Search' do
         suspended: true
       )
 
-      results = described_class.advanced_search_for('username', account)
+      results = Account.advanced_search_for('username', account)
       expect(results).to eq []
     end
 
@@ -213,7 +215,7 @@ RSpec.shared_examples 'Account::Search' do
 
       match.user.update(approved: false)
 
-      results = described_class.advanced_search_for('username', account)
+      results = Account.advanced_search_for('username', account)
       expect(results).to eq []
     end
 
@@ -226,7 +228,7 @@ RSpec.shared_examples 'Account::Search' do
 
       match.user.update(confirmed_at: nil)
 
-      results = described_class.advanced_search_for('username', account)
+      results = Account.advanced_search_for('username', account)
       expect(results).to eq []
     end
 
@@ -238,20 +240,20 @@ RSpec.shared_examples 'Account::Search' do
         domain: 'example.com'
       )
 
-      results = described_class.advanced_search_for('A?l\i:c e', account)
+      results = Account.advanced_search_for('A?l\i:c e', account)
       expect(results).to eq [match]
     end
 
     it 'limits result count by default value' do
       stub_const('Account::Search::DEFAULT_LIMIT', 1)
       2.times { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.advanced_search_for('display', account)
+      results = Account.advanced_search_for('display', account)
       expect(results.size).to eq 1
     end
 
     it 'accepts arbitrary limits' do
       2.times { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.advanced_search_for('display', account, limit: 1)
+      results = Account.advanced_search_for('display', account, limit: 1)
       expect(results.size).to eq 1
     end
 
@@ -260,7 +262,7 @@ RSpec.shared_examples 'Account::Search' do
       followed_match = Fabricate(:account, username: 'Matcher')
       Fabricate(:follow, account: account, target_account: followed_match)
 
-      results = described_class.advanced_search_for('match', account)
+      results = Account.advanced_search_for('match', account)
       expect(results).to eq [followed_match, match]
       expect(results.first.rank).to be > results.last.rank
     end
