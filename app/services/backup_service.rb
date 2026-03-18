@@ -7,6 +7,7 @@ class BackupService < BaseService
   include ContextHelper
 
   CHUNK_SIZE = 1.megabyte
+  PLACEHOLDER = '!PLACEHOLDER!'
 
   attr_reader :account, :backup
 
@@ -22,16 +23,14 @@ class BackupService < BaseService
   def build_outbox_json!(file)
     skeleton = serialize(collection_presenter, ActivityPub::CollectionSerializer)
     skeleton[:@context] = full_context
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton[:orderedItems] = [PLACEHOLDER]
     skeleton = JSON.generate(skeleton)
-    prepend, append = skeleton.split('"!PLACEHOLDER!"')
-    add_comma = false
+    prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
     file.write(prepend)
 
-    account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
-      file.write(',') if add_comma
-      add_comma = true
+    account.statuses.with_includes.reorder(nil).find_in_batches.with_index do |statuses, batch|
+      file.write(',') unless batch.zero?
 
       file.write(statuses.map do |status|
         serializer = status.reblog? ? ActivityPub::AnnounceNoteSerializer : ActivityPub::CreateNoteSerializer
@@ -117,18 +116,15 @@ class BackupService < BaseService
   def dump_likes!(zipfile)
     skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton[:orderedItems] = [PLACEHOLDER]
     skeleton = JSON.generate(skeleton)
-    prepend, append = skeleton.split('"!PLACEHOLDER!"')
+    prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
     zipfile.get_output_stream('likes.json') do |io|
       io.write(prepend)
 
-      add_comma = false
-
-      Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites).find_in_batches do |statuses|
-        io.write(',') if add_comma
-        add_comma = true
+      Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites).find_in_batches.with_index do |statuses, batch|
+        io.write(',') unless batch.zero?
 
         io.write(statuses.map do |status|
           JSON.generate(ActivityPub::TagManager.instance.uri_for(status))
@@ -144,17 +140,15 @@ class BackupService < BaseService
   def dump_bookmarks!(zipfile)
     skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton[:orderedItems] = [PLACEHOLDER]
     skeleton = JSON.generate(skeleton)
-    prepend, append = skeleton.split('"!PLACEHOLDER!"')
+    prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
     zipfile.get_output_stream('bookmarks.json') do |io|
       io.write(prepend)
 
-      add_comma = false
-      Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks).find_in_batches do |statuses|
-        io.write(',') if add_comma
-        add_comma = true
+      Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks).find_in_batches.with_index do |statuses, batch|
+        io.write(',') unless batch.zero?
 
         io.write(statuses.map do |status|
           JSON.generate(ActivityPub::TagManager.instance.uri_for(status))
