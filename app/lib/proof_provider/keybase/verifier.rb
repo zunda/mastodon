@@ -12,7 +12,7 @@ class ProofProvider::Keybase::Verifier
     request = Request.new(:get, "#{ProofProvider::Keybase::BASE_URL}/_/api/1.0/sig/proof_valid.json", params: query_params)
 
     request.perform do |res|
-      json = Oj.load(res.body_with_limit, mode: :strict)
+      json = JSON.load(res.body_with_limit, mode: :strict)
 
       if json.is_a?(Hash)
         json.fetch('proof_valid', false)
@@ -20,7 +20,7 @@ class ProofProvider::Keybase::Verifier
         false
       end
     end
-  rescue Oj::ParseError, HTTP::Error, OpenSSL::SSL::SSLError
+  rescue JSON::ParserError, HTTP::Error, OpenSSL::SSL::SSLError
     false
   end
 
@@ -36,13 +36,13 @@ class ProofProvider::Keybase::Verifier
     request.perform do |res|
       raise ProofProvider::Keybase::UnexpectedResponseError unless res.code == 200
 
-      json = Oj.load(res.body_with_limit, mode: :strict)
+      json = JSON.load(res.body_with_limit, mode: :strict)
 
       raise ProofProvider::Keybase::UnexpectedResponseError unless json.is_a?(Hash) && json.key?('proof_valid') && json.key?('proof_live')
 
       json
     end
-  rescue Oj::ParseError, HTTP::Error, OpenSSL::SSL::SSLError
+  rescue JSON::ParserError, HTTP::Error, OpenSSL::SSL::SSLError
     raise ProofProvider::Keybase::UnexpectedResponseError
   end
 
