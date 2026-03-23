@@ -123,7 +123,7 @@ end
 
 group :test do
   # Enable usage of all available CPUs/cores during spec runs
-  gem 'flatware-rspec', github: 'zunda/flatware', branch: 'allow-newer-ruby'
+  gem 'flatware-rspec'
 
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 3.0', require: false
