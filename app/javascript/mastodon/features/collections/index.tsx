@@ -47,6 +47,7 @@ export const Collections: React.FC<{
       <FormattedMessage
         id='collections.error_loading_collections'
         defaultMessage='There was an error when trying to load your collections.'
+        tagName='span'
       />
     ) : (
       <>
@@ -92,6 +93,8 @@ export const Collections: React.FC<{
         <ItemList emptyMessage={emptyMessage} isLoading={status === 'loading'}>
           {collections.map((item, index) => (
             <CollectionListItem
+              withTimestamp
+              withAuthorHandle={false}
               key={item.id}
               collection={item}
               positionInList={index + 1}
