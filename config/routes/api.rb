@@ -261,7 +261,7 @@ namespace :api, format: false do
     end
 
     namespace :featured_tags do
-      get :suggestions, to: 'suggestions#index'
+      resources :suggestions, only: :index
     end
 
     resources :featured_tags, only: [:index, :create, :destroy]
