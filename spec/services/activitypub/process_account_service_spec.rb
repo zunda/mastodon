@@ -76,7 +76,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
   end
 
-  context 'with collection URIs', feature: :collections_federation do
+  context 'with collection URIs', feature: :collections do
     let(:payload) do
       {
         'id' => 'https://foo.test',
