@@ -194,7 +194,7 @@ Rails.application.routes.draw do
   end
 
   resources :media, only: [:show] do
-    get :player
+    member { get :player }
   end
 
   resources :tags,   only: [:show]
