@@ -3,6 +3,7 @@ import { useState, useCallback, useId } from 'react';
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 import type { IntlShape } from 'react-intl';
 
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { AxiosError } from 'axios';
@@ -18,7 +19,7 @@ import type { FieldStatus } from 'mastodon/components/form_fields';
 import { TextInputField } from 'mastodon/components/form_fields/text_input_field';
 import { useAppSelector } from 'mastodon/store';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   emailInvalid: {
@@ -127,7 +128,9 @@ export const AccountSubscriptionForm: React.FC<{ accountId: string }> = ({
 
   if (submitted) {
     return (
-      <div className={classes.bannerBaseCentered}>
+      <div
+        className={classNames(classes.bannerBase, classes.bannerBaseCentered)}
+      >
         <div className={classes.bannerTextAndActions}>
           <h2>
             <FormattedMessage

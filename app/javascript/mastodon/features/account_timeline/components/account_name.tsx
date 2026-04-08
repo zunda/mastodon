@@ -21,7 +21,8 @@ import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
 import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import DomainIcon from '@/material-icons/400-24px/language.svg?react';
 
-import classes from './redesign.module.scss';
+import { AccountBadges } from './badges';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   lockedInfo: {
@@ -77,6 +78,8 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
         domain={domain}
         isSelf={account.id === me}
       />
+
+      <AccountBadges accountId={accountId} />
     </div>
   );
 };
