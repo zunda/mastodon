@@ -303,7 +303,6 @@ GEM
       json
     highline (3.1.2)
       reline
-    hiredis (0.6.3)
     hiredis-client (0.28.0)
       redis-client (= 0.28.0)
     hkdf (0.3.0)
@@ -446,7 +445,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0317)
+    mime-types-data (3.2026.0407)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (6.0.3)
@@ -597,7 +596,7 @@ GEM
     pg (1.6.3)
     pghero (3.7.0)
       activerecord (>= 7.1)
-    playwright-ruby-client (1.57.1)
+    playwright-ruby-client (1.59.0)
       base64
       concurrent-ruby (>= 1.1.6)
       mime-types (>= 3.0)
@@ -648,7 +647,7 @@ GEM
       rack (>= 3.0.0, < 4)
     rack-proxy (0.7.7)
       rack
-    rack-session (2.1.1)
+    rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
@@ -710,7 +709,8 @@ GEM
     readline (0.0.4)
       reline
     redcarpet (3.6.1)
-    redis (4.8.1)
+    redis (5.4.1)
+      redis-client (>= 0.22.0)
     redis-client (0.28.0)
       connection_pool
     regexp_parser (2.11.3)
@@ -985,7 +985,6 @@ DEPENDENCIES
   haml-rails (~> 3.0)
   haml_lint
   hcaptcha (~> 7.1)
-  hiredis (~> 0.6)
   hiredis-client
   htmlentities (~> 4.3)
   http (~> 5.3.0)
@@ -1041,7 +1040,7 @@ DEPENDENCIES
   parslet
   pg (~> 1.5)
   pghero
-  playwright-ruby-client (= 1.57.1)
+  playwright-ruby-client (= 1.59.0)
   premailer-rails
   prometheus_exporter (~> 2.2)
   propshaft
@@ -1056,7 +1055,7 @@ DEPENDENCIES
   rails-i18n (~> 8.0)
   rdf-normalize (~> 0.5)
   redcarpet (~> 3.6)
-  redis (~> 4.5)
+  redis (~> 5)
   rqrcode (~> 3.0)
   rspec-github (~> 3.0)
   rspec-rails (~> 8.0)
