@@ -11,12 +11,10 @@ import announcements from './announcements';
 import { composeReducer } from './compose';
 import { contextsReducer } from './contexts';
 import conversations from './conversations';
-import custom_emojis from './custom_emojis';
 import { dropdownMenuReducer } from './dropdown_menu';
 import filters from './filters';
 import height_cache from './height_cache';
 import history from './history';
-import identity_proofs from './identity_proofs';
 import { listsReducer } from './lists';
 import { markersReducer } from './markers';
 import media_attachments from './media_attachments';
@@ -68,8 +66,6 @@ const reducers = {
   notifications,
   notificationGroups: notificationGroupsReducer,
   height_cache,
-  custom_emojis,
-  identity_proofs,
   lists: listsReducer,
   followedTags: followedTagsReducer,
   filters,

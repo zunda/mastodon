@@ -13,7 +13,7 @@ ARG BASE_REGISTRY="docker.io"
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="4.0.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="4.0.2"
+ARG RUBY_VERSION="4.0.3"
 # # Node.js version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="22"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="24"
@@ -234,7 +234,7 @@ FROM media-build AS ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
 # renovate: datasource=github-tags depName=FFmpeg/FFmpeg extractVersion=^n(?<version>\d+\.\d+(\.\d+)?)$
-ARG FFMPEG_VERSION=8.1
+ARG FFMPEG_VERSION=8.1.1
 # ffmpeg download URL, change with [--build-arg FFMPEG_URL="https://ffmpeg.org/releases"]
 ARG FFMPEG_URL=https://github.com/FFmpeg/FFmpeg/archive/refs/tags
 
@@ -342,7 +342,7 @@ COPY --from=node /usr/local/lib /usr/local/lib
 RUN \
   # Configure Corepack
   rm /usr/local/bin/yarn*; \
-  corepack enable; \
+  npm i -g corepack; \
   corepack prepare --activate;
 
 # hadolint ignore=DL3008

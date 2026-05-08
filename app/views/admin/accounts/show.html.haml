@@ -7,23 +7,16 @@
 
 = render 'application/card', account: @account
 
-- proofs = @account.identity_proofs.active
-- if @account.fields? || @account.note? || !proofs.empty?
+- if @account.fields? || @account.note?
   .admin-account-bio
-    - if @account.fields? || !proofs.empty?
+    - if @account.fields?
       %div
-        .account__header__fields
-          - proofs.each do |proof|
-            %dl
-              %dt= proof.provider.capitalize
-              %dd.verified
-                = link_to fa_icon('check'), proof.badge.proof_url, class: 'verified__mark', title: t('accounts.link_verified_on', date: l(proof.updated_at))
-                = link_to proof.provider_username, proof.badge.profile_url
+        %dl.admin-account-bio__fields
           = render partial: 'field', collection: @account.fields, locals: { account: @account }
 
     - if @account.note?
       %div
-        .account__header__content.emojify
+        .admin-account-bio__content.emojify
           = prerender_custom_emojis(account_bio_format(@account), @account.emojis)
 
 = render 'admin/accounts/counters', account: @account
