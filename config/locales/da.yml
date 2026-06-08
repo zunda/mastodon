@@ -500,11 +500,9 @@ da:
     email_subscriptions:
       accounts:
         account: Konto
-        active: Aktive
         empty:
           hint: Ingen konti har abonnenter endnu.
           no_lists_yet: Ingen lister endnu
-        inactive: Inaktive
         last_email: Seneste e-mail
         lead: Nedenfor vises de konti, der har aktiveret funktionen og har abonnenter.
         status: Status
@@ -1501,6 +1499,7 @@ da:
       your_appeal_rejected: Din appel er afvist
   edit_profile:
     other: Andre
+    privacy_redesign_body: Beslutningen om at vise dine følgere og dem, du følger, træffes nu direkte fra din profil.
     redesign_body: Profilredigering kan nu tilgås direkte fra profilsiden.
     redesign_button: Gå dertil
     redesign_title: Der er en ny måde at redigere sin profil på

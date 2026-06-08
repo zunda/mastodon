@@ -500,11 +500,9 @@ nl:
     email_subscriptions:
       accounts:
         account: Account
-        active: Actief
         empty:
           hint: Geen enkel account heeft nog abonnees.
           no_lists_yet: Nog geen lijsten
-        inactive: Inactief
         last_email: Meest recente e-mail
         lead: Accounts die deze functionaliteit hebben ingeschakeld en abonnees hebben, worden hieronder getoond.
         status: Status
@@ -1501,6 +1499,7 @@ nl:
       your_appeal_rejected: Jouw bezwaar is afgewezen
   edit_profile:
     other: Overige
+    privacy_redesign_body: Je kunt nu direct op je profiel de keuze maken om jouw volgers en wie jij volgt wel of niet te tonen.
     redesign_body: Het bewerken van je profiel is nu toegankelijk vanaf de profielpagina.
     redesign_button: Ga erheen
     redesign_title: Er is een nieuwe manier om je profiel te bewerken

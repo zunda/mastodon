@@ -500,11 +500,9 @@ it:
     email_subscriptions:
       accounts:
         account: Account
-        active: Attivo
         empty:
           hint: Non ci sono ancora account con iscritti.
           no_lists_yet: Non ci sono ancora liste
-        inactive: Inattivo
         last_email: Ultima email
         lead: Di seguito verranno visualizzati gli account che hanno attivato la funzionalità e che hanno degli iscritti.
         status: Stato
@@ -1501,6 +1499,7 @@ it:
       your_appeal_rejected: Il tuo appello è stato respinto
   edit_profile:
     other: Altro
+    privacy_redesign_body: Ora puoi scegliere se mostrare i tuoi account seguiti e i follower direttamente dal tuo profilo.
     redesign_body: Ora è possibile modificare il profilo direttamente dalla pagina del profilo stesso.
     redesign_button: Vai lì
     redesign_title: È disponibile una nuova esperienza di modifica del profilo

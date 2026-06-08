@@ -500,11 +500,9 @@ fi:
     email_subscriptions:
       accounts:
         account: Tili
-        active: Käytössä
         empty:
           hint: Millään tilillä ei ole vielä tilaajia.
           no_lists_yet: Ei vielä listoja
-        inactive: Poissa käytöstä
         last_email: Viimeisin sähköpostiviesti
         lead: Alla näkyvät tilit, jotka ovat ottaneet ominaisuuden käyttöön ja joilla on tilaajia.
         status: Tila
@@ -1493,6 +1491,7 @@ fi:
       your_appeal_rejected: Valituksesi on hylätty
   edit_profile:
     other: Muut
+    privacy_redesign_body: Valinta seurattavien ja seurattujen näyttämiseksi tehdään nyt suoraan profiilista.
     redesign_body: Profiilia pääsee muokkaamaan nyt suoraan profiilisivulta.
     redesign_button: Siirry sinne
     redesign_title: Profiilin muokkauskokemus on uudistunut

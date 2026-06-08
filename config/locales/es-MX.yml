@@ -500,11 +500,9 @@ es-MX:
     email_subscriptions:
       accounts:
         account: Cuenta
-        active: Activa
         empty:
           hint: Ninguna cuenta tiene suscriptores todavía.
           no_lists_yet: No hay listas todavía
-        inactive: Inactiva
         last_email: Último correo electrónico
         lead: A continuación se mostrarán las cuentas que hayan activado la función y tengan suscriptores.
         status: Estado
@@ -1501,6 +1499,7 @@ es-MX:
       your_appeal_rejected: Tu apelación ha sido rechazada
   edit_profile:
     other: Otro
+    privacy_redesign_body: Ahora puedes elegir si quieres mostrar a tus seguidores y a quiénes sigues directamente desde tu perfil.
     redesign_body: Ahora se puede acceder a la edición del perfil directamente desde la página del perfil.
     redesign_button: Llévame allí
     redesign_title: Hay una nueva experiencia de edición de perfil
