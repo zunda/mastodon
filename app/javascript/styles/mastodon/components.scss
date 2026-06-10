@@ -3590,6 +3590,8 @@ a.account__display-name {
   text-align: center;
   padding-bottom: 32px;
 
+  h1,
+  h2,
   h3 {
     font-size: 24px;
     line-height: 1.5;
@@ -4641,6 +4643,7 @@ a.status-card {
   &__title-wrapper {
     display: flex;
     flex-grow: 1;
+    min-width: 0;
   }
 
   &__title {
@@ -4656,9 +4659,7 @@ a.status-card {
     background: transparent;
     font: inherit;
     text-align: start;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    min-width: 0;
 
     &--with-back-button {
       padding-inline-start: 0;
@@ -4671,6 +4672,12 @@ a.status-card {
     .logo {
       height: 24px;
     }
+  }
+
+  &__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .column-header__back-button {
@@ -9141,6 +9148,8 @@ noscript {
     padding-bottom: 32px;
   }
 
+  h1,
+  h2,
   h3 {
     font-size: 22px;
     line-height: 33px;
@@ -9171,6 +9180,8 @@ noscript {
   &__lead {
     margin-bottom: 20px;
 
+    h1,
+    h2,
     h3 {
       margin-bottom: 15px;
     }
@@ -9246,6 +9257,8 @@ noscript {
       flex: 1;
       box-sizing: border-box;
 
+      h1,
+      h2,
       h3 {
         margin-bottom: 20px;
       }

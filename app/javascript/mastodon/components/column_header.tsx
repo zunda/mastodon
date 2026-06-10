@@ -19,6 +19,7 @@ import { useIdentity } from 'mastodon/identity_context';
 import { useColumnIndexContext } from '../features/ui/components/columns_area';
 import { getColumnSkipLinkId } from '../features/ui/components/skip_links';
 
+import { NavigationFocusTarget } from './navigation_focus_target';
 import { useAppHistory } from './router';
 
 export const messages = defineMessages({
@@ -272,7 +273,7 @@ export const ColumnHeader: React.FC<Props> = ({
       {!backButton && hasIcon && (
         <Icon id={icon} icon={iconComponent} className='column-header__icon' />
       )}
-      {title}
+      <span className='column-header__text'>{title}</span>
     </>
   );
 
@@ -285,7 +286,10 @@ export const ColumnHeader: React.FC<Props> = ({
       <div className={headingClassName}>
         {backButton}
         {hasTitle && (
-          <h1 className='column-header__title-wrapper'>
+          <NavigationFocusTarget
+            as='h1'
+            className='column-header__title-wrapper'
+          >
             {onClick ? (
               <button
                 onClick={handleTitleClick}
@@ -304,7 +308,7 @@ export const ColumnHeader: React.FC<Props> = ({
                 {titleContents}
               </span>
             )}
-          </h1>
+          </NavigationFocusTarget>
         )}
 
         <div className='column-header__buttons'>
