@@ -138,7 +138,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
 
     context 'when the account was known with a legacy key' do
-      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice') }
+      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice', legacy_keypair: true) }
 
       it 'invalidates the legacy key and stores the new key' do
         expect { subject.call('alice', 'example.com', payload) }
@@ -148,13 +148,14 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
 
     context 'when the account was known with an old key' do
-      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice', public_key: '') }
+      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice') }
 
       before do
+        alice.keypairs.delete_all
         Fabricate(:keypair, account: alice, uri: 'https://foo.test/actor#old-key', type: :rsa)
       end
 
-      it 'invalidates the legacy key and stores the new key' do
+      it 'invalidates the old key and stores the new key' do
         expect { subject.call('alice', 'example.com', payload) }
           .to change { alice.reload.keypairs.to_a }.from(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#old-key' }))).to(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#key1', type: 'rsa', public_key: })))
 
@@ -235,7 +236,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
 
     context 'when the account was known with a legacy key' do
-      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice') }
+      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice', legacy_keypair: true) }
 
       it 'invalidates the legacy key and stores the new key' do
         expect { subject.call('alice', 'example.com', payload) }
@@ -245,9 +246,10 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
 
     context 'when the account was known with an old key' do
-      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice', public_key: '') }
+      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice') }
 
       before do
+        alice.keypairs.delete_all
         Fabricate(:keypair, account: alice, uri: 'https://foo.test/actor#old-key', type: :rsa)
       end
 
@@ -302,7 +304,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
 
     context 'when the account was known with a legacy key' do
-      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice') }
+      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice', legacy_keypair: true) }
 
       it 'invalidates the legacy key and stores the new keys' do
         expect { subject.call('alice', 'example.com', payload) }
@@ -358,7 +360,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
 
     context 'when the account was known with a legacy key' do
-      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice') }
+      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice', legacy_keypair: true) }
 
       it 'invalidates the legacy key and stores the new keys' do
         expect { subject.call('alice', 'example.com', payload) }
