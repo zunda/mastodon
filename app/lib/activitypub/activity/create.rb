@@ -36,6 +36,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
       if @status.nil?
         process_status
+      elsif @status.account_id != @account.id
+        Rails.logger.debug { "Not processing #{object_uri}: authorship change is not supported" }
+        return reject_payload!
       elsif @options[:delivered_to_account_id].present?
         postprocess_audience_and_deliver
       end
@@ -50,6 +53,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @tags                 = []
     @mentions             = []
     @tagged_objects       = []
+    @links                = []
     @unresolved_mentions  = []
     @unresolved_collections = []
     @silenced_account_ids = []
@@ -82,7 +86,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def distribute
     # Spread out crawling randomly to avoid DDoSing the link
-    LinkCrawlWorker.perform_in(rand(DISTRIBUTE_DELAY), @status.id)
+    LinkCrawlWorker.perform_in(rand(DISTRIBUTE_DELAY), @status.id, @links.first)
 
     # Distribute into home and list feeds and notify mentioned accounts
     ::DistributionWorker.perform_async(@status.id, { 'silenced_account_ids' => @silenced_account_ids }) if @options[:override_timestamps] || @status.within_realtime_window?
@@ -91,7 +95,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def find_existing_status
     status   = status_from_uri(object_uri)
     status ||= Status.find_by(uri: @object['atomUri']) if @object['atomUri'].present?
-    status if status&.account_id == @account.id
+    status
   end
 
   def process_status_params
@@ -297,6 +301,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     media_attachments = []
 
     as_array(@object['attachment']).each do |attachment|
+      if attachment['href'].present?
+        preview_card_parser = ActivityPub::Parser::PreviewCardParser.new(attachment)
+        @links << preview_card_parser.url if preview_card_parser.url.present?
+        next
+      end
+
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
 
       next if media_attachment_parser.remote_url.blank? || media_attachments.size >= Status::MEDIA_ATTACHMENTS_LIMIT
