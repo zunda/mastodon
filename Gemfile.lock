@@ -111,7 +111,7 @@ GEM
     aws-sdk-kms (1.130.0)
       aws-sdk-core (~> 3, >= 3.254.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.228.1)
+    aws-sdk-s3 (1.228.2)
       aws-sdk-core (~> 3, >= 3.254.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
@@ -212,7 +212,6 @@ GEM
       railties (>= 5)
     dotenv (3.2.0)
     drb (2.2.3)
-    dry-cli (1.4.1)
     elastic-transport (8.5.3)
       faraday (< 3)
       multi_json
@@ -593,7 +592,7 @@ GEM
     pg (1.6.3)
     pghero (3.8.0)
       activerecord (>= 7.2)
-    playwright-ruby-client (1.61.0)
+    playwright-ruby-client (1.62.0)
       base64
       concurrent-ruby (>= 1.1.6)
       mime-types (>= 3.0)
@@ -639,8 +638,8 @@ GEM
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
       rack (>= 3.0.0, < 4)
-    rack-proxy (0.8.3)
-      rack
+    rack-proxy (1.0.1)
+      rack (>= 2.0, < 4)
     rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -902,15 +901,6 @@ GEM
     validate_url (1.0.15)
       activemodel (>= 3.0.0)
       public_suffix
-    vite_rails (3.11.1)
-      railties (>= 5.1, < 9)
-      vite_ruby (~> 3.0, >= 3.2.2)
-    vite_ruby (3.10.2)
-      dry-cli (>= 0.7, < 2)
-      logger (~> 1.6)
-      mutex_m
-      rack-proxy (~> 0.6, >= 0.6.1)
-      zeitwerk (~> 2.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     webauthn (3.4.3)
@@ -1051,6 +1041,7 @@ DEPENDENCIES
   pundit (~> 2.3)
   rack-attack (~> 6.6)
   rack-cors
+  rack-proxy
   rack-test (~> 2.1)
   rails (~> 8.1.0)
   rails-controller-testing (~> 1.0)
@@ -1092,7 +1083,6 @@ DEPENDENCIES
   tty-prompt (~> 0.23)
   twitter-text (~> 3.1.0)
   tzinfo-data (~> 1.2023)
-  vite_rails
   webauthn (~> 3.0)
   webmock (~> 3.18)
   webpush!
