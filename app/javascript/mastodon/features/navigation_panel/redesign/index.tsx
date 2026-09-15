@@ -8,12 +8,13 @@ import {
   MagnifyingGlassIcon,
   RssSimpleIcon,
   BellIcon,
-  ChatCircleIcon,
+  ChatCircleDotsIcon,
   BookmarkSimpleIcon,
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { fetchLists } from '@/mastodon/actions/lists';
+import { closeNavigation } from '@/mastodon/actions/navigation';
 import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
@@ -88,6 +89,7 @@ export const RedesignNavigationPanel: React.FC<{
   );
 
   const openComposer = useCallback(() => {
+    dispatch(closeNavigation());
     dispatch(openNewComposer({ type: 'post' }));
   }, [dispatch]);
 
@@ -231,7 +233,7 @@ export const RedesignNavigationPanel: React.FC<{
                   <NavigationLink
                     stacked
                     to='/conversations'
-                    iconComponent={ChatCircleIcon}
+                    iconComponent={ChatCircleDotsIcon}
                   >
                     <FormattedMessage
                       id='tabs_bar.messages'
