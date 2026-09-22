@@ -6,28 +6,39 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
 import { useParams } from 'react-router';
 
+import { BookmarkSimpleIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
+import { statusInteraction } from '@/mastodon/actions/interactions_typed';
+import { fetchStatus } from '@/mastodon/actions/statuses';
+import { ToggleIconButton } from '@/mastodon/components/button/redesign';
 import { Column } from '@/mastodon/components/column';
 import {
   ColumnHeader,
   ColumnSettingsMenu,
 } from '@/mastodon/components/column_header';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
+import { useIconWeight } from '@/mastodon/components/icon';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { LegacyDropdownMenuItems } from '@/mastodon/components/menu';
 import {
   FOCUS_TARGET,
   NavigationFocusTarget,
 } from '@/mastodon/components/navigation_focus_target';
+import {
+  useStatusMenuActions,
+  useTextForScreenReader,
+} from '@/mastodon/components/status/hooks';
 import { StatusRedesign as Status } from '@/mastodon/components/status/status';
 import { ScrollContainer } from '@/mastodon/containers/scroll_container';
 import type { ShouldUpdateScrollFn } from '@/mastodon/containers/scroll_container/default_should_update_scroll';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
+import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import {
   getAncestorsIds,
   getDescendantsIds,
 } from '@/mastodon/selectors/contexts';
-import { useAppSelector } from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { BundleColumnError } from '../ui/components/bundle_column_error';
 import { useColumnsContext } from '../ui/util/columns_context';
@@ -61,6 +72,7 @@ export const StatusPage: React.FC = () => {
   const { statusId } = useParams<{ acct: string; statusId: string }>();
   const { multiColumn } = useColumnsContext();
   const intl = useIntl();
+  const dispatch = useAppDispatch();
 
   const [fullscreen, setFullscreen] = useState(isFullscreen);
   useEffect(() => {
@@ -74,7 +86,12 @@ export const StatusPage: React.FC = () => {
     };
   });
 
-  const status = useExpandedStatus(statusId, 'force');
+  const status = useExpandedStatus(statusId);
+  useEffect(() => {
+    dispatch(
+      fetchStatus(statusId, { forceFetch: true, alsoFetchContext: true }),
+    );
+  }, [dispatch, statusId]);
   const isLoading = useAppSelector(
     (state) => !!state.statuses.getIn([statusId, 'isLoading']),
   );
@@ -85,6 +102,8 @@ export const StatusPage: React.FC = () => {
   const descendantIds = useAppSelector((state) =>
     getDescendantsIds(state, statusId),
   );
+
+  const screenReaderText = useTextForScreenReader({ statusId });
 
   const statusFocusRef = useRef<HTMLDivElement>(null);
   const shouldUpdateScroll: ShouldUpdateScrollFn = useCallback(
@@ -106,6 +125,20 @@ export const StatusPage: React.FC = () => {
       return false;
     },
     [],
+  );
+
+  const handleBookmarkClick = useCallback(() => {
+    dispatch(
+      statusInteraction({
+        statusId,
+        intent: 'bookmark',
+        contextType: 'detailed',
+      }),
+    );
+  }, [dispatch, statusId]);
+  const bookmarkIcon = useIconWeight(
+    BookmarkSimpleIcon,
+    status?.bookmarked && 'fill',
   );
 
   if (isLoading) {
@@ -166,17 +199,37 @@ export const StatusPage: React.FC = () => {
         withBackButton
         title={columnTitle}
         extraButtons={
-          <ColumnSettingsMenu
-            label={
-              <FormattedMessage
-                id='status.options'
-                defaultMessage='Post options'
-              />
-            }
-          >
-            WIP: This menu will contain post actions from the new Status
-            component
-          </ColumnSettingsMenu>
+          <>
+            <ToggleIconButton
+              size='sm'
+              variant='ghost'
+              active={status.bookmarked}
+              icon={bookmarkIcon}
+              onClick={handleBookmarkClick}
+            >
+              {!status.bookmarked ? (
+                <FormattedMessage
+                  id='status.bookmark'
+                  defaultMessage='Bookmark'
+                />
+              ) : (
+                <FormattedMessage
+                  id='status.remove_bookmark'
+                  defaultMessage='Remove bookmark'
+                />
+              )}
+            </ToggleIconButton>
+            <ColumnSettingsMenu
+              label={
+                <FormattedMessage
+                  id='status.options'
+                  defaultMessage='Post options'
+                />
+              }
+            >
+              <StatusMenuItems status={status} />
+            </ColumnSettingsMenu>
+          </>
         }
       />
 
@@ -204,6 +257,7 @@ export const StatusPage: React.FC = () => {
             className={classes.mainStatus}
             tabIndex={0}
             ref={statusFocusRef}
+            aria-label={screenReaderText}
           >
             <Status id={statusId} contextType='detailed' />
           </NavigationFocusTarget>
@@ -215,10 +269,17 @@ export const StatusPage: React.FC = () => {
           )}
 
           <div className={classes.threadEnd}>
-            <FormattedMessage
-              id='status.thread_end'
-              defaultMessage='You’ve reached the end of the conversation.'
-            />
+            {descendantIds.length > 0 ? (
+              <FormattedMessage
+                id='status.thread_end'
+                defaultMessage='You’ve reached the end of the conversation.'
+              />
+            ) : (
+              <FormattedMessage
+                id='status.thread_none'
+                defaultMessage='Nothing else has been added to the conversation yet.'
+              />
+            )}
           </div>
 
           <RefreshController
@@ -239,6 +300,14 @@ export const StatusPage: React.FC = () => {
       </Helmet>
     </Column>
   );
+};
+
+const StatusMenuItems: React.FC<{ status: ExpandedStatusShape }> = ({
+  status,
+}) => {
+  const menu = useStatusMenuActions({ status, contextType: 'detailed' });
+
+  return <LegacyDropdownMenuItems items={menu} />;
 };
 
 const StatusRelativeList: React.FC<{
