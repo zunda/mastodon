@@ -27,6 +27,9 @@ import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
+
+import { useHasAnnouncements } from '../../announcements/hooks';
 
 import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
@@ -75,6 +78,15 @@ function useFollowedHashtags() {
   return { followedHashtags: tags };
 }
 
+export function useNotificationsCount() {
+  const unreadNotificationsCount = useAppSelector(
+    selectUnreadNotificationGroupsCount,
+  );
+  const { unreadAnnouncementCount } = useHasAnnouncements();
+
+  return unreadNotificationsCount + unreadAnnouncementCount;
+}
+
 const isFediverseFeedsLinkActive = (
   match: unknown,
   { pathname }: { pathname: string },
@@ -96,9 +108,7 @@ export const RedesignNavigationPanel: React.FC<{
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
-  const notificationsCount = useAppSelector(
-    selectUnreadNotificationGroupsCount,
-  );
+  const notificationsCount = useNotificationsCount();
 
   const openComposer = useCallback(() => {
     dispatch(closeNavigation());
@@ -151,6 +161,7 @@ export const RedesignNavigationPanel: React.FC<{
                 state: { focusTarget: FOCUS_TARGET.SEARCH },
               }}
               iconComponent={MagnifyingGlassIcon}
+              onClick={invokeVirtualIosKeyboard}
             >
               <FormattedMessage
                 id='tabs_bar.explore'
