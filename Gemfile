@@ -235,3 +235,5 @@ gem 'hcaptcha', '~> 7.1'
 gem 'mail', '~> 2.8'
 
 gem 'base58', '~> 0.2.3'
+
+gem 'bloom_fit', '~> 1.2'

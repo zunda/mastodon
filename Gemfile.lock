@@ -93,7 +93,7 @@ GEM
       public_suffix (>= 2.0.2, < 8.0)
     aes_key_wrap (1.1.0)
     android_key_attestation (0.3.0)
-    annotaterb (4.23.0)
+    annotaterb (4.25.0)
       activerecord (>= 6.0.0)
       activesupport (>= 6.0.0)
     ast (2.4.3)
@@ -133,6 +133,8 @@ GEM
     bindata (2.5.1)
     binding_of_caller (2.0.0)
       debug_inspector (>= 1.2.0)
+    bloom_fit (1.2.0)
+      msgpack (~> 1.0)
     blurhash (0.1.8)
     brakeman (8.0.6)
       racc
@@ -947,6 +949,7 @@ DEPENDENCIES
   base58 (~> 0.2.3)
   better_errors (~> 2.9)
   binding_of_caller
+  bloom_fit (~> 1.2)
   blurhash (~> 0.1)
   brakeman (~> 8.0)
   browser
