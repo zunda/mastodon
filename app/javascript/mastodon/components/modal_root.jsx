@@ -54,16 +54,18 @@ class ModalRoot extends PureComponent {
         e.stopPropagation();
         e.preventDefault();
       }
-    } else if (key === 'enter' && !e.defaultPrevented && !!this.props.children) {
+    } else if (key === 'escape' && !e.defaultPrevented && !!this.props.children) {
       this.props.onClose();
     }
   };
 
   handleBackgroundClick = (e) => {
     // Close modal, but only when clicking outside of the modal's content
-    if (!e.target.matches('.modal-root__container *')) {
-      this.props.onClose();
+    if (e.target.matches('.modal-root__container *') || !e.target.matches('.modal-root *')) {
+      return;
     }
+
+    this.props.onClose();
   }
 
   componentDidMount () {
