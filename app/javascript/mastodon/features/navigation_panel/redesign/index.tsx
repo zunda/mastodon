@@ -114,9 +114,10 @@ export function useNotificationsCount() {
   const unreadNotificationsCount = useAppSelector(
     selectUnreadNotificationGroupsCount,
   );
-  const followRequestsCount = useFollowRequestsCount();
+  const { signedIn } = useIdentity();
+  const followRequestsCount = useFollowRequestsCount({ fetch: signedIn });
 
-  const { unreadAnnouncementCount } = useHasAnnouncements();
+  const { unreadAnnouncementCount } = useHasAnnouncements({ fetch: signedIn });
 
   return (
     unreadNotificationsCount + followRequestsCount + unreadAnnouncementCount
@@ -293,10 +294,7 @@ export const RedesignNavigationPanel: React.FC<{
                 <NavigationAccountCardAndMenu />
               </>
             )}
-            <NavigationFooterLinks
-              multiColumn={multiColumn}
-              siteName={siteName}
-            />
+            <NavigationFooterLinks multiColumn={multiColumn} />
           </footer>
         </>
       )}
@@ -314,10 +312,7 @@ export const RedesignNavigationPanel: React.FC<{
           </ul>
           <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
             {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
-            <NavigationFooterLinks
-              multiColumn={multiColumn}
-              siteName={siteName}
-            />
+            <NavigationFooterLinks withVersionInfo multiColumn={multiColumn} />
           </footer>
         </>
       )}

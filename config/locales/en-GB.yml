@@ -546,8 +546,6 @@ en-GB:
           description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
           reject: Reject
           title: Confirm FASP Registration
-        save: Save
-        select_capabilities: Select Capabilities
         sign_in: Sign In
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -881,10 +879,8 @@ en-GB:
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
-        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
         wrapstodon: Wrapstodon
@@ -892,6 +888,9 @@ en-GB:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      external:
+        preamble: Control how much information about your server gets shared with other services and how discoverable your server should be.
+        title: External Discovery
       feed_access:
         modes:
           authenticated: Authenticated users only
@@ -1382,7 +1381,6 @@ en-GB:
   deletes:
     challenge_not_passed: The information you entered was not correct
     confirm_password: Enter your current password to verify your identity
-    confirm_username: Enter your username to confirm the procedure
     proceed: Delete account
     success_msg: Your account was successfully deleted
     warning:
@@ -1937,7 +1935,6 @@ en-GB:
     appearance: Appearance
     authorized_apps: Authorised apps
     back: Back to Mastodon
-    delete: Account deletion
     development: Development
     edit_profile: Edit profile
     export: Export
