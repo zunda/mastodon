@@ -76,7 +76,11 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
       }
       className={classes.root}
     >
-      <LockupLink to={accountBasePath} subtitle={handle}>
+      <LockupLink
+        to={accountBasePath}
+        subtitle={handle}
+        className={classes.accountLink}
+      >
         <DisplayName variant='simple' account={account} />
       </LockupLink>
     </LockupWrapper>
@@ -196,7 +200,11 @@ export const AccountMenuItems: React.FC<{
           />
         </MenuItemLink>
 
-        <MenuItemLink as='a' href='/blocks' icon={MastodonLogoIcon}>
+        <MenuItemLink
+          as='a'
+          href='https://joinmastodon.org'
+          icon={MastodonLogoIcon}
+        >
           <FormattedMessage
             id='navigation_bar.about_mastodon'
             defaultMessage='About Mastodon'
