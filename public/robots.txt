@@ -7,3 +7,9 @@ User-agent: *
 Disallow: /media_proxy/
 Disallow: /interact/
 Disallow: /api/v1/instance/domain_blocks
+
+User-agent: ExaSearchBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
