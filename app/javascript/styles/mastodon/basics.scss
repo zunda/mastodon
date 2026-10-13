@@ -18,7 +18,7 @@ html {
   --mobile-bottom-nav-height: calc(58px + var(--space-2));
 
   // Compensate for column header height when scrolling elements into view
-  --column-header-height: 64px;
+  --column-header-height: 48px;
 
   // Variable for easily inverting directional UI elements,
   --text-x-direction: 1;
@@ -27,6 +27,7 @@ html {
     --text-x-direction: -1;
   }
 
+  scrollbar-gutter: stable;
   scroll-padding-top: var(--column-header-height);
 
   &:has(.layout-multi-column) {
@@ -40,7 +41,6 @@ html.has-modal {
     touch-action: none;
     overscroll-behavior: none;
     -webkit-overflow-scrolling: auto;
-    scrollbar-gutter: stable;
   }
 
   body {
