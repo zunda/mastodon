@@ -14,15 +14,9 @@ class NoteLengthValidator < ActiveModel::EachValidator
   def countable_text(value)
     return '' if value.nil?
 
-    entities = Extractor.extract_urls_with_indices(value).sort_by { |e| e[:indices].first }
-    result = +''
-    last = entities.reduce(0) do |i, entity|
-      result << value[i...entity[:indices].first]
-      result << StatusLengthValidator::URL_PLACEHOLDER
-      entity[:indices].last
+    value.dup.tap do |new_text|
+      new_text.gsub!(FetchLinkCardService::URL_PATTERN, StatusLengthValidator::URL_PLACEHOLDER)
+      new_text.gsub!(Account::MENTION_RE, '@\2')
     end
-    result << value[last..]
-    result.gsub!(Account::MENTION_RE, '@\2')
-    result
   end
 end
