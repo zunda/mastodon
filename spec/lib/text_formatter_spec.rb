@@ -315,8 +315,8 @@ RSpec.describe TextFormatter do
       end
     end
 
-    context 'when given a URL with www subdomain' do
-      let(:text) { 'https://www.example.com/' }
+    context 'when given a URL with www subdomain sorrounded by text' do
+      let(:text) { 'Hello, https://www.example.com/ !' }
 
       it 'does not hide the scheme and the subdomain' do
         expect(subject).to include '<span class="">https://www.example.com/</span>'
@@ -324,6 +324,11 @@ RSpec.describe TextFormatter do
 
       it 'creates a link' do
         expect(subject).to include 'href="https://www.example.com/"'
+      end
+
+      it 'preserves the surrounding text' do
+        expect(subject).to include '<p>Hello, '
+        expect(subject).to include ' !</p>'
       end
     end
 
