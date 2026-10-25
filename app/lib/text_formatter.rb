@@ -5,7 +5,7 @@ class TextFormatter
   include ERB::Util
   include RoutingHelper
 
-  URL_PREFIX_REGEX = %r{\A(xmpp:)}
+  URL_PREFIX_REGEX = /\A(xmpp:)/
   URL_MAX_LENGTH = 90
 
   DEFAULT_REL = %w(nofollow noopener).freeze
@@ -55,7 +55,9 @@ class TextFormatter
     include ActionView::Helpers::TagHelper
 
     def shortened_link(url, rel_me: false)
-      url = Addressable::URI.parse(url).to_s
+      uri = Addressable::URI.parse(url)
+      uri.hostname = Addressable::IDNA.to_ascii(uri.hostname) if uri.scheme&.match?(/\Ahttp/i)
+      url = uri.to_s
       rel = rel_me ? (DEFAULT_REL + %w(me)) : DEFAULT_REL
 
       prefix      = url.match(URL_PREFIX_REGEX).to_s

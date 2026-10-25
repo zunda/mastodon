@@ -72,12 +72,24 @@ RSpec.describe TextFormatter do
     context 'when given a stand-alone IDN URL' do
       let(:text) { 'https://nic.みんな/' }
 
+      it 'matches the full URL and convert it to punycode' do
+        expect(subject).to include 'href="https://nic.xn--q9jyb4c/"'
+      end
+
+      it 'has display URL in punycode' do
+        expect(subject).to include '<span class="">https://nic.xn--q9jyb4c/</span>'
+      end
+    end
+
+    context 'when given a stand-alone punycode URL' do
+      let(:text) { 'https://nic.xn--q9jyb4c/' }
+
       it 'matches the full URL' do
-        expect(subject).to include 'href="https://nic.みんな/"'
+        expect(subject).to include 'href="https://nic.xn--q9jyb4c/"'
       end
 
       it 'has display URL' do
-        expect(subject).to include '<span class="">https://nic.みんな/</span>'
+        expect(subject).to include '<span class="">https://nic.xn--q9jyb4c/</span>'
       end
     end
 
@@ -300,6 +312,38 @@ RSpec.describe TextFormatter do
         expect(subject).to include '<span class="invisible"></span>'
         expect(subject).to include '<span class="">https://prepitaph.org/wip/web-devspair/</span>'
         expect(subject).to include '<span class="invisible"></span>'
+      end
+    end
+
+    context 'when given a URL with www subdomain' do
+      let(:text) { 'https://www.example.com/' }
+
+      it 'does not hide the scheme and the subdomain' do
+        expect(subject).to include '<span class="">https://www.example.com/</span>'
+      end
+
+      it 'creates a link' do
+        expect(subject).to include 'href="https://www.example.com/"'
+      end
+    end
+
+    context 'when given a URL with mixed cases' do
+      let(:text) { 'Https://Www.Example.Com/' }
+
+      it 'shows the same cases' do
+        expect(subject).to include '<span class="">Https://Www.Example.Com/</span>'
+      end
+
+      it 'creates a link with the same cases' do
+        expect(subject).to include 'href="Https://Www.Example.Com/"'
+      end
+    end
+
+    context 'when given a URL-like text without scheme' do
+      let(:text) { 'www.example.com' }
+
+      it 'does not create a link' do
+        expect(subject).to_not include 'href='
       end
     end
 
