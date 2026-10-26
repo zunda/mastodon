@@ -9,6 +9,10 @@
   //   border-inline: var(--border-default);
   // }
 
+  :global(.layout-single-column) & {
+    padding-bottom: var(--current-composer-height, 0);
+  }
+
   :global(.layout-multiple-columns) & {
     flex: 0 0 auto;
 
