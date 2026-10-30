@@ -370,15 +370,13 @@ RSpec.describe TextFormatter do
     end
 
     context 'when given a URL with mixed cases' do
-      let(:text) { 'https://Www.Example.Com/' }
+      let(:text) { 'Https://Www.Example.Com/' }
 
       it 'shows the same cases' do
-        pending 'something thinks hostname are case-sensitive'
         expect(subject).to include '<span class="">Https://Www.Example.Com/</span>'
       end
 
       it 'creates a link with the same cases' do
-        pending 'something thinks hostname are case-sensitive'
         expect(subject).to include 'href="Https://Www.Example.Com/"'
       end
     end
