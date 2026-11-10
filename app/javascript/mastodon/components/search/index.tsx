@@ -28,6 +28,7 @@ import {
 } from '@/mastodon/components/navigation_focus_target';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
+import { isKeyComposing } from '@/mastodon/utils/events';
 import {
   clickSearchResult,
   forgetSearchResult,
@@ -469,16 +470,9 @@ export const Search: React.FC<{
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
-      // Check if this composing: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/isComposing
-      // and https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event#keydown_events_with_ime
-      if (
-        e.nativeEvent.isComposing ||
-        // eslint-disable-next-line @typescript-eslint/no-deprecated
-        e.nativeEvent.keyCode === 229
-      ) {
+      if (isKeyComposing(e)) {
         return;
       }
-
       switch (e.key) {
         case 'Escape':
           e.preventDefault();
