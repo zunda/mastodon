@@ -2,6 +2,10 @@
 
 require 'doorkeeper/grape/authorization_decorator'
 
+DISTRIBUTED_CLIENT_CIDR = [
+  '152.163.0.0/16',	# 2026-11-15 continued high frequency reqs mimicing browser
+].map { |cidr| IPAddr.new(cidr) }
+
 class Rack::Attack
   class Request
     def authenticated_token
@@ -23,6 +27,8 @@ class Rack::Attack
 
         if ip.ipv6?
           ip.mask(64)
+        elsif (cidr = DISTRIBUTED_CLIENT_CIDR.find { |x| x.include?(ip) })
+          cidr
         else
           ip
         end
@@ -83,6 +89,10 @@ class Rack::Attack
 
   throttle('throttle_per_token_api', limit: 300, period: 5.minutes) do |req|
     req.authenticated_token_id if req.api_request?
+  end
+
+  throttle('throttle_unauthenticated', limit: 600, period: 5.minutes) do |req|
+    req.throttleable_remote_ip if req.unauthenticated?
   end
 
   throttle('throttle_unauthenticated_api', limit: 300, period: 5.minutes) do |req|
