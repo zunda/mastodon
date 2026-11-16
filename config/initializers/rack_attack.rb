@@ -74,9 +74,7 @@ class Rack::Attack
 
   throttle('high_request_queue_time', limit: 10, period: 30.seconds) do |req|
     t_ms = req.env['HTTP_X_REQUEST_START'].to_f
-    if t_ms > 0 and Time.now.to_f - t_ms/1000 > 25
-      'high_request_queue_time'
-    end
+    'high_request_queue_time' if t_ms.positive? && (Time.now.to_f - (t_ms / 1000) > 25)
   end
 
   Rack::Attack.blocklist('deny from blocklist') do |req|
@@ -100,7 +98,7 @@ class Rack::Attack
   end
 
   throttle('throttle_unauthenticated_api_with_range', limit: 50, period: 10.minutes) do |req|
-    req.remote_ip if req.api_request? && req.unauthenticated?  && req.query_string.include?('_id=')
+    req.remote_ip if req.api_request? && req.unauthenticated? && req.query_string.include?('_id=')
   end
 
   throttle('throttle_public_timeline', limit: 40, period: 30.seconds) do |req|
@@ -112,7 +110,7 @@ class Rack::Attack
   end
 
   throttle('throttle_public_timeline_with_range', limit: 4, period: 120.seconds) do |req|
-    req.remote_ip if req.path.start_with?('/@') and req.query_string.include?('_id=')
+    req.remote_ip if req.path.start_with?('/@') && req.query_string.include?('_id=')
   end
 
   throttle('throttle_overall_public_timeline_with_range', limit: 10, period: 20.seconds) do |req|
