@@ -17,7 +17,7 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :profile, safe_join([material_symbol('person'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification} do |s|
       s.item :identity_proofs, safe_join([fa_icon('key fw'), t('settings.identity_proofs')]), settings_identity_proofs_path, highlights_on: %r{/settings/identity_proofs*}, if: proc { current_account.identity_proofs.exists? }
     end
-    n.item :privacy, safe_join([material_symbol('globe'), t('privacy.title')]), settings_privacy_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/privacy}
+    n.item :privacy, safe_join([material_symbol('globe'), t('privacy.title')]), settings_privacy_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/privacy|/settings/relay_preferences}
 
     n.item :preferences, safe_join([material_symbol('settings'), t('settings.preferences')]), settings_preferences_path, if: -> { current_user.functional? && !self_destruct } do |s|
       s.item :appearance, safe_join([material_symbol('computer'), t('settings.appearance')]), settings_preferences_appearance_path
