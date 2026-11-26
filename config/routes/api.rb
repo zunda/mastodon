@@ -350,6 +350,7 @@ namespace :api, format: false do
 
     namespace :admin do
       resources :accounts, only: [:index]
+      resources :server_checks, only: [:index]
     end
 
     namespace :notifications do
