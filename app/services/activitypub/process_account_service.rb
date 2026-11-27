@@ -566,7 +566,7 @@ class ActivityPub::ProcessAccountService < BaseService
     current_proofs  = []
 
     as_array(@json['attachment']).each do |attachment|
-      next unless equals_or_includes?(attachment['type'], 'IdentityProof')
+      next unless attachment.respond_to?(:fetch) and equals_or_includes?(attachment.fetch('type'), 'IdentityProof')
       current_proofs << process_identity_proof(attachment)
     end
 
